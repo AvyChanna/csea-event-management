@@ -1,0 +1,1 @@
+# csea-event-management
