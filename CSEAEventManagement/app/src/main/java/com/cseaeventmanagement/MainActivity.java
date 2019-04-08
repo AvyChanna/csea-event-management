@@ -13,6 +13,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.*;
+
+import android.content.*;
+
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -100,6 +104,9 @@ public class MainActivity extends AppCompatActivity
 
         }
         else if (id == R.id.nav_csea_core_team) {
+            //Calling CouncilActivity
+            Intent intent = new Intent(this, CouncilActivity.class);
+            startActivity(intent);
 
         }
 
