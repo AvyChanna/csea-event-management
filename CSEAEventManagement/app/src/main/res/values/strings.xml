@@ -1,4 +1,5 @@
 <resources>
+    <!-- Strings related to mainActivity -->
     <string name="app_name">CSEA Event Management</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -8,4 +9,81 @@
     <string name="action_settings">Settings</string>
     <string name="csea_event_management_app">CSEA Event Management App</string>
     <string name="login_signup">Login/Signup</string>
+    <string name="title_activity_login">Sign in</string>
+    <!-- Strings related to login and signup -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="prompt_roll_number">Roll Number</string>
+    <string name="prompt_confirm_password">Confirm Password</string>
+    <string name="action_sign_in">Log In</string>
+    <string name="action_sign_up">Sign Up</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email completions."</string>
+    <string name="title_activity_signup">Sign Up</string>
+    <string name="branch">Branch</string>
+    <string name="name">Name</string>
+    <string name="year_of_admission">Year of admission</string>
+    <string name="phone_number">Phone Number</string>
+    <string-array name="branches_super">
+        <item>Bachelor of Technology (B.Tech.)</item>
+        <item>Bachelor of Design (B.Des.)</item>
+        <item>Master of Science (M.Sc.)</item>
+        <item>Master of Arts in Development Studies (MA)</item>
+        <item>Master of Technology (M.Tech.)</item>
+        <item>Master of Design (M.Des.)</item>
+        <item>Master of Science by Research in Energy [MS(R)]</item>
+        <item>Doctorate of Philosophy (Ph.D.)</item>
+        <item>CSE Dual(MTech+PhD) degree</item>
+        <item>EEE Dual Degree [MS(Engg).+PhD)</item>
+    </string-array>
+    <string-array name="branches_bachelor">
+        <item>Biotechnology</item>
+        <item>Chemical Engineering</item>
+        <item>Chemical Science and Technology</item>
+        <item>Civil Engineering</item>
+        <item>Computer Science &amp; Engineering</item>
+        <item>Electronics &amp; Communication Engineering</item>
+        <item>Electronics and Electrical Engineering</item>
+        <item>Engineering Physics</item>
+        <item>Mathematics &amp; Computing</item>
+        <item>Mechanical Engineering</item>
+    </string-array>
+    <string-array name="branches_master">
+    <item>Biotechnology</item>
+    <item>Petroleum Science and Technology</item>
+    <item>Material Science and Technology</item>
+    <item>Structural Engineering</item>
+    <item>Water Resources Engineering and Management</item>
+    <item>GeoTechnical Engineering</item>
+    <item>Environmental Engineering</item>
+    <item>Transportation System Engineering</item>
+    <item>Infrastructure Engineering and Management</item>
+    <item>Signal Processing</item>
+    <item>VLSI</item>
+    <item>Applied Control</item>
+    <item>Communication Engineering</item>
+    <item>Machine Design</item>
+    <item>Fluids and Thermal Engineering</item>
+    <item>Computer Assisted Manufacturing</item>
+</string-array>
+    <string-array name="branches_doctoral">
+        <item>Biotechnology</item>
+        <item>Chemistry</item>
+        <item>Chemical Engineering</item>
+        <item>Civil Engineering</item>
+        <item>Computer Science and Engineering</item>
+        <item>Design</item>
+        <item>Electronics and Electrical Engineering</item>
+        <item>Centre for Energy</item>
+        <item>Centre for the Environment</item>
+        <item>Humanities and Social Sciences</item>
+        <item>Mathematics</item>
+        <item>Mechanical Engineering</item>
+        <item>Centre for Nanotechnology</item>
+        <item>Physics</item>
+    </string-array>
+
 </resources>
