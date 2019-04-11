@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:dist="http://schemas.android.com/apk/distribution"
     package="com.cseaeventmanagement">
-
     <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
@@ -11,16 +10,14 @@
     <dist:module dist:instant="true" />
 
     <application
-        android:name = ".Keep_it_portrait"
+        android:name=".Keep_it_portrait"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-
-
+        <activity android:name=".RequestEventActivity"></activity>
         <activity
             android:name=".SignupActivity"
             android:label="@string/title_activity_signup" />
@@ -37,13 +34,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".App_Feedback_Activity">
             <intent-filter>
-            <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
-
         <activity android:name=".Council_18_19Activity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />

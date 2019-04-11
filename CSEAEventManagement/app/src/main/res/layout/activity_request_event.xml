@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--&lt;!&ndash; make the event date picking field easier-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="16dp"
+    android:paddingTop="10dp"
+    android:paddingRight="16dp"
+    android:paddingBottom="10dp">
+
+
+    <TextView
+        android:id="@+id/textView_request_heading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="10dp"
+        android:fontFamily="cursive"
+        android:gravity="center_horizontal"
+        android:text="Welcome to Event Request Portal!"
+        android:textColor="@android:color/black"
+        android:textSize="20dp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/holo_blue_dark"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingLeft="10dp"
+            android:paddingTop="25dp"
+            android:paddingRight="25dp"
+            android:paddingBottom="20dp">
+
+            <EditText
+                android:id="@+id/editText_request_eventName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:gravity="left"
+                android:hint="Event Name"
+                android:inputType="textMultiLine" />
+
+            <EditText
+                android:id="@+id/editText_request_eventFee"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:gravity="left"
+                android:hint="Event Fee (in Rs.)"
+                android:inputType="number" />
+            <EditText
+                android:id="@+id/editText_request_eventCapacity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:gravity="left"
+                android:hint="Expected Audience (in numbers)"
+                android:inputType="number" />
+
+            <Spinner
+                android:id="@+id/spinner_request"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_gravity="left" />
+
+            <EditText
+                android:id="@+id/editText_request_eventDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/holo_orange_dark"
+                android:ems="10"
+                android:gravity="left"
+                android:hint="Select Event Date"
+                android:inputType="textMultiLine" />
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+
+</LinearLayout>

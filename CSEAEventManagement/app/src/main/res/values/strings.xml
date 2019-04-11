@@ -85,6 +85,20 @@
         <item>Centre for Nanotechnology</item>
         <item>Physics</item>
     </string-array>
+    <string-array name="venue_array">
+        <item>Select a venue...</item>
+        <item>Lecture Hall 1</item>
+        <item>Lecture Hall 2</item>
+        <item>Lecture Hall 3</item>
+        <item>Lecture Hall 4</item>
+        <item>Conference Room</item>
+        <item>CSE Seminar Room</item>
+        <item>Core 2 Rooms</item>
+        <item>Core 5 Rooms</item>
+        <item>Mini Auditorium</item>
+        <item>Main Auditorium</item>
+        <item>Department Library</item>
+    </string-array>
 
     <string name="executive_council_2018_2019">Executive Council 2018-2019</string>
 </resources>

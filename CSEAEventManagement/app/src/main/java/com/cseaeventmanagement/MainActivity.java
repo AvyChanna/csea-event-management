@@ -101,8 +101,10 @@ public class MainActivity extends AppCompatActivity
         }
         else if (id == R.id.nav_faq_app) {
 
-        } else if (id == R.id.nav_logout) {
 
+        } else if (id == R.id.nav_logout) {
+            Intent intent = new Intent(this, RequestEventActivity.class);
+            startActivity(intent);
         }
         else if (id == R.id.nav_csea_core_team) {
             //Calling CouncilActivity
