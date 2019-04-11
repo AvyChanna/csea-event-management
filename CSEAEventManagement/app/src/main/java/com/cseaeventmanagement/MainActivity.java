@@ -13,6 +13,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.*;
+
+import android.content.*;
+
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -91,18 +95,29 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_search_events) {
 
-        } else if (id == R.id.nav_feedback_app) {
-
-        } else if (id == R.id.nav_faq_app) {
+        }
+        else if (id == R.id.nav_feedback_app) {
+            gotoFeedback();
+        }
+        else if (id == R.id.nav_faq_app) {
 
         } else if (id == R.id.nav_logout) {
 
-        } else if (id == R.id.nav_csea_core_team) {
+        }
+        else if (id == R.id.nav_csea_core_team) {
+            //Calling CouncilActivity
+            Intent intent = new Intent(this, CouncilActivity.class);
+            startActivity(intent);
 
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void gotoFeedback() {
+        Intent intent = new Intent(this,App_Feedback_Activity.class);
+        startActivity(intent);
     }
 }

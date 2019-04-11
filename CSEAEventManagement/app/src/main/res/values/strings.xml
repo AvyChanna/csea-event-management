@@ -11,8 +11,8 @@
     <string name="login_signup">Login/Signup</string>
     <string name="title_activity_login">Sign in</string>
     <!-- Strings related to login and signup -->
-    <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
+    <string name="prompt_email">Email</string>
     <string name="prompt_roll_number">Roll Number</string>
     <string name="prompt_confirm_password">Confirm Password</string>
     <string name="action_sign_in">Log In</string>
@@ -52,23 +52,23 @@
         <item>Mechanical Engineering</item>
     </string-array>
     <string-array name="branches_master">
-    <item>Biotechnology</item>
-    <item>Petroleum Science and Technology</item>
-    <item>Material Science and Technology</item>
-    <item>Structural Engineering</item>
-    <item>Water Resources Engineering and Management</item>
-    <item>GeoTechnical Engineering</item>
-    <item>Environmental Engineering</item>
-    <item>Transportation System Engineering</item>
-    <item>Infrastructure Engineering and Management</item>
-    <item>Signal Processing</item>
-    <item>VLSI</item>
-    <item>Applied Control</item>
-    <item>Communication Engineering</item>
-    <item>Machine Design</item>
-    <item>Fluids and Thermal Engineering</item>
-    <item>Computer Assisted Manufacturing</item>
-</string-array>
+        <item>Biotechnology</item>
+        <item>Petroleum Science and Technology</item>
+        <item>Material Science and Technology</item>
+        <item>Structural Engineering</item>
+        <item>Water Resources Engineering and Management</item>
+        <item>GeoTechnical Engineering</item>
+        <item>Environmental Engineering</item>
+        <item>Transportation System Engineering</item>
+        <item>Infrastructure Engineering and Management</item>
+        <item>Signal Processing</item>
+        <item>VLSI</item>
+        <item>Applied Control</item>
+        <item>Communication Engineering</item>
+        <item>Machine Design</item>
+        <item>Fluids and Thermal Engineering</item>
+        <item>Computer Assisted Manufacturing</item>
+    </string-array>
     <string-array name="branches_doctoral">
         <item>Biotechnology</item>
         <item>Chemistry</item>
@@ -86,4 +86,5 @@
         <item>Physics</item>
     </string-array>
 
+    <string name="executive_council_2018_2019">Executive Council 2018-2019</string>
 </resources>
