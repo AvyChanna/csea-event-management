@@ -46,7 +46,7 @@ public class RequestEventActivity extends AppCompatActivity {
 
         imgView = (ImageView) findViewById(R.id.img_request_poster);
         imgSelBut = (Button) findViewById(R.id.btn_request_eventPoster);
-
+        imgView.setVisibility(View.INVISIBLE);
         imgSelBut.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -141,8 +141,10 @@ public class RequestEventActivity extends AppCompatActivity {
         super.onActivityResult(requestCode,resultCode,data);
         if(resultCode == RESULT_OK && requestCode == PICK_IMAGE){
             imageUri = data.getData();
-            imgView.setImageURI(imageUri);
+            Log.d(imageUri.toString(),"abcd");
             imgView.setVisibility(View.VISIBLE);
+            imgView.setImageURI(imageUri);
+            imgView.invalidate();
         }
     }
 }
