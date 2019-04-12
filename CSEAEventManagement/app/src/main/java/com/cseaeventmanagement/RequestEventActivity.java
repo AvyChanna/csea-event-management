@@ -3,28 +3,35 @@
 package com.cseaeventmanagement;
 
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TimePicker;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
-import java.util.List;
 
 public class RequestEventActivity extends AppCompatActivity {
 
     private static final String TAG = "RequestEventActivity";
-    private EditText eventDateDisplay;
+    private Button eventDateDisplay;
+    private Button eventTimePicker;
     private DatePickerDialog.OnDateSetListener eventDateSetListener;
+    private ImageView imgView;
+    private  Button imgSelBut;
+    private static final int PICK_IMAGE = 100;
+    Uri imageUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +44,42 @@ public class RequestEventActivity extends AppCompatActivity {
         myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item );
         spinner.setAdapter(myAdapter);
 
-        eventDateDisplay = (EditText) findViewById(R.id.editText_request_eventDate);
+        imgView = (ImageView) findViewById(R.id.img_request_poster);
+        imgSelBut = (Button) findViewById(R.id.btn_request_eventPoster);
+
+        imgSelBut.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                openGallery();
+            }
+        });
+
+
+        eventTimePicker = (Button) findViewById(R.id.btn_request_eventTime);
+        eventTimePicker.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                final Calendar cal = Calendar.getInstance();
+                int mHour = cal.get(Calendar.HOUR_OF_DAY);
+                int mMinute = cal.get(Calendar.MINUTE);
+
+                TimePickerDialog timeDialog = new TimePickerDialog(RequestEventActivity.this,
+                        new TimePickerDialog.OnTimeSetListener() {
+                            @Override
+                            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                                String am_pm = "";
+                                if(cal.get(Calendar.AM_PM)==Calendar.AM)
+                                    am_pm = "AM";
+                                else if(cal.get(Calendar.AM_PM)==Calendar.PM)
+                                    am_pm = "PM";
+                                eventTimePicker.setText("Selected Time "+hourOfDay+":"+minute+" "+am_pm);
+                            }
+                        },mHour,mMinute,false);
+                timeDialog.show();
+            }
+        });
+
+        eventDateDisplay = (Button) findViewById(R.id.btn_request_eventDate);
         eventDateDisplay.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
@@ -87,5 +129,20 @@ public class RequestEventActivity extends AppCompatActivity {
                 eventDateDisplay.setText("Selected Date: "+dayOfMonth+" "+exact_month+" "+year);
             }
         };
+    }
+
+    public void openGallery(){
+        Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+        startActivityForResult(gallery,PICK_IMAGE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode,Intent data){
+        super.onActivityResult(requestCode,resultCode,data);
+        if(resultCode == RESULT_OK && requestCode == PICK_IMAGE){
+            imageUri = data.getData();
+            imgView.setImageURI(imageUri);
+            imgView.setVisibility(View.VISIBLE);
+        }
     }
 }

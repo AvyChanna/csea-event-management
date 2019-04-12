@@ -17,7 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:elevation="10dp"
-        android:fontFamily="cursive"
+        android:fontFamily="serif-monospace"
         android:gravity="center_horizontal"
         android:text="Welcome to Event Request Portal!"
         android:textColor="@android:color/black"
@@ -73,17 +73,62 @@
                 android:layout_height="48dp"
                 android:layout_gravity="left" />
 
-            <EditText
-                android:id="@+id/editText_request_eventDate"
+            <Button
+                android:id="@+id/btn_request_eventDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@android:color/holo_orange_dark"
+                android:gravity="center"
+                android:textAlignment="gravity"
+                android:hint="Select Event Date" />
+
+            <Button
+                android:id="@+id/btn_request_eventTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textAlignment="gravity"
+                android:hint="Select Event Start Time" />
+
+            <EditText
+                android:id="@+id/editText_request_eventDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:ems="10"
                 android:gravity="left"
-                android:hint="Select Event Date"
+                android:hint="Short Event Description"
                 android:inputType="textMultiLine" />
 
+            <EditText
+                android:id="@+id/editText_request_eventCommentsForAdmin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:gravity="left"
+                android:hint="Comments for admin"
+                android:inputType="textMultiLine" />
 
+            <Button
+                android:id="@+id/btn_request_customFAQ"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textAlignment="gravity"
+                android:hint="Give FAQs for the event" />
+
+            <Button
+                android:id="@+id/btn_request_eventPoster"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textAlignment="gravity"
+                android:hint="Poster for the event(optional)" />
+
+            <ImageView
+                android:id="@+id/img_request_poster"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:visibility="invisible"
+                android:scaleType="fitCenter" />
         </LinearLayout>
 
     </ScrollView>
