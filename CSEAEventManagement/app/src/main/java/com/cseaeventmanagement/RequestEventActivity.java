@@ -4,6 +4,7 @@ package com.cseaeventmanagement;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -11,6 +12,7 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,10 +20,12 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -41,6 +45,19 @@ public class RequestEventActivity extends AppCompatActivity {
     private static final int PICK_IMAGE = 100;
     private int position_programme;
     private int position_stream;
+
+    private String event_name;
+    private int event_fee;
+    private int event_exp_audience;
+    private String event_venue;
+    private String event_date;
+    private String event_time;
+    private String event_description;
+    private String event_admin_comment;
+    private String event_target_audience;
+    private Button event_add_target_audi_btn;
+    private Button submit_button;
+
     Uri imageUri;
 
     @Override
@@ -48,6 +65,8 @@ public class RequestEventActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_request_event);
 
+
+        event_target_audience = "";
         populateVenues();
 
         final Spinner spinner_sel_programme = (Spinner) findViewById(R.id.spinner_request_programme);
@@ -62,7 +81,6 @@ public class RequestEventActivity extends AppCompatActivity {
                 }
                 else{
                     position_programme = position;
-
                     return true;
                 }
             }
@@ -99,6 +117,29 @@ public class RequestEventActivity extends AppCompatActivity {
             }
         });
 
+//        event_add_target_audi_btn = (Button) findViewById(R.id.btn_request_addAudience);
+//        event_add_target_audi_btn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Spinner loc_spinner1 = (Spinner) findViewById(R.id.spinner_request_stream);
+//                Spinner loc_spinner2 = (Spinner) findViewById(R.id.spinner_request_year);
+//                if(spinner_sel_programme == null || spinner_sel_programme.getSelectedItem().toString() == null||loc_spinner1 == null||loc_spinner2 == null||
+//                loc_spinner1.getSelectedItem().toString() == null || loc_spinner2.getSelectedItem().toString() == null)
+//                {
+//                    Context context = getApplicationContext();
+//                    CharSequence text = "Fill all the enteries first";
+//                    int duration = Toast.LENGTH_SHORT;
+//                    Toast toast = Toast.makeText(context,text,duration);
+//                    toast.show();
+//                }
+//                else{
+//                    event_target_audience = event_target_audience + String.valueOf(spinner_sel_programme.getSelectedItemPosition()) + "," +
+//                            String.valueOf(loc_spinner1.getSelectedItemPosition()) + "," +String.valueOf(loc_spinner2.getSelectedItemPosition())+";";
+//                }
+//
+//            }
+//        });
+
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -119,8 +160,8 @@ public class RequestEventActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 final Calendar cal = Calendar.getInstance();
-                int mHour = cal.get(Calendar.HOUR_OF_DAY);
-                int mMinute = cal.get(Calendar.MINUTE);
+                final int mHour = cal.get(Calendar.HOUR_OF_DAY);
+                final int mMinute = cal.get(Calendar.MINUTE);
 
                 TimePickerDialog timeDialog = new TimePickerDialog(RequestEventActivity.this,
                         new TimePickerDialog.OnTimeSetListener() {
@@ -132,6 +173,7 @@ public class RequestEventActivity extends AppCompatActivity {
                                 else if(cal.get(Calendar.AM_PM)==Calendar.PM)
                                     am_pm = "PM";
                                 eventTimePicker.setText("Selected Time "+hourOfDay+":"+minute+" "+am_pm);
+                                event_time = mHour+":"+mMinute+" "+am_pm;
                             }
                         },mHour,mMinute,false);
                 timeDialog.show();
@@ -146,6 +188,8 @@ public class RequestEventActivity extends AppCompatActivity {
                 int year = cal.get(Calendar.YEAR);
                 int month = cal.get(Calendar.MONTH);
                 int day = cal.get(Calendar.DAY_OF_MONTH);
+
+                event_date = year+"-"+month+1+"-"+day;
 
                 DatePickerDialog dialog = new DatePickerDialog(RequestEventActivity.this,
 //                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
@@ -188,6 +232,87 @@ public class RequestEventActivity extends AppCompatActivity {
                 eventDateDisplay.setText("Selected Date: "+dayOfMonth+" "+exact_month+" "+year);
             }
         };
+
+        submit_button = (Button) findViewById(R.id.btn_request_submit);
+        submit_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                View focusView = null;
+                boolean cancel = false;
+
+                EditText loc1 = (EditText) findViewById(R.id.editText_request_eventName);
+                event_name = loc1.getText().toString();
+                if(TextUtils.isEmpty(event_name))
+                {
+                    loc1.setError(getString(R.string.error_field_required));
+                    focusView = loc1;
+                    cancel = true;
+                }
+
+                EditText loc2 = (EditText) findViewById(R.id.editText_request_eventFee);
+                if(TextUtils.isEmpty(loc2.getText().toString()))
+                {
+                    loc2.setError(getString(R.string.error_field_required));
+                    focusView = loc1;
+                    cancel = true;
+                }
+                else
+                {
+                    event_fee = Integer.parseInt(loc2.getText().toString());
+                }
+
+                EditText loc3 = (EditText) findViewById(R.id.editText_request_eventCapacity);
+                if(TextUtils.isEmpty(loc3.getText().toString()))
+                {
+                    loc3.setError(getString(R.string.error_field_required));
+                    focusView = loc2;
+                    cancel = true;
+                }
+                else
+                {
+                    event_exp_audience = Integer.parseInt(loc3.getText().toString());
+                }
+
+                EditText loc4 = (EditText) findViewById(R.id.editText_request_eventDescription);
+                event_description = loc4.getText().toString();
+                if(TextUtils.isEmpty(event_description))
+                {
+                    loc4.setError(getString(R.string.error_field_required));
+                    focusView = loc4;
+                    cancel = true;
+                }
+                EditText loc5 = (EditText) findViewById(R.id.editText_request_eventCommentsForAdmin);
+                event_admin_comment = loc5.getText().toString();
+
+                if(TextUtils.isEmpty(event_venue))
+                {
+                    Spinner loc_spin1 = (Spinner) findViewById(R.id.spinner_request);
+                    focusView = loc_spin1;
+                    cancel = true;
+                }
+
+                if(TextUtils.isEmpty(event_date))
+                {
+                    Button loc_btn1 = (Button) findViewById(R.id.btn_request_eventDate);
+                    loc_btn1.setError(getString(R.string.error_field_required));
+                    focusView = loc_btn1;
+                    cancel = true;
+                }
+
+                if(TextUtils.isEmpty(event_time))
+                {
+                    Button loc_btn1 = (Button) findViewById(R.id.btn_request_eventTime);
+                    loc_btn1.setError(getString(R.string.error_field_required));
+                    focusView = loc_btn1;
+                    cancel = true;
+                }
+
+                if(cancel)
+                    focusView.requestFocus();
+            }
+        });
+
     }
 
     public void openGallery(){
@@ -241,6 +366,17 @@ public class RequestEventActivity extends AppCompatActivity {
         };
         myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item );
         spinner.setAdapter(myAdapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                event_venue = (String) parent.getItemAtPosition(position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
     public void populateStreams(int position_programme)

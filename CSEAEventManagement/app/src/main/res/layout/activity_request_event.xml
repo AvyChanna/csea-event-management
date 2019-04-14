@@ -168,6 +168,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:textAlignment="gravity"
+                android:layout_marginBottom="13dp"
                 android:hint="Add this Audience"/>
 
             <View
