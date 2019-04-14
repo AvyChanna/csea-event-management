@@ -39,7 +39,8 @@
         <item>CSE Dual(MTech+PhD) degree</item>
         <item>EEE Dual Degree [MS(Engg).+PhD)</item>
     </string-array>
-    <string-array name="branches_bachelor">
+
+    <string-array name="branches_btech">
         <item>Biotechnology</item>
         <item>Chemical Engineering</item>
         <item>Chemical Science and Technology</item>
@@ -51,40 +52,42 @@
         <item>Mathematics &amp; Computing</item>
         <item>Mechanical Engineering</item>
     </string-array>
-    <string-array name="branches_master">
+
+    <string-array name="branches_mtech">
         <item>Biotechnology</item>
-        <item>Petroleum Science and Technology</item>
-        <item>Material Science and Technology</item>
-        <item>Structural Engineering</item>
-        <item>Water Resources Engineering and Management</item>
-        <item>GeoTechnical Engineering</item>
-        <item>Environmental Engineering</item>
-        <item>Transportation System Engineering</item>
-        <item>Infrastructure Engineering and Management</item>
-        <item>Signal Processing</item>
-        <item>VLSI</item>
-        <item>Applied Control</item>
-        <item>Communication Engineering</item>
-        <item>Machine Design</item>
-        <item>Fluids and Thermal Engineering</item>
-        <item>Computer Assisted Manufacturing</item>
-    </string-array>
-    <string-array name="branches_doctoral">
-        <item>Biotechnology</item>
-        <item>Chemistry</item>
         <item>Chemical Engineering</item>
         <item>Civil Engineering</item>
         <item>Computer Science and Engineering</item>
-        <item>Design</item>
         <item>Electronics and Electrical Engineering</item>
-        <item>Centre for Energy</item>
-        <item>Centre for the Environment</item>
-        <item>Humanities and Social Sciences</item>
-        <item>Mathematics</item>
         <item>Mechanical Engineering</item>
-        <item>Centre for Nanotechnology</item>
+        <item>Centre for Rural Technology</item>
+    </string-array>
+
+    <string-array name="branches_msc">
+        <item>Chemistry</item>
+        <item>Mathematics and Computing</item>
         <item>Physics</item>
     </string-array>
+
+    <string-array name="branches_phd">
+        <item>Biotechnology</item>
+        <item>Chemical Engineering</item>
+        <item>Chemistry</item>
+        <item>Civil Engineering</item>
+        <item>Computer Science &amp; Engineering</item>
+        <item>Design</item>
+        <item>Electronics and Electrical Engineering</item>
+        <item>Humanities and Social Sciences</item>
+        <item>Physics</item>
+        <item>Mathematics</item>
+        <item>Mechanical Engineering</item>
+        <item>Center for energy</item>
+        <item>Center for environment</item>
+        <item>Centre for Linguistic Science and Technology</item>
+        <item>Centre for Rural Technology</item>
+    </string-array>
+
+
     <string-array name="venue_array">
         <item>Select a venue...</item>
         <item>Lecture Hall 1</item>

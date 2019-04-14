@@ -107,6 +107,14 @@
                 android:hint="Comments for admin"
                 android:inputType="textMultiLine" />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                />
+            </LinearLayout>
+
+
             <Button
                 android:id="@+id/btn_request_customFAQ"
                 android:layout_width="match_parent"
