@@ -203,6 +203,7 @@ public class RequestEventActivity extends AppCompatActivity {
             Log.d(imageUri.toString(),"abcd");
             imgView.setVisibility(View.VISIBLE);
             imgView.setImageURI(imageUri);
+            imgView.setForeground(getResources().getDrawable(R.drawable.ic_check_black_24dp));
             imgView.invalidate();
         }
     }
