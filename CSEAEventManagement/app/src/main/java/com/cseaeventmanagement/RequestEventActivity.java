@@ -6,6 +6,8 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
@@ -14,6 +16,7 @@ import android.provider.MediaStore;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,6 +44,8 @@ import com.android.volley.toolbox.NoCache;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
 import java.util.Calendar;
 
 public class RequestEventActivity extends AppCompatActivity {
@@ -66,6 +71,8 @@ public class RequestEventActivity extends AppCompatActivity {
     private String event_target_audience="";
     private Button event_add_target_audi_btn;
     private Button submit_button;
+    private String imageString;
+    private RequestQueue q;
 
     Uri imageUri;
 
@@ -74,6 +81,9 @@ public class RequestEventActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_request_event);
 
+        Network network = new BasicNetwork(new HurlStack());
+        q = new RequestQueue(new NoCache(), network);
+        q.start();
 
         event_target_audience = "";
         populateVenues();
@@ -441,6 +451,19 @@ public class RequestEventActivity extends AppCompatActivity {
 
     public void attemptEventRequest()
     {
+        Bitmap bm;
+        try{
+            bm = BitmapFactory.decodeStream(getContentResolver().openInputStream(imageUri));
+            imgView.setImageBitmap(bm);
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            bm.compress(Bitmap.CompressFormat.JPEG, 100, baos); //bm is the bitmap object
+            byte[] b = baos.toByteArray();
+            imageString = Base64.encodeToString(b, Base64.URL_SAFE|Base64.NO_WRAP|Base64.NO_PADDING);
+//            imgView.setVisibility(View.INVISIBLE);
+        }
+        catch (Exception e){
+            Log.d("IMAGE_REQ_EVENT_CATCH", e.toString());
+        }
         View focusView = null;
         boolean cancel = false;
 
@@ -550,6 +573,7 @@ public class RequestEventActivity extends AppCompatActivity {
                 obj.accumulate("Event_Description",event_description);
                 obj.accumulate("Event_Comments_For_Admin",event_admin_comment);
                 obj.accumulate("Event_Target_Audience",event_target_audience);
+                obj.accumulate("Event_Poster",imageString);
 
             } catch (JSONException e) {
                 Log.d("REQUEST_EVENT_CATCH", e.toString());
@@ -557,7 +581,7 @@ public class RequestEventActivity extends AppCompatActivity {
             }
             JsonObjectRequest jor = new JsonObjectRequest(
                     Request.Method.POST,
-                    "request_event/",
+                    "http://172.16.115.46:8000/api/login/",
                     obj,
                     new Response.Listener<JSONObject>() {
                         @Override
@@ -582,6 +606,7 @@ public class RequestEventActivity extends AppCompatActivity {
                         }
                     }
             );
+            q.add(jor);
         }
     }
 }
