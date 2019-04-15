@@ -25,7 +25,8 @@
         <activity
             android:name=".ViewEventActivity"
             android:label="@string/title_activity_view_event"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/darktheme" />
+            <!-- android:theme="@style/AppTheme.NoActionBar" -->
         <activity
             android:name=".SignupActivity"
             android:label="@string/title_activity_signup" />
@@ -60,6 +61,7 @@
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
+        <activity android:name=".EventViewActivity" />
     </application>
 
 </manifest>

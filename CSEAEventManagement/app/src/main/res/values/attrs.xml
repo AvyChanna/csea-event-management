@@ -5,4 +5,11 @@
         <attr name="civ_border_overlay" format="boolean" />
         <attr name="civ_circle_background_color" format="color" />
     </declare-styleable>
+     <declare-styleable name="ds">
+        <attr name="backgroundcolor" format="color" />
+        <attr name="cardBackground" format="color" />
+        <attr name="textcolor" format="color"/>
+        <attr name="tintcolor" format="color"/>
+        <attr name="buttoncolor" format="color"/>
+    </declare-styleable>
 </resources>
