@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
+    android:background="?attr/backgroundcolor"
     tools:context=".LoginActivity">
 
     <!-- Login progress -->
@@ -38,16 +39,16 @@
                 android:id="@+id/imageView2"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
-                android:scaleType="fitCenter"
                 android:paddingLeft="@dimen/activity_padding_all"
                 android:paddingTop="@dimen/activity_padding_all"
                 android:paddingRight="@dimen/activity_padding_all"
                 android:paddingBottom="@dimen/activity_padding_all"
+                android:scaleType="fitCenter"
                 app:layout_constraintDimensionRatio="H,1:1"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@mipmap/iitg" />
+                app:srcCompat="@mipmap/ic_logo_front" />
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
@@ -60,12 +61,16 @@
                 <AutoCompleteTextView
                     android:id="@+id/email"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-
+                    android:layout_height="35dp"
+                    android:background="@drawable/textbox_edit"
+                    android:gravity="center"
                     android:hint="@string/prompt_email"
+                    android:textColorHint="#fff"
                     android:inputType="textEmailAddress"
                     android:maxLines="1"
-                    android:singleLine="true" />
+                    android:singleLine="true"
+                    android:textColor="?attr/textcolor"
+                    />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -81,8 +86,11 @@
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/password"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="35dp"
+                    android:background="@drawable/textbox_edit"
+                    android:gravity="center"
                     android:hint="@string/prompt_password"
+                    android:textColorHint="#fff"
                     android:imeActionId="6"
                     android:imeActionLabel="@string/action_sign_in"
                     android:imeOptions="actionUnspecified"
@@ -98,12 +106,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
+                android:background="@drawable/textbox_edit"
+                android:paddingStart="@dimen/activity_padding_all"
                 android:paddingLeft="0dp"
                 android:paddingTop="0dp"
                 android:paddingRight="@dimen/activity_padding_all"
                 android:paddingBottom="0dp"
-                android:text="Forgot Password? Click Here" />
-                <!--android:textAlignment="textEnd" />-->
+                android:text="Forgot Password? Click Here"
+                android:textColor="?attr/textcolor" />
+            <!--android:textAlignment="textEnd" />-->
 
 
             <Button
@@ -113,6 +124,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="16dp"
+                android:background="@drawable/button_edit"
                 android:gravity="center"
                 android:paddingLeft="40dp"
                 android:paddingTop="@dimen/activity_padding_all"
@@ -131,6 +143,7 @@
                 android:paddingRight="@dimen/activity_padding_all"
                 android:paddingBottom="@dimen/activity_padding_all"
                 android:text="Don't have an account? SignUp Here"
+                android:textColor="?attr/textcolor"
                 android:textAlignment="center" />
 
         </LinearLayout>
