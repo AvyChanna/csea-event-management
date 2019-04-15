@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:dist="http://schemas.android.com/apk/distribution"
     package="com.cseaeventmanagement">
-    <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
@@ -22,6 +21,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".RequestEventActivity"></activity>
+        <activity android:name=".ListEventsActivity"></activity>
+        <activity
+            android:name=".ViewEventActivity"
+            android:label="@string/title_activity_view_event"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".SignupActivity"
             android:label="@string/title_activity_signup" />

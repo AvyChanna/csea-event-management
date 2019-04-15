@@ -14,7 +14,7 @@ tools:context=".Council_18_19Activity">
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+        <com.cseaeventmanagement.CircleImageView
             android:id="@+id/profile_image"
             android:layout_width="120dp"
             android:layout_height="120dp"
@@ -33,18 +33,15 @@ tools:context=".Council_18_19Activity">
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:text="Prof. S. V. Rao\n
-President, CSEA\n
-HOD, Dept. Of CSE\n
-webmail id:\n  svrao@iitg.ernet.in"
+            android:text="@string/prof_s_v_rao"
             android:textAlignment="center"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="8dp"
+            android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/profile_image" />
 
-        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+        <com.cseaeventmanagement.CircleImageView
             android:id="@+id/profile_image2"
             android:layout_width="120dp"
             android:layout_height="120dp"
@@ -60,21 +57,16 @@ webmail id:\n  svrao@iitg.ernet.in"
             android:layout_height="wrap_content"
 
             android:layout_marginTop="8dp"
-            android:text="Benny K. George\n
-Faculty Mentor, CSEA\n
-Assistant Professor\n
-Webmail id:\n
-ben@iitg.ernet.in
- "
+            android:text="@string/benny_k_george"
             android:textAlignment="center"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="8dp"
+            android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="@+id/profile_image2"
             app:layout_constraintStart_toStartOf="@+id/profile_image2"
             app:layout_constraintTop_toBottomOf="@+id/profile_image2" />
 
 
-        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+        <com.cseaeventmanagement.CircleImageView
             android:id="@+id/profile_image3"
             android:layout_width="120dp"
             android:layout_height="120dp"
@@ -90,20 +82,14 @@ ben@iitg.ernet.in
             android:layout_height="wrap_content"
 
             android:layout_marginTop="8dp"
-            android:text="Deepanjan Kesh\n
-Faculty Mentor, CSEA\n
-Assistant Professor\n
-webmail id:\n
-deepkesh@iitg.ernet.in
- "
+            android:text="@string/deepanjan_kesh"
             android:textAlignment="center"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="8dp"
+            android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="@+id/profile_image3"
             app:layout_constraintStart_toStartOf="@+id/profile_image3"
             app:layout_constraintTop_toBottomOf="@+id/profile_image3" />
-
-        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+        <com.cseaeventmanagement.CircleImageView
             android:id="@+id/profile_image4"
             android:layout_width="120dp"
             android:layout_height="120dp"
@@ -121,20 +107,15 @@ deepkesh@iitg.ernet.in
             android:layout_height="wrap_content"
 
             android:layout_marginTop="8dp"
-            android:text="Rohan Aggarwal\n
-General Secretary\n
-Final Year Undergraduate\n
-Webmail Id:\n
-rohan.aggarwal
- "
+            android:text="@string/rohan_aggarwal"
             android:textAlignment="center"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="8dp"
+            android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="@+id/profile_image4"
             app:layout_constraintStart_toStartOf="@+id/profile_image4"
             app:layout_constraintTop_toBottomOf="@+id/profile_image4" />
 
-        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+        <com.cseaeventmanagement.CircleImageView
             android:id="@+id/profile_image5"
             android:layout_width="120dp"
             android:layout_height="120dp"
@@ -152,20 +133,15 @@ rohan.aggarwal
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="22dp"
-            android:text="Mayank Kumar Agarwal\n
- Branch Representative\n
-Final Year Undergraduate\n
-Webmail Id:\n
-mayank.agarwal
- "
+            android:text="@string/mayank_kumar_agarwal"
             android:textAlignment="center"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="8dp"
+            android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="@+id/profile_image5"
             app:layout_constraintStart_toStartOf="@+id/profile_image5"
             app:layout_constraintTop_toBottomOf="@+id/profile_image5" />
 
-        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+        <com.cseaeventmanagement.CircleImageView
             android:id="@+id/profile_image6"
             android:layout_width="120dp"
             android:layout_height="120dp"
@@ -181,20 +157,15 @@ mayank.agarwal
             android:layout_height="wrap_content"
 
             android:layout_marginTop="8dp"
-            android:text="Roopansh Bansal\n
-Technical and Events Head\n
-Final Year Undergraduate\n
-Webmail Id:\n
-roopansh
- "
+            android:text="@string/roopansh_bansal"
             android:textAlignment="center"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="8dp"
+            android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="@+id/profile_image6"
             app:layout_constraintStart_toStartOf="@+id/profile_image6"
             app:layout_constraintTop_toBottomOf="@+id/profile_image6" />
 
-        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+        <com.cseaeventmanagement.CircleImageView
             android:id="@+id/profile_image7"
             android:layout_width="120dp"
             android:layout_height="120dp"
@@ -210,20 +181,15 @@ roopansh
             android:layout_height="wrap_content"
 
             android:layout_marginTop="8dp"
-            android:text="Apurva N. Saraogi\n
-Technical Executive\n
-3rd Year Undergraduate\n
-Webmail Id:\n
-apurva9
- "
+            android:text="@string/apurva_n_saraogi"
             android:textAlignment="center"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="8dp"
+            android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="@+id/profile_image7"
             app:layout_constraintStart_toStartOf="@+id/profile_image7"
             app:layout_constraintTop_toBottomOf="@+id/profile_image7" />
 
-        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+        <com.cseaeventmanagement.CircleImageView
             android:id="@+id/profile_image8"
             android:layout_width="120dp"
             android:layout_height="120dp"
@@ -239,20 +205,15 @@ apurva9
             android:layout_height="wrap_content"
 
             android:layout_marginTop="8dp"
-            android:text="Mitansh Jain\n
-Technical Executive\n
-3rd Year Undergraduate\n
-Webmail Id:\n
-mitansh1398
- "
+            android:text="@string/mitansh_jain"
             android:textAlignment="center"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="8dp"
+            android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="@+id/profile_image8"
             app:layout_constraintStart_toStartOf="@+id/profile_image8"
             app:layout_constraintTop_toBottomOf="@+id/profile_image8" />
 
-        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+        <com.cseaeventmanagement.CircleImageView
             android:id="@+id/profile_image9"
             android:layout_width="120dp"
             android:layout_height="120dp"
@@ -268,20 +229,15 @@ mitansh1398
             android:layout_height="wrap_content"
 
             android:layout_marginTop="8dp"
-            android:text="Jatin Goyal\n
-Events Executive\n
-3rd Year Undergraduate\n
-Webmail Id:\n
-jatingoyal
- "
+            android:text="@string/jatin_goyal"
             android:textAlignment="center"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="8dp"
+            android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="@+id/profile_image9"
             app:layout_constraintStart_toStartOf="@+id/profile_image9"
             app:layout_constraintTop_toBottomOf="@+id/profile_image9" />
 
-        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+        <com.cseaeventmanagement.CircleImageView
             android:id="@+id/profile_image10"
             android:layout_width="120dp"
             android:layout_height="120dp"
@@ -297,20 +253,15 @@ jatingoyal
             android:layout_height="wrap_content"
 
             android:layout_marginTop="8dp"
-            android:text="Shimona Verma\n
-Events Executive\n
-3rd Year Undergraduate\n
-Webmail Id:\n
-shimona.verma
- "
+            android:text="@string/shimona_verma"
             android:textAlignment="center"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="8dp"
+            android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="@+id/profile_image10"
             app:layout_constraintStart_toStartOf="@+id/profile_image10"
             app:layout_constraintTop_toBottomOf="@+id/profile_image10" />
 
-        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+        <com.cseaeventmanagement.CircleImageView
             android:id="@+id/profile_image11"
             android:layout_width="120dp"
             android:layout_height="120dp"
@@ -328,20 +279,15 @@ shimona.verma
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:text="Devaishi Tiwari\n
-Event Manager\n
-2nd Year Undergraduate\n
-Webmail Id:\n
-devai170101021
- "
+            android:text="@string/devaishi_tiwari"
             android:textAlignment="center"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="8dp"
+            android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="@+id/profile_image11"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/profile_image11" />
 
-        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+        <com.cseaeventmanagement.CircleImageView
             android:id="@+id/profile_image12"
             android:layout_width="120dp"
             android:layout_height="120dp"
@@ -359,20 +305,15 @@ devai170101021
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:text="Mayank Wadhwani\n
-Event Manager\n
-2nd Year Undergraduate\n
-Webmail Id:\n
-mayan170101038
- "
+            android:text="@string/mayank_wadhwani"
             android:textAlignment="center"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="8dp"
+            android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/profile_image12"
             app:layout_constraintTop_toBottomOf="@+id/profile_image12" />
 
-        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+        <com.cseaeventmanagement.CircleImageView
             android:id="@+id/profile_image13"
             android:layout_width="120dp"
             android:layout_height="120dp"
@@ -388,20 +329,15 @@ mayan170101038
             android:layout_height="wrap_content"
 
             android:layout_marginTop="8dp"
-            android:text="Manan Gupta\n
-Technichal Co-ordinator\n
-2nd Year Undergraduate\n
-Webmail Id:\n
-manan170101035
- "
+            android:text="@string/manan_gupta"
             android:textAlignment="center"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="8dp"
+            android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="@+id/profile_image13"
             app:layout_constraintStart_toStartOf="@+id/profile_image13"
             app:layout_constraintTop_toBottomOf="@+id/profile_image13" />
 
-        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+        <com.cseaeventmanagement.CircleImageView
             android:id="@+id/profile_image14"
             android:layout_width="120dp"
             android:layout_height="120dp"
@@ -417,20 +353,15 @@ manan170101035
             android:layout_height="wrap_content"
 
             android:layout_marginTop="8dp"
-            android:text="Shivam Bansal\n
-Technichal Co-ordinator\n
-2nd Year Undergraduate\n
-Webmail Id:\n
-shiva170101063
- "
+            android:text="@string/shivam_bansal"
             android:textAlignment="center"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="8dp"
+            android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="@+id/profile_image14"
             app:layout_constraintStart_toStartOf="@+id/profile_image14"
             app:layout_constraintTop_toBottomOf="@+id/profile_image14" />
 
-        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+        <com.cseaeventmanagement.CircleImageView
             android:id="@+id/profile_image15"
             android:layout_width="120dp"
             android:layout_height="120dp"
@@ -446,20 +377,15 @@ shiva170101063
             android:layout_height="wrap_content"
 
             android:layout_marginTop="8dp"
-            android:text="Chirag Gupta\n
-Alumini Relations Representative\n
-2nd Year Undergraduate\n
-Webmail Id:\n
-gupta170101019
- "
+            android:text="@string/shivam_bansal"
             android:textAlignment="center"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="8dp"
+            android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="@+id/profile_image15"
             app:layout_constraintStart_toStartOf="@+id/profile_image15"
             app:layout_constraintTop_toBottomOf="@+id/profile_image15" />
 
-        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+        <com.cseaeventmanagement.CircleImageView
             android:id="@+id/profile_image16"
             android:layout_width="120dp"
             android:layout_height="120dp"
@@ -474,15 +400,11 @@ gupta170101019
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:text="Utkarsh Jain\n
-Branch Representative\n
-2nd Year Undergraduate\n
-Webmail Id:\n
-jain170101075
- "
+            android:layout_marginTop="8dp"
+            android:text="@string/utkarsh_jain"
             android:textAlignment="center"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="8dp"
+            android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="@+id/profile_image16"
             app:layout_constraintStart_toStartOf="@+id/profile_image16"
             app:layout_constraintTop_toBottomOf="@+id/profile_image16" />

@@ -1,20 +1,4 @@
-/*
- * Copyright 2014 - 2019 Henning Dodenhof
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-package de.hdodenhof.circleimageview;
-
+package com.cseaeventmanagement;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -38,14 +22,13 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewOutlineProvider;
-import android.widget.ImageView;
 import androidx.annotation.ColorInt;
 import androidx.annotation.ColorRes;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.RequiresApi;
 
 @SuppressWarnings("UnusedDeclaration")
-public class CircleImageView extends ImageView {
+public class CircleImageView extends android.support.v7.widget.AppCompatImageView {
 
     private static final ScaleType SCALE_TYPE = ScaleType.CENTER_CROP;
 
@@ -209,6 +192,7 @@ public class CircleImageView extends ImageView {
     }
 
     public void setCircleBackgroundColorResource(@ColorRes int circleBackgroundRes) {
+        //noinspection deprecation
         setCircleBackgroundColor(getContext().getResources().getColor(circleBackgroundRes));
     }
 
@@ -420,7 +404,7 @@ public class CircleImageView extends ImageView {
     private boolean inTouchableArea(float x, float y) {
         return Math.pow(x - mBorderRect.centerX(), 2) + Math.pow(y - mBorderRect.centerY(), 2) <= Math.pow(mBorderRadius, 2);
     }
-    
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private class OutlineProvider extends ViewOutlineProvider {
 
