@@ -46,24 +46,21 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
-                    android:orientation="horizontal"
-                    android:weightSum="6">
+                    android:orientation="horizontal">
 
                     
                     <TextView
-                        android:layout_width="0dp"
+                        android:layout_width="100dp"
                         android:layout_height="48dp"
                         android:text="User Experience"
                         android:gravity="left|center"
-                        android:layout_weight="1.5"
                         />
                     
                     <RatingBar
                         android:id="@+id/app_feedback_rating_ui"
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="48dp"
                         android:layout_marginHorizontal="4dp"
-                        android:layout_weight="4.5"
                         android:numStars="5"/>
 
                 </LinearLayout>
@@ -71,24 +68,21 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
-                    android:orientation="horizontal"
-                    android:weightSum="6">
+                    android:orientation="horizontal">
 
 
                     <TextView
-                        android:layout_width="0dp"
+                        android:layout_width="100dp"
                         android:layout_height="48dp"
                         android:text="User Interface"
                         android:gravity="left|center"
-                        android:layout_weight="1.5"
                         />
 
                     <RatingBar
                         android:id="@+id/app_feedback_rating_ux"
-                        android:layout_width="0dp"
                         android:layout_height="48dp"
+                        android:layout_width="wrap_content"
                         android:layout_marginHorizontal="4dp"
-                        android:layout_weight="4.5"
                         android:numStars="5"/>
 
                 </LinearLayout>
@@ -96,24 +90,22 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
-                    android:orientation="horizontal"
-                    android:weightSum="6">
+                    android:orientation="horizontal">
 
 
                     <TextView
-                        android:layout_width="0dp"
                         android:layout_height="48dp"
+                        android:layout_width="100dp"
                         android:text="Overall Feedback"
                         android:gravity="left|center"
-                        android:layout_weight="1.5"
                         />
 
                     <RatingBar
                         android:id="@+id/app_feedback_rating_overall"
-                        android:layout_width="0dp"
                         android:layout_height="48dp"
+                        android:layout_width="wrap_content"
+
                         android:layout_marginHorizontal="4dp"
-                        android:layout_weight="4.5"
                         android:numStars="5"/>
 
                 </LinearLayout>
@@ -140,8 +132,8 @@
                     android:hint="Write your comment here"
                     android:inputType="textMultiLine"
                     android:lines="6"
-                    android:scrollbars="vertical"
-                    android:maxLines="10"/>
+                    android:maxLines="10"
+                    android:scrollbars="vertical" />
 
                 <Button
                     android:layout_marginTop="20dp"

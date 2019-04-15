@@ -587,6 +587,11 @@ public class RequestEventActivity extends AppCompatActivity {
                         @Override
                         public void onResponse(JSONObject response) {
                             Log.d("API_CALL_EVENT_REQ", response.toString());
+                            Context context = getApplicationContext();
+                            CharSequence text = "Event successfully submitted";
+                            int duration = Toast.LENGTH_SHORT;
+                            Toast toast = Toast.makeText(context,text,duration);
+                            toast.show();
 //                            showProgress(false);
                             // finish();
                         }
