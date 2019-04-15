@@ -90,6 +90,8 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(this, ListEventsActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_past_events) {
+            Intent intent = new Intent(this, AdminActivity.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_search_events) {
 

@@ -6,6 +6,7 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -592,6 +593,20 @@ public class RequestEventActivity extends AppCompatActivity {
                             int duration = Toast.LENGTH_SHORT;
                             Toast toast = Toast.makeText(context,text,duration);
                             toast.show();
+
+                            SharedPreferences sharedpreferences = getSharedPreferences("Login", Context.MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sharedpreferences.edit();
+                            editor.putString("Event_Name", event_name);
+                            editor.putInt("Event_Fee",event_fee);
+                            editor.putInt("Event_exp_audience",event_exp_audience);
+                            editor.putString("Event_USer_Venue",event_venue);
+                            editor.putString("Event_Date",event_date);
+                            editor.putString("Event_Time",event_time);
+                            editor.putString("Event_Description",event_description);
+                            editor.putString("Event_Comments_For_Admin",event_admin_comment);
+                            editor.putString("Event_Target_Audience",event_target_audience);
+                            editor.putString("Event_Poster",imageString);
+                            editor.apply();
 //                            showProgress(false);
                             // finish();
                         }
