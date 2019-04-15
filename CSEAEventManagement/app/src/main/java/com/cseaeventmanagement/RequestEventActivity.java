@@ -54,7 +54,7 @@ public class RequestEventActivity extends AppCompatActivity {
     private String event_time;
     private String event_description;
     private String event_admin_comment;
-    private String event_target_audience;
+    private String event_target_audience="";
     private Button event_add_target_audi_btn;
     private Button submit_button;
 
@@ -117,28 +117,35 @@ public class RequestEventActivity extends AppCompatActivity {
             }
         });
 
-//        event_add_target_audi_btn = (Button) findViewById(R.id.btn_request_addAudience);
-//        event_add_target_audi_btn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Spinner loc_spinner1 = (Spinner) findViewById(R.id.spinner_request_stream);
-//                Spinner loc_spinner2 = (Spinner) findViewById(R.id.spinner_request_year);
-//                if(spinner_sel_programme == null || spinner_sel_programme.getSelectedItem().toString() == null||loc_spinner1 == null||loc_spinner2 == null||
-//                loc_spinner1.getSelectedItem().toString() == null || loc_spinner2.getSelectedItem().toString() == null)
-//                {
-//                    Context context = getApplicationContext();
-//                    CharSequence text = "Fill all the enteries first";
-//                    int duration = Toast.LENGTH_SHORT;
-//                    Toast toast = Toast.makeText(context,text,duration);
-//                    toast.show();
-//                }
-//                else{
-//                    event_target_audience = event_target_audience + String.valueOf(spinner_sel_programme.getSelectedItemPosition()) + "," +
-//                            String.valueOf(loc_spinner1.getSelectedItemPosition()) + "," +String.valueOf(loc_spinner2.getSelectedItemPosition())+";";
-//                }
-//
-//            }
-//        });
+        event_add_target_audi_btn = (Button) findViewById(R.id.btn_request_addAudience);
+        event_add_target_audi_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Spinner loc_spinner1 = (Spinner) findViewById(R.id.spinner_request_stream);
+                Spinner loc_spinner2 = (Spinner) findViewById(R.id.spinner_request_year);
+                if(spinner_sel_programme == null || spinner_sel_programme.getSelectedItem().toString().equals("Select Programme")||
+                        loc_spinner1 == null||loc_spinner2 == null||
+                loc_spinner1.getSelectedItem().toString().equals("Stream") || loc_spinner2.getSelectedItem().toString().equals("Select Year of Study"))
+                {
+                    Log.d("hipeep","a"+loc_spinner1.getSelectedItem().toString());
+                    Context context = getApplicationContext();
+                    CharSequence text = "Fill all the entries of target audience first";
+                    int duration = Toast.LENGTH_SHORT;
+                    Toast toast = Toast.makeText(context,text,duration);
+                    toast.show();
+                }
+                else{
+                    event_target_audience = event_target_audience + String.valueOf(spinner_sel_programme.getSelectedItemPosition()) + "," +
+                            String.valueOf(loc_spinner1.getSelectedItemPosition()) + "," +String.valueOf(loc_spinner2.getSelectedItemPosition())+";";
+                    Log.d("hi",event_target_audience);
+                    Context context = getApplicationContext();
+                    CharSequence text = "Audience added";
+                    int duration = Toast.LENGTH_SHORT;
+                    Toast toast = Toast.makeText(context,text,duration);
+                    toast.show();
+                }
+            }
+        });
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -305,6 +312,30 @@ public class RequestEventActivity extends AppCompatActivity {
                     Button loc_btn1 = (Button) findViewById(R.id.btn_request_eventTime);
                     loc_btn1.setError(getString(R.string.error_field_required));
                     focusView = loc_btn1;
+                    cancel = true;
+                }
+
+                Spinner spin_venue = (Spinner) findViewById(R.id.spinner_request);
+                if(spin_venue == null || spin_venue.getSelectedItem().toString().equals("Select a venue..."))
+                {
+                    Context context = getApplicationContext();
+                    CharSequence text = "Select a venue first";
+                    int duration = Toast.LENGTH_SHORT;
+                    Toast toast = Toast.makeText(context,text,duration);
+                    toast.show();
+                    focusView = spin_venue;
+                    cancel = true;
+                }
+
+                if(event_target_audience.equals(""))
+                {
+                    Context context = getApplicationContext();
+                    CharSequence text = "You haven't filled any target audience";
+                    int duration = Toast.LENGTH_SHORT;
+                    Toast toast = Toast.makeText(context,text,duration);
+                    toast.show();
+                    Spinner spin = (Spinner) findViewById(R.id.spinner_request_programme);
+                    focusView = spin;
                     cancel = true;
                 }
 

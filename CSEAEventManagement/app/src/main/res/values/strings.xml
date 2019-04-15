@@ -123,6 +123,7 @@
         <item>Engineering Physics</item>
         <item>Mathematics &amp; Computing</item>
         <item>Mechanical Engineering</item>
+        <item>All</item>
     </string-array>
 
     <string-array name="year_btech">
@@ -162,6 +163,7 @@
         <item>Electronics and Electrical Engineering</item>
         <item>Mechanical Engineering</item>
         <item>Centre for Rural Technology</item>
+        <item>All</item>
     </string-array>
 
     <string-array name="branches_msc">
@@ -169,6 +171,7 @@
         <item>Chemistry</item>
         <item>Mathematics and Computing</item>
         <item>Physics</item>
+        <item>All</item>
     </string-array>
 
     <string-array name="branches_phd">
@@ -188,6 +191,7 @@
         <item>Center for environment</item>
         <item>Centre for Linguistic Science and Technology</item>
         <item>Centre for Rural Technology</item>
+        <item>All</item>
     </string-array>
 
 
