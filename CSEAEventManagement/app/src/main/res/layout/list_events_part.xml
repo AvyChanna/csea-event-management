@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/relativeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="?android:attr/listPreferredItemHeightLarge"
+    android:background="@drawable/border">
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/activity_padding_all"
+        android:paddingTop="@dimen/activity_padding_all"
+        android:paddingRight="@dimen/activity_padding_all"
+        android:paddingBottom="@dimen/activity_padding_all"
+        android:textSize="16sp"/>
+
+</RelativeLayout>

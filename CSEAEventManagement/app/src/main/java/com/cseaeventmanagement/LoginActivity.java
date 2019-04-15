@@ -4,9 +4,11 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.LoaderManager.LoaderCallbacks;
+import android.content.Context;
 import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
@@ -26,7 +28,6 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.android.volley.Network;
@@ -54,7 +55,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private boolean LoginInQueue = false;
     // UI references.
     private AutoCompleteTextView mEmailView;
-    private EditText mPasswordView;
+    private TextInputEditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
 
@@ -166,8 +167,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             focusView.requestFocus();
         } else {
             //private UserLoginTask mAuthTask = null;
-            String mEmail = email.split("@", -1)[0];
-            JSONObject obj = new JSONObject();
+            final String mEmail = email.split("@", -1)[0];
+            final JSONObject obj = new JSONObject();
             try {
                 obj.accumulate("username", mEmail);
                 obj.accumulate("password", password);
@@ -176,14 +177,19 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             }
             JsonObjectRequest jor = new JsonObjectRequest(
                     Request.Method.POST,
-                    "login/",
+                    getString(R.string.api_home) + "login/",
                     obj,
                     new Response.Listener<JSONObject>() {
                         @Override
                         public void onResponse(JSONObject response) {
                             Log.d("API_CALL_RES_LOGIN", response.toString());
                             showProgress(false);
-                            // finish();
+                            // todo login hua ya nahi dekhna hai
+                            SharedPreferences sharedpreferences = getSharedPreferences("Login", Context.MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sharedpreferences.edit();
+                            editor.putString("username", mEmail);
+                            editor.apply();
+                            finish();
                         }
                     },
                     new Response.ErrorListener() {

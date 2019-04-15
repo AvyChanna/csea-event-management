@@ -19,11 +19,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ListEventsActivity"></activity>
         <activity
             android:name=".ViewEventActivity"
             android:label="@string/title_activity_view_event"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".ListEventsActivity" />
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".SignupActivity"
             android:label="@string/title_activity_signup" />

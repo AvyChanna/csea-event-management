@@ -1,4 +1,5 @@
 <resources>
+    <string name="api_home">http://172.16.115.44:8000/api/</string>
     <!-- Strings related to mainActivity -->
     <string name="app_name">CSEA Event Management</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -103,8 +104,8 @@
     <string name="shivam_bansal">Shivam Bansal\nTechnichal Co-ordinator\n2nd Year Undergraduate\nWebmail Id:  shiva170101063</string>
     <string name="chirag_gupta">Chirag Gupta\nAlumini Relations Representative\n2nd Year Undergraduate\nWebmail Id:  gupta170101019</string>
     <string name="utkarsh_jain">Utkarsh Jain\nBranch Representative\n2nd Year Undergraduate\nWebmail Id:  jain170101075</string>
-    <string name="api_home">http://172.16.115.44:8000/api/</string>
     <string name="title_activity_list_events">ListEventsActivity</string>
+    <string name="error_invalid_value">This value is invalid</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"
 
@@ -195,4 +196,6 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="title_activity_view_event">ViewEventActivity</string>
+    <string name="error_not_integer">This field is not integer</string>
+    <string name="error_empty_field">This field can not be empty</string>
 </resources>
