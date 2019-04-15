@@ -11,19 +11,19 @@ public class ListEventsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_events);
-        List_Event_Data_POJO[] List_Event_Data_POJO = new List_Event_Data_POJO[] {
-                new List_Event_Data_POJO("Email"),
-                new List_Event_Data_POJO("Info"),
-                new List_Event_Data_POJO("Delete"),
-                new List_Event_Data_POJO("Dialer"),
-                new List_Event_Data_POJO("Alert"),
-                new List_Event_Data_POJO("Map"),
-                new List_Event_Data_POJO("Email"),
-                new List_Event_Data_POJO("Info"),
-                new List_Event_Data_POJO("Delete"),
-                new List_Event_Data_POJO("Dialer"),
-                new List_Event_Data_POJO("Alert"),
-                new List_Event_Data_POJO("Map")
+        List_Event_Data_POJO[] List_Event_Data_POJO = new List_Event_Data_POJO[]{
+                new List_Event_Data_POJO("Email", "a", "a", "a"),
+                new List_Event_Data_POJO("Infooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo", "a", "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "a"),
+                new List_Event_Data_POJO("Delete", "a", "a", "a"),
+                new List_Event_Data_POJO("Dialer", "a", "a", "a"),
+                new List_Event_Data_POJO("Alert", "a", "a", "a"),
+                new List_Event_Data_POJO("Map", "a", "a", "a"),
+                new List_Event_Data_POJO("Email", "a", "a", "a"),
+                new List_Event_Data_POJO("Info", "a", "a", "a"),
+                new List_Event_Data_POJO("Delete", "a", "a", "a"),
+                new List_Event_Data_POJO("Dialer", "a", "a", "a"),
+                new List_Event_Data_POJO("Alert", "a", "a", "a"),
+                new List_Event_Data_POJO("Map", "a", "a", "a")
         };
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
