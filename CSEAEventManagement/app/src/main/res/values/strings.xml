@@ -211,4 +211,5 @@
     </string-array>
 
     <string name="executive_council_2018_2019">Executive Council 2018-2019</string>
+    <string name="title_activity_admin">AdminActivity</string>
 </resources>
