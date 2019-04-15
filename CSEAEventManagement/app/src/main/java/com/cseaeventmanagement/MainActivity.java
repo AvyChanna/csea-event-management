@@ -13,9 +13,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.*;
-
-import android.content.*;
 
 
 public class MainActivity extends AppCompatActivity
@@ -90,16 +87,15 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
 
         } else if (id == R.id.nav_upcoming_events) {
-
+            Intent intent = new Intent(this, ListEventsActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_past_events) {
 
         } else if (id == R.id.nav_search_events) {
 
-        }
-        else if (id == R.id.nav_feedback_app) {
+        } else if (id == R.id.nav_feedback_app) {
             gotoFeedback();
-        }
-        else if (id == R.id.nav_faq_app) {
+        } else if (id == R.id.nav_faq_app) {
 
 
         } else if (id == R.id.nav_logout) {
@@ -119,7 +115,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void gotoFeedback() {
-        Intent intent = new Intent(this,App_Feedback_Activity.class);
+        Intent intent = new Intent(this, App_Feedback_Activity.class);
         startActivity(intent);
     }
 }
