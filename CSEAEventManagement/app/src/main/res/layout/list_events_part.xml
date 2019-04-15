@@ -2,17 +2,74 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
-    android:layout_height="?android:attr/listPreferredItemHeightLarge"
-    android:background="@drawable/border">
+    android:layout_height="wrap_content"
+    android:background="@drawable/border"
+    android:orientation="vertical">
+
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/name"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_vertical"
-        android:paddingLeft="@dimen/activity_padding_all"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="0dp"
+        android:ellipsize="end"
+        android:paddingStart="0dp"
         android:paddingTop="@dimen/activity_padding_all"
+        android:paddingEnd="@dimen/activity_padding_all"
+        android:paddingBottom="3dp"
+        android:text="@string/name_not_available"
+        android:textAlignment="textStart"
+        android:textColor="#000"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/name"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="0dp"
+        android:ellipsize="end"
+        android:maxLines="3"
+        android:paddingStart="0dp"
+        android:paddingEnd="@dimen/activity_padding_all"
+        android:paddingBottom="@dimen/activity_padding_all"
+        android:text="@string/description_not_available"
+        android:textAlignment="textStart"
+        android:textColor="#333"
+        android:textSize="16sp" />
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/desc"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:paddingStart="50dp"
+        android:paddingEnd="@dimen/activity_padding_all"
+        android:paddingBottom="@dimen/activity_padding_all"
+        android:text="@string/date_not_available"
+        android:textAlignment="textEnd"
+        android:textSize="12sp" />
+
+    <View
+        android:layout_width="10dp"
+        android:layout_height="0dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignTop="@+id/name"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="20dp"
+        android:layout_alignBottom="@+id/desc"
+        android:background="@color/colorPrimaryDark"
+        android:paddingLeft="@dimen/activity_padding_all"
         android:paddingRight="@dimen/activity_padding_all"
         android:paddingBottom="@dimen/activity_padding_all"
-        android:textSize="16sp"/>
+        android:textSize="12sp" />
 
 </RelativeLayout>

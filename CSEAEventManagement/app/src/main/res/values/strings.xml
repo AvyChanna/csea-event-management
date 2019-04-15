@@ -322,4 +322,7 @@
     <string name="title_activity_view_event">ViewEventActivity</string>
     <string name="error_not_integer">This field is not integer</string>
     <string name="error_empty_field">This field can not be empty</string>
+    <string name="name_not_available">Name not available</string>
+    <string name="description_not_available">Description not available</string>
+    <string name="date_not_available">Date not available</string>
 </resources>
