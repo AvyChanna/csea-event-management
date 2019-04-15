@@ -9,9 +9,10 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
-import android.provider.MediaStore;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -27,12 +28,20 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
+import com.android.volley.Network;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.BasicNetwork;
+import com.android.volley.toolbox.HurlStack;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.NoCache;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.Calendar;
-import java.util.Arrays;
-import java.util.ArrayList;
-import java.util.List;
 
 public class RequestEventActivity extends AppCompatActivity {
 
@@ -244,103 +253,7 @@ public class RequestEventActivity extends AppCompatActivity {
         submit_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                View focusView = null;
-                boolean cancel = false;
-
-                EditText loc1 = (EditText) findViewById(R.id.editText_request_eventName);
-                event_name = loc1.getText().toString();
-                if(TextUtils.isEmpty(event_name))
-                {
-                    loc1.setError(getString(R.string.error_field_required));
-                    focusView = loc1;
-                    cancel = true;
-                }
-
-                EditText loc2 = (EditText) findViewById(R.id.editText_request_eventFee);
-                if(TextUtils.isEmpty(loc2.getText().toString()))
-                {
-                    loc2.setError(getString(R.string.error_field_required));
-                    focusView = loc1;
-                    cancel = true;
-                }
-                else
-                {
-                    event_fee = Integer.parseInt(loc2.getText().toString());
-                }
-
-                EditText loc3 = (EditText) findViewById(R.id.editText_request_eventCapacity);
-                if(TextUtils.isEmpty(loc3.getText().toString()))
-                {
-                    loc3.setError(getString(R.string.error_field_required));
-                    focusView = loc2;
-                    cancel = true;
-                }
-                else
-                {
-                    event_exp_audience = Integer.parseInt(loc3.getText().toString());
-                }
-
-                EditText loc4 = (EditText) findViewById(R.id.editText_request_eventDescription);
-                event_description = loc4.getText().toString();
-                if(TextUtils.isEmpty(event_description))
-                {
-                    loc4.setError(getString(R.string.error_field_required));
-                    focusView = loc4;
-                    cancel = true;
-                }
-                EditText loc5 = (EditText) findViewById(R.id.editText_request_eventCommentsForAdmin);
-                event_admin_comment = loc5.getText().toString();
-
-                if(TextUtils.isEmpty(event_venue))
-                {
-                    Spinner loc_spin1 = (Spinner) findViewById(R.id.spinner_request);
-                    focusView = loc_spin1;
-                    cancel = true;
-                }
-
-                if(TextUtils.isEmpty(event_date))
-                {
-                    Button loc_btn1 = (Button) findViewById(R.id.btn_request_eventDate);
-                    loc_btn1.setError(getString(R.string.error_field_required));
-                    focusView = loc_btn1;
-                    cancel = true;
-                }
-
-                if(TextUtils.isEmpty(event_time))
-                {
-                    Button loc_btn1 = (Button) findViewById(R.id.btn_request_eventTime);
-                    loc_btn1.setError(getString(R.string.error_field_required));
-                    focusView = loc_btn1;
-                    cancel = true;
-                }
-
-                Spinner spin_venue = (Spinner) findViewById(R.id.spinner_request);
-                if(spin_venue == null || spin_venue.getSelectedItem().toString().equals("Select a venue..."))
-                {
-                    Context context = getApplicationContext();
-                    CharSequence text = "Select a venue first";
-                    int duration = Toast.LENGTH_SHORT;
-                    Toast toast = Toast.makeText(context,text,duration);
-                    toast.show();
-                    focusView = spin_venue;
-                    cancel = true;
-                }
-
-                if(event_target_audience.equals(""))
-                {
-                    Context context = getApplicationContext();
-                    CharSequence text = "You haven't filled any target audience";
-                    int duration = Toast.LENGTH_SHORT;
-                    Toast toast = Toast.makeText(context,text,duration);
-                    toast.show();
-                    Spinner spin = (Spinner) findViewById(R.id.spinner_request_programme);
-                    focusView = spin;
-                    cancel = true;
-                }
-
-                if(cancel)
-                    focusView.requestFocus();
+                attemptEventRequest();
             }
         });
 
@@ -524,5 +437,151 @@ public class RequestEventActivity extends AppCompatActivity {
         };
         myAdapter_sel_year.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_sel_year.setAdapter(myAdapter_sel_year);
+    }
+
+    public void attemptEventRequest()
+    {
+        View focusView = null;
+        boolean cancel = false;
+
+        EditText loc1 = (EditText) findViewById(R.id.editText_request_eventName);
+        event_name = loc1.getText().toString();
+        if(TextUtils.isEmpty(event_name))
+        {
+            loc1.setError(getString(R.string.error_field_required));
+            focusView = loc1;
+            cancel = true;
+        }
+
+        EditText loc2 = (EditText) findViewById(R.id.editText_request_eventFee);
+        if(TextUtils.isEmpty(loc2.getText().toString()))
+        {
+            loc2.setError(getString(R.string.error_field_required));
+            focusView = loc1;
+            cancel = true;
+        }
+        else
+        {
+            event_fee = Integer.parseInt(loc2.getText().toString());
+        }
+
+        EditText loc3 = (EditText) findViewById(R.id.editText_request_eventCapacity);
+        if(TextUtils.isEmpty(loc3.getText().toString()))
+        {
+            loc3.setError(getString(R.string.error_field_required));
+            focusView = loc2;
+            cancel = true;
+        }
+        else
+        {
+            event_exp_audience = Integer.parseInt(loc3.getText().toString());
+        }
+
+        EditText loc4 = (EditText) findViewById(R.id.editText_request_eventDescription);
+        event_description = loc4.getText().toString();
+        if(TextUtils.isEmpty(event_description))
+        {
+            loc4.setError(getString(R.string.error_field_required));
+            focusView = loc4;
+            cancel = true;
+        }
+        EditText loc5 = (EditText) findViewById(R.id.editText_request_eventCommentsForAdmin);
+        event_admin_comment = loc5.getText().toString();
+
+        if(TextUtils.isEmpty(event_venue))
+        {
+            Spinner loc_spin1 = (Spinner) findViewById(R.id.spinner_request);
+            focusView = loc_spin1;
+            cancel = true;
+        }
+
+        if(TextUtils.isEmpty(event_date))
+        {
+            Button loc_btn1 = (Button) findViewById(R.id.btn_request_eventDate);
+            loc_btn1.setError(getString(R.string.error_field_required));
+            focusView = loc_btn1;
+            cancel = true;
+        }
+
+        if(TextUtils.isEmpty(event_time))
+        {
+            Button loc_btn1 = (Button) findViewById(R.id.btn_request_eventTime);
+            loc_btn1.setError(getString(R.string.error_field_required));
+            focusView = loc_btn1;
+            cancel = true;
+        }
+
+        Spinner spin_venue = (Spinner) findViewById(R.id.spinner_request);
+        if(spin_venue == null || spin_venue.getSelectedItem().toString().equals("Select a venue..."))
+        {
+            Context context = getApplicationContext();
+            CharSequence text = "Select a venue first";
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(context,text,duration);
+            toast.show();
+            focusView = spin_venue;
+            cancel = true;
+        }
+
+        if(event_target_audience.equals(""))
+        {
+            Context context = getApplicationContext();
+            CharSequence text = "You haven't filled any target audience";
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(context,text,duration);
+            toast.show();
+            Spinner spin = (Spinner) findViewById(R.id.spinner_request_programme);
+            focusView = spin;
+            cancel = true;
+        }
+
+        if(cancel)
+            focusView.requestFocus();
+        else
+        {
+            JSONObject obj = new JSONObject();
+            try{
+                obj.accumulate("Event_Name",event_name);
+                obj.accumulate("Event_Fee",event_fee);
+                obj.accumulate("Event_exp_audience",event_exp_audience);
+                obj.accumulate("Event_User_Venue",event_venue);
+                obj.accumulate("Event_Date",event_date);
+                obj.accumulate("Event_Time",event_time);
+                obj.accumulate("Event_Description",event_description);
+                obj.accumulate("Event_Comments_For_Admin",event_admin_comment);
+                obj.accumulate("Event_Target_Audience",event_target_audience);
+
+            } catch (JSONException e) {
+                Log.d("REQUEST_EVENT_CATCH", e.toString());
+
+            }
+            JsonObjectRequest jor = new JsonObjectRequest(
+                    Request.Method.POST,
+                    "request_event/",
+                    obj,
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            Log.d("API_CALL_EVENT_REQ", response.toString());
+//                            showProgress(false);
+                            // finish();
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Log.d("API_CALL_ERR_EVENT_REQ", error.toString());
+//                            showProgress(false);
+                            Snackbar.make(findViewById(R.id.request_event), "Error in submission. Check your network and try again", Snackbar.LENGTH_SHORT)
+                                    .setAction("Dismiss", new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+
+                                        }
+                                    }).show();
+                        }
+                    }
+            );
+        }
     }
 }

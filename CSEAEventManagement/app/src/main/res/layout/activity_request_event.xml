@@ -3,6 +3,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/request_event"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -26,7 +27,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@android:color/holo_blue_dark"/>
+        android:background="@android:color/holo_blue_dark" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -58,6 +59,7 @@
                 android:gravity="left"
                 android:hint="Event Fee (in Rs.)"
                 android:inputType="number" />
+
             <EditText
                 android:id="@+id/editText_request_eventCapacity"
                 android:layout_width="match_parent"
@@ -78,16 +80,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:textAlignment="gravity"
-                android:hint="Select Event Date" />
+                android:hint="Select Event Date"
+                android:textAlignment="gravity" />
 
             <Button
                 android:id="@+id/btn_request_eventTime"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:textAlignment="gravity"
-                android:hint="Select Event Start Time" />
+                android:hint="Select Event Start Time"
+                android:textAlignment="gravity" />
 
             <EditText
                 android:id="@+id/editText_request_eventDescription"
@@ -112,8 +114,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:textAlignment="gravity"
-                android:hint="Give FAQs for the event" />
+                android:hint="Give FAQs for the event"
+                android:textAlignment="gravity" />
 
 
             <TextView
@@ -130,14 +132,14 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@android:color/holo_blue_dark"/>
+                android:background="@android:color/holo_blue_dark" />
 
             <Spinner
                 android:id="@+id/spinner_request_programme"
                 android:layout_width="match_parent"
-                android:layout_weight="1"
                 android:layout_height="48dp"
-                android:layout_gravity="left" />
+                android:layout_gravity="left"
+                android:layout_weight="1" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -149,16 +151,17 @@
                     android:id="@+id/spinner_request_stream"
                     android:layout_width="0dp"
                     android:layout_height="48dp"
+                    android:layout_gravity="left"
                     android:layout_marginHorizontal="6dp"
-                    android:layout_weight="1"
-                    android:layout_gravity="left" />
+                    android:layout_weight="1" />
+
                 <Spinner
                     android:id="@+id/spinner_request_year"
                     android:layout_width="0dp"
                     android:layout_height="48dp"
+                    android:layout_gravity="left"
                     android:layout_marginHorizontal="6dp"
-                    android:layout_weight="1"
-                    android:layout_gravity="left" />
+                    android:layout_weight="1" />
 
             </LinearLayout>
 
@@ -166,15 +169,15 @@
                 android:id="@+id/btn_request_addAudience"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textAlignment="gravity"
                 android:layout_marginBottom="13dp"
-                android:hint="Add this Audience"/>
+                android:gravity="center"
+                android:hint="Add this Audience"
+                android:textAlignment="gravity" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@android:color/holo_blue_dark"/>
+                android:background="@android:color/holo_blue_dark" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -190,27 +193,26 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
                     android:layout_weight="4"
+                    android:foreground="@drawable/ic_clear_black_24dp"
                     android:scaleType="fitCenter"
                     app:layout_constraintDimensionRatio="H,1:1"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:foreground="@drawable/ic_clear_black_24dp" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <Button
                     android:id="@+id/btn_request_eventPoster"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="center"
                     android:layout_gravity="center"
-                    android:textAlignment="gravity"
                     android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
                     android:layout_weight="1"
+                    android:gravity="center"
                     android:hint="Poster for the event(optional)"
-                    android:layout_marginBottom="5dp"/>
+                    android:textAlignment="gravity" />
 
             </LinearLayout>
-
 
 
             <Button
@@ -218,15 +220,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:layout_marginBottom="15dp"
                 android:gravity="center"
-                android:textAlignment="gravity"
                 android:hint="Submit Form"
-                android:layout_marginBottom="15dp"/>
+                android:textAlignment="gravity" />
         </LinearLayout>
 
     </ScrollView>
-
-
 
 
 </LinearLayout>
