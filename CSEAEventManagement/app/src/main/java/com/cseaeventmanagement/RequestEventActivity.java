@@ -15,6 +15,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Base64;
@@ -42,11 +43,11 @@ import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.NoCache;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
-import java.io.FileNotFoundException;
 import java.util.Calendar;
 
 public class RequestEventActivity extends AppCompatActivity {
@@ -73,7 +74,7 @@ public class RequestEventActivity extends AppCompatActivity {
     private Button event_add_target_audi_btn;
     private Button submit_button;
     private String imageString;
-    public JSONObject noddy;
+    public JSONArray noddy;
     private RequestQueue q;
 
     Uri imageUri;
@@ -277,8 +278,8 @@ public class RequestEventActivity extends AppCompatActivity {
     }
 
     public void getfaqed(View view){
-        Intent intent = new Intent(getApplicationContext(),CustomFAQ.class);
-        startActivityForResult(intent, -12345);
+        Intent intent = new Intent(this, CustomFAQ.class);
+        startActivityForResult(intent, 200);
     }
 
     @Override
@@ -289,15 +290,15 @@ public class RequestEventActivity extends AppCompatActivity {
             Log.d(imageUri.toString(),"abcd");
             imgView.setVisibility(View.VISIBLE);
             imgView.setImageURI(imageUri);
-            imgView.setForeground(getResources().getDrawable(R.drawable.ic_check_black_24dp));
+            imgView.setForeground(ResourcesCompat.getDrawable(getResources(),R.drawable.ic_check_black_24dp, null));
             imgView.invalidate();
         }
-        if(requestCode==-12345&&resultCode==RESULT_OK)
+        if(requestCode==200&&resultCode==RESULT_OK)
         {
             try{
-                noddy = new JSONObject(getIntent().getStringExtra("content"));
+                noddy = new JSONArray(data.getStringExtra("noddy"));
             }
-            catch (JSONException e)
+            catch (Exception e)
             {
                 Log.d("CUSTOM_FAQ_PARCE_CATCH",e.toString());
             }
@@ -593,7 +594,7 @@ public class RequestEventActivity extends AppCompatActivity {
                 obj.accumulate("Event_Comments_For_Admin",event_admin_comment);
                 obj.accumulate("Event_Target_Audience",event_target_audience);
                 obj.accumulate("Event_Poster",imageString);
-                obj.accumulate("event_faqs",noddy);
+//                obj.accumulate("event_faqs",noddy);
 
             } catch (JSONException e) {
                 Log.d("REQUEST_EVENT_CATCH", e.toString());
