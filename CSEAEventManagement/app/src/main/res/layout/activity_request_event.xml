@@ -115,6 +115,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:hint="Give FAQs for the event"
+                android:onClick="getfaqed"
                 android:textAlignment="gravity" />
 
 

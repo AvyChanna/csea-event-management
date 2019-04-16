@@ -73,6 +73,7 @@ public class RequestEventActivity extends AppCompatActivity {
     private Button event_add_target_audi_btn;
     private Button submit_button;
     private String imageString;
+    public JSONObject noddy;
     private RequestQueue q;
 
     Uri imageUri;
@@ -275,6 +276,11 @@ public class RequestEventActivity extends AppCompatActivity {
         startActivityForResult(gallery,PICK_IMAGE);
     }
 
+    public void getfaqed(View view){
+        Intent intent = new Intent(getApplicationContext(),CustomFAQ.class);
+        startActivityForResult(intent, -12345);
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode,Intent data){
         super.onActivityResult(requestCode,resultCode,data);
@@ -285,6 +291,16 @@ public class RequestEventActivity extends AppCompatActivity {
             imgView.setImageURI(imageUri);
             imgView.setForeground(getResources().getDrawable(R.drawable.ic_check_black_24dp));
             imgView.invalidate();
+        }
+        if(requestCode==-12345&&resultCode==RESULT_OK)
+        {
+            try{
+                noddy = new JSONObject(getIntent().getStringExtra("content"));
+            }
+            catch (JSONException e)
+            {
+                Log.d("CUSTOM_FAQ_PARCE_CATCH",e.toString());
+            }
         }
     }
 
@@ -450,6 +466,7 @@ public class RequestEventActivity extends AppCompatActivity {
         spinner_sel_year.setAdapter(myAdapter_sel_year);
     }
 
+
     public void attemptEventRequest()
     {
         Bitmap bm;
@@ -565,6 +582,7 @@ public class RequestEventActivity extends AppCompatActivity {
         {
             JSONObject obj = new JSONObject();
             try{
+                obj.accumulate("username","avneet");
                 obj.accumulate("Event_Name",event_name);
                 obj.accumulate("Event_Fee",event_fee);
                 obj.accumulate("Event_exp_audience",event_exp_audience);
@@ -575,6 +593,7 @@ public class RequestEventActivity extends AppCompatActivity {
                 obj.accumulate("Event_Comments_For_Admin",event_admin_comment);
                 obj.accumulate("Event_Target_Audience",event_target_audience);
                 obj.accumulate("Event_Poster",imageString);
+                obj.accumulate("event_faqs",noddy);
 
             } catch (JSONException e) {
                 Log.d("REQUEST_EVENT_CATCH", e.toString());
@@ -582,7 +601,7 @@ public class RequestEventActivity extends AppCompatActivity {
             }
             JsonObjectRequest jor = new JsonObjectRequest(
                     Request.Method.POST,
-                    "http://172.16.115.46:8000/api/login/",
+                    "http://172.16.115.46:8000/api/requestevent/",
                     obj,
                     new Response.Listener<JSONObject>() {
                         @Override
@@ -629,4 +648,5 @@ public class RequestEventActivity extends AppCompatActivity {
             q.add(jor);
         }
     }
+
 }

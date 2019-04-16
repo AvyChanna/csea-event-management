@@ -158,7 +158,11 @@ public class SignupActivity extends AppCompatActivity implements LoaderCallbacks
             focusView = mPhoneNumberView;
             cancel = true;
         }
-        int iyoa;
+        int iyoa=0;
+        int iphone=0;
+
+        iphone = Integer.parseInt(phone);
+
         if (isEmpty(yoa)) {
             mYearOfAdmView.setError(getString(R.string.error_empty_field));
             focusView = mYearOfAdmView;
@@ -175,7 +179,7 @@ public class SignupActivity extends AppCompatActivity implements LoaderCallbacks
                 cancel = true;
             }
         }
-        int iroll;
+        int iroll=0;
         if (isEmpty(rollNo)) {
             mRollNumberView.setError(getString(R.string.error_empty_field));
             focusView = mRollNumberView;
@@ -186,7 +190,7 @@ public class SignupActivity extends AppCompatActivity implements LoaderCallbacks
             cancel = true;
         } else {
             iroll = Integer.parseInt(rollNo);
-            // TODO roll no ki maa chodni hai
+            // TODO roll no ki karni hai
             if (iroll < 170101000 || iroll > 201000999) {
                 mYearOfAdmView.setError(getString(R.string.error_invalid_value));
                 focusView = mYearOfAdmView;
@@ -237,6 +241,10 @@ public class SignupActivity extends AppCompatActivity implements LoaderCallbacks
             try {
                 obj.accumulate("username", mEmail);
                 obj.accumulate("password", password);
+                obj.accumulate("name",name);
+                obj.accumulate("roll_no",iroll);
+                obj.accumulate("year_admission",iyoa);
+                obj.accumulate("phone_num",iphone);
             } catch (Exception e) {
                 Log.d("Signup_FORM_CATCH", e.toString());
             }
