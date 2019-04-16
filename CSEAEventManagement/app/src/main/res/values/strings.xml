@@ -211,7 +211,7 @@
         <item>Department Library</item>
     </string-array>
 
-    <string name="executive_council_2018_2019">Executive Council 2018–2019</string>
+    <string name="executive_council_2018_2019">Executive Council 2018-2019</string>
     <string name="title_activity_admin">AdminActivity</string>
     <string name="apurva_n_saraogi">Apurva N. Saraogi\nTechnical Executive\n3rd Year Undergraduate\nWebmail Id:  apurva9</string>
     <string name="prof_s_v_rao">Prof. S. V. Rao  President\nCSEA  HOD, Dept. Of CSE\nWebmail id:  svrao@iitg.ernet.in</string>
