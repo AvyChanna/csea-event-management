@@ -18,7 +18,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:elevation="10dp"
-        android:fontFamily="serif-monospace"
         android:gravity="center_horizontal"
         android:text="Welcome to Event Request Portal!"
         android:textColor="@android:color/black"

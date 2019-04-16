@@ -197,7 +197,7 @@
 
 
     <string-array name="venue_array">
-        <item>Select a venue...</item>
+        <item>Select a venue…</item>
         <item>Lecture Hall 1</item>
         <item>Lecture Hall 2</item>
         <item>Lecture Hall 3</item>
@@ -211,8 +211,13 @@
         <item>Department Library</item>
     </string-array>
 
+<<<<<<< HEAD
     <string name="executive_council_2018_2019">Executive Council 2018-2019</string>
     <string name="title_activity_admin">AdminActivity</string>
+=======
+    <string name="executive_council_2018_2019">Executive Council 2018–2019</string>
+<string name="title_activity_admin">AdminActivity</string>
+>>>>>>> c2b84ce2b6622e843207b5da8bd725555801542a
     <string name="apurva_n_saraogi">Apurva N. Saraogi\nTechnical Executive\n3rd Year Undergraduate\nWebmail Id:  apurva9</string>
     <string name="prof_s_v_rao">Prof. S. V. Rao  President\nCSEA  HOD, Dept. Of CSE\nWebmail id:  svrao@iitg.ernet.in</string>
     <string name="benny_k_george">Benny K. George\nFaculty Mentor\nCSEA  Assistant Professor\nWebmail id:  ben@iitg.ernet.in</string>
