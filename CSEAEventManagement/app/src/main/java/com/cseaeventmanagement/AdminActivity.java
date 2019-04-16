@@ -94,7 +94,6 @@ public class AdminActivity extends AppCompatActivity
             SharedPreferences pref = getApplicationContext().getSharedPreferences("username",MODE_PRIVATE);
             SharedPreferences.Editor editor = pref.edit();
             editor.clear();
-            Intent intent =
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

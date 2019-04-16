@@ -108,7 +108,6 @@ public class MainActivity extends AppCompatActivity
             //Calling CouncilActivity
             Intent intent = new Intent(this, CouncilActivity.class);
             startActivity(intent);
-
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
