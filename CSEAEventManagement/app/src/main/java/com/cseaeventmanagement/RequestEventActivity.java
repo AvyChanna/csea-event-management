@@ -70,9 +70,12 @@ public class RequestEventActivity extends AppCompatActivity {
     private String event_description;
     private String event_admin_comment;
     private String event_target_audience="";
+    private String event_committee="";
     private Button event_add_target_audi_btn;
     private Button submit_button;
+    private Button add_committee;
     private String imageString;
+    private EditText edittext_add_member;
     public JSONObject noddy;
     private RequestQueue q;
 
@@ -260,6 +263,25 @@ public class RequestEventActivity extends AppCompatActivity {
                 eventDateDisplay.setText("Selected Date: "+dayOfMonth+" "+exact_month+" "+year);
             }
         };
+
+        add_committee = (Button) findViewById(R.id.btn_request_submit_members);
+        add_committee.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                edittext_add_member = (EditText) findViewById(R.id.editText_request_add_member);
+                if(edittext_add_member.getText().toString().equals(""))
+                {
+                    Context context = getApplicationContext();
+                    CharSequence text = "Audience added";
+                    int duration = Toast.LENGTH_SHORT;
+                    Toast toast = Toast.makeText(context,text,duration);
+                    toast.show();
+                }
+                else{
+                    event_committee = event_committee + edittext_add_member.getText().toString() + ";";
+                }
+            }
+        });
 
         submit_button = (Button) findViewById(R.id.btn_request_submit);
         submit_button.setOnClickListener(new View.OnClickListener() {
@@ -593,7 +615,8 @@ public class RequestEventActivity extends AppCompatActivity {
                 obj.accumulate("Event_Comments_For_Admin",event_admin_comment);
                 obj.accumulate("Event_Target_Audience",event_target_audience);
                 obj.accumulate("Event_Poster",imageString);
-                obj.accumulate("event_faqs",noddy);
+                obj.accumulate("Event_Committee",event_committee);
+                obj.accumulate("Event_FAQs",noddy);
 
             } catch (JSONException e) {
                 Log.d("REQUEST_EVENT_CATCH", e.toString());
