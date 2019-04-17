@@ -16,6 +16,7 @@ public class CustomFAQ extends AppCompatActivity {
 	private EditText question;
 	private EditText answer;
 	private JSONArray obj_array;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -56,7 +57,8 @@ public class CustomFAQ extends AppCompatActivity {
 				obj.accumulate("question", question.getText().toString());
 				obj.accumulate("answer", answer.getText().toString());
 				obj_array.put(obj);
-				question.setText("");answer.setText("");
+				question.setText("");
+				answer.setText("");
 			} catch (Exception e) {
 				Log.d("REQUEST_CUST_FAQ_CATCH", e.toString());
 			}

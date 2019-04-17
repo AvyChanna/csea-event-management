@@ -52,624 +52,569 @@ import java.util.Calendar;
 
 public class RequestEventActivity extends AppCompatActivity {
 
-    private static final String TAG = "RequestEventActivity";
-    private Button eventDateDisplay;
-    private Button eventTimePicker;
-    private DatePickerDialog.OnDateSetListener eventDateSetListener;
-    private ImageView imgView;
-    private Button imgSelBut;
-    private static final int PICK_IMAGE = 100;
-    private int position_programme;
-    private int position_stream;
+	private static final String TAG = "RequestEventActivity";
+	private static final int PICK_IMAGE = 100;
+	public JSONArray noddy;
+	Uri imageUri;
+	private Button eventDateDisplay;
+	private Button eventTimePicker;
+	private DatePickerDialog.OnDateSetListener eventDateSetListener;
+	private ImageView imgView;
+	private Button imgSelBut;
+	private int position_programme;
+	private int position_stream;
+	private String event_name;
+	private int event_fee;
+	private int event_exp_audience;
+	private String event_venue;
+	private String event_date;
+	private String event_time;
+	private String event_description;
+	private String event_admin_comment;
+	private String event_target_audience = "";
+	private String event_committee = "";
+	private Button event_add_target_audi_btn;
+	private Button submit_button;
+	private Button add_committee;
+	private String imageString;
+	private RequestQueue q;
 
-    private String event_name;
-    private int event_fee;
-    private int event_exp_audience;
-    private String event_venue;
-    private String event_date;
-    private String event_time;
-    private String event_description;
-    private String event_admin_comment;
-    private String event_target_audience="";
-    private String event_committee="";
-    private Button event_add_target_audi_btn;
-    private Button submit_button;
-    private Button add_committee;
-    private String imageString;
-    public JSONArray noddy;
-    private RequestQueue q;
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_request_event);
 
-    Uri imageUri;
+		Network network = new BasicNetwork(new HurlStack());
+		q = new RequestQueue(new NoCache(), network);
+		q.start();
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_request_event);
+		event_target_audience = "";
+		populateVenues();
 
-        Network network = new BasicNetwork(new HurlStack());
-        q = new RequestQueue(new NoCache(), network);
-        q.start();
+		final Spinner spinner_sel_programme = (Spinner) findViewById(R.id.spinner_request_programme);
+		ArrayAdapter<String> myAdapter_sel_programme = new ArrayAdapter<String>(RequestEventActivity.this, android.R.layout.simple_list_item_1,
+				getResources().getStringArray(R.array.branches_super)) {
+			@Override
+			public boolean isEnabled(int position) {
+				if (position == 0) {
+					return false;
+				} else {
+					position_programme = position;
+					return true;
+				}
+			}
 
-        event_target_audience = "";
-        populateVenues();
+			@Override
+			public View getDropDownView(int position, View convertView, ViewGroup parent) {
+				View view = super.getDropDownView(position, convertView, parent);
+				TextView tv = (TextView) view;
+				if (position == 0) {
+					tv.setTextColor(Color.GRAY);
+				} else {
+					tv.setTextColor(Color.BLACK);
+				}
+				return view;
+			}
 
-        final Spinner spinner_sel_programme = (Spinner) findViewById(R.id.spinner_request_programme);
-        ArrayAdapter<String> myAdapter_sel_programme = new ArrayAdapter<String>(RequestEventActivity.this,android.R.layout.simple_list_item_1,
-                getResources().getStringArray(R.array.branches_super)){
-            @Override
-            public boolean isEnabled(int position)
-            {
-                if(position==0)
-                {
-                    return false;
-                }
-                else{
-                    position_programme = position;
-                    return true;
-                }
-            }
+		};
+		myAdapter_sel_programme.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		spinner_sel_programme.setAdapter(myAdapter_sel_programme);
+		spinner_sel_programme.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+			@Override
+			public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+				populateStreams(position);
+				populateYear(position);
+			}
 
-            @Override
-            public View getDropDownView(int position,View convertView,ViewGroup parent) {
-                View view = super.getDropDownView(position,convertView,parent);
-                TextView tv = (TextView) view;
-                if(position==0)
-                {
-                    tv.setTextColor(Color.GRAY);
-                }
-                else {
-                    tv.setTextColor(Color.BLACK);
-                }
-                return view;
-            }
+			@Override
+			public void onNothingSelected(AdapterView<?> parent) {
 
+			}
+		});
 
-        };
-        myAdapter_sel_programme.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item );
-        spinner_sel_programme.setAdapter(myAdapter_sel_programme);
-        spinner_sel_programme.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                populateStreams(position);
-                populateYear(position);
-            }
+		event_add_target_audi_btn = (Button) findViewById(R.id.btn_request_addAudience);
+		event_add_target_audi_btn.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Spinner loc_spinner1 = (Spinner) findViewById(R.id.spinner_request_stream);
+				Spinner loc_spinner2 = (Spinner) findViewById(R.id.spinner_request_year);
+				if (spinner_sel_programme == null || spinner_sel_programme.getSelectedItem().toString().equals("Select Programme") ||
+						loc_spinner1 == null || loc_spinner2 == null ||
+						loc_spinner1.getSelectedItem().toString().equals("Stream") || loc_spinner2.getSelectedItem().toString().equals("Select Year of Study")) {
+					Log.d("hipeep", "a" + loc_spinner1.getSelectedItem().toString());
+					Context context = getApplicationContext();
+					CharSequence text = "Fill all the entries of target audience first";
+					int duration = Toast.LENGTH_SHORT;
+					Toast toast = Toast.makeText(context, text, duration);
+					toast.show();
+				} else {
+					event_target_audience = event_target_audience + String.valueOf(spinner_sel_programme.getSelectedItemPosition()) + "," +
+							String.valueOf(loc_spinner1.getSelectedItemPosition()) + "," + String.valueOf(loc_spinner2.getSelectedItemPosition()) + ";";
+					Log.d("hi", event_target_audience);
+					Context context = getApplicationContext();
+					CharSequence text = "Audience added";
+					int duration = Toast.LENGTH_SHORT;
+					Toast toast = Toast.makeText(context, text, duration);
+					toast.show();
+				}
+			}
+		});
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent)
-            {
+		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-            }
-        });
+		imgView = (ImageView) findViewById(R.id.img_request_poster);
+		imgSelBut = (Button) findViewById(R.id.btn_request_eventPoster);
+		imgView.setVisibility(View.INVISIBLE);
+		imgSelBut.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				openGallery();
+			}
+		});
 
-        event_add_target_audi_btn = (Button) findViewById(R.id.btn_request_addAudience);
-        event_add_target_audi_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Spinner loc_spinner1 = (Spinner) findViewById(R.id.spinner_request_stream);
-                Spinner loc_spinner2 = (Spinner) findViewById(R.id.spinner_request_year);
-                if(spinner_sel_programme == null || spinner_sel_programme.getSelectedItem().toString().equals("Select Programme")||
-                        loc_spinner1 == null||loc_spinner2 == null||
-                loc_spinner1.getSelectedItem().toString().equals("Stream") || loc_spinner2.getSelectedItem().toString().equals("Select Year of Study"))
-                {
-                    Log.d("hipeep","a"+loc_spinner1.getSelectedItem().toString());
-                    Context context = getApplicationContext();
-                    CharSequence text = "Fill all the entries of target audience first";
-                    int duration = Toast.LENGTH_SHORT;
-                    Toast toast = Toast.makeText(context,text,duration);
-                    toast.show();
-                }
-                else{
-                    event_target_audience = event_target_audience + String.valueOf(spinner_sel_programme.getSelectedItemPosition()) + "," +
-                            String.valueOf(loc_spinner1.getSelectedItemPosition()) + "," +String.valueOf(loc_spinner2.getSelectedItemPosition())+";";
-                    Log.d("hi",event_target_audience);
-                    Context context = getApplicationContext();
-                    CharSequence text = "Audience added";
-                    int duration = Toast.LENGTH_SHORT;
-                    Toast toast = Toast.makeText(context,text,duration);
-                    toast.show();
-                }
-            }
-        });
+		eventTimePicker = (Button) findViewById(R.id.btn_request_eventTime);
+		eventTimePicker.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				final Calendar cal = Calendar.getInstance();
+				final int mHour = cal.get(Calendar.HOUR_OF_DAY);
+				final int mMinute = cal.get(Calendar.MINUTE);
 
-        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+				TimePickerDialog timeDialog = new TimePickerDialog(RequestEventActivity.this,
+						new TimePickerDialog.OnTimeSetListener() {
+							@Override
+							public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+								String am_pm = "";
+								if (cal.get(Calendar.AM_PM) == Calendar.AM)
+									am_pm = "AM";
+								else if (cal.get(Calendar.AM_PM) == Calendar.PM)
+									am_pm = "PM";
+								eventTimePicker.setText("Selected Time " + hourOfDay + ":" + minute + " " + am_pm);
+								event_time = mHour + ":" + mMinute + " " + am_pm;
+							}
+						}, mHour, mMinute, false);
+				timeDialog.show();
+			}
+		});
 
+		eventDateDisplay = (Button) findViewById(R.id.btn_request_eventDate);
+		eventDateDisplay.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				Calendar cal = Calendar.getInstance();
+				int year = cal.get(Calendar.YEAR);
+				int month = cal.get(Calendar.MONTH);
+				int day = cal.get(Calendar.DAY_OF_MONTH);
 
+				event_date = year + "-" + month + 1 + "-" + day;
 
-        imgView = (ImageView) findViewById(R.id.img_request_poster);
-        imgSelBut = (Button) findViewById(R.id.btn_request_eventPoster);
-        imgView.setVisibility(View.INVISIBLE);
-        imgSelBut.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                openGallery();
-            }
-        });
-
-
-        eventTimePicker = (Button) findViewById(R.id.btn_request_eventTime);
-        eventTimePicker.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                final Calendar cal = Calendar.getInstance();
-                final int mHour = cal.get(Calendar.HOUR_OF_DAY);
-                final int mMinute = cal.get(Calendar.MINUTE);
-
-                TimePickerDialog timeDialog = new TimePickerDialog(RequestEventActivity.this,
-                        new TimePickerDialog.OnTimeSetListener() {
-                            @Override
-                            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                                String am_pm = "";
-                                if(cal.get(Calendar.AM_PM)==Calendar.AM)
-                                    am_pm = "AM";
-                                else if(cal.get(Calendar.AM_PM)==Calendar.PM)
-                                    am_pm = "PM";
-                                eventTimePicker.setText("Selected Time "+hourOfDay+":"+minute+" "+am_pm);
-                                event_time = mHour+":"+mMinute+" "+am_pm;
-                            }
-                        },mHour,mMinute,false);
-                timeDialog.show();
-            }
-        });
-
-        eventDateDisplay = (Button) findViewById(R.id.btn_request_eventDate);
-        eventDateDisplay.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                Calendar cal = Calendar.getInstance();
-                int year = cal.get(Calendar.YEAR);
-                int month = cal.get(Calendar.MONTH);
-                int day = cal.get(Calendar.DAY_OF_MONTH);
-
-                event_date = year+"-"+month+1+"-"+day;
-
-                DatePickerDialog dialog = new DatePickerDialog(RequestEventActivity.this,
+				DatePickerDialog dialog = new DatePickerDialog(RequestEventActivity.this,
 //                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
-                        eventDateSetListener,
-                        year,month,day);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.WHITE));
-                dialog.show();
-            }
-        });
-        eventDateSetListener = new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                month = month+1;
-                Log.d(TAG,"Selected Date is: "+dayOfMonth+"/"+month+"/"+year);
-                String exact_month = "";
-                if(month==1)
-                    exact_month="Jan";
-                else if(month==2)
-                    exact_month="Feb";
-                else if(month==3)
-                    exact_month="Mar";
-                else if(month==4)
-                    exact_month="Apr";
-                else if(month==5)
-                    exact_month="May";
-                else if(month==6)
-                    exact_month="June";
-                else if(month==7)
-                    exact_month="July";
-                else if(month==8)
-                    exact_month="Aug";
-                else if(month==9)
-                    exact_month="Sep";
-                else if(month==10)
-                    exact_month="Oct";
-                else if(month==11)
-                    exact_month="Nov";
-                else if(month==12)
-                    exact_month="Dec";
-                eventDateDisplay.setText("Selected Date: "+dayOfMonth+" "+exact_month+" "+year);
-            }
-        };
+						eventDateSetListener,
+						year, month, day);
+				dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.WHITE));
+				dialog.show();
+			}
+		});
+		eventDateSetListener = new DatePickerDialog.OnDateSetListener() {
+			@Override
+			public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+				month = month + 1;
+				Log.d(TAG, "Selected Date is: " + dayOfMonth + "/" + month + "/" + year);
+				String exact_month = "";
+				if (month == 1)
+					exact_month = "Jan";
+				else if (month == 2)
+					exact_month = "Feb";
+				else if (month == 3)
+					exact_month = "Mar";
+				else if (month == 4)
+					exact_month = "Apr";
+				else if (month == 5)
+					exact_month = "May";
+				else if (month == 6)
+					exact_month = "June";
+				else if (month == 7)
+					exact_month = "July";
+				else if (month == 8)
+					exact_month = "Aug";
+				else if (month == 9)
+					exact_month = "Sep";
+				else if (month == 10)
+					exact_month = "Oct";
+				else if (month == 11)
+					exact_month = "Nov";
+				else if (month == 12)
+					exact_month = "Dec";
+				eventDateDisplay.setText("Selected Date: " + dayOfMonth + " " + exact_month + " " + year);
+			}
+		};
 
-        add_committee = (Button) findViewById(R.id.btn_request_submit_members);
-        add_committee.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                edittext_add_member = (EditText) findViewById(R.id.editText_request_add_member);
-                if(edittext_add_member.getText().toString().equals(""))
-                {
-                    Context context = getApplicationContext();
-                    CharSequence text = "Audience added";
-                    int duration = Toast.LENGTH_SHORT;
-                    Toast toast = Toast.makeText(context,text,duration);
-                    toast.show();
-                }
-                else{
-                    event_committee = event_committee + edittext_add_member.getText().toString() + ";";
-                }
-            }
-        });
+		add_committee = (Button) findViewById(R.id.btn_request_submit_members);
+		add_committee.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				edittext_add_member = (EditText) findViewById(R.id.editText_request_add_member);
+				if (edittext_add_member.getText().toString().equals("")) {
+					Context context = getApplicationContext();
+					CharSequence text = "Audience added";
+					int duration = Toast.LENGTH_SHORT;
+					Toast toast = Toast.makeText(context, text, duration);
+					toast.show();
+				} else {
+					event_committee = event_committee + edittext_add_member.getText().toString() + ";";
+				}
+			}
+		});
 
-        submit_button = (Button) findViewById(R.id.btn_request_submit);
-        submit_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                attemptEventRequest();
-            }
-        });
+		submit_button = (Button) findViewById(R.id.btn_request_submit);
+		submit_button.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				attemptEventRequest();
+			}
+		});
 
-    }
+	}
 
-    public void openGallery(){
-        Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
-        startActivityForResult(gallery,PICK_IMAGE);
-    }
+	public void openGallery() {
+		Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+		startActivityForResult(gallery, PICK_IMAGE);
+	}
 
-    public void getfaqed(View view){
-        Intent intent = new Intent(this, CustomFAQ.class);
-        startActivityForResult(intent, 200);
-    }
+	public void getfaqed(View view) {
+		Intent intent = new Intent(this, CustomFAQ.class);
+		startActivityForResult(intent, 200);
+	}
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode,Intent data){
-        super.onActivityResult(requestCode,resultCode,data);
-        if(resultCode == RESULT_OK && requestCode == PICK_IMAGE){
-            imageUri = data.getData();
-            Log.d(imageUri.toString(),"abcd");
-            imgView.setVisibility(View.VISIBLE);
-            imgView.setImageURI(imageUri);
-            imgView.setForeground(ResourcesCompat.getDrawable(getResources(),R.drawable.ic_check_black_24dp, null));
-            imgView.invalidate();
-        }
-        if(requestCode==200&&resultCode==RESULT_OK)
-        {
-            try{
-                noddy = new JSONArray(data.getStringExtra("noddy"));
-            }
-            catch (Exception e)
-            {
-                Log.d("CUSTOM_FAQ_PARCE_CATCH",e.toString());
-            }
-        }
-    }
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		if (resultCode == RESULT_OK && requestCode == PICK_IMAGE) {
+			imageUri = data.getData();
+			Log.d(imageUri.toString(), "abcd");
+			imgView.setVisibility(View.VISIBLE);
+			imgView.setImageURI(imageUri);
+			imgView.setForeground(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_check_black_24dp, null));
+			imgView.invalidate();
+		}
+		if (requestCode == 200 && resultCode == RESULT_OK) {
+			try {
+				noddy = new JSONArray(data.getStringExtra("noddy"));
+			} catch (Exception e) {
+				Log.d("CUSTOM_FAQ_PARCE_CATCH", e.toString());
+			}
+		}
+	}
 
-    public void populateVenues()
-    {
-        final Spinner spinner = (Spinner) findViewById(R.id.spinner_request);
-        ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(RequestEventActivity.this,android.R.layout.simple_list_item_1,
-                getResources().getStringArray(R.array.venue_array)){
-            @Override
-            public boolean isEnabled(int position)
-            {
-                if(position==0)
-                {
-                    return false;
-                }
-                else{
-                    return true;
-                }
-            }
+	public void populateVenues() {
+		final Spinner spinner = (Spinner) findViewById(R.id.spinner_request);
+		ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(RequestEventActivity.this, android.R.layout.simple_list_item_1,
+				getResources().getStringArray(R.array.venue_array)) {
+			@Override
+			public boolean isEnabled(int position) {
+				if (position == 0) {
+					return false;
+				} else {
+					return true;
+				}
+			}
 
-            @Override
-            public View getDropDownView(int position,View convertView,ViewGroup parent) {
-                View view = super.getDropDownView(position,convertView,parent);
-                TextView tv = (TextView) view;
-                if(position==0)
-                {
-                    tv.setTextColor(Color.GRAY);
-                }
-                else {
-                    tv.setTextColor(Color.BLACK);
-                }
-                return view;
-            }
-        };
-        myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item );
-        spinner.setAdapter(myAdapter);
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                event_venue = (String) parent.getItemAtPosition(position);
-            }
+			@Override
+			public View getDropDownView(int position, View convertView, ViewGroup parent) {
+				View view = super.getDropDownView(position, convertView, parent);
+				TextView tv = (TextView) view;
+				if (position == 0) {
+					tv.setTextColor(Color.GRAY);
+				} else {
+					tv.setTextColor(Color.BLACK);
+				}
+				return view;
+			}
+		};
+		myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		spinner.setAdapter(myAdapter);
+		spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+			@Override
+			public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+				event_venue = (String) parent.getItemAtPosition(position);
+			}
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+			@Override
+			public void onNothingSelected(AdapterView<?> parent) {
 
-            }
-        });
-    }
+			}
+		});
+	}
 
-    public void populateStreams(int position_programme)
-    {
-        String[] decision_for_stream;
-        if(position_programme==1)
-            decision_for_stream = getResources().getStringArray(R.array.branches_btech);
-        else if(position_programme==2)
-            decision_for_stream = getResources().getStringArray(R.array.branches_bdes);
-        else if(position_programme==3)
-            decision_for_stream = getResources().getStringArray(R.array.branches_msc);
-        else if(position_programme==4)
-            decision_for_stream = getResources().getStringArray(R.array.branches_ma);
-        else if(position_programme==5)
-            decision_for_stream = getResources().getStringArray(R.array.branches_mtech);
-        else if(position_programme==6)
-            decision_for_stream = getResources().getStringArray(R.array.branches_mdes);
-        else if(position_programme==7)
-            decision_for_stream = getResources().getStringArray(R.array.branches_msr);
-        else if(position_programme==8)
-            decision_for_stream = getResources().getStringArray(R.array.branches_phd);
-        else if(position_programme==9)
-            decision_for_stream = getResources().getStringArray(R.array.branches_cseDual);
-        else if(position_programme==10)
-            decision_for_stream = getResources().getStringArray(R.array.branches_eeeDual);
-        else
-            decision_for_stream = getResources().getStringArray(R.array.branches_btech);
-        final Spinner spinner_sel_stream = (Spinner) findViewById(R.id.spinner_request_stream);
-        ArrayAdapter<String> myAdapter_sel_stream = new ArrayAdapter<String>(RequestEventActivity.this,android.R.layout.simple_list_item_1,decision_for_stream){
-            @Override
-            public boolean isEnabled(int position)
-            {
-                if(position==0)
-                {
-                    return false;
-                }
-                else{
-                    return true;
-                }
-            }
+	public void populateStreams(int position_programme) {
+		String[] decision_for_stream;
+		if (position_programme == 1)
+			decision_for_stream = getResources().getStringArray(R.array.branches_btech);
+		else if (position_programme == 2)
+			decision_for_stream = getResources().getStringArray(R.array.branches_bdes);
+		else if (position_programme == 3)
+			decision_for_stream = getResources().getStringArray(R.array.branches_msc);
+		else if (position_programme == 4)
+			decision_for_stream = getResources().getStringArray(R.array.branches_ma);
+		else if (position_programme == 5)
+			decision_for_stream = getResources().getStringArray(R.array.branches_mtech);
+		else if (position_programme == 6)
+			decision_for_stream = getResources().getStringArray(R.array.branches_mdes);
+		else if (position_programme == 7)
+			decision_for_stream = getResources().getStringArray(R.array.branches_msr);
+		else if (position_programme == 8)
+			decision_for_stream = getResources().getStringArray(R.array.branches_phd);
+		else if (position_programme == 9)
+			decision_for_stream = getResources().getStringArray(R.array.branches_cseDual);
+		else if (position_programme == 10)
+			decision_for_stream = getResources().getStringArray(R.array.branches_eeeDual);
+		else
+			decision_for_stream = getResources().getStringArray(R.array.branches_btech);
+		final Spinner spinner_sel_stream = (Spinner) findViewById(R.id.spinner_request_stream);
+		ArrayAdapter<String> myAdapter_sel_stream = new ArrayAdapter<String>(RequestEventActivity.this, android.R.layout.simple_list_item_1, decision_for_stream) {
+			@Override
+			public boolean isEnabled(int position) {
+				if (position == 0) {
+					return false;
+				} else {
+					return true;
+				}
+			}
 
-            @Override
-            public View getDropDownView(int position,View convertView,ViewGroup parent) {
-                View view = super.getDropDownView(position,convertView,parent);
-                TextView tv = (TextView) view;
-                if(position==0)
-                {
-                    tv.setTextColor(Color.GRAY);
-                }
-                else {
-                    tv.setTextColor(Color.BLACK);
-                }
-                return view;
-            }
-        };
-        myAdapter_sel_stream.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item );
-        spinner_sel_stream.setAdapter(myAdapter_sel_stream);
-    }
+			@Override
+			public View getDropDownView(int position, View convertView, ViewGroup parent) {
+				View view = super.getDropDownView(position, convertView, parent);
+				TextView tv = (TextView) view;
+				if (position == 0) {
+					tv.setTextColor(Color.GRAY);
+				} else {
+					tv.setTextColor(Color.BLACK);
+				}
+				return view;
+			}
+		};
+		myAdapter_sel_stream.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		spinner_sel_stream.setAdapter(myAdapter_sel_stream);
+	}
 
+	public void populateYear(int position_programme) {
+		String[] decision_for_year;
+		if (position_programme == 1)
+			decision_for_year = getResources().getStringArray(R.array.year_btech);
+		else if (position_programme == 2)
+			decision_for_year = getResources().getStringArray(R.array.year_bdes);
+		else if (position_programme == 3)
+			decision_for_year = getResources().getStringArray(R.array.year_msc);
+		else if (position_programme == 4)
+			decision_for_year = getResources().getStringArray(R.array.year_ma);
+		else if (position_programme == 5)
+			decision_for_year = getResources().getStringArray(R.array.year_mtech);
+		else if (position_programme == 6)
+			decision_for_year = getResources().getStringArray(R.array.year_mdes);
+		else if (position_programme == 7)
+			decision_for_year = getResources().getStringArray(R.array.year_msr);
+		else if (position_programme == 8)
+			decision_for_year = getResources().getStringArray(R.array.year_phd);
+		else if (position_programme == 9)
+			decision_for_year = getResources().getStringArray(R.array.year_cseDual);
+		else if (position_programme == 10)
+			decision_for_year = getResources().getStringArray(R.array.year_eeeDual);
+		else
+			decision_for_year = getResources().getStringArray(R.array.year_btech);
 
-    public void populateYear(int position_programme)
-    {
-        String[] decision_for_year;
-        if(position_programme==1)
-            decision_for_year = getResources().getStringArray(R.array.year_btech);
-        else if(position_programme==2)
-            decision_for_year = getResources().getStringArray(R.array.year_bdes);
-        else if(position_programme==3)
-            decision_for_year = getResources().getStringArray(R.array.year_msc);
-        else if(position_programme==4)
-            decision_for_year = getResources().getStringArray(R.array.year_ma);
-        else if(position_programme==5)
-            decision_for_year = getResources().getStringArray(R.array.year_mtech);
-        else if(position_programme==6)
-            decision_for_year = getResources().getStringArray(R.array.year_mdes);
-        else if(position_programme==7)
-            decision_for_year = getResources().getStringArray(R.array.year_msr);
-        else if(position_programme==8)
-            decision_for_year = getResources().getStringArray(R.array.year_phd);
-        else if(position_programme==9)
-            decision_for_year = getResources().getStringArray(R.array.year_cseDual);
-        else if(position_programme==10)
-            decision_for_year = getResources().getStringArray(R.array.year_eeeDual);
-        else
-            decision_for_year = getResources().getStringArray(R.array.year_btech);
+		final Spinner spinner_sel_year = (Spinner) findViewById(R.id.spinner_request_year);
+		ArrayAdapter<String> myAdapter_sel_year = new ArrayAdapter<String>(RequestEventActivity.this, android.R.layout.simple_list_item_1, decision_for_year) {
+			@Override
+			public boolean isEnabled(int position) {
+				if (position == 0) {
+					return false;
+				} else {
+					return true;
+				}
+			}
 
-        final Spinner spinner_sel_year = (Spinner) findViewById(R.id.spinner_request_year);
-        ArrayAdapter<String> myAdapter_sel_year = new ArrayAdapter<String>(RequestEventActivity.this,android.R.layout.simple_list_item_1,decision_for_year){
-            @Override
-            public boolean isEnabled(int position)
-            {
-                if(position==0)
-                {
-                    return false;
-                }
-                else{
-                    return true;
-                }
-            }
+			@Override
+			public View getDropDownView(int position, View convertView, ViewGroup parent) {
+				View view = super.getDropDownView(position, convertView, parent);
+				TextView tv = (TextView) view;
+				if (position == 0) {
+					tv.setTextColor(Color.GRAY);
+				} else {
+					tv.setTextColor(Color.BLACK);
+				}
+				return view;
+			}
+		};
+		myAdapter_sel_year.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		spinner_sel_year.setAdapter(myAdapter_sel_year);
+	}
 
-            @Override
-            public View getDropDownView(int position,View convertView,ViewGroup parent) {
-                View view = super.getDropDownView(position,convertView,parent);
-                TextView tv = (TextView) view;
-                if(position==0)
-                {
-                    tv.setTextColor(Color.GRAY);
-                }
-                else {
-                    tv.setTextColor(Color.BLACK);
-                }
-                return view;
-            }
-        };
-        myAdapter_sel_year.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner_sel_year.setAdapter(myAdapter_sel_year);
-    }
-
-
-    public void attemptEventRequest()
-    {
-        Bitmap bm;
-        try{
-            bm = BitmapFactory.decodeStream(getContentResolver().openInputStream(imageUri));
-            imgView.setImageBitmap(bm);
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            bm.compress(Bitmap.CompressFormat.JPEG, 100, baos); //bm is the bitmap object
-            byte[] b = baos.toByteArray();
-            imageString = Base64.encodeToString(b, Base64.URL_SAFE|Base64.NO_WRAP|Base64.NO_PADDING);
+	public void attemptEventRequest() {
+		Bitmap bm;
+		try {
+			bm = BitmapFactory.decodeStream(getContentResolver().openInputStream(imageUri));
+			imgView.setImageBitmap(bm);
+			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+			bm.compress(Bitmap.CompressFormat.JPEG, 100, baos); //bm is the bitmap object
+			byte[] b = baos.toByteArray();
+			imageString = Base64.encodeToString(b, Base64.URL_SAFE | Base64.NO_WRAP | Base64.NO_PADDING);
 //            imgView.setVisibility(View.INVISIBLE);
-        }
-        catch (Exception e){
-            Log.d("IMAGE_REQ_EVENT_CATCH", e.toString());
-        }
-        View focusView = null;
-        boolean cancel = false;
+		} catch (Exception e) {
+			Log.d("IMAGE_REQ_EVENT_CATCH", e.toString());
+		}
+		View focusView = null;
+		boolean cancel = false;
 
-        EditText loc1 = (EditText) findViewById(R.id.editText_request_eventName);
-        event_name = loc1.getText().toString();
-        if(TextUtils.isEmpty(event_name))
-        {
-            loc1.setError(getString(R.string.error_field_required));
-            focusView = loc1;
-            cancel = true;
-        }
+		EditText loc1 = (EditText) findViewById(R.id.editText_request_eventName);
+		event_name = loc1.getText().toString();
+		if (TextUtils.isEmpty(event_name)) {
+			loc1.setError(getString(R.string.error_field_required));
+			focusView = loc1;
+			cancel = true;
+		}
 
-        EditText loc2 = (EditText) findViewById(R.id.editText_request_eventFee);
-        if(TextUtils.isEmpty(loc2.getText().toString()))
-        {
-            loc2.setError(getString(R.string.error_field_required));
-            focusView = loc1;
-            cancel = true;
-        }
-        else
-        {
-            event_fee = Integer.parseInt(loc2.getText().toString());
-        }
+		EditText loc2 = (EditText) findViewById(R.id.editText_request_eventFee);
+		if (TextUtils.isEmpty(loc2.getText().toString())) {
+			loc2.setError(getString(R.string.error_field_required));
+			focusView = loc1;
+			cancel = true;
+		} else {
+			event_fee = Integer.parseInt(loc2.getText().toString());
+		}
 
-        EditText loc3 = (EditText) findViewById(R.id.editText_request_eventCapacity);
-        if(TextUtils.isEmpty(loc3.getText().toString()))
-        {
-            loc3.setError(getString(R.string.error_field_required));
-            focusView = loc2;
-            cancel = true;
-        }
-        else
-        {
-            event_exp_audience = Integer.parseInt(loc3.getText().toString());
-        }
+		EditText loc3 = (EditText) findViewById(R.id.editText_request_eventCapacity);
+		if (TextUtils.isEmpty(loc3.getText().toString())) {
+			loc3.setError(getString(R.string.error_field_required));
+			focusView = loc2;
+			cancel = true;
+		} else {
+			event_exp_audience = Integer.parseInt(loc3.getText().toString());
+		}
 
-        EditText loc4 = (EditText) findViewById(R.id.editText_request_eventDescription);
-        event_description = loc4.getText().toString();
-        if(TextUtils.isEmpty(event_description))
-        {
-            loc4.setError(getString(R.string.error_field_required));
-            focusView = loc4;
-            cancel = true;
-        }
-        EditText loc5 = (EditText) findViewById(R.id.editText_request_eventCommentsForAdmin);
-        event_admin_comment = loc5.getText().toString();
+		EditText loc4 = (EditText) findViewById(R.id.editText_request_eventDescription);
+		event_description = loc4.getText().toString();
+		if (TextUtils.isEmpty(event_description)) {
+			loc4.setError(getString(R.string.error_field_required));
+			focusView = loc4;
+			cancel = true;
+		}
+		EditText loc5 = (EditText) findViewById(R.id.editText_request_eventCommentsForAdmin);
+		event_admin_comment = loc5.getText().toString();
 
-        if(TextUtils.isEmpty(event_venue))
-        {
-            Spinner loc_spin1 = (Spinner) findViewById(R.id.spinner_request);
-            focusView = loc_spin1;
-            cancel = true;
-        }
+		if (TextUtils.isEmpty(event_venue)) {
+			Spinner loc_spin1 = (Spinner) findViewById(R.id.spinner_request);
+			focusView = loc_spin1;
+			cancel = true;
+		}
 
-        if(TextUtils.isEmpty(event_date))
-        {
-            Button loc_btn1 = (Button) findViewById(R.id.btn_request_eventDate);
-            loc_btn1.setError(getString(R.string.error_field_required));
-            focusView = loc_btn1;
-            cancel = true;
-        }
+		if (TextUtils.isEmpty(event_date)) {
+			Button loc_btn1 = (Button) findViewById(R.id.btn_request_eventDate);
+			loc_btn1.setError(getString(R.string.error_field_required));
+			focusView = loc_btn1;
+			cancel = true;
+		}
 
-        if(TextUtils.isEmpty(event_time))
-        {
-            Button loc_btn1 = (Button) findViewById(R.id.btn_request_eventTime);
-            loc_btn1.setError(getString(R.string.error_field_required));
-            focusView = loc_btn1;
-            cancel = true;
-        }
+		if (TextUtils.isEmpty(event_time)) {
+			Button loc_btn1 = (Button) findViewById(R.id.btn_request_eventTime);
+			loc_btn1.setError(getString(R.string.error_field_required));
+			focusView = loc_btn1;
+			cancel = true;
+		}
 
-        Spinner spin_venue = (Spinner) findViewById(R.id.spinner_request);
-        if(spin_venue == null || spin_venue.getSelectedItem().toString().equals("Select a venue..."))
-        {
-            Context context = getApplicationContext();
-            CharSequence text = "Select a venue first";
-            int duration = Toast.LENGTH_SHORT;
-            Toast toast = Toast.makeText(context,text,duration);
-            toast.show();
-            focusView = spin_venue;
-            cancel = true;
-        }
+		Spinner spin_venue = (Spinner) findViewById(R.id.spinner_request);
+		if (spin_venue == null || spin_venue.getSelectedItem().toString().equals("Select a venue...")) {
+			Context context = getApplicationContext();
+			CharSequence text = "Select a venue first";
+			int duration = Toast.LENGTH_SHORT;
+			Toast toast = Toast.makeText(context, text, duration);
+			toast.show();
+			focusView = spin_venue;
+			cancel = true;
+		}
 
-        if(event_target_audience.equals(""))
-        {
-            Context context = getApplicationContext();
-            CharSequence text = "You haven't filled any target audience";
-            int duration = Toast.LENGTH_SHORT;
-            Toast toast = Toast.makeText(context,text,duration);
-            toast.show();
-            Spinner spin = (Spinner) findViewById(R.id.spinner_request_programme);
-            focusView = spin;
-            cancel = true;
-        }
+		if (event_target_audience.equals("")) {
+			Context context = getApplicationContext();
+			CharSequence text = "You haven't filled any target audience";
+			int duration = Toast.LENGTH_SHORT;
+			Toast toast = Toast.makeText(context, text, duration);
+			toast.show();
+			Spinner spin = (Spinner) findViewById(R.id.spinner_request_programme);
+			focusView = spin;
+			cancel = true;
+		}
 
-        if(cancel)
-            focusView.requestFocus();
-        else
-        {
-            JSONObject obj = new JSONObject();
-            try{
-                obj.accumulate("username","avneet");
-                obj.accumulate("Event_Name",event_name);
-                obj.accumulate("Event_Fee",event_fee);
-                obj.accumulate("Event_exp_audience",event_exp_audience);
-                obj.accumulate("Event_User_Venue",event_venue);
-                obj.accumulate("Event_Date",event_date);
-                obj.accumulate("Event_Time",event_time);
-                obj.accumulate("Event_Description",event_description);
-                obj.accumulate("Event_Comments_For_Admin",event_admin_comment);
-                obj.accumulate("Event_Target_Audience",event_target_audience);
-                obj.accumulate("Event_Poster",imageString);
-                obj.accumulate("Event_Committee",event_committee);
-                // obj.accumulate("Event_FAQs",noddy);
+		if (cancel)
+			focusView.requestFocus();
+		else {
+			JSONObject obj = new JSONObject();
+			try {
+				obj.accumulate("username", "avneet");
+				obj.accumulate("Event_Name", event_name);
+				obj.accumulate("Event_Fee", event_fee);
+				obj.accumulate("Event_exp_audience", event_exp_audience);
+				obj.accumulate("Event_User_Venue", event_venue);
+				obj.accumulate("Event_Date", event_date);
+				obj.accumulate("Event_Time", event_time);
+				obj.accumulate("Event_Description", event_description);
+				obj.accumulate("Event_Comments_For_Admin", event_admin_comment);
+				obj.accumulate("Event_Target_Audience", event_target_audience);
+				obj.accumulate("Event_Poster", imageString);
+				obj.accumulate("Event_Committee", event_committee);
+				// obj.accumulate("Event_FAQs",noddy);
 
-            } catch (JSONException e) {
-                Log.d("REQUEST_EVENT_CATCH", e.toString());
+			} catch (JSONException e) {
+				Log.d("REQUEST_EVENT_CATCH", e.toString());
 
-            }
-            JsonObjectRequest jor = new JsonObjectRequest(
-                    Request.Method.POST,
-                    "http://172.16.115.46:8000/api/requestevent/",
-                    obj,
-                    new Response.Listener<JSONObject>() {
-                        @Override
-                        public void onResponse(JSONObject response) {
-                            Log.d("API_CALL_EVENT_REQ", response.toString());
-                            Context context = getApplicationContext();
-                            CharSequence text = "Event successfully submitted";
-                            int duration = Toast.LENGTH_SHORT;
-                            Toast toast = Toast.makeText(context,text,duration);
-                            toast.show();
+			}
+			JsonObjectRequest jor = new JsonObjectRequest(
+					Request.Method.POST,
+					"http://172.16.115.46:8000/api/requestevent/",
+					obj,
+					new Response.Listener<JSONObject>() {
+						@Override
+						public void onResponse(JSONObject response) {
+							Log.d("API_CALL_EVENT_REQ", response.toString());
+							Context context = getApplicationContext();
+							CharSequence text = "Event successfully submitted";
+							int duration = Toast.LENGTH_SHORT;
+							Toast toast = Toast.makeText(context, text, duration);
+							toast.show();
 
-                            SharedPreferences sharedpreferences = getSharedPreferences("Login", Context.MODE_PRIVATE);
-                            SharedPreferences.Editor editor = sharedpreferences.edit();
-                            editor.putString("Event_Name", event_name);
-                            editor.putInt("Event_Fee",event_fee);
-                            editor.putInt("Event_exp_audience",event_exp_audience);
-                            editor.putString("Event_USer_Venue",event_venue);
-                            editor.putString("Event_Date",event_date);
-                            editor.putString("Event_Time",event_time);
-                            editor.putString("Event_Description",event_description);
-                            editor.putString("Event_Comments_For_Admin",event_admin_comment);
-                            editor.putString("Event_Target_Audience",event_target_audience);
-                            editor.putString("Event_Poster",imageString);
-                            editor.apply();
+							SharedPreferences sharedpreferences = getSharedPreferences("Login", Context.MODE_PRIVATE);
+							SharedPreferences.Editor editor = sharedpreferences.edit();
+							editor.putString("Event_Name", event_name);
+							editor.putInt("Event_Fee", event_fee);
+							editor.putInt("Event_exp_audience", event_exp_audience);
+							editor.putString("Event_USer_Venue", event_venue);
+							editor.putString("Event_Date", event_date);
+							editor.putString("Event_Time", event_time);
+							editor.putString("Event_Description", event_description);
+							editor.putString("Event_Comments_For_Admin", event_admin_comment);
+							editor.putString("Event_Target_Audience", event_target_audience);
+							editor.putString("Event_Poster", imageString);
+							editor.apply();
 //                            showProgress(false);
-                            // finish();
-                        }
-                    },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            Log.d("API_CALL_ERR_EVENT_REQ", error.toString());
+							// finish();
+						}
+					},
+					new Response.ErrorListener() {
+						@Override
+						public void onErrorResponse(VolleyError error) {
+							Log.d("API_CALL_ERR_EVENT_REQ", error.toString());
 //                            showProgress(false);
-                            Snackbar.make(findViewById(R.id.request_event), "Error in submission. Check your network and try again", Snackbar.LENGTH_SHORT)
-                                    .setAction("Dismiss", new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
+							Snackbar.make(findViewById(R.id.request_event), "Error in submission. Check your network and try again", Snackbar.LENGTH_SHORT)
+									.setAction("Dismiss", new View.OnClickListener() {
+										@Override
+										public void onClick(View v) {
 
-                                        }
-                                    }).show();
-                        }
-                    }
-            );
-            q.add(jor);
-        }
-    }
+										}
+									}).show();
+						}
+					}
+			);
+			q.add(jor);
+		}
+	}
 
 }
