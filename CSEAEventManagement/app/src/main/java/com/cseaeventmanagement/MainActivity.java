@@ -97,7 +97,8 @@ public class MainActivity extends AppCompatActivity
 		} else if (id == R.id.nav_feedback_app) {
 			gotoFeedback();
 		} else if (id == R.id.nav_faq_app) {
-
+			Intent intent = new Intent(this,EventViewActivity.class);
+			startActivity(intent);
 		} else if (id == R.id.nav_logout) {
 			Intent intent = new Intent(this, RequestEventActivity.class);
 			startActivity(intent);

@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".EventViewActivity">
 
     <ScrollView
@@ -26,12 +27,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Event Name"
+                android:ellipsize="marquee"
+                android:singleLine="true"
+                android:text="Create a Marquee (Scrolling Text) in Android Using TextView. Android Marquee (Scrolling Text) Tutorial with Example"
                 android:textSize="24sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/EventViewForm" />
+               />
 
             <View
                 android:id="@+id/divider"
@@ -242,6 +243,4 @@
 
         </LinearLayout>
     </ScrollView>
-
-
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>
