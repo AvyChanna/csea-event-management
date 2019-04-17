@@ -1,5 +1,5 @@
 <resources>
-    <string name="api_home">http://172.16.115.44:8000/api/</string>
+    <string name="api_home">http://192.168.43.54:8000/api/</string>
     <!-- Strings related to mainActivity -->
     <string name="app_name">CSEA Event Management</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -326,8 +326,8 @@
     <string name="name_not_available">Name not available</string>
     <string name="description_not_available">Description not available</string>
     <string name="date_not_available">Date not available</string>
-    <string name="executive_council_2015_2016">EXECUTIVE COUNCIL 2015-2016</string>
-    <string name="executive_council_2017_2018">EXECUTIVE COUNCIL 2017-2018</string>
-    <string name="executive_council_2014_2015">EXECUTIVE COUNCIL 2014-2015</string>
-    <string name="executive_council_2013_2014">EXECUTIVE COUNCIL 2013-2014</string>
+    <string name="executive_council_2015_2016">EXECUTIVE COUNCIL 2015–2016</string>
+    <string name="executive_council_2017_2018">EXECUTIVE COUNCIL 2017–2018</string>
+    <string name="executive_council_2014_2015">EXECUTIVE COUNCIL 2014–2015</string>
+    <string name="executive_council_2013_2014">EXECUTIVE COUNCIL 2013–2014</string>
 </resources>

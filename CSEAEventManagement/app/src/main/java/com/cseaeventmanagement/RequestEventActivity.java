@@ -256,7 +256,7 @@ public class RequestEventActivity extends AppCompatActivity {
 			public void onClick(View v) {
 				EditText edittext_add_member = findViewById(R.id.editText_request_add_member);
 				if (edittext_add_member.getText().toString().equals(""))
-					Toast.makeText(getApplicationContext(), "Audience added", Toast.LENGTH_SHORT).show();
+					Toast.makeText(getApplicationContext(), "Add the member first!", Toast.LENGTH_SHORT).show();
 				 else {
 					event_committee = event_committee + edittext_add_member.getText().toString() + ";";
 					edittext_add_member.setText("");
@@ -558,7 +558,7 @@ public class RequestEventActivity extends AppCompatActivity {
 				obj.accumulate("Event_Target_Audience", event_target_audience);
 				obj.accumulate("Event_Poster", imageString);
 				obj.accumulate("Event_Committee", event_committee);
-				// obj.accumulate("Event_FAQs",noddy);
+				 obj.accumulate("Event_FAQs",noddy);
 
 			} catch (JSONException e) {
 				Log.d("REQUEST_EVENT_CATCH", e.toString());
