@@ -76,6 +76,7 @@ public class RequestEventActivity extends AppCompatActivity {
 	private Button event_add_target_audi_btn;
 	private Button submit_button;
 	private Button add_committee;
+	private EditText edittext_add_member;
 	private String imageString;
 	private RequestQueue q;
 
@@ -257,12 +258,13 @@ public class RequestEventActivity extends AppCompatActivity {
 				edittext_add_member = (EditText) findViewById(R.id.editText_request_add_member);
 				if (edittext_add_member.getText().toString().equals("")) {
 					Context context = getApplicationContext();
-					CharSequence text = "Audience added";
+					CharSequence text = "Event committee member added";
 					int duration = Toast.LENGTH_SHORT;
 					Toast toast = Toast.makeText(context, text, duration);
 					toast.show();
 				} else {
 					event_committee = event_committee + edittext_add_member.getText().toString() + ";";
+					edittext_add_member.setText("");
 				}
 			}
 		});
