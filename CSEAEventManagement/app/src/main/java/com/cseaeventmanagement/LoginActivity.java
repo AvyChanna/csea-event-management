@@ -308,7 +308,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 		} catch (Exception e) {
 			Log.d("CHECK_LOGIN_RESP", "try catch error");
 		}
-		if (!(accepted && error_code == 0)) {
+		if (!(accepted && error_code == 0)) {	
 			Snackbar.make(findViewById(R.id.login_form), message, Snackbar.LENGTH_SHORT)
 					.setAction("Dismiss", new View.OnClickListener() {
 						@Override

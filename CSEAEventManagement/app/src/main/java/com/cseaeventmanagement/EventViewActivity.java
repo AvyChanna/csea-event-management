@@ -333,5 +333,4 @@ public class EventViewActivity extends AppCompatActivity {
 
 	}
 
-
 }
