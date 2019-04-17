@@ -1,5 +1,6 @@
 package com.cseaeventmanagement;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +8,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -16,6 +18,7 @@ public class CustomFAQ extends AppCompatActivity {
 	private EditText question;
 	private EditText answer;
 	private JSONArray obj_array;
+	private int count=0;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -25,10 +28,20 @@ public class CustomFAQ extends AppCompatActivity {
 	}
 
 	public void getfaqed(View v) {
-		Intent i = new Intent();
-		i.putExtra("noddy", obj_array.toString());
-		setResult(RESULT_OK, i);
-		finish();
+		if(count==0)
+		{
+			Context context = getApplicationContext();
+			CharSequence text = "Fill atleast one question and answer";
+			int duration = Toast.LENGTH_SHORT;
+			Toast toast = Toast.makeText(context, text, duration);
+			toast.show();
+		}
+		else{
+			Intent i = new Intent();
+			i.putExtra("noddy", obj_array.toString());
+			setResult(RESULT_OK, i);
+			finish();
+		}
 	}
 
 	public void clear_and_save(View v) {
@@ -59,8 +72,15 @@ public class CustomFAQ extends AppCompatActivity {
 				obj_array.put(obj);
 				question.setText("");
 				answer.setText("");
+				count++;
+				Context context = getApplicationContext();
+				CharSequence text = "This question was successfully submitted";
+				int duration = Toast.LENGTH_SHORT;
+				Toast toast = Toast.makeText(context, text, duration);
+				toast.show();
 			} catch (Exception e) {
 				Log.d("REQUEST_CUST_FAQ_CATCH", e.toString());
+				count--;
 			}
 		}
 	}
