@@ -13,8 +13,35 @@ public class CouncilActivity extends AppCompatActivity {
 		setContentView(R.layout.activity_council);
 	}
 
-	public void func(View view) {
-		Intent intent = new Intent(this, Council_18_19Activity.class);
-		startActivity(intent);
-	}
+    public void func(View view)
+    {
+        Intent intent = new Intent(this, Council_18_19Activity.class);
+        startActivity(intent);
+    }
+
+    public void func2(View view)
+    {
+        Intent intent = new Intent(this, Council17_18Activity.class);
+        startActivity(intent);
+    }
+
+    public void func3(View view)
+    {
+        Intent intent = new Intent(this, Council_15_16Activity.class);
+        startActivity(intent);
+    }
+
+    public void func4(View view)
+    {
+        Intent intent = new Intent(this, Council_14_15Activity.class);
+        startActivity(intent);
+    }
+
+    public void func5(View view)
+    {
+        Intent intent = new Intent(this, Council_13_14Activity.class);
+        startActivity(intent);
+    }
+
+
 }

@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:dist="http://schemas.android.com/apk/distribution"
     package="com.cseaeventmanagement">
-
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
@@ -31,6 +30,10 @@
             android:name=".ViewEventActivity"
             android:label="@string/title_activity_view_event"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Council_13_14Activity" />
+        <activity android:name=".Council_14_15Activity" />
+        <activity android:name=".Council_15_16Activity" />
+        <activity android:name=".Council17_18Activity" />
         <activity
             android:name=".SignupActivity"
             android:label="@string/title_activity_signup" />
