@@ -1,6 +1,6 @@
 package com.cseaeventmanagement;
 
-import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -14,13 +14,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-public class MainActivity extends AppCompatActivity
+public class AdminActivity extends AppCompatActivity
 		implements NavigationView.OnNavigationItemSelectedListener {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+		setContentView(R.layout.activity_admin);
 		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 		setSupportActionBar(toolbar);
 
@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
+		getMenuInflater().inflate(R.menu.admin, menu);
 		return true;
 	}
 
@@ -81,39 +81,22 @@ public class MainActivity extends AppCompatActivity
 		// Handle navigation view item clicks here.
 		int id = item.getItemId();
 
-		if (id == R.id.nav_login_signup) {
-			Intent intent = new Intent(this, LoginActivity.class);
-			startActivity(intent);
+		if (id == R.id.nav_camera) {
+			// Handle the camera action
+		} else if (id == R.id.nav_gallery) {
 
-		} else if (id == R.id.nav_upcoming_events) {
-			Intent intent = new Intent(this, ListEventsActivity.class);
-			startActivity(intent);
-		} else if (id == R.id.nav_past_events) {
-			Intent intent = new Intent(this, AdminActivity.class);
-			startActivity(intent);
+		} else if (id == R.id.nav_slideshow) {
 
-		} else if (id == R.id.nav_search_events) {
+		} else if (id == R.id.nav_manage) {
 
-		} else if (id == R.id.nav_feedback_app) {
-			gotoFeedback();
-		} else if (id == R.id.nav_faq_app) {
-
-		} else if (id == R.id.nav_logout) {
-			Intent intent = new Intent(this, RequestEventActivity.class);
-			startActivity(intent);
-		} else if (id == R.id.nav_csea_core_team) {
-			//Calling CouncilActivity
-			Intent intent = new Intent(this, CouncilActivity.class);
-			startActivity(intent);
+		} else if (id == R.id.nav_admin_logout) {
+			SharedPreferences pref = getApplicationContext().getSharedPreferences("username", MODE_PRIVATE);
+			SharedPreferences.Editor editor = pref.edit();
+			editor.clear();
 		}
 
 		DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 		drawer.closeDrawer(GravityCompat.START);
 		return true;
-	}
-
-	private void gotoFeedback() {
-		Intent intent = new Intent(this, App_Feedback_Activity.class);
-		startActivity(intent);
 	}
 }

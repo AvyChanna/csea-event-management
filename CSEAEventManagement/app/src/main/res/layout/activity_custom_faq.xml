@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/custom_faq"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="16dp"
+    android:paddingTop="10dp"
+    android:paddingRight="16dp"
+    android:paddingBottom="10dp">
+
+    <TextView
+        android:id="@+id/textView_request_heading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="10dp"
+        android:fontFamily="serif-monospace"
+        android:gravity="center_horizontal"
+        android:text="Add FAQ questions for your event"
+        android:textColor="@android:color/black"
+        android:textSize="20dp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/holo_blue_dark" />
+
+    <android.support.design.widget.TextInputEditText
+        android:id="@+id/editText_faq_question"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:ems="10"
+        android:gravity="left"
+        android:hint="Question"
+        android:inputType="textMultiLine" />
+
+    <android.support.design.widget.TextInputEditText
+        android:id="@+id/editText_faq_answer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/edittext_multiline"
+        android:ems="10"
+        android:gravity="left"
+        android:hint="Write your answer here"
+        android:inputType="textMultiLine"
+        android:lines="6"
+        android:maxLines="10"
+        android:scrollbars="vertical" />
+
+    <Button
+        android:id="@+id/btn_submit_faq"
+        android:onClick="clear_and_save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:hint="Submit Question"
+        android:textAlignment="gravity" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="3dp"
+        android:background="@android:color/holo_blue_dark" />
+
+    <Button
+        android:id="@+id/btn_faq_done"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:hint="Submit FAQs"
+        android:onClick="getfaqed"
+        android:textAlignment="gravity" />
+
+</LinearLayout>

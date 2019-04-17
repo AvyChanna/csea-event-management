@@ -1,9 +1,9 @@
 package com.cseaeventmanagement;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -26,123 +26,117 @@ import org.json.JSONObject;
 
 public class App_Feedback_Activity extends AppCompatActivity {
 
-    // the check should be added such that the user that has submitted the feedback should not submit again
+	// the check should be added such that the user that has submitted the feedback should not submit again
 
-    private RatingBar ratingBar1;
-    private float rating_ui;
-    private RatingBar ratingBar2;
-    private float rating_ux;
-    private RatingBar ratingBar3;
-    private float rating_overall;
-    private String app_feeback_comment;
-    private Button submit_button;
-    private EditText comments;
-    private RequestQueue q;
+	private RatingBar ratingBar1;
+	private float rating_ui;
+	private RatingBar ratingBar2;
+	private float rating_ux;
+	private RatingBar ratingBar3;
+	private float rating_overall;
+	private String app_feeback_comment;
+	private Button submit_button;
+	private EditText comments;
+	private RequestQueue q;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_app__feedback_);
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_app__feedback_);
 
-        Network network = new BasicNetwork(new HurlStack());
-        q = new RequestQueue(new NoCache(), network);
-        q.start();
+		Network network = new BasicNetwork(new HurlStack());
+		q = new RequestQueue(new NoCache(), network);
+		q.start();
 
-        ratingBar1 = (RatingBar) findViewById(R.id.app_feedback_rating_ui);
-        ratingBar2 = (RatingBar) findViewById(R.id.app_feedback_rating_ux);
-        ratingBar3 = (RatingBar) findViewById(R.id.app_feedback_rating_overall);
+		ratingBar1 = (RatingBar) findViewById(R.id.app_feedback_rating_ui);
+		ratingBar2 = (RatingBar) findViewById(R.id.app_feedback_rating_ux);
+		ratingBar3 = (RatingBar) findViewById(R.id.app_feedback_rating_overall);
 
-        ratingBar1.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
-            @Override
-            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-                rating_ui = ratingBar1.getRating();
-            }
-        });
-        ratingBar2.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
-            @Override
-            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-                rating_ux = ratingBar2.getRating();
-            }
-        });
-        ratingBar3.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
-            @Override
-            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-                rating_overall = ratingBar3.getRating();
-            }
-        });
+		ratingBar1.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+			@Override
+			public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+				rating_ui = ratingBar1.getRating();
+			}
+		});
+		ratingBar2.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+			@Override
+			public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+				rating_ux = ratingBar2.getRating();
+			}
+		});
+		ratingBar3.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+			@Override
+			public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+				rating_overall = ratingBar3.getRating();
+			}
+		});
 
-        submit_button = (Button) findViewById(R.id.btn_submit_app_feedback);
-        submit_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                attemptFeedbackSubmit(rating_ui,rating_ux,rating_overall);
-            }
-        });
+		submit_button = (Button) findViewById(R.id.btn_submit_app_feedback);
+		submit_button.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				attemptFeedbackSubmit(rating_ui, rating_ux, rating_overall);
+			}
+		});
 
-    }
+	}
 
-    public void attemptFeedbackSubmit(float rating_ui,float rating_ux,float rating_overall)
-    {
-        if(rating_ui==0||rating_ux==0||rating_overall==0)
-        {
-            Context context = getApplicationContext();
-            CharSequence text = "Fill all the entries first";
-            int duration = Toast.LENGTH_SHORT;
-            Toast toast = Toast.makeText(context,text,duration);
-            toast.show();
-        }
-        else
-        {
-            JSONObject obj = new JSONObject();
-            comments = (EditText) findViewById(R.id.editText_app_comments);
-            if(TextUtils.isEmpty(comments.getText().toString()))
-                app_feeback_comment = "";
-            else {
-                app_feeback_comment = comments.getText().toString();
-            }
-                try{
-                    obj.accumulate("App_UI_Rating",rating_ui);
-                    obj.accumulate("App_UX_Rating",rating_ux);
-                    obj.accumulate("App_Overall_Rating",rating_overall);
-                    obj.accumulate("App_Feedback_Comment",app_feeback_comment);
-                }
-                catch (Exception e)
-                {
-                    Log.d("APP_FEEDBACK_SUBMIT",e.toString());
-                }
-                JsonObjectRequest jor = new JsonObjectRequest(
-                        Request.Method.POST,
-                        "http://172.16.115.46:8000/api/login/",
-                        obj,
-                        new Response.Listener<JSONObject>() {
-                            @Override
-                            public void onResponse(JSONObject response) {
-                                Log.d("API_FEEDBACK_SUBMIT", response.toString());
-                                Context context = getApplicationContext();
-                                CharSequence text = "Feedback successfully submitted";
-                                int duration = Toast.LENGTH_SHORT;
-                                Toast toast = Toast.makeText(context,text,duration);
-                                toast.show();
+	public void attemptFeedbackSubmit(float rating_ui, float rating_ux, float rating_overall) {
+		if (rating_ui == 0 || rating_ux == 0 || rating_overall == 0) {
+			Context context = getApplicationContext();
+			CharSequence text = "Fill all the entries first";
+			int duration = Toast.LENGTH_SHORT;
+			Toast toast = Toast.makeText(context, text, duration);
+			toast.show();
+		} else {
+			JSONObject obj = new JSONObject();
+			comments = (EditText) findViewById(R.id.editText_app_comments);
+			if (TextUtils.isEmpty(comments.getText().toString()))
+				app_feeback_comment = "";
+			else {
+				app_feeback_comment = comments.getText().toString();
+			}
+			try {
+				obj.accumulate("App_UI_Rating", rating_ui);
+				obj.accumulate("App_UX_Rating", rating_ux);
+				obj.accumulate("App_Overall_Rating", rating_overall);
+				obj.accumulate("App_Feedback_Comment", app_feeback_comment);
+			} catch (Exception e) {
+				Log.d("APP_FEEDBACK_SUBMIT", e.toString());
+			}
+			JsonObjectRequest jor = new JsonObjectRequest(
+					Request.Method.POST,
+					"http://172.16.115.46:8000/api/login/",
+					obj,
+					new Response.Listener<JSONObject>() {
+						@Override
+						public void onResponse(JSONObject response) {
+							Log.d("API_FEEDBACK_SUBMIT", response.toString());
+							Context context = getApplicationContext();
+							CharSequence text = "Feedback successfully submitted";
+							int duration = Toast.LENGTH_SHORT;
+							Toast toast = Toast.makeText(context, text, duration);
+							toast.show();
 //                            showProgress(false);
-                                // finish();
-                            }
-                        },
-                        new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                Log.d("API_CALL_ERR_FEEDBACK", error.toString());
+							// finish();
+						}
+					},
+					new Response.ErrorListener() {
+						@Override
+						public void onErrorResponse(VolleyError error) {
+							Log.d("API_CALL_ERR_FEEDBACK", error.toString());
 //                            showProgress(false);
-                                Snackbar.make(findViewById(R.id.app_feedback), "Error in submission. Check your network and try again", Snackbar.LENGTH_SHORT)
-                                        .setAction("Dismiss", new View.OnClickListener() {
-                                            @Override
-                                            public void onClick(View v) {
+							Snackbar.make(findViewById(R.id.app_feedback), "Error in submission. Check your network and try again", Snackbar.LENGTH_SHORT)
+									.setAction("Dismiss", new View.OnClickListener() {
+										@Override
+										public void onClick(View v) {
 
-                                            }
-                                        }).show();
-                            }
-                        }
-                );
-                q.add(jor);
-            }
-        }
-    }
+										}
+									}).show();
+						}
+					}
+			);
+			q.add(jor);
+		}
+	}
+}

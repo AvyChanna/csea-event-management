@@ -1,21 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:orientation="vertical"
     tools:context=".CouncilActivity">
 
     <Button
         android:id="@+id/button"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/activity_padding_all"
+        android:layout_marginTop="@dimen/activity_padding_all"
+        android:layout_marginEnd="@dimen/activity_padding_all"
+        android:layout_marginBottom="@dimen/activity_padding_all"
         android:background="@android:color/black"
         android:onClick="func"
+        android:paddingLeft="@dimen/activity_padding_all"
+        android:paddingTop="@dimen/activity_padding_all"
+        android:paddingRight="@dimen/activity_padding_all"
+        android:paddingBottom="@dimen/activity_padding_all"
         android:text="@string/executive_council_2018_2019"
         android:textColor="@android:color/background_light"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</android.support.constraint.ConstraintLayout>
+        android:textSize="18sp" />
+</LinearLayout>
