@@ -257,7 +257,7 @@ public class RequestEventActivity extends AppCompatActivity {
 				EditText edittext_add_member = findViewById(R.id.editText_request_add_member);
 				if (edittext_add_member.getText().toString().equals(""))
 					Toast.makeText(getApplicationContext(), "Audience added", Toast.LENGTH_SHORT).show();
-				 else {
+				else {
 					event_committee = event_committee + edittext_add_member.getText().toString() + ";";
 					edittext_add_member.setText("");
 				}
