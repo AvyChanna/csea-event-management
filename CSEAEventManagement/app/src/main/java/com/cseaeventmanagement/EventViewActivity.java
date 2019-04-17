@@ -183,10 +183,101 @@ public class EventViewActivity extends AppCompatActivity {
 			final TextView rowTextView = new TextView(this);
 			String [] peep = arr[i].split(",");
 			// set some properties of rowTextView or something
-			String programme = peep[0];
-			String stream = peep[1];
-			String year = peep[2];
-			rowTextView.setText(peep[0]+" "+"Department: "+peep[1]+" "+"Year: "+peep[2]);
+			int temp1 = Integer.parseInt(peep[0]);
+			String [] prog_array = getResources().getStringArray(R.array.branches_super);
+			String programme = prog_array[temp1];
+
+			int temp2;
+			int temp3;
+
+			if(temp1==1)
+			{
+				temp2 = Integer.parseInt(peep[1]);
+				String [] stream_array = getResources().getStringArray(R.array.branches_btech);
+				String stream = stream_array[temp2];
+				temp3 = Integer.parseInt(peep[2]);
+				String [] year_array = getResources().getStringArray(R.array.year_btech);
+				String year = year_array[temp3];
+
+				rowTextView.setText(programme+" "+"Department: "+stream+" "+"Year: "+year);
+			}
+			else if(temp1==2)
+			{
+				temp3 = Integer.parseInt(peep[2]);
+				String [] year_array = getResources().getStringArray(R.array.year_bdes);
+				String year = year_array[temp3];
+
+				rowTextView.setText(programme+" "+"Year: "+year);
+			}
+			else if(temp1==3)
+			{
+				temp2 = Integer.parseInt(peep[1]);
+				String [] stream_array = getResources().getStringArray(R.array.branches_msc);
+				String stream = stream_array[temp2];
+				temp3 = Integer.parseInt(peep[2]);
+				String [] year_array = getResources().getStringArray(R.array.year_msc);
+				String year = year_array[temp3];
+
+				rowTextView.setText(programme+" "+"Department: "+stream+" "+"Year: "+year);
+			}
+			else if(temp1==4)
+			{
+				temp3 = Integer.parseInt(peep[2]);
+				String [] year_array = getResources().getStringArray(R.array.year_ma);
+				String year = year_array[temp3];
+
+				rowTextView.setText(programme+" "+"Year: "+year);
+			}
+			else if(temp1==5)
+			{
+				temp2 = Integer.parseInt(peep[1]);
+				String [] stream_array = getResources().getStringArray(R.array.branches_mtech);
+				String stream = stream_array[temp2];
+				temp3 = Integer.parseInt(peep[2]);
+				String [] year_array = getResources().getStringArray(R.array.year_mtech);
+				String year = year_array[temp3];
+
+				rowTextView.setText(programme+" "+"Department: "+stream+" "+"Year: "+year);
+			}
+			else if(temp1==6)
+			{
+				temp3 = Integer.parseInt(peep[2]);
+				String [] year_array = getResources().getStringArray(R.array.year_mdes);
+				String year = year_array[temp3];
+
+				rowTextView.setText(programme+" "+"Year: "+year);
+			}
+			else if(temp1==7)
+			{
+				temp3 = Integer.parseInt(peep[2]);
+				String [] year_array = getResources().getStringArray(R.array.year_msr);
+				String year = year_array[temp3];
+
+				rowTextView.setText(programme+" "+"Year: "+year);
+			}
+			else if(temp1==8)
+			{
+				temp2 = Integer.parseInt(peep[1]);
+				String [] stream_array = getResources().getStringArray(R.array.branches_phd);
+				String stream = stream_array[temp2];
+				rowTextView.setText(programme+" "+"Department: "+stream);
+			}
+			else if(temp1==9)
+			{
+				temp3 = Integer.parseInt(peep[2]);
+				String [] year_array = getResources().getStringArray(R.array.year_cseDual);
+				String year = year_array[temp3];
+
+				rowTextView.setText(programme+" "+"Year: "+year);
+			}
+			else if(temp1==10)
+			{
+				temp3 = Integer.parseInt(peep[2]);
+				String [] year_array = getResources().getStringArray(R.array.year_eeeDual);
+				String year = year_array[temp3];
+
+				rowTextView.setText(programme+" "+"Year: "+year);
+			}
 
 			// add the textview to the linearlayout
 			LinearLayout myLinearLayout = (LinearLayout) findViewById(R.id.display_target_audi);
