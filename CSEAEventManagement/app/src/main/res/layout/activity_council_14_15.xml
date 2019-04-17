@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+        <com.cseaeventmanagement.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/profile_image"
             android:layout_width="120dp"
             android:layout_height="120dp"
@@ -45,7 +45,7 @@ dgoswami@iitg.ernet.in"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/profile_image" />
 
-        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+        <com.cseaeventmanagement.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/profile_image2"
             android:layout_width="120dp"
             android:layout_height="120dp"
@@ -75,7 +75,7 @@ ben@iitg.ernet.in
             app:layout_constraintTop_toBottomOf="@+id/profile_image2" />
 
 
-        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+        <com.cseaeventmanagement.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/profile_image3"
             android:layout_width="120dp"
             android:layout_height="120dp"
@@ -104,7 +104,7 @@ deepkesh@iitg.ernet.in
             app:layout_constraintStart_toStartOf="@+id/profile_image3"
             app:layout_constraintTop_toBottomOf="@+id/profile_image3" />
 
-        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+        <com.cseaeventmanagement.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/profile_image4"
             android:layout_width="120dp"
             android:layout_height="120dp"
@@ -135,7 +135,7 @@ bhavya@iitg.ernet.in
             app:layout_constraintStart_toStartOf="@+id/profile_image4"
             app:layout_constraintTop_toBottomOf="@+id/profile_image4" />
 
-        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+        <com.cseaeventmanagement.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/profile_image5"
             android:layout_width="120dp"
             android:layout_height="120dp"
@@ -166,7 +166,7 @@ m.sanketh@iitg.ernet.in
             app:layout_constraintStart_toStartOf="@+id/profile_image5"
             app:layout_constraintTop_toBottomOf="@+id/profile_image5" />
 
-        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+        <com.cseaeventmanagement.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/profile_image6"
             android:layout_width="120dp"
             android:layout_height="120dp"
@@ -195,7 +195,7 @@ chandra.nitin@iitg.ernet.in
             app:layout_constraintStart_toStartOf="@+id/profile_image6"
             app:layout_constraintTop_toBottomOf="@+id/profile_image6" />
 
-        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+        <com.cseaeventmanagement.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/profile_image7"
             android:layout_width="120dp"
             android:layout_height="120dp"
@@ -224,7 +224,7 @@ pokkula@iitg.ernet.in
             app:layout_constraintStart_toStartOf="@+id/profile_image7"
             app:layout_constraintTop_toBottomOf="@+id/profile_image7" />
 
-        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+        <com.cseaeventmanagement.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/profile_image8"
             android:layout_width="120dp"
             android:layout_height="120dp"
@@ -253,7 +253,7 @@ g.nishant@iitg.ernet.in
             app:layout_constraintStart_toStartOf="@+id/profile_image8"
             app:layout_constraintTop_toBottomOf="@+id/profile_image8" />
 
-        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+        <com.cseaeventmanagement.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/profile_image9"
             android:layout_width="120dp"
             android:layout_height="120dp"
@@ -282,7 +282,7 @@ t.alamanda@iitg.ernet.in
             app:layout_constraintStart_toStartOf="@+id/profile_image9"
             app:layout_constraintTop_toBottomOf="@+id/profile_image9" />
 
-        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+        <com.cseaeventmanagement.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/profile_image10"
             android:layout_width="120dp"
             android:layout_height="120dp"
@@ -311,7 +311,7 @@ padigela@iitg.ernet.in
             app:layout_constraintStart_toStartOf="@+id/profile_image10"
             app:layout_constraintTop_toBottomOf="@+id/profile_image10" />
 
-        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+        <com.cseaeventmanagement.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/profile_image11"
             android:layout_width="120dp"
             android:layout_height="120dp"
@@ -342,7 +342,7 @@ k.khandelwal@iitg.ernet.in
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/profile_image11" />
 
-        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+        <com.cseaeventmanagement.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/profile_image12"
             android:layout_width="120dp"
             android:layout_height="120dp"
@@ -373,7 +373,7 @@ radhika.patodiya@iitg.ernet.in
             app:layout_constraintStart_toStartOf="@+id/profile_image12"
             app:layout_constraintTop_toBottomOf="@+id/profile_image12" />
 
-        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+        <com.cseaeventmanagement.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/profile_image13"
             android:layout_width="120dp"
             android:layout_height="120dp"
@@ -402,7 +402,7 @@ p.vandana@iitg.ernet.in
             app:layout_constraintStart_toStartOf="@+id/profile_image13"
             app:layout_constraintTop_toBottomOf="@+id/profile_image13" />
 
-        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+        <com.cseaeventmanagement.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/profile_image14"
             android:layout_width="120dp"
             android:layout_height="120dp"
@@ -431,7 +431,7 @@ shuvendu@iitg.ernet.in
             app:layout_constraintStart_toStartOf="@+id/profile_image14"
             app:layout_constraintTop_toBottomOf="@+id/profile_image14" />
 
-        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+        <com.cseaeventmanagement.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/profile_image15"
             android:layout_width="120dp"
             android:layout_height="120dp"
@@ -460,7 +460,7 @@ saurabh.gupta@iitg.ernet.in
             app:layout_constraintStart_toStartOf="@+id/profile_image15"
             app:layout_constraintTop_toBottomOf="@+id/profile_image15" />
 
-        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+        <com.cseaeventmanagement.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/profile_image16"
             android:layout_width="120dp"
             android:layout_height="120dp"

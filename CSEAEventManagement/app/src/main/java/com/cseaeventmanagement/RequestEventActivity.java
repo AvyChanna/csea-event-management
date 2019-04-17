@@ -254,16 +254,11 @@ public class RequestEventActivity extends AppCompatActivity {
 		add_committee.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				edittext_add_member = (EditText) findViewById(R.id.editText_request_add_member);
-				if (edittext_add_member.getText().toString().equals("")) {
-					Context context = getApplicationContext();
-					CharSequence text = "Audience added";
-					int duration = Toast.LENGTH_SHORT;
-					Toast toast = Toast.makeText(context, text, duration);
-					toast.show();
-				} else {
+				EditText edittext_add_member = findViewById(R.id.editText_request_add_member);
+				if (edittext_add_member.getText().toString().equals(""))
+					Toast.makeText(getApplicationContext(), "Audience added", Toast.LENGTH_SHORT).show();
+				else
 					event_committee = event_committee + edittext_add_member.getText().toString() + ";";
-				}
 			}
 		});
 
