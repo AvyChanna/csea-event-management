@@ -53,6 +53,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 	private RequestQueue q = null;
 	private boolean LoginInQueue = false;
 	// UI references.
+	private JSONObject resp;
 	private AutoCompleteTextView mEmailView;
 	private TextInputEditText mPasswordView;
 	private View mProgressView;
@@ -184,11 +185,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 							Log.d("API_CALL_RES_LOGIN", response.toString());
 							showProgress(false);
 							// todo login hua ya nahi dekhna hai
-							SharedPreferences sharedpreferences = getSharedPreferences("Login", Context.MODE_PRIVATE);
-							SharedPreferences.Editor editor = sharedpreferences.edit();
-							editor.putString("username", mEmail);
-							editor.apply();
-							finish();
+							try {
+								resp = new JSONObject(response.toString());
+							} catch (Exception e) {
+								Log.d("API_CALL_RES_LOGINCATCH", "Malformed JSON");
+							}
+							checkResponse();
 						}
 					},
 					new Response.ErrorListener() {
@@ -279,6 +281,58 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 				new ArrayAdapter<>(LoginActivity.this,
 						android.R.layout.simple_dropdown_item_1line, emailAddressCollection);
 		mEmailView.setAdapter(adapter);
+	}
+
+	private void checkResponse() {
+		Boolean accepted = false;
+		int error_code = -1;
+		String message = "";
+		String username = "";
+		String name = "";
+		int roll = -1;
+		String branch = "";
+		int year = -1;
+		String stream = "";
+		long phone = -1;
+		try {
+			accepted = resp.getBoolean("accepted");
+			error_code = resp.getInt("error_code");
+			message = resp.getString("error_message");
+			username = resp.getString("username");
+			name = resp.getString("full_name");
+			roll = resp.getInt("user_roll");
+			branch = resp.getString("user_branch");
+			year = resp.getInt("user_year");
+			stream = resp.getString("user_stream");
+			phone = resp.getLong("user_phone");
+		} catch (Exception e) {
+			Log.d("CHECK_LOGIN_RESP", "try catch error");
+		}
+		if (!(accepted && error_code == 0)) {
+			Snackbar.make(findViewById(R.id.login_form), message, Snackbar.LENGTH_SHORT)
+					.setAction("Dismiss", new View.OnClickListener() {
+						@Override
+						public void onClick(View v) {
+
+						}
+					}).show();
+			return;
+		}
+		SharedPreferences sharedpreferences = getSharedPreferences("Login", Context.MODE_PRIVATE);
+		SharedPreferences.Editor editor = sharedpreferences.edit();
+
+		editor.clear();
+		editor.apply();
+
+		editor.putString("username", username);
+		editor.putString("name", name);
+		editor.putLong("phone", phone);
+		editor.putInt("roll", roll);
+		editor.putInt("yos", year);
+		editor.putString("branch", branch);
+		editor.putString("stream", stream);
+		editor.apply();
+		finish();
 	}
 
 	private interface ProfileQuery {
