@@ -1,0 +1,492 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/council_18_19"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Council_14_15Activity">
+
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/profile_image"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/president15_16"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="Prof.Diganta Goswami\n
+President, CSEA\n
+HOD, Dept. Of CSE\n
+webmail id:\n
+dgoswami@iitg.ernet.in"
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profile_image" />
+
+        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/profile_image2"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/faculty_mentor"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="8dp"
+            android:text="Benny K. George\n
+Faculty Mentor, CSEA\n
+Assistant Professor\n
+Webmail id:\n
+ben@iitg.ernet.in
+ "
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/profile_image2"
+            app:layout_constraintStart_toStartOf="@+id/profile_image2"
+            app:layout_constraintTop_toBottomOf="@+id/profile_image2" />
+
+
+        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/profile_image3"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/faculty_mentor2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="8dp"
+            android:text="Deepanjan Kesh\n
+Faculty Mentor, CSEA\n
+Assistant Professor\n
+webmail id:\n
+deepkesh@iitg.ernet.in
+ "
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/profile_image3"
+            app:layout_constraintStart_toStartOf="@+id/profile_image3"
+            app:layout_constraintTop_toBottomOf="@+id/profile_image3" />
+
+        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/profile_image4"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/gen_sec_14_15"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="8dp"
+            android:text="Bhavya Madan\n
+Gen-Sec,CSEA \n
+Final Yr Undergraduate\n
+Webmail Id:\n
+bhavya@iitg.ernet.in
+ "
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/profile_image4"
+            app:layout_constraintStart_toStartOf="@+id/profile_image4"
+            app:layout_constraintTop_toBottomOf="@+id/profile_image4" />
+
+        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/profile_image5"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/tech_head_14_15"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="22dp"
+            android:text="Sanketh Morupu\n
+Technical Head\n
+Final Yr Undergraduate\n
+Webmail Id:\n
+m.sanketh@iitg.ernet.in
+ "
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/profile_image5"
+            app:layout_constraintStart_toStartOf="@+id/profile_image5"
+            app:layout_constraintTop_toBottomOf="@+id/profile_image5" />
+
+        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/profile_image6"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/events_head_14_15"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="8dp"
+            android:text="Nitin Chandra Badam\n
+Events Head\n
+Final Yr Undergraduate\n
+Webmail Id:\n
+chandra.nitin@iitg.ernet.in
+ "
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/profile_image6"
+            app:layout_constraintStart_toStartOf="@+id/profile_image6"
+            app:layout_constraintTop_toBottomOf="@+id/profile_image6" />
+
+        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/profile_image7"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/tech_coordinator_14_15_1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="8dp"
+            android:text="Sathwik Sai Pokkula\n
+Technical Co-ordinator\n
+Pre-Final Yr Undergraduate\n
+Webmail Id:\n
+pokkula@iitg.ernet.in
+ "
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/profile_image7"
+            app:layout_constraintStart_toStartOf="@+id/profile_image7"
+            app:layout_constraintTop_toBottomOf="@+id/profile_image7" />
+
+        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/profile_image8"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/tech_coordinator_14_15_2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="8dp"
+            android:text="Nishant Gupta\n
+Technical Co-ordinator\n
+Pre-Final Yr Undergraduate\n
+Webmail Id:\n
+g.nishant@iitg.ernet.in
+ "
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/profile_image8"
+            app:layout_constraintStart_toStartOf="@+id/profile_image8"
+            app:layout_constraintTop_toBottomOf="@+id/profile_image8" />
+
+        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/profile_image9"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/tech_coordinator_14_15_3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="8dp"
+            android:text="Nikhik Teja Alamanda\n
+Technical Co-ordinator\n
+Second Yr Undergraduate\n
+Webmail Id:\n
+t.alamanda@iitg.ernet.in
+ "
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/profile_image9"
+            app:layout_constraintStart_toStartOf="@+id/profile_image9"
+            app:layout_constraintTop_toBottomOf="@+id/profile_image9" />
+
+        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/profile_image10"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/event_coordinator_14_15_1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="8dp"
+            android:text="Harshith Reddy Padigela\n
+Event Co-ordinator\n
+Final Yr Undergraduate\n
+Webmail Id:\n
+padigela@iitg.ernet.in
+ "
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/profile_image10"
+            app:layout_constraintStart_toStartOf="@+id/profile_image10"
+            app:layout_constraintTop_toBottomOf="@+id/profile_image10" />
+
+        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/profile_image11"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/event_coordinator_14_15_2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="Kunal Khandelwal\n
+Event Co-ordinator \n
+Pre-Final Yr Undergraduate\n
+Webmail Id:\n
+k.khandelwal@iitg.ernet.in
+ "
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/profile_image11"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profile_image11" />
+
+        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/profile_image12"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/event_coordinator_14_15_3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="Radhika Patodiya\n
+Event Co-ordinator\n
+Pre-Final Yr Undergraduate\n
+Webmail Id:\n
+radhika.patodiya@iitg.ernet.in
+ "
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/profile_image12"
+            app:layout_constraintTop_toBottomOf="@+id/profile_image12" />
+
+        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/profile_image13"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/event_coordinator_14_15_4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="8dp"
+            android:text="Bhanu Prakash\n
+Event Co-ordinator\n
+Second Year Undergradute\n
+Webmail link:\n
+p.vandana@iitg.ernet.in
+ "
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/profile_image13"
+            app:layout_constraintStart_toStartOf="@+id/profile_image13"
+            app:layout_constraintTop_toBottomOf="@+id/profile_image13" />
+
+        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/profile_image14"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/phd_14_15"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView12" />
+
+        <TextView
+            android:id="@+id/textView14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="8dp"
+            android:text="Shuvendu Rana\n
+PhD Representative \n
+2nd Yr PhD\n
+Webmail Id:\n
+shuvendu@iitg.ernet.in
+ "
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/profile_image14"
+            app:layout_constraintStart_toStartOf="@+id/profile_image14"
+            app:layout_constraintTop_toBottomOf="@+id/profile_image14" />
+
+        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/profile_image15"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/mtech_14_15_1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="8dp"
+            android:text="Saurabh Gupta\n
+M.Tech First year Representative\n
+First Yr Postgraduate\n
+Webmail Id:\n
+saurabh.gupta@iitg.ernet.in
+ "
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/profile_image15"
+            app:layout_constraintStart_toStartOf="@+id/profile_image15"
+            app:layout_constraintTop_toBottomOf="@+id/profile_image15" />
+
+        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/profile_image16"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/mtech_14_15_2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView14" />
+
+        <TextView
+            android:id="@+id/textView16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="Tuhin Bhattacharya\n
+M.Tech Seond Yr Representative\n
+Second Yr M.Tech\n
+Webmail Id:\n
+b.tuhin@iitg.ernet.in
+ "
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/profile_image16"
+            app:layout_constraintStart_toStartOf="@+id/profile_image16"
+            app:layout_constraintTop_toBottomOf="@+id/profile_image16" />
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>
+
