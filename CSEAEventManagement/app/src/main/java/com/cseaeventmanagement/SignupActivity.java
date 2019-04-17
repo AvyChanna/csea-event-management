@@ -43,322 +43,330 @@ import static java.lang.Character.isDigit;
 import static java.lang.Character.isLetter;
 
 public class SignupActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
-    private static final int REQUEST_READ_CONTACTS = 0;
-    private RequestQueue q = null;
-    private boolean SignupInQueue = false;
-    // UI references.
-    private AutoCompleteTextView mEmailView;
-    private TextInputEditText mPasswordView;
-    private AutoCompleteTextView mNameView;
-    private TextInputEditText mConfirmPasswordView;
-    private AutoCompleteTextView mRollNumberView;
-    private AutoCompleteTextView mYearOfAdmView;
-    private AutoCompleteTextView mPhoneNumberView;
-    private View mProgressView;
-    private View mSignupFormView;
+	private static final int REQUEST_READ_CONTACTS = 0;
+	private RequestQueue q = null;
+	private boolean SignupInQueue = false;
+	// UI references.
+	private AutoCompleteTextView mEmailView;
+	private TextInputEditText mPasswordView;
+	private AutoCompleteTextView mNameView;
+	private TextInputEditText mConfirmPasswordView;
+	private AutoCompleteTextView mRollNumberView;
+	private AutoCompleteTextView mYearOfAdmView;
+	private AutoCompleteTextView mPhoneNumberView;
+	private View mProgressView;
+	private View mSignupFormView;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_signup);
-        // Set up the Signup form.
-        mEmailView = findViewById(R.id.email);
-        populateAutoComplete();
-        mNameView = findViewById(R.id.name);
-        mConfirmPasswordView = findViewById(R.id.confirmPassword);
-        mRollNumberView = findViewById(R.id.rollNumber);
-        mYearOfAdmView = findViewById(R.id.year);
-        mPhoneNumberView = findViewById(R.id.phone_no);
-        mPasswordView = findViewById(R.id.password);
-        mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
-                if (id == EditorInfo.IME_ACTION_DONE || id == EditorInfo.IME_NULL) {
-                    attemptSignup();
-                    return true;
-                }
-                return false;
-            }
-        });
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_signup);
+		// Set up the Signup form.
+		mEmailView = findViewById(R.id.email);
+		populateAutoComplete();
+		mNameView = findViewById(R.id.name);
+		mConfirmPasswordView = findViewById(R.id.confirmPassword);
+		mRollNumberView = findViewById(R.id.rollNumber);
+		mYearOfAdmView = findViewById(R.id.year);
+		mPhoneNumberView = findViewById(R.id.phone_no);
+		mPasswordView = findViewById(R.id.password);
+		mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+			@Override
+			public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
+				if (id == EditorInfo.IME_ACTION_DONE || id == EditorInfo.IME_NULL) {
+					attemptSignup();
+					return true;
+				}
+				return false;
+			}
+		});
 
-        Button mEmailSignInButton = findViewById(R.id.email_sign_in_button);
-        mEmailSignInButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                attemptSignup();
-            }
-        });
+		Button mEmailSignInButton = findViewById(R.id.email_sign_in_button);
+		mEmailSignInButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				attemptSignup();
+			}
+		});
 
-        mSignupFormView = findViewById(R.id.Signup_form);
-        mProgressView = findViewById(R.id.Signup_progress);
-    }
+		mSignupFormView = findViewById(R.id.Signup_form);
+		mProgressView = findViewById(R.id.Signup_progress);
+	}
 
-    private void populateAutoComplete() {
-        if (!mayRequestContacts()) {
-            return;
-        }
-        getLoaderManager().initLoader(0, null, this);
-    }
+	private void populateAutoComplete() {
+		if (!mayRequestContacts()) {
+			return;
+		}
+		getLoaderManager().initLoader(0, null, this);
+	}
 
-    private boolean mayRequestContacts() {
-        if (checkSelfPermission(READ_CONTACTS) == PackageManager.PERMISSION_GRANTED) {
-            return true;
-        }
-        if (shouldShowRequestPermissionRationale(READ_CONTACTS)) {
-            Snackbar.make(mEmailView, R.string.permission_rationale, Snackbar.LENGTH_INDEFINITE)
-                    .setAction(android.R.string.ok, new View.OnClickListener() {
-                        @Override
-                        @TargetApi(Build.VERSION_CODES.M)
-                        public void onClick(View v) {
-                            requestPermissions(new String[]{READ_CONTACTS}, REQUEST_READ_CONTACTS);
-                        }
-                    });
-        } else {
-            requestPermissions(new String[]{READ_CONTACTS}, REQUEST_READ_CONTACTS);
-        }
-        return false;
-    }
+	private boolean mayRequestContacts() {
+		if (checkSelfPermission(READ_CONTACTS) == PackageManager.PERMISSION_GRANTED) {
+			return true;
+		}
+		if (shouldShowRequestPermissionRationale(READ_CONTACTS)) {
+			Snackbar.make(mEmailView, R.string.permission_rationale, Snackbar.LENGTH_INDEFINITE)
+					.setAction(android.R.string.ok, new View.OnClickListener() {
+						@Override
+						@TargetApi(Build.VERSION_CODES.M)
+						public void onClick(View v) {
+							requestPermissions(new String[]{READ_CONTACTS}, REQUEST_READ_CONTACTS);
+						}
+					});
+		} else {
+			requestPermissions(new String[]{READ_CONTACTS}, REQUEST_READ_CONTACTS);
+		}
+		return false;
+	}
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
-                                           @NonNull int[] grantResults) {
-        if (requestCode == REQUEST_READ_CONTACTS) {
-            if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                populateAutoComplete();
-            }
-        }
-    }
+	@Override
+	public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+										   @NonNull int[] grantResults) {
+		if (requestCode == REQUEST_READ_CONTACTS) {
+			if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+				populateAutoComplete();
+			}
+		}
+	}
 
-    private void attemptSignup() {
-        if (SignupInQueue)
-            return;
-        mEmailView.setError(null);
-        mPasswordView.setError(null);
-        mNameView.setError(null);
-        mConfirmPasswordView.setError(null);
-        mRollNumberView.setError(null);
-        mYearOfAdmView.setError(null);
-        mPhoneNumberView.setError(null);
-        String email = mEmailView.getText().toString();
-        String password = mPasswordView.getText().toString();
-        String name = mNameView.getText().toString();
-        String confPass = mConfirmPasswordView.getText().toString();
-        String rollNo = mRollNumberView.getText().toString();
-        String yoa = mYearOfAdmView.getText().toString();
-        String phone = mPhoneNumberView.getText().toString();
-        boolean cancel = false;
-        View focusView = null;
-        // Check for a valid password, if the user entered one.
-        if (isEmpty(phone)) {
-            mPhoneNumberView.setError(getString(R.string.error_empty_field));
-            focusView = mPhoneNumberView;
-            cancel = true;
-        } else if (!phone.matches("[0-9]*")) {
-            mPhoneNumberView.setError(getString(R.string.error_not_integer));
-            focusView = mPhoneNumberView;
-            cancel = true;
-        }
-        int iyoa;
-        if (isEmpty(yoa)) {
-            mYearOfAdmView.setError(getString(R.string.error_empty_field));
-            focusView = mYearOfAdmView;
-            cancel = true;
-        } else if (!yoa.matches("[0-9]{4}")) {
-            mYearOfAdmView.setError(getString(R.string.error_not_integer));
-            focusView = mYearOfAdmView;
-            cancel = true;
-        } else {
-            iyoa = Integer.parseInt(yoa);
-            if (iyoa < 2000 || iyoa > 2020) {
-                mYearOfAdmView.setError(getString(R.string.error_invalid_value));
-                focusView = mYearOfAdmView;
-                cancel = true;
-            }
-        }
-        int iroll;
-        if (isEmpty(rollNo)) {
-            mRollNumberView.setError(getString(R.string.error_empty_field));
-            focusView = mRollNumberView;
-            cancel = true;
-        } else if (!rollNo.matches("[0-9]{9}")) {
-            mRollNumberView.setError(getString(R.string.error_not_integer));
-            focusView = mRollNumberView;
-            cancel = true;
-        } else {
-            iroll = Integer.parseInt(rollNo);
-            // TODO roll no ki maa chodni hai
-            if (iroll < 170101000 || iroll > 201000999) {
-                mYearOfAdmView.setError(getString(R.string.error_invalid_value));
-                focusView = mYearOfAdmView;
-                cancel = true;
-            }
-        }
-        if (isEmpty(password)) {
-            mPasswordView.setError(getString(R.string.error_empty_password));
-            focusView = mPasswordView;
-            cancel = true;
-        }
-        if (isEmpty(confPass)) {
-            mConfirmPasswordView.setError(getString(R.string.error_empty_password));
-            focusView = mConfirmPasswordView;
-            cancel = true;
-        }
-        if (password.equals(confPass)) {
-            mPasswordView.setError(getString(R.string.error_empty_password));
-            focusView = mPasswordView;
-            cancel = true;
-        }
-        // Check for a valid email address.
-        if (isEmpty(email)) {
-            mEmailView.setError(getString(R.string.error_field_required));
-            focusView = mEmailView;
-            cancel = true;
-        } else if (!isEmailValid(email)) {
-            mEmailView.setError(getString(R.string.error_invalid_email));
-            focusView = mEmailView;
-            cancel = true;
-        }
-        if (isEmpty(name)) {
-            mNameView.setError(getString(R.string.error_field_required));
-            focusView = mNameView;
-            cancel = true;
-        } else if (!isNameValid(name)) {
-            mNameView.setError(getString(R.string.error_invalid_email));
-            focusView = mNameView;
-            cancel = true;
-        }
+	private void attemptSignup() {
+		if (SignupInQueue)
+			return;
+		mEmailView.setError(null);
+		mPasswordView.setError(null);
+		mNameView.setError(null);
+		mConfirmPasswordView.setError(null);
+		mRollNumberView.setError(null);
+		mYearOfAdmView.setError(null);
+		mPhoneNumberView.setError(null);
+		String email = mEmailView.getText().toString();
+		String password = mPasswordView.getText().toString();
+		String name = mNameView.getText().toString();
+		String confPass = mConfirmPasswordView.getText().toString();
+		String rollNo = mRollNumberView.getText().toString();
+		String yoa = mYearOfAdmView.getText().toString();
+		String phone = mPhoneNumberView.getText().toString();
+		boolean cancel = false;
+		View focusView = null;
+		// Check for a valid password, if the user entered one.
+		if (isEmpty(phone)) {
+			mPhoneNumberView.setError(getString(R.string.error_empty_field));
+			focusView = mPhoneNumberView;
+			cancel = true;
+		} else if (!phone.matches("[0-9]*")) {
+			mPhoneNumberView.setError(getString(R.string.error_not_integer));
+			focusView = mPhoneNumberView;
+			cancel = true;
+		}
+		int iyoa = 0;
+		int iphone = 0;
 
-        if (cancel) {
-            focusView.requestFocus();
-        } else {
-            //private UserSignupTask mAuthTask = null;
-            String mEmail = email.split("@", -1)[0];
-            JSONObject obj = new JSONObject();
-            try {
-                obj.accumulate("username", mEmail);
-                obj.accumulate("password", password);
-            } catch (Exception e) {
-                Log.d("Signup_FORM_CATCH", e.toString());
-            }
-            JsonObjectRequest jor = new JsonObjectRequest(
-                    Request.Method.POST,
-                    getString(R.string.api_home) + "Signup/",
-                    obj,
-                    new Response.Listener<JSONObject>() {
-                        @Override
-                        public void onResponse(JSONObject response) {
-                            Log.d("API_CALL_RES_Signup", response.toString());
-                            showProgress(false);
-                            // finish();
-                        }
-                    },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            Log.d("API_CALL_ERR_Signup", error.toString());
-                            showProgress(false);
-                            Snackbar.make(findViewById(R.id.Signup_form), "Error signing in. Check your network and try again", Snackbar.LENGTH_SHORT)
-                                    .setAction("Dismiss", new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
+		iphone = Integer.parseInt(phone);
 
-                                        }
-                                    }).show();
-                        }
-                    }
-            );
-            q.add(jor);
-            showProgress(true);
-        }
-    }
+		if (isEmpty(yoa)) {
+			mYearOfAdmView.setError(getString(R.string.error_empty_field));
+			focusView = mYearOfAdmView;
+			cancel = true;
+		} else if (!yoa.matches("[0-9]{4}")) {
+			mYearOfAdmView.setError(getString(R.string.error_not_integer));
+			focusView = mYearOfAdmView;
+			cancel = true;
+		} else {
+			iyoa = Integer.parseInt(yoa);
+			if (iyoa < 2000 || iyoa > 2020) {
+				mYearOfAdmView.setError(getString(R.string.error_invalid_value));
+				focusView = mYearOfAdmView;
+				cancel = true;
+			}
+		}
+		int iroll = 0;
+		if (isEmpty(rollNo)) {
+			mRollNumberView.setError(getString(R.string.error_empty_field));
+			focusView = mRollNumberView;
+			cancel = true;
+		} else if (!rollNo.matches("[0-9]{9}")) {
+			mRollNumberView.setError(getString(R.string.error_not_integer));
+			focusView = mRollNumberView;
+			cancel = true;
+		} else {
+			iroll = Integer.parseInt(rollNo);
+			// TODO roll no ki karni hai
+			if (iroll < 170101000 || iroll > 201000999) {
+				mYearOfAdmView.setError(getString(R.string.error_invalid_value));
+				focusView = mYearOfAdmView;
+				cancel = true;
+			}
+		}
+		if (isEmpty(password)) {
+			mPasswordView.setError(getString(R.string.error_empty_password));
+			focusView = mPasswordView;
+			cancel = true;
+		}
+		if (isEmpty(confPass)) {
+			mConfirmPasswordView.setError(getString(R.string.error_empty_password));
+			focusView = mConfirmPasswordView;
+			cancel = true;
+		}
+		if (password.equals(confPass)) {
+			mPasswordView.setError(getString(R.string.error_empty_password));
+			focusView = mPasswordView;
+			cancel = true;
+		}
+		// Check for a valid email address.
+		if (isEmpty(email)) {
+			mEmailView.setError(getString(R.string.error_field_required));
+			focusView = mEmailView;
+			cancel = true;
+		} else if (!isEmailValid(email)) {
+			mEmailView.setError(getString(R.string.error_invalid_email));
+			focusView = mEmailView;
+			cancel = true;
+		}
+		if (isEmpty(name)) {
+			mNameView.setError(getString(R.string.error_field_required));
+			focusView = mNameView;
+			cancel = true;
+		} else if (!isNameValid(name)) {
+			mNameView.setError(getString(R.string.error_invalid_email));
+			focusView = mNameView;
+			cancel = true;
+		}
 
-    private boolean isEmailValid(String email) {
-        if (!(email.endsWith("@iitg.ernet.in") || email.endsWith("@iitg.ac.in")))
-            return false;
-        return email.split("@", -1).length == 2;
-    }
+		if (cancel) {
+			focusView.requestFocus();
+		} else {
+			//private UserSignupTask mAuthTask = null;
+			String mEmail = email.split("@", -1)[0];
+			JSONObject obj = new JSONObject();
+			try {
+				obj.accumulate("username", mEmail);
+				obj.accumulate("password", password);
+				obj.accumulate("name", name);
+				obj.accumulate("roll_no", iroll);
+				obj.accumulate("year_admission", iyoa);
+				obj.accumulate("phone_num", iphone);
+			} catch (Exception e) {
+				Log.d("Signup_FORM_CATCH", e.toString());
+			}
+			JsonObjectRequest jor = new JsonObjectRequest(
+					Request.Method.POST,
+					getString(R.string.api_home) + "Signup/",
+					obj,
+					new Response.Listener<JSONObject>() {
+						@Override
+						public void onResponse(JSONObject response) {
+							Log.d("API_CALL_RES_Signup", response.toString());
+							showProgress(false);
+							// finish();
+						}
+					},
+					new Response.ErrorListener() {
+						@Override
+						public void onErrorResponse(VolleyError error) {
+							Log.d("API_CALL_ERR_Signup", error.toString());
+							showProgress(false);
+							Snackbar.make(findViewById(R.id.Signup_form), "Error signing in. Check your network and try again", Snackbar.LENGTH_SHORT)
+									.setAction("Dismiss", new View.OnClickListener() {
+										@Override
+										public void onClick(View v) {
 
-    private boolean isNameValid(String name) {
-        boolean a;
-        char[] namec = name.toCharArray();
-        for (char c : namec) {
-            a = isLetter(c) || isDigit(c) || c == ' ' || c == '\'';
-            if (!a)
-                return false;
-        }
-        return true;
-    }
+										}
+									}).show();
+						}
+					}
+			);
+			q.add(jor);
+			showProgress(true);
+		}
+	}
 
-    private void showProgress(final boolean show) {
-        int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
-        mSignupFormView.setVisibility(show ? View.GONE : View.VISIBLE);
-        mSignupFormView.animate().setDuration(shortAnimTime).alpha(
-                show ? 0 : 1).setListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                mSignupFormView.setVisibility(show ? View.GONE : View.VISIBLE);
-            }
-        });
-        mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-        mProgressView.animate().setDuration(shortAnimTime).alpha(
-                show ? 1 : 0).setListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-            }
-        });
-    }
+	private boolean isEmailValid(String email) {
+		if (!(email.endsWith("@iitg.ernet.in") || email.endsWith("@iitg.ac.in")))
+			return false;
+		return email.split("@", -1).length == 2;
+	}
 
-    @Override
-    public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
-        return new CursorLoader(this,
-                // Retrieve data rows for the device user's 'profile' contact.
-                Uri.withAppendedPath(ContactsContract.Profile.CONTENT_URI,
-                        ContactsContract.Contacts.Data.CONTENT_DIRECTORY), ProfileQuery.PROJECTION,
+	private boolean isNameValid(String name) {
+		boolean a;
+		char[] namec = name.toCharArray();
+		for (char c : namec) {
+			a = isLetter(c) || isDigit(c) || c == ' ' || c == '\'';
+			if (!a)
+				return false;
+		}
+		return true;
+	}
 
-                // Select only email addresses.
-                ContactsContract.Contacts.Data.MIMETYPE +
-                        " = ?", new String[]{ContactsContract.CommonDataKinds.Email
-                .CONTENT_ITEM_TYPE},
+	private void showProgress(final boolean show) {
+		int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
+		mSignupFormView.setVisibility(show ? View.GONE : View.VISIBLE);
+		mSignupFormView.animate().setDuration(shortAnimTime).alpha(
+				show ? 0 : 1).setListener(new AnimatorListenerAdapter() {
+			@Override
+			public void onAnimationEnd(Animator animation) {
+				mSignupFormView.setVisibility(show ? View.GONE : View.VISIBLE);
+			}
+		});
+		mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
+		mProgressView.animate().setDuration(shortAnimTime).alpha(
+				show ? 1 : 0).setListener(new AnimatorListenerAdapter() {
+			@Override
+			public void onAnimationEnd(Animator animation) {
+				mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
+			}
+		});
+	}
 
-                // Show primary email addresses first. Note that there won't be
-                // a primary email address if the user hasn't specified one.
-                ContactsContract.Contacts.Data.IS_PRIMARY + " DESC");
-    }
+	@Override
+	public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
+		return new CursorLoader(this,
+				// Retrieve data rows for the device user's 'profile' contact.
+				Uri.withAppendedPath(ContactsContract.Profile.CONTENT_URI,
+						ContactsContract.Contacts.Data.CONTENT_DIRECTORY), ProfileQuery.PROJECTION,
 
-    @Override
-    public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
-        List<String> emails = new ArrayList<>();
-        cursor.moveToFirst();
-        while (!cursor.isAfterLast()) {
-            emails.add(cursor.getString(ProfileQuery.ADDRESS));
-            cursor.moveToNext();
-        }
+				// Select only email addresses.
+				ContactsContract.Contacts.Data.MIMETYPE +
+						" = ?", new String[]{ContactsContract.CommonDataKinds.Email
+				.CONTENT_ITEM_TYPE},
 
-        addEmailsToAutoComplete(emails);
-    }
+				// Show primary email addresses first. Note that there won't be
+				// a primary email address if the user hasn't specified one.
+				ContactsContract.Contacts.Data.IS_PRIMARY + " DESC");
+	}
 
-    @Override
-    public void onLoaderReset(Loader<Cursor> cursorLoader) {
-    }
+	@Override
+	public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
+		List<String> emails = new ArrayList<>();
+		cursor.moveToFirst();
+		while (!cursor.isAfterLast()) {
+			emails.add(cursor.getString(ProfileQuery.ADDRESS));
+			cursor.moveToNext();
+		}
 
-    private void addEmailsToAutoComplete(List<String> emailAddressCollection) {
-        //Create adapter to tell the AutoCompleteTextView what to show in its dropdown list.
-        ArrayAdapter<String> adapter =
-                new ArrayAdapter<>(SignupActivity.this,
-                        android.R.layout.simple_dropdown_item_1line, emailAddressCollection);
+		addEmailsToAutoComplete(emails);
+	}
 
-        mEmailView.setAdapter(adapter);
-    }
+	@Override
+	public void onLoaderReset(Loader<Cursor> cursorLoader) {
+	}
 
-    private interface ProfileQuery {
-        String[] PROJECTION = {
-                ContactsContract.CommonDataKinds.Email.ADDRESS,
-                ContactsContract.CommonDataKinds.Email.IS_PRIMARY,
-        };
+	private void addEmailsToAutoComplete(List<String> emailAddressCollection) {
+		//Create adapter to tell the AutoCompleteTextView what to show in its dropdown list.
+		ArrayAdapter<String> adapter =
+				new ArrayAdapter<>(SignupActivity.this,
+						android.R.layout.simple_dropdown_item_1line, emailAddressCollection);
 
-        int ADDRESS = 0;
-        int IS_PRIMARY = 1;
-    }
+		mEmailView.setAdapter(adapter);
+	}
+
+	private interface ProfileQuery {
+		String[] PROJECTION = {
+				ContactsContract.CommonDataKinds.Email.ADDRESS,
+				ContactsContract.CommonDataKinds.Email.IS_PRIMARY,
+		};
+
+		int ADDRESS = 0;
+		int IS_PRIMARY = 1;
+	}
 }
 
