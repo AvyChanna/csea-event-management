@@ -31,7 +31,7 @@
 
     <string-array name="branches_super">
         <item>Select Programme</item>
-        <item>Bachelor of Technology (B.Tech.)</item>   
+        <item>Bachelor of Technology (B.Tech.)</item>
         <item>Bachelor of Design (B.Des.)</item>
         <item>Master of Science (M.Sc.)</item>
         <item>Master of Arts in Development Studies (MA)</item>
