@@ -32,7 +32,7 @@
                     android:elevation="10dp"
                     android:fontFamily="sans-serif"
                     android:gravity="center_horizontal"
-                    android:text="Feedback!"
+                    android:text="Feedback"
                     android:textColor="@android:color/black"
                     android:textSize="30sp" />
 
@@ -48,20 +48,19 @@
                     android:layout_height="60dp"
                     android:orientation="horizontal">
 
-                    
+
                     <TextView
                         android:layout_width="100dp"
                         android:layout_height="48dp"
-                        android:text="User Experience"
                         android:gravity="left|center"
-                        />
-                    
+                        android:text="User Experience" />
+
                     <RatingBar
                         android:id="@+id/app_feedback_rating_ui"
                         android:layout_width="wrap_content"
+
                         android:layout_height="48dp"
-                        android:layout_marginHorizontal="4dp"
-                        android:numStars="5"/>
+                        android:numStars="5" />
 
                 </LinearLayout>
 

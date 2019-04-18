@@ -93,6 +93,9 @@ public class MainActivity extends AppCompatActivity
 			startActivity(intent);
 
 		} else if (id == R.id.nav_search_events) {
+			//Calling Search_Events
+			Intent intent = new Intent(this, Search_EventsActivity.class);
+			startActivity(intent);
 
 		} else if (id == R.id.nav_feedback_app) {
 			gotoFeedback();

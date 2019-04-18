@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:dist="http://schemas.android.com/apk/distribution"
     package="com.cseaeventmanagement">
+
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
@@ -19,7 +20,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CustomFAQ"></activity>
+        <activity android:name=".Admin_FeedbackActivity"></activity>
+        <activity android:name=".Search_EventsActivity" />
+        <activity android:name=".CustomFAQ" />
         <activity
             android:name=".AdminActivity"
             android:label="@string/title_activity_admin"
