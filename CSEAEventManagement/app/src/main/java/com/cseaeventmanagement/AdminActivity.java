@@ -1,5 +1,6 @@
 package com.cseaeventmanagement;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -86,8 +87,14 @@ public class AdminActivity extends AppCompatActivity
 		} else if (id == R.id.nav_gallery) {
 
 		} else if (id == R.id.nav_slideshow) {
+			//Calling Admin_Feedback Activity
+			Intent intent = new Intent(this, Admin_FeedbackActivity.class);
+			startActivity(intent);
 
 		} else if (id == R.id.nav_manage) {
+			//Calling Search_Events
+			Intent intent = new Intent(this, Search_EventsActivity.class);
+			startActivity(intent);
 
 		} else if (id == R.id.nav_admin_logout) {
 			SharedPreferences pref = getApplicationContext().getSharedPreferences("username", MODE_PRIVATE);

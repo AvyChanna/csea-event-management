@@ -21,6 +21,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".EventFeedbackActivity"></activity>
+        <activity android:name=".Admin_FeedbackActivity"></activity>
+        <activity android:name=".Search_EventsActivity" />
         <activity android:name=".CustomFAQ" />
         <activity
             android:name=".AdminActivity"
