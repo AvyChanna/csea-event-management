@@ -77,8 +77,6 @@ public class RequestEventActivity extends AppCompatActivity {
 	private Button submit_button;
 	private Button add_committee;
 	private String event_feedback;
-	private EditText question;
-	private Button add_question;
 	private String imageString;
 	private RequestQueue q;
 
@@ -266,22 +264,6 @@ public class RequestEventActivity extends AppCompatActivity {
 				}
 			}
 		});
-
-		add_question = (Button) findViewById(R.id.btn_add_question);
-        add_question.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                EditText editText_feedback_questions = findViewById(R.id.editText_feedback_questions);
-                if (editText_feedback_questions.getText().toString().equals(""))
-                    Toast.makeText(getApplicationContext(), "Add the questions first", Toast.LENGTH_SHORT).show();
-                else {
-                    event_feedback = event_feedback + editText_feedback_questions.getText().toString() + ";";
-                    editText_feedback_questions.setText("");
-                    Log.d("aaa",event_feedback);
-                }
-
-            }
-        });
 
 		submit_button = (Button) findViewById(R.id.btn_request_submit);
 		submit_button.setOnClickListener(new View.OnClickListener() {
