@@ -2,6 +2,7 @@ package com.cseaeventmanagement;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.Image;
@@ -15,6 +16,7 @@ import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -35,6 +37,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.w3c.dom.Text;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 public class EventViewActivity extends AppCompatActivity {
 
 	private int event_id=2;
@@ -50,6 +56,7 @@ public class EventViewActivity extends AppCompatActivity {
 	private String event_target_audience = "";
 	private String event_poster = "";
 	private ImageView poster_image;
+	private Button btn_event_feedback;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +69,17 @@ public class EventViewActivity extends AppCompatActivity {
 		Network network = new BasicNetwork(new HurlStack());
 		q = new RequestQueue(new NoCache(), network);
 		q.start();
+
+
+		// if a user is not logged in, he/she must not see the give feedback button
+		SharedPreferences sharedpreferences = getSharedPreferences("Login", Context.MODE_PRIVATE);
+		String checker_login = sharedpreferences.getString("username","");
+		if(checker_login.equals(""))
+		{
+			btn_event_feedback = (Button) findViewById(R.id.btn_give_event_feedback);
+			btn_event_feedback.setVisibility(View.INVISIBLE);
+			// TODO if a user has submitted a feedback, he/she can't submit again
+		}
 
 		TextView marque = (TextView) findViewById(R.id.eventName);
 		marque.setSelected(true);
@@ -189,6 +207,10 @@ public class EventViewActivity extends AppCompatActivity {
 		text_venue.setText(event_venue);
 		TextView text_fee = (TextView) findViewById(R.id.eventFee);
 		text_fee.setText(Integer.toString(event_fee));
+
+		// code snippet to check current system date with event start time
+		checkEventandSystemDates();
+
 
 		String [] arr = event_target_audience.split(";");
 		final TextView[] myTextViews = new TextView[arr.length]; // create an empty array;
@@ -346,6 +368,73 @@ public class EventViewActivity extends AppCompatActivity {
 			myLinearLayout.addView(rowAnswer);
 		}
 
+		btn_event_feedback.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO write a check that a logged in user can give only one feedback about the event
+				// enabling the feedback button and letting them give feedback
+				Intent intent = new Intent(getApplicationContext(),EventFeedbackActivity.class);
+				intent.putExtra("event_id",event_id);
+				startActivity(intent);
+			}
+		});
+
+	}
+
+	public void checkEventandSystemDates()
+	{
+		Date current_time = Calendar.getInstance().getTime();
+		String date_time = current_time.toString();
+		String [] dateAndTime = date_time.split(" ");
+		String [] event_dateAndTime = dateAndTime[3].split(":");
+		int curr_hr = Integer.parseInt(event_dateAndTime[0]);
+		int curr_min = Integer.parseInt(event_dateAndTime[1]);
+
+		String pattern = "dd-MM-yyyy";
+		String dateInString =new SimpleDateFormat(pattern).format(new Date());
+		String [] dateArray = dateInString.split("-");
+		int curr_year = Integer.parseInt(dateArray[2]);
+		int curr_month = Integer.parseInt(dateArray[1]);
+		int curr_date = Integer.parseInt(dateArray[0]);
+
+		String [] eventDateArray= event_date.split("-");
+		int event_year = Integer.parseInt(eventDateArray[2]);
+		int event_month = Integer.parseInt(eventDateArray[1]);
+		int event_day = Integer.parseInt(eventDateArray[0]);
+
+		String [] eventTime = event_time.split(":");
+		int event_hour = Integer.parseInt(eventTime[0]);
+		String [] eventMin = eventTime[1].split(" ");
+		int event_min = Integer.parseInt(eventMin[0]);
+		String is_am = eventMin[1];
+
+		if(event_year>curr_year)
+		{
+			btn_event_feedback.setVisibility(View.INVISIBLE);
+		}
+		if(event_year==curr_year&&event_month>curr_month)
+		{
+			btn_event_feedback.setVisibility(View.INVISIBLE);
+		}
+		if(event_year==curr_year&&event_month==curr_month&&event_day>curr_date)
+		{
+			btn_event_feedback.setVisibility(View.INVISIBLE);
+		}
+
+		if(is_am.equals("AM"))
+		{
+			if(event_hour>curr_hr)
+				btn_event_feedback.setVisibility(View.INVISIBLE);
+			if(event_hour==curr_hr&&event_min>curr_min)
+				btn_event_feedback.setVisibility(View.INVISIBLE);
+		}
+		else
+		{
+			if(event_hour+12>curr_hr)
+				btn_event_feedback.setVisibility(View.INVISIBLE);
+			if(event_hour+12==curr_hr&&event_min>curr_min)
+				btn_event_feedback.setVisibility(View.INVISIBLE);
+		}
 	}
 
 }
