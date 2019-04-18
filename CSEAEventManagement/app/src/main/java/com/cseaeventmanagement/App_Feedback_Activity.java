@@ -3,6 +3,9 @@ package com.cseaeventmanagement;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
+import android.support.text.emoji.EmojiCompat;
+import android.support.text.emoji.bundled.BundledEmojiCompatConfig;
+import android.support.text.emoji.widget.EmojiAppCompatTextView;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
@@ -10,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RatingBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Network;
@@ -30,6 +34,12 @@ public class App_Feedback_Activity extends AppCompatActivity {
 
 	private RatingBar ratingBar1;
 	private float rating_ui;
+	private EmojiAppCompatTextView display_1;
+	private TextView display_2;
+	private EmojiAppCompatTextView display_3;
+	private TextView display_4;
+	private EmojiAppCompatTextView display_5;
+	private TextView display_6;
 	private RatingBar ratingBar2;
 	private float rating_ux;
 	private RatingBar ratingBar3;
@@ -42,6 +52,8 @@ public class App_Feedback_Activity extends AppCompatActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		EmojiCompat.Config config = new BundledEmojiCompatConfig(this);
+		EmojiCompat.init(config);
 		setContentView(R.layout.activity_app__feedback_);
 
 		Network network = new BasicNetwork(new HurlStack());
@@ -52,24 +64,114 @@ public class App_Feedback_Activity extends AppCompatActivity {
 		ratingBar2 = (RatingBar) findViewById(R.id.app_feedback_rating_ux);
 		ratingBar3 = (RatingBar) findViewById(R.id.app_feedback_rating_overall);
 
+		display_1 = (EmojiAppCompatTextView) findViewById(R.id.display_1);
+		display_2 = (TextView) findViewById(R.id.display_2);
+		display_3 = (EmojiAppCompatTextView) findViewById(R.id.display_3);
+		display_4 = (TextView) findViewById(R.id.display_4);
+		display_5 = (EmojiAppCompatTextView) findViewById(R.id.display_5);
+		display_6 = (TextView) findViewById(R.id.display_6);
+
 		ratingBar1.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
 			@Override
 			public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
 				rating_ui = ratingBar1.getRating();
+				if(rating_ui<1)
+				{
+					StringBuilder emoji = new StringBuilder(new String(Character.toChars(0x2639)));
+					display_1.setText("Let us know our shortcomings in the feedback"+emoji.toString());
+				}
+				else if(rating_ui<2)
+				{
+					StringBuilder emoji = new StringBuilder(new String(Character.toChars(0x1F636)));
+					display_1.setText("Not ok?"+emoji.toString());
+				}
+				else if(rating_ui<3)
+				{
+					StringBuilder emoji = new StringBuilder(new String(Character.toChars(0x1F62C)));
+					display_1.setText("Okayish"+emoji.toString());
+				}
+				else if(rating_ui<=4)
+				{
+					StringBuilder emoji = new StringBuilder(new String(Character.toChars(0x263A)));
+					display_1.setText("Nice"+emoji.toString());
+				}
+				else
+				{
+					StringBuilder emoji = new StringBuilder(new String(Character.toChars(0x1F44C)));
+					display_1.setText("Thank You!"+emoji.toString());
+				}
+
+				display_2.setText("Your rating is: "+rating_ui+"/5");
+
 			}
 		});
 		ratingBar2.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
 			@Override
 			public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
 				rating_ux = ratingBar2.getRating();
+				if(rating_ux<1)
+				{
+					StringBuilder emoji = new StringBuilder(new String(Character.toChars(0x2639)));
+					display_3.setText("Let us know our shortcomings in the feedback"+emoji.toString());
+				}
+				else if(rating_ux<2)
+				{
+					StringBuilder emoji = new StringBuilder(new String(Character.toChars(0x1F636)));
+					display_3.setText("Not ok?"+emoji.toString());
+				}
+				else if(rating_ux<3)
+				{
+					StringBuilder emoji = new StringBuilder(new String(Character.toChars(0x1F62C)));
+					display_3.setText("Okayish"+emoji.toString());
+				}
+				else if(rating_ux<=4)
+				{
+					StringBuilder emoji = new StringBuilder(new String(Character.toChars(0x263A)));
+					display_3.setText("Nice"+emoji.toString());
+				}
+				else
+				{
+					StringBuilder emoji = new StringBuilder(new String(Character.toChars(0x1F44C)));
+					display_3.setText("Thank You!"+emoji.toString());
+				}
+
+				display_4.setText("Your rating is: "+rating_ux+"/5");
 			}
 		});
 		ratingBar3.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
 			@Override
 			public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
 				rating_overall = ratingBar3.getRating();
+				if(rating_overall<1)
+				{
+					StringBuilder emoji = new StringBuilder(new String(Character.toChars(0x2639)));
+					display_5.setText("Let us know our shortcomings in the feedback"+emoji.toString());
+				}
+				else if(rating_overall<2)
+				{
+					StringBuilder emoji = new StringBuilder(new String(Character.toChars(0x1F636)));
+					display_5.setText("Not ok?"+emoji.toString());
+				}
+				else if(rating_overall<3)
+				{
+					StringBuilder emoji = new StringBuilder(new String(Character.toChars(0x1F62C)));
+					display_5.setText("Okayish"+emoji.toString());
+				}
+				else if(rating_overall<=4)
+				{
+					StringBuilder emoji = new StringBuilder(new String(Character.toChars(0x263A)));
+					display_5.setText("Nice"+emoji.toString());
+				}
+				else
+				{
+					StringBuilder emoji = new StringBuilder(new String(Character.toChars(0x1F44C)));
+					display_5.setText("Thank You!"+emoji.toString());
+				}
+
+				display_6.setText("Your rating is: "+rating_overall+"/5");
 			}
 		});
+
 
 		submit_button = (Button) findViewById(R.id.btn_submit_app_feedback);
 		submit_button.setOnClickListener(new View.OnClickListener() {

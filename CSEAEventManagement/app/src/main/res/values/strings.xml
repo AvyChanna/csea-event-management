@@ -1,5 +1,5 @@
 <resources>
-    <string name="api_home">http://172.16.115.44:8000/api/</string>
+    <string name="api_home">http://192.168.43.54:8000/api/</string>
     <!-- Strings related to mainActivity -->
     <string name="app_name">CSEA Event Management</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
