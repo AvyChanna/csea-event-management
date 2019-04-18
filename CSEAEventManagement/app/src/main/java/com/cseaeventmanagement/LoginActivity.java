@@ -2,7 +2,6 @@ package com.cseaeventmanagement;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.annotation.TargetApi;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.Context;
 import android.content.CursorLoader;
@@ -12,7 +11,6 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
@@ -46,6 +44,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static android.Manifest.permission.READ_CONTACTS;
+
+//import android.annotation.TargetApi;
 
 //A login screen that offers login via email/password.
 public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
@@ -120,7 +120,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 			Snackbar.make(mEmailView, R.string.permission_rationale, Snackbar.LENGTH_INDEFINITE)
 					.setAction(android.R.string.ok, new OnClickListener() {
 						@Override
-						@TargetApi(Build.VERSION_CODES.M)
 						public void onClick(View v) {
 							requestPermissions(new String[]{READ_CONTACTS}, REQUEST_READ_CONTACTS);
 						}
@@ -173,22 +172,22 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 				obj.accumulate("username", mEmail);
 				obj.accumulate("password", password);
 			} catch (Exception e) {
-				Log.d("LOGIN_FORM_CATCH", e.toString());
+				Log.d("loda", e.toString());
 			}
 			JsonObjectRequest jor = new JsonObjectRequest(
 					Request.Method.POST,
-					getString(R.string.api_home) + "login/",
+					"http://172.16.115.44:8000/app-login/",
 					obj,
 					new Response.Listener<JSONObject>() {
 						@Override
 						public void onResponse(JSONObject response) {
-							Log.d("API_CALL_RES_LOGIN", response.toString());
+							Log.d("loda", response.toString());
 							showProgress(false);
 							// todo login hua ya nahi dekhna hai
 							try {
 								resp = new JSONObject(response.toString());
 							} catch (Exception e) {
-								Log.d("API_CALL_RES_LOGINCATCH", "Malformed JSON");
+								Log.d("loda", "Malformed JSON");
 							}
 							checkResponse();
 						}
@@ -196,7 +195,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 					new Response.ErrorListener() {
 						@Override
 						public void onErrorResponse(VolleyError error) {
-							Log.d("API_CALL_ERR_LOGIN", error.toString());
+							Log.d("loda", error.toString());
 							showProgress(false);
 							Snackbar.make(findViewById(R.id.login_form), "Error signing in. Check your network and try again", Snackbar.LENGTH_SHORT)
 									.setAction("Dismiss", new View.OnClickListener() {
@@ -284,9 +283,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 	}
 
 	private void checkResponse() {
-		Boolean accepted = false;
 		int error_code = -1;
-		String message = "";
 		String username = "";
 		String name = "";
 		int roll = -1;
@@ -294,28 +291,19 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 		int year = -1;
 		String stream = "";
 		long phone = -1;
-		try {
-			accepted = resp.getBoolean("accepted");
-			error_code = resp.getInt("error_code");
-			message = resp.getString("error_message");
-			username = resp.getString("username");
-			name = resp.getString("full_name");
-			roll = resp.getInt("user_roll");
-			branch = resp.getString("user_branch");
-			year = resp.getInt("user_year");
-			stream = resp.getString("user_stream");
-			phone = resp.getLong("user_phone");
-		} catch (Exception e) {
-			Log.d("CHECK_LOGIN_RESP", "try catch error");
-		}
-		if (!(accepted && error_code == 0)) {
-			Snackbar.make(findViewById(R.id.login_form), message, Snackbar.LENGTH_SHORT)
+		try{error_code = resp.getInt("error_code");} catch (Exception e){}
+		try{username = resp.getString("username");}catch(Exception e){}
+		try{name = resp.getString("full_name");}catch(Exception e){}
+		try{roll = resp.getInt("user_roll");}catch(Exception e){}
+		try{branch = resp.getString("user_branch");}catch(Exception e){}
+		try{year = resp.getInt("user_year");}catch(Exception e){}
+		try{stream = resp.getString("user_stream");}catch(Exception e){}
+		try{phone = resp.getLong("user_phone");}catch(Exception e){}
+		if (error_code != 0) {
+			Snackbar.make(findViewById(R.id.login_form), "Error signing in", Snackbar.LENGTH_SHORT)
 					.setAction("Dismiss", new View.OnClickListener() {
 						@Override
-						public void onClick(View v) {
-
-						}
-					}).show();
+						public void onClick(View v) {}}).show();
 			return;
 		}
 		SharedPreferences sharedpreferences = getSharedPreferences("Login", Context.MODE_PRIVATE);

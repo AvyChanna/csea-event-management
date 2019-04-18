@@ -35,7 +35,7 @@ public class ListEventsActivity extends AppCompatActivity {
 	private JSONObject resp;
 	private JSONObject temp;
 	private List<List_Event_Data_POJO> List_Events;
-
+	private ListEventAdapter adapter;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -48,16 +48,11 @@ public class ListEventsActivity extends AppCompatActivity {
 		recyclerView = findViewById(R.id.recyclerView);
 		List_Events = new ArrayList<>();
 		List_Events.add(new List_Event_Data_POJO("A", "A", "A", "A"));
-		getEvents();
-
-		List_Event_Data_POJO[] myArray = new List_Event_Data_POJO[List_Events.size()];
-		for (int i = 0; i < List_Events.size(); i++) {
-			myArray[i] = List_Events.get(i);
-		}
-		ListEventAdapter adapter = new ListEventAdapter(myArray);
+		adapter = new ListEventAdapter(null);
 		recyclerView.setHasFixedSize(true);
 		recyclerView.setLayoutManager(new LinearLayoutManager(this));
 		recyclerView.setAdapter(adapter);
+		getEvents();
 	}
 
 	private void showProgress(final boolean show) {
@@ -92,17 +87,17 @@ public class ListEventsActivity extends AppCompatActivity {
 	private void getEvents() {
 		JsonObjectRequest jor = new JsonObjectRequest(
 				Request.Method.POST,
-				getString(R.string.api_home) + "geteventsall/",
+				"http://172.16.115.44:8000/geteventsall/",
 				null,
 				new Response.Listener<JSONObject>() {
 					@Override
 					public void onResponse(JSONObject response) {
-						Log.d("API_CALL_GET_EVENTS", response.toString());
+						Log.d("loda", response.toString());
 						showProgress(false);
 						try {
 							resp = new JSONObject(response.toString());
 						} catch (Exception e) {
-							Log.d("API_CALL_GET_EVENTS", "Malformed JSON");
+							Log.d("loda", "Malformed JSON");
 						}
 						checkResponse();
 					}
@@ -110,9 +105,9 @@ public class ListEventsActivity extends AppCompatActivity {
 				new Response.ErrorListener() {
 					@Override
 					public void onErrorResponse(VolleyError error) {
-						Log.d("API_CALL_ERR_LOGIN", error.toString());
+						Log.d("loda", error.toString());
 						showProgress(false);
-						Snackbar.make(findViewById(R.id.login_form), "Error getting event data. Check your network and try again", Snackbar.LENGTH_SHORT)
+						Snackbar.make(recyclerView, "Error getting event data. Check your network and try again", Snackbar.LENGTH_SHORT)
 								.setAction("Dismiss", new View.OnClickListener() {
 									@Override
 									public void onClick(View v) {
@@ -134,24 +129,24 @@ public class ListEventsActivity extends AppCompatActivity {
 		try {
 			events = resp.getJSONArray("events");
 		} catch (Exception e) {
-			Log.d("loda", e.toString());
 		}
 		try {
 			code = resp.getInt("error_code");
 		} catch (Exception e) {
-			Log.d("loda", e.toString());
 		}
 		try {
 			message = resp.getString("error_message");
 		} catch (Exception e) {
-			Log.d("loda", e.toString());
 		}
-		if (code != 0 && events != null) {
+		Log.d("haha", Boolean.toString(events!=null));
+		if (code == 0 && events != null) {
+			Log.d("loda","haha4");
 			for (int i = 0; i < events.length(); i++) {
 				try {
 					temp = events.getJSONObject(i);
 				} catch (Exception e) {
 					Log.d("loda", e.toString());
+					Log.d("loda","haha5");
 				}
 				String q = "";
 				String w = "";
@@ -164,10 +159,20 @@ public class ListEventsActivity extends AppCompatActivity {
 					a = temp.getString("event_desc");
 				} catch (Exception e) {
 					Log.d("loda", e.toString());
+					Log.d("loda","haha6");
 				}
-				List_Events.add(new List_Event_Data_POJO(q, w, a + "," + s, ""));
+				Log.d("loda","haha7");
+				List_Events.add(new List_Event_Data_POJO(q, w + "," + s, a, ""));
 			}
+			List_Event_Data_POJO[] myArray = new List_Event_Data_POJO[List_Events.size()];
+			for (int j = 0; j < List_Events.size(); j++) {
+				myArray[j] = List_Events.get(j);
+			}
+			Log.d("loda","haha8");
+			adapter.setData(myArray);
+			adapter.notifyDataSetChanged();
 		}
 		showProgress(false);
+
 	}
 }

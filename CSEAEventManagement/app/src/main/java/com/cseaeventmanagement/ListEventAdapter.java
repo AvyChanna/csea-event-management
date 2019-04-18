@@ -16,7 +16,7 @@ public class ListEventAdapter extends RecyclerView.Adapter<ListEventAdapter.View
 	public ListEventAdapter(List_Event_Data_POJO[] listdata) {
 		this.listdata = listdata;
 	}
-
+	public void setData(List_Event_Data_POJO[] listdata) { this.listdata = listdata; }
 	@Override
 	public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 		LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
@@ -42,6 +42,8 @@ public class ListEventAdapter extends RecyclerView.Adapter<ListEventAdapter.View
 
 	@Override
 	public int getItemCount() {
+		if(listdata == null)
+			return 0;
 		return listdata.length;
 	}
 
