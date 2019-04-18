@@ -78,12 +78,12 @@ public class EventFeedbackActivity extends AppCompatActivity {
                 else if(ratedVal<=4)
                 {
                     StringBuilder emoji = new StringBuilder(new String(Character.toChars(0x1F643)));
-                    rating_message.setText("Nice event");
+                    rating_message.setText("Nice event"+emoji.toString());
                 }
                 else if(ratedVal<5)
                 {
                     StringBuilder emoji = new StringBuilder(new String(Character.toChars(0x1F600)));
-                    rating_message.setText("Brilliant!!");
+                    rating_message.setText("Brilliant!!"+emoji.toString());
                 }
             }
         });
