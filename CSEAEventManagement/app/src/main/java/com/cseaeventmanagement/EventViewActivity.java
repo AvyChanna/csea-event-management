@@ -129,18 +129,33 @@ public class EventViewActivity extends AppCompatActivity {
 		String error_message = "";
 		int error_code=-1;
 		try{
-			accepted = resp.getBoolean("accepted");
-			error_code = resp.getInt("error_code");
-			event_name = resp.getString("Event_Name");
-			event_details = resp.getString("Event_Description");
-			event_date = resp.getString("Event_Date");
-			event_time = resp.getString("Event_Time");
-			event_venue = resp.getString("Event_Venue");
-			event_fee = resp.getInt("Event_Fee");
-			error_message = resp.getString("error_message");
-			event_target_audience = resp.getString("Event_Target_Audience");
-			event_poster = resp.getString("Event_Poster");
-			get_faq = resp.getJSONArray("Event_FAQs");
+			try
+			{
+				accepted = resp.getBoolean("accepted");
+			}
+			catch(Exception e){}
+			try{error_code = resp.getInt("error_code");}
+			catch(Exception e){}
+			try{event_name = resp.getString("Event_Name");}
+			catch(Exception e){}
+			try{event_details = resp.getString("Event_Description");}
+			catch(Exception e){}
+			try{event_date = resp.getString("Event_Date");}
+			catch(Exception e){}
+			try{event_time = resp.getString("Event_Time");}
+			catch(Exception e){}
+			try{event_venue = resp.getString("Event_Venue");}
+			catch(Exception e){}
+			try{event_fee = resp.getInt("Event_Fee");}
+			catch(Exception e){}
+			try{error_message = resp.getString("error_message");}
+			catch(Exception e){}
+			try{event_target_audience = resp.getString("Event_Target_Audience");}
+			catch(Exception e){}
+			try{event_poster = resp.getString("Event_Poster");}
+			catch(Exception e){}
+			try{get_faq = resp.getJSONArray("Event_FAQs");}
+			catch(Exception e){}
 		}
 		catch (Exception e)
 		{
