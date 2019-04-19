@@ -58,6 +58,7 @@ public class EventViewActivity extends AppCompatActivity {
 	private ImageView poster_image;
 	private Button btn_event_feedback;
 	private String username;
+	private String event_committee = "";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -179,6 +180,10 @@ public class EventViewActivity extends AppCompatActivity {
 			catch(Exception e){}
 			try{get_faq = resp.getJSONArray("Event_FAQs");}
 			catch(Exception e){}
+			try{
+				event_committee = resp.getString("Event_Committee");
+			}
+			catch (Exception e){}
 		}
 		catch (Exception e)
 		{
@@ -328,6 +333,21 @@ public class EventViewActivity extends AppCompatActivity {
 			// save a reference to the textview for later
 			myTextViews[i] = rowTextView;
 		}
+
+
+		// for displaying organizing team members
+		String [] orgainizing_members = event_committee.split(";");
+		final TextView[] display_organizing_members = new TextView[orgainizing_members.length];
+
+		for(int i=0;i<orgainizing_members.length;i++)
+		{
+			final TextView rowTextView = new TextView(this);
+			rowTextView.setText(orgainizing_members[i]);
+			LinearLayout ok = (LinearLayout) findViewById(R.id.display_event_committee);
+			ok.addView(rowTextView);
+			display_organizing_members[i] = rowTextView;
+		}
+
 
 		byte[] decodedString = Base64.decode(event_poster,Base64.URL_SAFE | Base64.NO_WRAP | Base64.NO_PADDING);
 		Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString,0,decodedString.length);

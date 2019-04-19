@@ -210,7 +210,7 @@
                     android:ems="10"
                     android:gravity="left|center"
                     android:layout_gravity="center"
-                    android:hint="Enter emailID(without .ac.in)"
+                    android:hint="Enter organizer name"
                     android:layout_weight="1.3"
                     android:inputType="textMultiLine" />
 
