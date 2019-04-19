@@ -2,6 +2,8 @@
 
 package com.cseaeventmanagement;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
@@ -55,6 +57,7 @@ public class RequestEventActivity extends AppCompatActivity {
 	private static final String TAG = "RequestEventActivity";
 	private static final int PICK_IMAGE = 100;
 	public JSONArray noddy;
+	private boolean LoginInQueue = false;
 	Uri imageUri;
 	private Button eventDateDisplay;
 	private Button eventTimePicker;
@@ -79,11 +82,16 @@ public class RequestEventActivity extends AppCompatActivity {
 	private String event_feedback;
 	private String imageString;
 	private RequestQueue q;
+	private View mProgressView;
+	private View mRequestEventView;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_request_event);
+
+		mProgressView = findViewById(R.id.request_event_progress);
+		mRequestEventView = findViewById(R.id.request_event);
 
 		Network network = new BasicNetwork(new HurlStack());
 		q = new RequestQueue(new NoCache(), network);
@@ -580,6 +588,7 @@ public class RequestEventActivity extends AppCompatActivity {
 							int duration = Toast.LENGTH_SHORT;
 							Toast toast = Toast.makeText(context, text, duration);
 							toast.show();
+							showProgress(false);
 
 							SharedPreferences sharedpreferences = getSharedPreferences("Login", Context.MODE_PRIVATE);
 							SharedPreferences.Editor editor = sharedpreferences.edit();
@@ -602,7 +611,7 @@ public class RequestEventActivity extends AppCompatActivity {
 						@Override
 						public void onErrorResponse(VolleyError error) {
 							Log.d("API_CALL_ERR_EVENT_REQ", error.toString());
-//                            showProgress(false);
+                            showProgress(false);
 							Snackbar.make(findViewById(R.id.request_event), "Error in submission. Check your network and try again", Snackbar.LENGTH_SHORT)
 									.setAction("Dismiss", new View.OnClickListener() {
 										@Override
@@ -614,7 +623,32 @@ public class RequestEventActivity extends AppCompatActivity {
 					}
 			);
 			q.add(jor);
+			showProgress(true);
 		}
+	}
+
+	private void showProgress(final boolean show) {
+		LoginInQueue = show;
+		int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
+
+		mRequestEventView.setVisibility(show ? View.GONE : View.VISIBLE);
+		mRequestEventView.animate().setDuration(shortAnimTime).alpha(
+				show ? 0 : 1).setListener(new AnimatorListenerAdapter() {
+			@Override
+			public void onAnimationEnd(Animator animation) {
+				mRequestEventView.setVisibility(show ? View.GONE : View.VISIBLE);
+			}
+		});
+
+		mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
+		mProgressView.animate().setDuration(shortAnimTime).alpha(
+				show ? 1 : 0).setListener(new AnimatorListenerAdapter() {
+			@Override
+			public void onAnimationEnd(Animator animation) {
+				mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
+			}
+		});
+
 	}
 
 }

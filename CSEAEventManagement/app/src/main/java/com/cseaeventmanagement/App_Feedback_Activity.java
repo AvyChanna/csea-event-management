@@ -1,3 +1,5 @@
+// TODO if a feedback about the app is already give, do not allow furthur feedbacks
+
 package com.cseaeventmanagement;
 
 import android.content.Context;
@@ -27,6 +29,10 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.NoCache;
 
 import org.json.JSONObject;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 public class App_Feedback_Activity extends AppCompatActivity {
 
@@ -70,6 +76,8 @@ public class App_Feedback_Activity extends AppCompatActivity {
 		display_4 = (TextView) findViewById(R.id.display_4);
 		display_5 = (EmojiAppCompatTextView) findViewById(R.id.display_5);
 		display_6 = (TextView) findViewById(R.id.display_6);
+
+
 
 		ratingBar1.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
 			@Override

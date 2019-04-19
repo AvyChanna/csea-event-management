@@ -33,8 +33,9 @@ public class ListEventAdapter extends RecyclerView.Adapter<ListEventAdapter.View
 		holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
+				// Avneet I changed this intent to go to view event details
 				//List_Event_Data_POJO.eventName
-				Intent intent = new Intent(view.getContext(), LoginActivity.class);
+				Intent intent = new Intent(view.getContext(), EventViewActivity.class);
 				view.getContext().startActivity(intent);
 			}
 		});
