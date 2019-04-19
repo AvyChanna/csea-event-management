@@ -3,20 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/my_layout"
-    android:focusable="true"
-    android:focusableInTouchMode="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="5dp"
-    android:orientation="vertical" >
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
-        android:paddingTop="@dimen/activity_padding_all"
-
-        >
+        android:paddingTop="@dimen/activity_padding_all">
 
         <EditText
             android:id="@+id/searchbox"
@@ -36,8 +33,7 @@
 
         android:paddingTop="@dimen/activity_padding_all"
 
-        android:paddingBottom="5dp"
-        >
+        android:paddingBottom="5dp">
 
 
         <Button
@@ -93,7 +89,7 @@
 
             android:paddingTop="@dimen/activity_padding_all"
 
-            android:paddingBottom="5dp"/>
+            android:paddingBottom="5dp" />
 
     </ScrollView>
 

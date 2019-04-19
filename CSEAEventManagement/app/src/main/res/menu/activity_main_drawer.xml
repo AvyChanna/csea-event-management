@@ -16,6 +16,10 @@
         <item android:title="Events Menu">
         <menu >
             <item
+                android:id="@+id/nav_request_event"
+                android:icon="@drawable/ic_menu_gallery"
+                android:title="Request Event" />
+            <item
                 android:id="@+id/nav_upcoming_events"
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="Upcoming Events" />
@@ -53,6 +57,10 @@
                 android:id="@+id/nav_approve"
                 android:icon="@android:drawable/ic_dialog_alert"
                 android:title="Approve Events" />
+            <item
+                android:id="@+id/nav_view_feedback"
+                android:icon="@android:drawable/ic_dialog_alert"
+                android:title="View App Feedback" />
         </menu>
         </item>
     </group>

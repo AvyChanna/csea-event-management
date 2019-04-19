@@ -8,6 +8,14 @@
     android:orientation="vertical"
     tools:context=".EventViewActivity">
 
+    <ProgressBar
+        android:id="@+id/progress"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:visibility="gone" />
+
     <ScrollView
         android:id="@+id/EventViewForm"
         android:layout_width="match_parent"
@@ -20,9 +28,9 @@
 
             <TextView
                 android:id="@+id/eventName"
-                android:layout_marginTop="50dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
                 android:ellipsize="marquee"
                 android:gravity="center"
                 android:singleLine="true"
@@ -218,19 +226,18 @@
                 android:layout_height="1dp"
                 android:background="?android:attr/listDivider" />
 
-        <LinearLayout
-            android:id="@+id/display_poster_image"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingLeft="10dp"
-            android:paddingTop="25dp"
-            android:paddingRight="25dp"
-            android:paddingBottom="20dp">
+            <LinearLayout
+                android:id="@+id/display_poster_image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="10dp"
+                android:paddingTop="25dp"
+                android:paddingRight="25dp"
+                android:paddingBottom="20dp">
 
 
-
-        </LinearLayout>
+            </LinearLayout>
 
             <TextView
                 android:layout_width="match_parent"
@@ -261,7 +268,6 @@
                     android:paddingTop="25dp"
                     android:paddingRight="25dp"
                     android:paddingBottom="20dp">
-
 
 
                 </LinearLayout>

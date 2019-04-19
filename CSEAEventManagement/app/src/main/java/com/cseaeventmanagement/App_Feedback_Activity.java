@@ -173,10 +173,10 @@ public class App_Feedback_Activity extends AppCompatActivity {
 				app_feeback_comment = comments.getText().toString();
 			}
 			try {
-				obj.accumulate("App_UI_Rating", rating_ui);
-				obj.accumulate("App_UX_Rating", rating_ux);
-				obj.accumulate("App_Overall_Rating", rating_overall);
-				obj.accumulate("App_Feedback_Comment", app_feeback_comment);
+				obj.accumulate("rating_ui", rating_ui);
+				obj.accumulate("rating_ux", rating_ux);
+				obj.accumulate("rating_overall", rating_overall);
+				obj.accumulate("content", app_feeback_comment);
 			} catch (Exception e) {
 				Log.d("hello", e.toString());
 			}

@@ -150,7 +150,7 @@ public class RequestEventActivity extends AppCompatActivity {
 				if (spinner_sel_programme == null || spinner_sel_programme.getSelectedItem().toString().equals("Select Programme") ||
 						loc_spinner1 == null || loc_spinner2 == null ||
 						loc_spinner1.getSelectedItem().toString().equals("Stream") || loc_spinner2.getSelectedItem().toString().equals("Select Year of Study")) {
-					Log.d("hipeep", "a" + loc_spinner1.getSelectedItem().toString());
+					Log.d("hello", "a" + loc_spinner1.getSelectedItem().toString());
 					Context context = getApplicationContext();
 					CharSequence text = "Fill all the entries of target audience first";
 					int duration = Toast.LENGTH_SHORT;
@@ -159,7 +159,7 @@ public class RequestEventActivity extends AppCompatActivity {
 				} else {
 					event_target_audience = event_target_audience + String.valueOf(spinner_sel_programme.getSelectedItemPosition()) + "," +
 							String.valueOf(loc_spinner1.getSelectedItemPosition()) + "," + String.valueOf(loc_spinner2.getSelectedItemPosition()) + ";";
-					Log.d("hi", event_target_audience);
+					Log.d("hello", event_target_audience);
 					Context context = getApplicationContext();
 					CharSequence text = "Audience added";
 					int duration = Toast.LENGTH_SHORT;
@@ -229,7 +229,7 @@ public class RequestEventActivity extends AppCompatActivity {
 			@Override
 			public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
 				month = month + 1;
-				Log.d(TAG, "Selected Date is: " + dayOfMonth + "/" + month + "/" + year);
+				Log.d("hello", "Selected Date is: " + dayOfMonth + "/" + month + "/" + year);
 				String exact_month = "";
 				if (month == 1)
 					exact_month = "Jan";
@@ -298,7 +298,7 @@ public class RequestEventActivity extends AppCompatActivity {
 		super.onActivityResult(requestCode, resultCode, data);
 		if (resultCode == RESULT_OK && requestCode == PICK_IMAGE) {
 			imageUri = data.getData();
-			Log.d(imageUri.toString(), "abcd");
+//			Log.d(imageUri.toString(), "abcd");
 			imgView.setVisibility(View.VISIBLE);
 			imgView.setImageURI(imageUri);
 			imgView.setForeground(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_check_black_24dp, null));
@@ -308,7 +308,7 @@ public class RequestEventActivity extends AppCompatActivity {
 			try {
 				noddy = new JSONArray(data.getStringExtra("noddy"));
 			} catch (Exception e) {
-				Log.d("CUSTOM_FAQ_PARCE_CATCH", e.toString());
+				Log.d("hello", e.toString());
 			}
 		}
 	}
@@ -467,7 +467,7 @@ public class RequestEventActivity extends AppCompatActivity {
 			imageString = Base64.encodeToString(b, Base64.URL_SAFE | Base64.NO_WRAP | Base64.NO_PADDING);
 //            imgView.setVisibility(View.INVISIBLE);
 		} catch (Exception e) {
-			Log.d("IMAGE_REQ_EVENT_CATCH", e.toString());
+			Log.d("hello", e.toString());
 		}
 		View focusView = null;
 		boolean cancel = false;
@@ -555,34 +555,39 @@ public class RequestEventActivity extends AppCompatActivity {
 		else {
 			JSONObject obj = new JSONObject();
 			try {
-				obj.accumulate("username", "avneet");
-				obj.accumulate("Event_Name", event_name);
-				obj.accumulate("Event_Fee", event_fee);
-				obj.accumulate("Event_exp_audience", event_exp_audience);
-				obj.accumulate("Event_User_Venue", event_venue);
-				obj.accumulate("Event_Date", event_date);
-				obj.accumulate("Event_Time", event_time);
-				obj.accumulate("Event_Description", event_description);
-				obj.accumulate("Event_Comments_For_Admin", event_admin_comment);
-				obj.accumulate("Event_Target_Audience", event_target_audience);
-				obj.accumulate("Event_Poster", imageString);
-				obj.accumulate("Event_Committee", event_committee);
-				obj.accumulate("Event_FAQs",noddy);
-				obj.accumulate("Event_Feedback", event_feedback);
+				obj.accumulate("requestor", getSharedPreferences("Login", Context.MODE_PRIVATE).getString("username", ""));
+				obj.accumulate("name", event_name);
+				obj.accumulate("fee", event_fee);
+				obj.accumulate("capacity", event_exp_audience);
+				obj.accumulate("venue", event_venue);
+				obj.accumulate("date", event_date);
+				obj.accumulate("time", event_time);
+				obj.accumulate("summary", event_description);
+				obj.accumulate("comment_for_admin", event_admin_comment);
+				// TODO tags/target_audience hata do
+				obj.accumulate("target_audience", event_target_audience);
+				obj.accumulate("tags", event_target_audience);
+				obj.accumulate("image_string", imageString);
+				obj.accumulate("organisors", event_committee);
+//				obj.accumulate("contact_info",);
+//				obj.accumulate("curr_audience",);
+				obj.accumulate("approval","Pend");
+
+				obj.accumulate("faq",noddy);
 
 
 			} catch (JSONException e) {
-				Log.d("REQUEST_EVENT_CATCH", e.toString());
+				Log.d("hello", e.toString());
 
 			}
 			JsonObjectRequest jor = new JsonObjectRequest(
 					Request.Method.POST,
-					"http://172.16.115.46:8000/api/requestevent/",
+					getString(R.string.ip)+"api/events/",
 					obj,
 					new Response.Listener<JSONObject>() {
 						@Override
 						public void onResponse(JSONObject response) {
-							Log.d("API_CALL_EVENT_REQ", response.toString());
+							Log.d("hello", response.toString());
 							Context context = getApplicationContext();
 							CharSequence text = "Event successfully submitted";
 							int duration = Toast.LENGTH_SHORT;
@@ -610,7 +615,7 @@ public class RequestEventActivity extends AppCompatActivity {
 					new Response.ErrorListener() {
 						@Override
 						public void onErrorResponse(VolleyError error) {
-							Log.d("API_CALL_ERR_EVENT_REQ", error.toString());
+							Log.d("hello", error.toString());
                             showProgress(false);
 							Snackbar.make(findViewById(R.id.request_event), "Error in submission. Check your network and try again", Snackbar.LENGTH_SHORT)
 									.setAction("Dismiss", new View.OnClickListener() {

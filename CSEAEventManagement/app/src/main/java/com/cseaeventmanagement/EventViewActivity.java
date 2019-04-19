@@ -1,25 +1,25 @@
 package com.cseaeventmanagement;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.media.Image;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Layout;
-import android.text.TextUtils;
-import android.util.DisplayMetrics;
 import android.util.Base64;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.android.volley.Network;
@@ -32,10 +32,7 @@ import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.NoCache;
 
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -43,7 +40,7 @@ import java.util.Date;
 
 public class EventViewActivity extends AppCompatActivity {
 
-	private int event_id=2;
+	private String event_id = "";
 	private JSONObject resp;
 	private RequestQueue q;
 	private String event_name = "";
@@ -52,7 +49,7 @@ public class EventViewActivity extends AppCompatActivity {
 	private String event_time = "";
 	private String event_venue = "";
 	private int event_fee = 0;
-	private JSONArray get_faq;
+	private String get_faq;
 	private String event_target_audience = "";
 	private String event_poster = "";
 	private ImageView poster_image;
@@ -63,38 +60,57 @@ public class EventViewActivity extends AppCompatActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_event_view);
-
+		Intent i = getIntent();
+		event_id = i.getStringExtra("event_id");
 		Context context = getApplicationContext();
-		poster_image.setMaxHeight(getScreenWidth(context));
-
 		Network network = new BasicNetwork(new HurlStack());
 		q = new RequestQueue(new NoCache(), network);
 		q.start();
-
+		showProgress(true);
 
 		// if a user is not logged in, he/she must not see the give feedback button
 		SharedPreferences sharedpreferences = getSharedPreferences("Login", Context.MODE_PRIVATE);
-		String checker_login = sharedpreferences.getString("username","");
-		if(checker_login.equals(""))
-		{
+		String checker_login = sharedpreferences.getString("username", "");
+		if (checker_login.equals("")) {
 			btn_event_feedback = (Button) findViewById(R.id.btn_give_event_feedback);
 			btn_event_feedback.setVisibility(View.INVISIBLE);
 			// TODO if a user has submitted a feedback, he/she can't submit again
-		}
-		else
-		{
+		} else {
 //			isFeedbackSubmitted();
 		}
 
-		TextView marque = (TextView) findViewById(R.id.eventName);
+		TextView marque = findViewById(R.id.eventName);
 		marque.setSelected(true);
 
 		attemptGetEventData();
 
 	}
 
-	public static int getScreenWidth(Context context)
-	{
+	private void showProgress(final boolean show) {
+		int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
+		final ScrollView mLoginFormView = findViewById(R.id.EventViewForm);
+		final ProgressBar mProgressView = findViewById(R.id.progress);
+		mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
+		mLoginFormView.animate().setDuration(shortAnimTime).alpha(
+				show ? 0 : 1).setListener(new AnimatorListenerAdapter() {
+			@Override
+			public void onAnimationEnd(Animator animation) {
+				mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
+			}
+		});
+
+		mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
+		mProgressView.animate().setDuration(shortAnimTime).alpha(
+				show ? 1 : 0).setListener(new AnimatorListenerAdapter() {
+			@Override
+			public void onAnimationEnd(Animator animation) {
+				mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
+			}
+		});
+
+	}
+
+	public static int getScreenWidth(Context context) {
 		DisplayMetrics dm = new DisplayMetrics();
 		WindowManager windowManager = (WindowManager) context.getSystemService(WINDOW_SERVICE);
 		windowManager.getDefaultDisplay().getMetrics(dm);
@@ -102,28 +118,20 @@ public class EventViewActivity extends AppCompatActivity {
 		return widthInDP;
 	}
 
-	public void attemptGetEventData()
-	{
-		JSONObject obj = new JSONObject();
-		try{
-			obj.accumulate("event_id",event_id);
-		}
-		catch (JSONException e)
-		{
-			Log.d("REQUEST_EVENT_DETAILS",e.toString());
-		}
+	public void attemptGetEventData() {
+
 		JsonObjectRequest jor = new JsonObjectRequest(
-				Request.Method.POST,
-				getString(R.string.ip) + "getevent/",
-				obj,
+				Request.Method.GET,
+				getString(R.string.ip) + "api/events/" + event_id + "/",
+				null,
 				new Response.Listener<JSONObject>() {
 					@Override
 					public void onResponse(JSONObject response) {
-						Log.d("API_CALL_EVENT_DATA", response.toString());
+						Log.d("hello", response.toString());
 						try {
 							resp = new JSONObject(response.toString());
 						} catch (Exception e) {
-							Log.d("API_CALL_EVE_DATACATCH", "Malformed JSON");
+							Log.d("hello", "Malformed JSON");
 						}
 						checkResponse();
 					}
@@ -131,7 +139,7 @@ public class EventViewActivity extends AppCompatActivity {
 				new Response.ErrorListener() {
 					@Override
 					public void onErrorResponse(VolleyError error) {
-						Log.d("API_CALL_ERR_LOGIN", error.toString());
+						Log.d("hello", error.toString());
 //						showProgress(false);
 						Snackbar.make(findViewById(R.id.event_view_activity), "Error. Check your network and try again", Snackbar.LENGTH_SHORT)
 								.setAction("Dismiss", new View.OnClickListener() {
@@ -146,60 +154,61 @@ public class EventViewActivity extends AppCompatActivity {
 		q.add(jor);
 	}
 
-	public void checkResponse()
-	{
-		Boolean accepted = false;
-		String error_message = "";
-		int error_code=-1;
-		try{
-			try
-			{
-				accepted = resp.getBoolean("accepted");
-			}
-			catch(Exception e){}
-			try{error_code = resp.getInt("error_code");}
-			catch(Exception e){}
-			try{event_name = resp.getString("Event_Name");}
-			catch(Exception e){}
-			try{event_details = resp.getString("Event_Description");}
-			catch(Exception e){}
-			try{event_date = resp.getString("Event_Date");}
-			catch(Exception e){}
-			try{event_time = resp.getString("Event_Time");}
-			catch(Exception e){}
-			try{event_venue = resp.getString("Event_Venue");}
-			catch(Exception e){}
-			try{event_fee = resp.getInt("Event_Fee");}
-			catch(Exception e){}
-			try{error_message = resp.getString("error_message");}
-			catch(Exception e){}
-			try{event_target_audience = resp.getString("Event_Target_Audience");}
-			catch(Exception e){}
-			try{event_poster = resp.getString("Event_Poster");}
-			catch(Exception e){}
-			try{get_faq = resp.getJSONArray("Event_FAQs");}
-			catch(Exception e){}
+	public void checkResponse() {
+		try {
+			event_name = resp.getString("name");
+		} catch (Exception e) {
 		}
-		catch (Exception e)
-		{
-			Log.d("CHECK_EVENT_DATA_RESP", "try catch error");
+		try {
+			event_details = resp.getString("summary");
+		} catch (Exception e) {
 		}
-		if (!(accepted && error_code == 0)) {
-			Snackbar.make(findViewById(R.id.event_view_activity), error_message, Snackbar.LENGTH_SHORT)
-					.setAction("Dismiss", new View.OnClickListener() {
-						@Override
-						public void onClick(View v) {
-
-						}
-					}).show();
-
-			return;
+		try {
+			event_date = resp.getString("date");
+		} catch (Exception e) {
 		}
+		try {
+			event_time = resp.getString("time");
+		} catch (Exception e) {
+		}
+		try {
+			event_venue = resp.getString("venue");
+		} catch (Exception e) {
+		}
+		try {
+			event_fee = resp.getInt("fee");
+		} catch (Exception e) {
+		}
+		try {
+			// TODO TAGS
+//				event_target_audience = resp.getString("tags");
+		} catch (Exception e) {
+		}
+		try {
+			event_poster = resp.getString("image_string");
+		} catch (Exception e) {
+		}
+		try {
+			get_faq = resp.getString("faq");
+		} catch (Exception e) {
+		}
+//		try {
+//			event_committee = resp.getString("organisors");
+//		} catch (Exception e) {
+//		}
+//		try {
+//			contact_info = resp.getString("contact_info");
+//		} catch (Exception e) {
+//		}
+//		try {
+//			capacity = resp.getInt("capacity");
+//		} catch (Exception e) {
+//		}
+		// TODO get invitees
 		populateEvent();
 	}
 
-	public void populateEvent()
-	{
+	public void populateEvent() {
 		TextView text_name = (TextView) findViewById(R.id.eventName);
 		text_name.setText(event_name);
 		TextView text_details = (TextView) findViewById(R.id.eventDetails);
@@ -216,109 +225,89 @@ public class EventViewActivity extends AppCompatActivity {
 		// code snippet to check current system date with event start time
 		checkEventandSystemDates();
 
-
-		String [] arr = event_target_audience.split(";");
+		String[] arr = event_target_audience.split(";");
 		final TextView[] myTextViews = new TextView[arr.length]; // create an empty array;
 
-		for(int i=0;i<arr.length;i++)
-		{
+		for (int i = 0; i < arr.length; i++) {
 			final TextView rowTextView = new TextView(this);
-			String [] peep = arr[i].split(",");
+			String[] peep = arr[i].split(",");
 			// set some properties of rowTextView or something
 			int temp1 = Integer.parseInt(peep[0]);
-			String [] prog_array = getResources().getStringArray(R.array.branches_super);
+			String[] prog_array = getResources().getStringArray(R.array.branches_super);
 			String programme = prog_array[temp1];
 
 			int temp2;
 			int temp3;
+			// TODO change logic for invitees
 
-			if(temp1==1)
-			{
+			if (temp1 == 1) {
 				temp2 = Integer.parseInt(peep[1]);
-				String [] stream_array = getResources().getStringArray(R.array.branches_btech);
+				String[] stream_array = getResources().getStringArray(R.array.branches_btech);
 				String stream = stream_array[temp2];
 				temp3 = Integer.parseInt(peep[2]);
-				String [] year_array = getResources().getStringArray(R.array.year_btech);
+				String[] year_array = getResources().getStringArray(R.array.year_btech);
 				String year = year_array[temp3];
 
-				rowTextView.setText(programme+" "+"Department: "+stream+" "+"Year: "+year);
-			}
-			else if(temp1==2)
-			{
+				rowTextView.setText(programme + " " + "Department: " + stream + " " + "Year: " + year);
+			} else if (temp1 == 2) {
 				temp3 = Integer.parseInt(peep[2]);
-				String [] year_array = getResources().getStringArray(R.array.year_bdes);
+				String[] year_array = getResources().getStringArray(R.array.year_bdes);
 				String year = year_array[temp3];
 
-				rowTextView.setText(programme+" "+"Year: "+year);
-			}
-			else if(temp1==3)
-			{
+				rowTextView.setText(programme + " " + "Year: " + year);
+			} else if (temp1 == 3) {
 				temp2 = Integer.parseInt(peep[1]);
-				String [] stream_array = getResources().getStringArray(R.array.branches_msc);
+				String[] stream_array = getResources().getStringArray(R.array.branches_msc);
 				String stream = stream_array[temp2];
 				temp3 = Integer.parseInt(peep[2]);
-				String [] year_array = getResources().getStringArray(R.array.year_msc);
+				String[] year_array = getResources().getStringArray(R.array.year_msc);
 				String year = year_array[temp3];
 
-				rowTextView.setText(programme+" "+"Department: "+stream+" "+"Year: "+year);
-			}
-			else if(temp1==4)
-			{
+				rowTextView.setText(programme + " " + "Department: " + stream + " " + "Year: " + year);
+			} else if (temp1 == 4) {
 				temp3 = Integer.parseInt(peep[2]);
-				String [] year_array = getResources().getStringArray(R.array.year_ma);
+				String[] year_array = getResources().getStringArray(R.array.year_ma);
 				String year = year_array[temp3];
 
-				rowTextView.setText(programme+" "+"Year: "+year);
-			}
-			else if(temp1==5)
-			{
+				rowTextView.setText(programme + " " + "Year: " + year);
+			} else if (temp1 == 5) {
 				temp2 = Integer.parseInt(peep[1]);
-				String [] stream_array = getResources().getStringArray(R.array.branches_mtech);
+				String[] stream_array = getResources().getStringArray(R.array.branches_mtech);
 				String stream = stream_array[temp2];
 				temp3 = Integer.parseInt(peep[2]);
-				String [] year_array = getResources().getStringArray(R.array.year_mtech);
+				String[] year_array = getResources().getStringArray(R.array.year_mtech);
 				String year = year_array[temp3];
 
-				rowTextView.setText(programme+" "+"Department: "+stream+" "+"Year: "+year);
-			}
-			else if(temp1==6)
-			{
+				rowTextView.setText(programme + " " + "Department: " + stream + " " + "Year: " + year);
+			} else if (temp1 == 6) {
 				temp3 = Integer.parseInt(peep[2]);
-				String [] year_array = getResources().getStringArray(R.array.year_mdes);
+				String[] year_array = getResources().getStringArray(R.array.year_mdes);
 				String year = year_array[temp3];
 
-				rowTextView.setText(programme+" "+"Year: "+year);
-			}
-			else if(temp1==7)
-			{
+				rowTextView.setText(programme + " " + "Year: " + year);
+			} else if (temp1 == 7) {
 				temp3 = Integer.parseInt(peep[2]);
-				String [] year_array = getResources().getStringArray(R.array.year_msr);
+				String[] year_array = getResources().getStringArray(R.array.year_msr);
 				String year = year_array[temp3];
 
-				rowTextView.setText(programme+" "+"Year: "+year);
-			}
-			else if(temp1==8)
-			{
+				rowTextView.setText(programme + " " + "Year: " + year);
+			} else if (temp1 == 8) {
 				temp2 = Integer.parseInt(peep[1]);
-				String [] stream_array = getResources().getStringArray(R.array.branches_phd);
+				String[] stream_array = getResources().getStringArray(R.array.branches_phd);
 				String stream = stream_array[temp2];
-				rowTextView.setText(programme+" "+"Department: "+stream);
-			}
-			else if(temp1==9)
-			{
+				rowTextView.setText(programme + " " + "Department: " + stream);
+			} else if (temp1 == 9) {
 				temp3 = Integer.parseInt(peep[2]);
-				String [] year_array = getResources().getStringArray(R.array.year_cseDual);
+				String[] year_array = getResources().getStringArray(R.array.year_cseDual);
 				String year = year_array[temp3];
 
-				rowTextView.setText(programme+" "+"Year: "+year);
-			}
-			else if(temp1==10)
-			{
+				rowTextView.setText(programme + " " + "Year: " + year);
+			} else if (temp1 == 10) {
 				temp3 = Integer.parseInt(peep[2]);
-				String [] year_array = getResources().getStringArray(R.array.year_eeeDual);
+				String[] year_array = getResources().getStringArray(R.array.year_eeeDual);
 				String year = year_array[temp3];
 
-				rowTextView.setText(programme+" "+"Year: "+year);
+				rowTextView.setText(programme + " " + "Year: " + year);
 			}
 
 			// add the textview to the linearlayout
@@ -329,8 +318,10 @@ public class EventViewActivity extends AppCompatActivity {
 			myTextViews[i] = rowTextView;
 		}
 
-		byte[] decodedString = Base64.decode(event_poster,Base64.URL_SAFE | Base64.NO_WRAP | Base64.NO_PADDING);
-		Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString,0,decodedString.length);
+		byte[] decodedString = Base64.decode(event_poster, Base64.URL_SAFE | Base64.NO_WRAP | Base64.NO_PADDING);
+		Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+		poster_image = new ImageView(this);
+		poster_image.setMaxHeight(getScreenWidth(this));
 		poster_image.setImageBitmap(decodedByte);
 		LinearLayout image_wala = (LinearLayout) findViewById(R.id.display_poster_image);
 		image_wala.addView(poster_image);
@@ -340,106 +331,90 @@ public class EventViewActivity extends AppCompatActivity {
 		final TextView[] answers = new TextView[num_faqs];
 		final View[] view = new View[num_faqs];
 
-		JSONObject obj=null;
-
-		for(int i=0;i<num_faqs;i++)
-		{
-			LinearLayout myLinearLayout = (LinearLayout) findViewById(R.id.display_faq);
-			final TextView rowQuestion = new TextView(this);
-			final TextView rowAnswer = new TextView(this);
-			try
-			{
-				obj = get_faq.getJSONObject(i);
-			}
-			catch(Exception e){
-				Log.d("JSON_faq_OBJ_CALL",e.toString());
-			}
-
-			try{
-				rowQuestion.setText(obj.getString("question"));
-			}
-			catch (Exception e)
-			{
-
-			}
-			try{
-				rowAnswer.setText(obj.getString("answer"));
-			}
-			catch (Exception e)
-			{
-
-			}
-			myLinearLayout.addView(rowQuestion);
-			myLinearLayout.addView(rowAnswer);
-		}
+		JSONObject obj = null;
+		// TODO change logic for faq
+//		for (int i = 0; i < num_faqs; i++) {
+//			LinearLayout myLinearLayout = (LinearLayout) findViewById(R.id.display_faq);
+//			final TextView rowQuestion = new TextView(this);
+//			final TextView rowAnswer = new TextView(this);
+//			try {
+//				obj = get_faq.getJSONObject(i);
+//			} catch (Exception e) {
+//				Log.d("JSON_faq_OBJ_CALL", e.toString());
+//			}
+//
+//			try {
+//				rowQuestion.setText(obj.getString("question"));
+//			} catch (Exception e) {
+//
+//			}
+//			try {
+//				rowAnswer.setText(obj.getString("answer"));
+//			} catch (Exception e) {
+//
+//			}
+//			myLinearLayout.addView(rowQuestion);
+//			myLinearLayout.addView(rowAnswer);
+//		}
 
 		btn_event_feedback.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// TODO write a check that a logged in user can give only one feedback about the event
 				// enabling the feedback button and letting them give feedback
-				Intent intent = new Intent(getApplicationContext(),EventFeedbackActivity.class);
-				intent.putExtra("event_id",event_id);
+				Intent intent = new Intent(getApplicationContext(), EventFeedbackActivity.class);
+				intent.putExtra("event_id", event_id);
 				startActivity(intent);
 			}
 		});
 
-
-
 	}
 
-	public void checkEventandSystemDates()
-	{
+	public void checkEventandSystemDates() {
+		// TODO change response format from 24 hr to 12 hr
 		Date current_time = Calendar.getInstance().getTime();
 		String date_time = current_time.toString();
-		String [] dateAndTime = date_time.split(" ");
-		String [] event_dateAndTime = dateAndTime[3].split(":");
+		String[] dateAndTime = date_time.split(" ");
+		String[] event_dateAndTime = dateAndTime[3].split(":");
 		int curr_hr = Integer.parseInt(event_dateAndTime[0]);
 		int curr_min = Integer.parseInt(event_dateAndTime[1]);
 
 		String pattern = "dd-MM-yyyy";
-		String dateInString =new SimpleDateFormat(pattern).format(new Date());
-		String [] dateArray = dateInString.split("-");
+		String dateInString = new SimpleDateFormat(pattern).format(new Date());
+		String[] dateArray = dateInString.split("-");
 		int curr_year = Integer.parseInt(dateArray[2]);
 		int curr_month = Integer.parseInt(dateArray[1]);
 		int curr_date = Integer.parseInt(dateArray[0]);
 
-		String [] eventDateArray= event_date.split("-");
+		String[] eventDateArray = event_date.split("-");
 		int event_year = Integer.parseInt(eventDateArray[2]);
 		int event_month = Integer.parseInt(eventDateArray[1]);
 		int event_day = Integer.parseInt(eventDateArray[0]);
 
-		String [] eventTime = event_time.split(":");
+		String[] eventTime = event_time.split(":");
 		int event_hour = Integer.parseInt(eventTime[0]);
-		String [] eventMin = eventTime[1].split(" ");
+		String[] eventMin = eventTime[1].split(" ");
 		int event_min = Integer.parseInt(eventMin[0]);
 		String is_am = eventMin[1];
 
-		if(event_year>curr_year)
-		{
+		if (event_year > curr_year) {
 			btn_event_feedback.setVisibility(View.INVISIBLE);
 		}
-		if(event_year==curr_year&&event_month>curr_month)
-		{
+		if (event_year == curr_year && event_month > curr_month) {
 			btn_event_feedback.setVisibility(View.INVISIBLE);
 		}
-		if(event_year==curr_year&&event_month==curr_month&&event_day>curr_date)
-		{
+		if (event_year == curr_year && event_month == curr_month && event_day > curr_date) {
 			btn_event_feedback.setVisibility(View.INVISIBLE);
 		}
 
-		if(is_am.equals("AM"))
-		{
-			if(event_hour>curr_hr)
+		if (is_am.equals("AM")) {
+			if (event_hour > curr_hr)
 				btn_event_feedback.setVisibility(View.INVISIBLE);
-			if(event_hour==curr_hr&&event_min>curr_min)
+			if (event_hour == curr_hr && event_min > curr_min)
 				btn_event_feedback.setVisibility(View.INVISIBLE);
-		}
-		else
-		{
-			if(event_hour+12>curr_hr)
+		} else {
+			if (event_hour + 12 > curr_hr)
 				btn_event_feedback.setVisibility(View.INVISIBLE);
-			if(event_hour+12==curr_hr&&event_min>curr_min)
+			if (event_hour + 12 == curr_hr && event_min > curr_min)
 				btn_event_feedback.setVisibility(View.INVISIBLE);
 		}
 	}
