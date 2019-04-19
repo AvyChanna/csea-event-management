@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:id="@+id/council_18_19"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context=".Council_18_19Activity">
+
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.cseaeventmanagement.CircleImageView
+            android:id="@+id/profile_image"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/president"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/prof_s_v_rao"
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profile_image" />
+
+        <com.cseaeventmanagement.CircleImageView
+            android:id="@+id/profile_image2"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/faculty_mentor"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="8dp"
+            android:text="@string/benny_k_george"
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@+id/profile_image2"
+            app:layout_constraintStart_toStartOf="@+id/profile_image2"
+            app:layout_constraintTop_toBottomOf="@+id/profile_image2" />
+
+
+        <com.cseaeventmanagement.CircleImageView
+            android:id="@+id/profile_image3"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/faculty_mentor2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="8dp"
+            android:text="@string/deepanjan_kesh"
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@+id/profile_image3"
+            app:layout_constraintStart_toStartOf="@+id/profile_image3"
+            app:layout_constraintTop_toBottomOf="@+id/profile_image3" />
+        <com.cseaeventmanagement.CircleImageView
+            android:id="@+id/profile_image4"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/general_secretary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="8dp"
+            android:text="@string/rohan_aggarwal"
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@+id/profile_image4"
+            app:layout_constraintStart_toStartOf="@+id/profile_image4"
+            app:layout_constraintTop_toBottomOf="@+id/profile_image4" />
+
+        <com.cseaeventmanagement.CircleImageView
+            android:id="@+id/profile_image5"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/br"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="22dp"
+            android:text="@string/mayank_kumar_agarwal"
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@+id/profile_image5"
+            app:layout_constraintStart_toStartOf="@+id/profile_image5"
+            app:layout_constraintTop_toBottomOf="@+id/profile_image5" />
+
+        <com.cseaeventmanagement.CircleImageView
+            android:id="@+id/profile_image6"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/technical_and_events_head"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="8dp"
+            android:text="@string/roopansh_bansal"
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@+id/profile_image6"
+            app:layout_constraintStart_toStartOf="@+id/profile_image6"
+            app:layout_constraintTop_toBottomOf="@+id/profile_image6" />
+
+        <com.cseaeventmanagement.CircleImageView
+            android:id="@+id/profile_image7"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/technical_executive"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="8dp"
+            android:text="@string/apurva_n_saraogi"
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@+id/profile_image7"
+            app:layout_constraintStart_toStartOf="@+id/profile_image7"
+            app:layout_constraintTop_toBottomOf="@+id/profile_image7" />
+
+        <com.cseaeventmanagement.CircleImageView
+            android:id="@+id/profile_image8"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/technical_executive2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="8dp"
+            android:text="@string/mitansh_jain"
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@+id/profile_image8"
+            app:layout_constraintStart_toStartOf="@+id/profile_image8"
+            app:layout_constraintTop_toBottomOf="@+id/profile_image8" />
+
+        <com.cseaeventmanagement.CircleImageView
+            android:id="@+id/profile_image9"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/events_executive"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="8dp"
+            android:text="@string/jatin_goyal"
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@+id/profile_image9"
+            app:layout_constraintStart_toStartOf="@+id/profile_image9"
+            app:layout_constraintTop_toBottomOf="@+id/profile_image9" />
+
+        <com.cseaeventmanagement.CircleImageView
+            android:id="@+id/profile_image10"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/events_executive2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="8dp"
+            android:text="@string/shimona_verma"
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@+id/profile_image10"
+            app:layout_constraintStart_toStartOf="@+id/profile_image10"
+            app:layout_constraintTop_toBottomOf="@+id/profile_image10" />
+
+        <com.cseaeventmanagement.CircleImageView
+            android:id="@+id/profile_image11"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/event_manager"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/devaishi_tiwari"
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@+id/profile_image11"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profile_image11" />
+
+        <com.cseaeventmanagement.CircleImageView
+            android:id="@+id/profile_image12"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/event_manager2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/mayank_wadhwani"
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/profile_image12"
+            app:layout_constraintTop_toBottomOf="@+id/profile_image12" />
+
+        <com.cseaeventmanagement.CircleImageView
+            android:id="@+id/profile_image13"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/technical_coordinator"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="8dp"
+            android:text="@string/manan_gupta"
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@+id/profile_image13"
+            app:layout_constraintStart_toStartOf="@+id/profile_image13"
+            app:layout_constraintTop_toBottomOf="@+id/profile_image13" />
+
+        <com.cseaeventmanagement.CircleImageView
+            android:id="@+id/profile_image14"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/technical_coordinator2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView12" />
+
+        <TextView
+            android:id="@+id/textView14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="8dp"
+            android:text="@string/shivam_bansal"
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@+id/profile_image14"
+            app:layout_constraintStart_toStartOf="@+id/profile_image14"
+            app:layout_constraintTop_toBottomOf="@+id/profile_image14" />
+
+        <com.cseaeventmanagement.CircleImageView
+            android:id="@+id/profile_image15"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/alumni_relations"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="8dp"
+            android:text="@string/shivam_bansal"
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@+id/profile_image15"
+            app:layout_constraintStart_toStartOf="@+id/profile_image15"
+            app:layout_constraintTop_toBottomOf="@+id/profile_image15" />
+
+        <com.cseaeventmanagement.CircleImageView
+            android:id="@+id/profile_image16"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/br2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView14" />
+
+        <TextView
+            android:id="@+id/textView16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="8dp"
+            android:text="@string/utkarsh_jain"
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@+id/profile_image16"
+            app:layout_constraintStart_toStartOf="@+id/profile_image16"
+            app:layout_constraintTop_toBottomOf="@+id/profile_image16" />
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>
+

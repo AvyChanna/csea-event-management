@@ -2,14 +2,12 @@ package com.cseaeventmanagement;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.annotation.TargetApi;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.CursorLoader;
 import android.content.Loader;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
@@ -46,6 +44,8 @@ import static android.Manifest.permission.READ_CONTACTS;
 import static android.text.TextUtils.isEmpty;
 import static java.lang.Character.isDigit;
 import static java.lang.Character.isLetter;
+
+//import android.annotation.TargetApi;
 
 public class SignupActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
 	private static final int REQUEST_READ_CONTACTS = 0;
@@ -117,7 +117,7 @@ public class SignupActivity extends AppCompatActivity implements LoaderCallbacks
 			Snackbar.make(mEmailView, R.string.permission_rationale, Snackbar.LENGTH_INDEFINITE)
 					.setAction(android.R.string.ok, new View.OnClickListener() {
 						@Override
-						@TargetApi(Build.VERSION_CODES.M)
+//						@TargetApi(Build.VERSION_CODES.M)
 						public void onClick(View v) {
 							requestPermissions(new String[]{READ_CONTACTS}, REQUEST_READ_CONTACTS);
 						}
@@ -187,7 +187,7 @@ public class SignupActivity extends AppCompatActivity implements LoaderCallbacks
 			}
 		}
 		if (isEmpty(password)) {
-			Log.d("loda", password);
+			Log.d("hello", password);
 			mPasswordView.setError(getString(R.string.error_empty_password));
 			focusView = mPasswordView;
 			cancel = true;
@@ -251,9 +251,9 @@ public class SignupActivity extends AppCompatActivity implements LoaderCallbacks
 				obj.accumulate("roll_no", iroll);
 				obj.accumulate("phone_no", iphone);
 			} catch (Exception e) {
-				Log.d("loda", e.toString());
+				Log.d("hello", e.toString());
 			}
-			Log.d("loda", obj.toString());
+			Log.d("hello", obj.toString());
 			JsonObjectRequest jor = new JsonObjectRequest(
 					Request.Method.POST,
 					getString(R.string.ip) + "acceptor/",
@@ -262,7 +262,7 @@ public class SignupActivity extends AppCompatActivity implements LoaderCallbacks
 						@Override
 						public void onResponse(JSONObject response) {
 							int a = -1;
-							Log.d("loda", response.toString());
+							Log.d("hello", response.toString());
 							try {
 								JSONObject resp = new JSONObject(response.toString());
 								a = resp.getInt("error_code");
@@ -285,7 +285,7 @@ public class SignupActivity extends AppCompatActivity implements LoaderCallbacks
 					new Response.ErrorListener() {
 						@Override
 						public void onErrorResponse(VolleyError error) {
-							Log.d("loda", error.toString());
+							Log.d("hello", error.toString());
 							showProgress(false);
 							Snackbar.make(findViewById(R.id.Signup_form), "Error signing up. Check your network and try again", Snackbar.LENGTH_SHORT)
 									.setAction("Dismiss", new View.OnClickListener() {

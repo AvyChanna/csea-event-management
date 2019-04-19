@@ -18,8 +18,6 @@ import android.view.View;
 public class MainActivity extends AppCompatActivity
 		implements NavigationView.OnNavigationItemSelectedListener {
 
-
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -27,13 +25,12 @@ public class MainActivity extends AppCompatActivity
 		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 		setSupportActionBar(toolbar);
 
-		SharedPreferences sp = getSharedPreferences("OnBoard",MODE_PRIVATE);
-		if(sp.getBoolean("first_launch",false)==false)
-		{
-			Intent onBoard = new Intent(this,OnBoardingActivity.class);
+		SharedPreferences sp = getSharedPreferences("OnBoard", MODE_PRIVATE);
+		if (sp.getBoolean("first_launch", false) == false) {
+			Intent onBoard = new Intent(this, OnBoardingActivity.class);
 			startActivity(onBoard);
 			SharedPreferences.Editor mahEditor = sp.edit();
-			mahEditor.putBoolean("first_launch",true);
+			mahEditor.putBoolean("first_launch", true);
 			mahEditor.apply();
 		}
 
@@ -102,8 +99,8 @@ public class MainActivity extends AppCompatActivity
 			Intent intent = new Intent(this, ListEventsActivity.class);
 			startActivity(intent);
 		} else if (id == R.id.nav_past_events) {
-			Intent intent = new Intent(this, AdminActivity.class);
-			startActivity(intent);
+
+		} else if (id == R.id.nav_approve) {
 
 		} else if (id == R.id.nav_search_events) {
 			//Calling Search_Events
@@ -111,9 +108,10 @@ public class MainActivity extends AppCompatActivity
 			startActivity(intent);
 
 		} else if (id == R.id.nav_feedback_app) {
-			gotoFeedback();
+			Intent intent = new Intent(this, App_Feedback_Activity.class);
+			startActivity(intent);
 		} else if (id == R.id.nav_faq_app) {
-			Intent intent = new Intent(this,EventViewActivity.class);
+			Intent intent = new Intent(this, EventViewActivity.class);
 			startActivity(intent);
 		} else if (id == R.id.nav_logout) {
 			Intent intent = new Intent(this, RequestEventActivity.class);
@@ -127,10 +125,5 @@ public class MainActivity extends AppCompatActivity
 		DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 		drawer.closeDrawer(GravityCompat.START);
 		return true;
-	}
-
-	private void gotoFeedback() {
-		Intent intent = new Intent(this, App_Feedback_Activity.class);
-		startActivity(intent);
 	}
 }
