@@ -98,6 +98,7 @@ public class Search_EventsActivity extends AppCompatActivity {
     private Button b1;
     private JSONObject object;
     private String name="";
+    SharedPreferences pref;
 
 
     @Override
@@ -114,6 +115,9 @@ public class Search_EventsActivity extends AppCompatActivity {
         q.start();
         b1=(Button) findViewById(R.id.All_Button);
 
+        //Getting shared pref
+       pref = getApplicationContext().getSharedPreferences(getString(R.string.ip_pref), 0);
+
     }
 
     public void onAllClick(View v){
@@ -128,9 +132,10 @@ public class Search_EventsActivity extends AppCompatActivity {
             Log.d("EVENTS_SEARCH_ERROR", e.toString());
         }*/
 
+
         JsonArrayRequest jor = new JsonArrayRequest(
-                Request.Method.GET,
-                getString(R.string.api_event_search)+"events/",
+                Request.Method.GET,"http://"+
+                pref.getString("ip","127.0.0.1:8000")+"/api/events/",
                 null,
                 new Response.Listener<JSONArray>() {
                     //@Override
@@ -206,7 +211,8 @@ public class Search_EventsActivity extends AppCompatActivity {
 
             JsonArrayRequest jor = new JsonArrayRequest(
                     Request.Method.GET,
-                    getString(R.string.api_event_search)+"events/",
+                    "http://"+
+                            pref.getString("ip","127.0.0.1:8000")+"/api/events/",
                     null,
                     new Response.Listener<JSONArray>() {
                         //@Override

@@ -99,6 +99,7 @@ public class events_search_adminActivity extends AppCompatActivity {
     private Button b1;
     private JSONObject object;
     private String name="";
+    SharedPreferences pref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,6 +114,9 @@ public class events_search_adminActivity extends AppCompatActivity {
         q = new RequestQueue(new NoCache(), network);
         q.start();
         b1=(Button) findViewById(R.id.All_Button);
+
+        //Getting shared pref
+        pref = getApplicationContext().getSharedPreferences(getString(R.string.ip_pref), 0);
     }
 
     public void onAllClick(View v){
@@ -129,7 +133,8 @@ public class events_search_adminActivity extends AppCompatActivity {
 
         JsonArrayRequest jor = new JsonArrayRequest(
                 Request.Method.GET,
-                getString(R.string.api_event_search)+"events/",
+                "http://"+
+                        pref.getString("ip","127.0.0.1:8000")+"/api/events/",
                 null,
                 new Response.Listener<JSONArray>() {
                     //@Override
@@ -205,7 +210,8 @@ public class events_search_adminActivity extends AppCompatActivity {
 
             JsonArrayRequest jor = new JsonArrayRequest(
                     Request.Method.GET,
-                    getString(R.string.api_event_search)+"events/",
+                    "http://"+
+                            pref.getString("ip","127.0.0.1:8000")+"/api/events/",
                     null,
                     new Response.Listener<JSONArray>() {
                         //@Override

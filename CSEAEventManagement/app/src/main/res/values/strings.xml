@@ -1,6 +1,7 @@
 <resources>
     <string name="api_home">http://192.168.43.123:8000/api/</string>
     <string name="api_event_search">http://192.168.43.123:8000/api/</string>
+    <string name="ip_pref">ip_pref</string>
     <!-- Strings related to mainActivity -->
     <string name="app_name">CSEA Event Management</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>

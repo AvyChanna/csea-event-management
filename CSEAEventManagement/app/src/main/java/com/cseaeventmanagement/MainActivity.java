@@ -1,6 +1,7 @@
 package com.cseaeventmanagement;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -41,6 +42,16 @@ public class MainActivity extends AppCompatActivity
 
 		NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
 		navigationView.setNavigationItemSelectedListener(this);
+
+		//Calling shared preference
+		SharedPreferences pref = getApplicationContext().getSharedPreferences(getString(R.string.ip_pref), 0);
+		if(pref.contains("ip"))
+			return;
+		SharedPreferences.Editor editor = pref.edit();
+		editor.clear();
+		editor.apply();
+		editor.putString("ip","127.0.0.1:8000");
+		editor.commit();
 	}
 
 	@Override
@@ -69,7 +80,9 @@ public class MainActivity extends AppCompatActivity
 
 		//noinspection SimplifiableIfStatement
 		if (id == R.id.action_settings) {
-			return true;
+			Intent intent = new Intent(this, SettingsActivity.class);
+			startActivity(intent);
+
 		}
 
 		return super.onOptionsItemSelected(item);
