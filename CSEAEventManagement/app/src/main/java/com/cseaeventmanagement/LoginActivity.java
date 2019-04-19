@@ -172,21 +172,21 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 				obj.accumulate("username", mEmail);
 				obj.accumulate("password", password);
 			} catch (Exception e) {
-				Log.d("loda", e.toString());
+				Log.d("hello", e.toString());
 			}
 			JsonObjectRequest jor = new JsonObjectRequest(
 					Request.Method.POST,
-					getString(R.string.ip)+"applogin/",
+					getString(R.string.ip) + "app-login/",
 					obj,
 					new Response.Listener<JSONObject>() {
 						@Override
 						public void onResponse(JSONObject response) {
-							Log.d("loda", response.toString());
+							Log.d("hello", response.toString());
 							showProgress(false);
 							try {
 								resp = new JSONObject(response.toString());
 							} catch (Exception e) {
-								Log.d("loda", "Malformed JSON");
+								Log.d("hello", "Malformed JSON");
 							}
 							checkResponse();
 						}
@@ -194,7 +194,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 					new Response.ErrorListener() {
 						@Override
 						public void onErrorResponse(VolleyError error) {
-							Log.d("loda", error.toString());
+							Log.d("hello", error.toString());
 							showProgress(false);
 							Snackbar.make(findViewById(R.id.login_form), "Error signing in. Check your network and try again", Snackbar.LENGTH_SHORT)
 									.setAction("Dismiss", new View.OnClickListener() {
@@ -290,19 +290,45 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 		int year = -1;
 		String stream = "";
 		long phone = -1;
-		try{error_code = resp.getInt("error_code");} catch (Exception e){}
-		try{username = resp.getString("username");}catch(Exception e){}
-		try{name = resp.getString("full_name");}catch(Exception e){}
-		try{roll = resp.getInt("user_roll");}catch(Exception e){}
-		try{branch = resp.getString("user_branch");}catch(Exception e){}
-		try{year = resp.getInt("user_year");}catch(Exception e){}
-		try{stream = resp.getString("user_stream");}catch(Exception e){}
-		try{phone = resp.getLong("user_phone");}catch(Exception e){}
+		try {
+			error_code = resp.getInt("error_code");
+		} catch (Exception e) {
+		}
+		try {
+			username = resp.getString("username");
+		} catch (Exception e) {
+		}
+		try {
+			name = resp.getString("full_name");
+		} catch (Exception e) {
+		}
+		try {
+			roll = resp.getInt("user_roll");
+		} catch (Exception e) {
+		}
+		try {
+			branch = resp.getString("user_branch");
+		} catch (Exception e) {
+		}
+		try {
+			year = resp.getInt("user_year");
+		} catch (Exception e) {
+		}
+		try {
+			stream = resp.getString("user_stream");
+		} catch (Exception e) {
+		}
+		try {
+			phone = resp.getLong("user_phone");
+		} catch (Exception e) {
+		}
 		if (error_code != 0) {
 			Snackbar.make(findViewById(R.id.login_form), "Error signing in", Snackbar.LENGTH_SHORT)
 					.setAction("Dismiss", new View.OnClickListener() {
 						@Override
-						public void onClick(View v) {}}).show();
+						public void onClick(View v) {
+						}
+					}).show();
 			return;
 		}
 		SharedPreferences sharedpreferences = getSharedPreferences("Login", Context.MODE_PRIVATE);

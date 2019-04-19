@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_layout"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="5dp"
+    android:orientation="vertical" >
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/activity_padding_all"
+        android:paddingTop="@dimen/activity_padding_all"
+        android:paddingRight="@dimen/activity_padding_all"
+        android:paddingBottom="@dimen/activity_padding_all">
+
+        <EditText
+            android:id="@+id/searchbox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Search by name"
+            android:maxLines="1"
+            android:singleLine="true" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/ButtonConstraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:paddingLeft="@dimen/activity_padding_all"
+        android:paddingTop="@dimen/activity_padding_all"
+        android:paddingRight="@dimen/activity_padding_all"
+        android:paddingBottom="5dp"
+        >
+
+
+        <Button
+            android:id="@+id/All_Button"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="8dp"
+
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="#555"
+            android:onClick="onAllClick"
+            android:paddingStart="5dp"
+            android:text="All"
+            android:textColor="#FFF"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.8" />
+
+        <Button
+            android:id="@+id/Search_Button"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="#555"
+            android:onClick="onFilterClick"
+            android:paddingEnd="5dp"
+            android:text="Filter"
+            android:textColor="#FFF"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <ScrollView
+        android:id="@+id/parent_scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center">
+
+        <LinearLayout
+            android:id="@+id/parent_linear_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/activity_padding_all"
+            android:paddingTop="@dimen/activity_padding_all"
+            android:paddingRight="@dimen/activity_padding_all"
+            android:paddingBottom="5dp">
+
+
+
+        <Button
+            android:id="@+id/add_field_button"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="#555"
+            android:layout_gravity="center"
+            android:onClick="onAddField"
+            android:textColor="#FFF"
+            android:text="Add Field"
+            android:paddingLeft="5dp"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>

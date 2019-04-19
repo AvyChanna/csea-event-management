@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:gravity="center">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:context=".CouncilActivity">
+
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/activity_padding_all"
+            android:layout_marginTop="@dimen/activity_padding_all"
+            android:layout_marginEnd="@dimen/activity_padding_all"
+            android:layout_marginBottom="@dimen/activity_padding_all"
+            android:background="@android:color/black"
+            android:onClick="func"
+            android:paddingLeft="@dimen/activity_padding_all"
+            android:paddingTop="@dimen/activity_padding_all"
+            android:paddingRight="@dimen/activity_padding_all"
+            android:paddingBottom="@dimen/activity_padding_all"
+            android:text="@string/executive_council_2018_2019"
+            android:textColor="@android:color/background_light"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/activity_padding_all"
+            android:layout_marginTop="@dimen/activity_padding_all"
+            android:layout_marginEnd="@dimen/activity_padding_all"
+            android:layout_marginBottom="@dimen/activity_padding_all"
+            android:background="@android:color/black"
+            android:onClick="func2"
+            android:paddingLeft="@dimen/activity_padding_all"
+            android:paddingTop="@dimen/activity_padding_all"
+            android:paddingRight="@dimen/activity_padding_all"
+            android:paddingBottom="@dimen/activity_padding_all"
+            android:text="@string/executive_council_2017_2018"
+            android:textColor="@android:color/background_light"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/activity_padding_all"
+            android:layout_marginTop="@dimen/activity_padding_all"
+            android:layout_marginEnd="@dimen/activity_padding_all"
+            android:layout_marginBottom="@dimen/activity_padding_all"
+            android:background="@android:color/black"
+            android:onClick="func3"
+            android:paddingLeft="@dimen/activity_padding_all"
+            android:paddingTop="@dimen/activity_padding_all"
+            android:paddingRight="@dimen/activity_padding_all"
+            android:paddingBottom="@dimen/activity_padding_all"
+            android:text="@string/executive_council_2015_2016"
+            android:textColor="@android:color/background_light"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/activity_padding_all"
+            android:layout_marginTop="@dimen/activity_padding_all"
+            android:layout_marginEnd="@dimen/activity_padding_all"
+            android:layout_marginBottom="@dimen/activity_padding_all"
+            android:background="@android:color/black"
+            android:onClick="func4"
+            android:paddingLeft="@dimen/activity_padding_all"
+            android:paddingTop="@dimen/activity_padding_all"
+            android:paddingRight="@dimen/activity_padding_all"
+            android:paddingBottom="@dimen/activity_padding_all"
+            android:text="@string/executive_council_2014_2015"
+            android:textColor="@android:color/background_light"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/button5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/activity_padding_all"
+            android:layout_marginTop="@dimen/activity_padding_all"
+            android:layout_marginEnd="@dimen/activity_padding_all"
+            android:layout_marginBottom="@dimen/activity_padding_all"
+            android:background="@android:color/black"
+            android:onClick="func5"
+            android:paddingLeft="@dimen/activity_padding_all"
+            android:paddingTop="@dimen/activity_padding_all"
+            android:paddingRight="@dimen/activity_padding_all"
+            android:paddingBottom="@dimen/activity_padding_all"
+            android:text="@string/executive_council_2013_2014"
+            android:textColor="@android:color/background_light"
+            android:textSize="18sp" />
+    </LinearLayout>
+</ScrollView>

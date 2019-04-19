@@ -53,6 +53,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.BasicNetwork;
 import com.android.volley.toolbox.HurlStack;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.NoCache;
 
@@ -61,6 +62,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import android.app.Activity;
 import android.os.Bundle;
@@ -79,8 +82,10 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.NoCache;
 
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Search_EventsActivity extends AppCompatActivity {
@@ -88,9 +93,12 @@ public class Search_EventsActivity extends AppCompatActivity {
     private LinearLayout parentLinearLayout;
     private ImageView imv;
     private RequestQueue q = null;
-    private JSONObject resp;
+    private JSONArray resp;
     private boolean LoginInQueue = false;
     private Button b1;
+    private JSONObject object;
+    private String name="";
+    SharedPreferences pref;
 
 
     @Override
@@ -107,6 +115,9 @@ public class Search_EventsActivity extends AppCompatActivity {
         q.start();
         b1=(Button) findViewById(R.id.All_Button);
 
+        //Getting shared pref
+       pref = getApplicationContext().getSharedPreferences(getString(R.string.ip_pref), 0);
+
     }
 
     public void onAllClick(View v){
@@ -114,21 +125,23 @@ public class Search_EventsActivity extends AppCompatActivity {
         if (LoginInQueue)
             return;
         LoginInQueue=true;
-        final JSONObject obj = new JSONObject();
+        /*final JSONObject obj = new JSONObject();
         try {
             obj.accumulate("event_name", "all_events");
         } catch (Exception e) {
             Log.d("EVENTS_SEARCH_ERROR", e.toString());
-        }
+        }*/
 
-        JsonObjectRequest jor = new JsonObjectRequest(
-                Request.Method.POST,
-                getString(R.string.ip) + "ReplaceWithAPI/",
-                obj,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
+
+        JsonArrayRequest jor = new JsonArrayRequest(
+                Request.Method.GET,"http://"+
+                pref.getString("ip","127.0.0.1:8000")+"/api/events/",
+                null,
+                new Response.Listener<JSONArray>() {
+                    //@Override
+                    public void onResponse(JSONArray response) {
                         LoginInQueue=false;
+
                         //Removing progress bar
                         View nextChild = ((ViewGroup)parentLinearLayout).getChildAt(0);
                         parentLinearLayout.removeView(nextChild);
@@ -137,16 +150,16 @@ public class Search_EventsActivity extends AppCompatActivity {
 
 
                         try {
-                            resp = new JSONObject(response.toString());
+                            resp = new JSONArray(response.toString());
                         } catch (Exception e) {
                             Log.d("API_CALL_RES_SEARCH", "Malformed JSON");
                         }
 
-                        // todo checkResponse();
+                        checkresponse(resp);
                     }
                 },
                 new Response.ErrorListener() {
-                    @Override
+                    //@Override
                     public void onErrorResponse(VolleyError error) {
                         LoginInQueue=false;
                         //Removing progress bar
@@ -175,7 +188,7 @@ public class Search_EventsActivity extends AppCompatActivity {
         if (LoginInQueue)
             return;
         final EditText Et = (EditText) findViewById(R.id.searchbox);
-        String name="";
+
         name=Et.getText().toString();
 
         /*Snackbar.make(findViewById(R.id.parent_scroll_view), name, Snackbar.LENGTH_LONG)
@@ -195,43 +208,43 @@ public class Search_EventsActivity extends AppCompatActivity {
         else    //Show all the events by the current name
         {
             LoginInQueue=true;
-            final JSONObject obj = new JSONObject();
-            try {
-                obj.accumulate("event_name", name);
-            } catch (Exception e) {
-                Log.d("EVENTS_SEARCH_ERROR", e.toString());
-            }
 
-            JsonObjectRequest jor = new JsonObjectRequest(
-                    Request.Method.POST,
-                    getString(R.string.ip) + "ReplaceWithAPI/",
-                    obj,
-                    new Response.Listener<JSONObject>() {
-                        @Override
-                        public void onResponse(JSONObject response) {
+            JsonArrayRequest jor = new JsonArrayRequest(
+                    Request.Method.GET,
+                    "http://"+
+                            pref.getString("ip","127.0.0.1:8000")+"/api/events/",
+                    null,
+                    new Response.Listener<JSONArray>() {
+                        //@Override
+                        public void onResponse(JSONArray response) {
                             LoginInQueue=false;
+
                             //Removing progress bar
                             View nextChild = ((ViewGroup)parentLinearLayout).getChildAt(0);
                             parentLinearLayout.removeView(nextChild);
+
                             Log.d("API_CALL_RES_SEARCH", response.toString());
                             //showProgress(false);
-                            // todo login hua ya nahi dekhna hai
+
+
                             try {
-                                resp = new JSONObject(response.toString());
+                                resp = new JSONArray(response.toString());
                             } catch (Exception e) {
                                 Log.d("API_CALL_RES_SEARCH", "Malformed JSON");
                             }
 
-                            // todo checkResponse();
+                            checkresponse2(resp,name);
                         }
                     },
                     new Response.ErrorListener() {
-                        @Override
+                        //@Override
                         public void onErrorResponse(VolleyError error) {
                             LoginInQueue=false;
+
                             //Removing progress bar
                             View nextChild = ((ViewGroup)parentLinearLayout).getChildAt(0);
                             parentLinearLayout.removeView(nextChild);
+
                             Log.d("API_CALL_ERR_SEARCH", error.toString());
                             //showProgress(false);
                             Snackbar.make(findViewById(R.id.parent_scroll_view), "Check your network and try again", Snackbar.LENGTH_LONG)
@@ -246,6 +259,40 @@ public class Search_EventsActivity extends AppCompatActivity {
             );
             q.add(jor);
             showProgress(true);
+        }
+
+    }
+
+    private void checkresponse(JSONArray resp){
+        //Populate parent layout with the views
+
+        for(int n = 0; n < resp.length(); n++){
+            try {
+                object = resp.getJSONObject(n);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            add_event(object);}
+
+    }
+
+    private void checkresponse2(JSONArray resp,String name){
+        //Populate parent layout with the views having name=="name"
+
+        for(int n = 0; n < resp.length(); n++){
+            try {
+                object = resp.getJSONObject(n);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            String data="";
+            try {
+                data=object.getString("name");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            if(data.toLowerCase().contains(name.toLowerCase()))
+                add_event(object);
         }
 
     }
@@ -269,14 +316,189 @@ public class Search_EventsActivity extends AppCompatActivity {
     }
 
 
-    public void onAddField(View v) {
+    public void add_event(JSONObject object) {
+        //Filtering based on Approval Status
+        String data="";
+        try {
+            data=object.getString("approval");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        if(data.compareTo("Appr")!=0) {
+            return;
+        }
+
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         final View rowView = inflater.inflate(R.layout.field, null);
         imv = (ImageView) ((ViewGroup)rowView).getChildAt(0);
-        //Add bitmap image to imv
+        TextView event_name=(TextView)  ((ViewGroup)rowView).getChildAt(1);
+        TextView event_time=(TextView)  ((ViewGroup)rowView).getChildAt(2);
+        TextView event_date=(TextView)  ((ViewGroup)rowView).getChildAt(3);
+        TextView target_audience=(TextView)  ((ViewGroup)rowView).getChildAt(4);
+        TextView event_fee=(TextView)  ((ViewGroup)rowView).getChildAt(5);
+        TextView event_requester=(TextView)  ((ViewGroup)rowView).getChildAt(6);
+        TextView event_tags=(TextView)  ((ViewGroup)rowView).getChildAt(7);
+        TextView event_faqs=(TextView)  ((ViewGroup)rowView).getChildAt(8);
+        TextView event_venue=(TextView)  ((ViewGroup)rowView).getChildAt(9);
+        TextView contact_info=(TextView)  ((ViewGroup)rowView).getChildAt(10);
+        TextView status=(TextView)  ((ViewGroup)rowView).getChildAt(11);
+        // todo Add bitmap image to imv
         imv.setImageResource(R.drawable.avengers);
-        // Add the new row before the add field button.
-        parentLinearLayout.addView(rowView, parentLinearLayout.getChildCount() - 1);
+        //Adding the text to all textviews
+
+
+        //event_name
+        try {
+            data=object.getString("name");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        event_name.setText("Name: "+data);
+
+        //event_time
+        try {
+            data=object.getString("time");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        event_time.setText("Time: "+data);
+
+        //event_date
+        try {
+            data=object.getString("date");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date convertedCurrentDate=null;
+        try {
+            convertedCurrentDate = sdf.parse(data);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        SimpleDateFormat sdf2 = new SimpleDateFormat("dd-MM-yyyy");
+        event_date.setText("Date: "+sdf2.format(convertedCurrentDate ));
+
+        //Change color
+        Date c = Calendar.getInstance().getTime();
+        //System.out.println("Current time => " + c);
+        String formattedDate = sdf.format(c);
+
+        if(convertedCurrentDate.compareTo(c)<=0)
+        {
+            event_date.setTextColor(Color.parseColor("#ff0000"));
+        }
+        else
+        {
+            event_date.setTextColor(Color.parseColor("#008000"));
+        }
+
+        //target_audience
+        try {
+            data=object.getString("target_audience");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        target_audience.setText("Target Audience: "+data);
+
+        //event_fee
+        try {
+            data=object.getString("fee");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        event_fee.setText("Fees: "+data);
+
+        //event_requester
+        try {
+            data=object.getString("organisors");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        event_requester.setText("Organizers: "+data);
+
+        //event_tags
+        try {
+            data=object.getString("tags");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        event_tags.setText("Tags: "+data);
+
+        //event_faqs
+        try {
+            data=object.getString("faq");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        event_faqs.setText("FAQS: "+data);
+
+        //event_venue
+        try {
+            data=object.getString("venue");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        event_venue.setText("Venue: "+data);
+
+        //contact info
+        try {
+            data=object.getString("contact_info");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        contact_info.setText("Contact: "+data);
+
+        //Status
+        String capacity="";
+        String audience="";
+        try {
+            capacity=object.getString("capacity");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        try {
+            audience=object.getString("curr_audience");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        //Try to change the strings to ints if not NULL
+        int cap=-1,aud=-1;
+        if(capacity!=null&&capacity!="")
+        {
+            cap=Integer.parseInt(capacity);
+        }
+        if(capacity!=null&&capacity!="")
+        {
+            aud=Integer.parseInt(audience);
+        }
+
+        if(cap!=-1&&aud!=-1)
+        {
+            if(aud<cap)
+            {
+                status.setText("Status: Seats available");
+                status.setTextColor(Color.parseColor("#008000"));
+            }
+            else
+            {
+                status.setText("Status: Event Full");
+                status.setTextColor(Color.parseColor("#FF0000"));
+            }
+        }
+        else {
+            status.setText("Status: Undecided");
+            status.setTextColor(Color.parseColor("#000000"));
+        }
+
+
+
+        // Add the new row
+
+        parentLinearLayout.addView(rowView);
+
     }
 
 

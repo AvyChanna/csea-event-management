@@ -32,10 +32,11 @@ public class ListEventsActivity extends AppCompatActivity {
 	private ProgressBar p;
 	private RequestQueue q;
 	private RecyclerView recyclerView;
-	private JSONObject resp;
+	private JSONArray resp;
 	private JSONObject temp;
 	private List<List_Event_Data_POJO> List_Events;
 	private ListEventAdapter adapter;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -87,17 +88,17 @@ public class ListEventsActivity extends AppCompatActivity {
 	private void getEvents() {
 		JsonObjectRequest jor = new JsonObjectRequest(
 				Request.Method.POST,
-				"http://172.16.115.44:8000/geteventsall/",
+				"http://172.16.115.44:8000/api/events/",
 				null,
 				new Response.Listener<JSONObject>() {
 					@Override
 					public void onResponse(JSONObject response) {
-						Log.d("loda", response.toString());
+						Log.d("hello", response.toString());
 						showProgress(false);
 						try {
-							resp = new JSONObject(response.toString());
+							resp = new JSONArray(response.toString());
 						} catch (Exception e) {
-							Log.d("loda", "Malformed JSON");
+							Log.d("hello", "Malformed JSON");
 						}
 						checkResponse();
 					}
@@ -105,7 +106,7 @@ public class ListEventsActivity extends AppCompatActivity {
 				new Response.ErrorListener() {
 					@Override
 					public void onErrorResponse(VolleyError error) {
-						Log.d("loda", error.toString());
+						Log.d("hello", error.toString());
 						showProgress(false);
 						Snackbar.make(recyclerView, "Error getting event data. Check your network and try again", Snackbar.LENGTH_SHORT)
 								.setAction("Dismiss", new View.OnClickListener() {
@@ -123,55 +124,40 @@ public class ListEventsActivity extends AppCompatActivity {
 	}
 
 	private void checkResponse() {
-		JSONArray events = null;
-		int code = -1;
-		String message = "";
+		if (resp.length() == 0)
+			return;
+		JSONObject[] events = new JSONObject[resp.length()];
+
 		try {
-			events = resp.getJSONArray("events");
+			for (int i = 0; i < resp.length(); i++)
+				events[i] = resp.getJSONObject(i);
 		} catch (Exception e) {
 		}
-		try {
-			code = resp.getInt("error_code");
-		} catch (Exception e) {
-		}
-		try {
-			message = resp.getString("error_message");
-		} catch (Exception e) {
-		}
-		Log.d("haha", Boolean.toString(events!=null));
-		if (code == 0 && events != null) {
-			Log.d("loda","haha4");
-			for (int i = 0; i < events.length(); i++) {
-				try {
-					temp = events.getJSONObject(i);
-				} catch (Exception e) {
-					Log.d("loda", e.toString());
-					Log.d("loda","haha5");
-				}
-				String q = "";
-				String w = "";
-				String s = "";
-				String a = "";
-				try {
-					q = temp.getString("event_name");
-					w = temp.getString("event_date");
-					s = temp.getString("event_time");
-					a = temp.getString("event_desc");
-				} catch (Exception e) {
-					Log.d("loda", e.toString());
-					Log.d("loda","haha6");
-				}
-				Log.d("loda","haha7");
-				List_Events.add(new List_Event_Data_POJO(q, w + "," + s, a, ""));
+		Log.d("hello", "haha4");
+		for (int i = 0; i < events.length; i++) {
+			String q="";
+			String w="";
+			String s= "";
+			String a = "";
+			try{
+				q = events[i].getString("name");
+				w = events[i].getString("date");
+				String[] wt = w.split("-");
+				w = "Date="+wt[2]+"/"+wt[1]+"/"+wt[0] + ", Time="+events[i].getString("time");
+				a = events[i].getString("summary");
+				s = events[i].getString("event_id");
 			}
-			List_Event_Data_POJO[] myArray = new List_Event_Data_POJO[List_Events.size()];
-			for (int j = 0; j < List_Events.size(); j++) {
-				myArray[j] = List_Events.get(j);
-			}
-			Log.d("loda","haha8");
-			adapter.setData(myArray);
-			adapter.notifyDataSetChanged();
+			catch(Exception e){}
+			List_Events.add(new List_Event_Data_POJO(q, w, a, s));
 		}
+		List_Event_Data_POJO[] myArray = new List_Event_Data_POJO[List_Events.size()];
+		for (int j = 0; j < List_Events.size(); j++) {
+			myArray[j] = List_Events.get(j);
+		}
+		Log.d("hello", "haha8");
+		adapter.setData(myArray);
+		adapter.notifyDataSetChanged();
+
 		showProgress(false);
 
 	}

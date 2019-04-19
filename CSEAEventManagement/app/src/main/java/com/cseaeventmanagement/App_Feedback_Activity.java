@@ -1,5 +1,3 @@
-// TODO if a feedback about the app is already give, do not allow furthur feedbacks
-
 package com.cseaeventmanagement;
 
 import android.content.Context;
@@ -29,10 +27,6 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.NoCache;
 
 import org.json.JSONObject;
-
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 
 public class App_Feedback_Activity extends AppCompatActivity {
 
@@ -184,7 +178,7 @@ public class App_Feedback_Activity extends AppCompatActivity {
 				obj.accumulate("App_Overall_Rating", rating_overall);
 				obj.accumulate("App_Feedback_Comment", app_feeback_comment);
 			} catch (Exception e) {
-				Log.d("loda", e.toString());
+				Log.d("hello", e.toString());
 			}
 			JsonObjectRequest jor = new JsonObjectRequest(
 					Request.Method.POST,
@@ -193,7 +187,7 @@ public class App_Feedback_Activity extends AppCompatActivity {
 					new Response.Listener<JSONObject>() {
 						@Override
 						public void onResponse(JSONObject response) {
-							Log.d("loda", response.toString());
+							Log.d("hello", response.toString());
 							Snackbar.make(findViewById(R.id.app_feedback), "Feedback successfully submitted", Snackbar.LENGTH_SHORT)
 									.setAction("Dismiss", new View.OnClickListener() {
 										@Override
@@ -207,7 +201,7 @@ public class App_Feedback_Activity extends AppCompatActivity {
 					new Response.ErrorListener() {
 						@Override
 						public void onErrorResponse(VolleyError error) {
-							Log.d("loda", error.toString());
+							Log.d("hello", error.toString());
 							Snackbar.make(findViewById(R.id.app_feedback), "Error in submission. Check your network and try again", Snackbar.LENGTH_SHORT)
 									.setAction("Dismiss", new View.OnClickListener() {
 										@Override

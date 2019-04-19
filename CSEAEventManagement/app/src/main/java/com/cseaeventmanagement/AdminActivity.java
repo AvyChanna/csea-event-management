@@ -70,7 +70,8 @@ public class AdminActivity extends AppCompatActivity
 
 		//noinspection SimplifiableIfStatement
 		if (id == R.id.action_settings) {
-			return true;
+			Intent intent = new Intent(this, SettingsActivity.class);
+			startActivity(intent);
 		}
 
 		return super.onOptionsItemSelected(item);
@@ -83,7 +84,9 @@ public class AdminActivity extends AppCompatActivity
 		int id = item.getItemId();
 
 		if (id == R.id.nav_camera) {
-			// Handle the camera action
+			//Calling Admin_Approve Activity
+			Intent intent = new Intent(this, Admin_ApproveActivity.class);
+			startActivity(intent);
 		} else if (id == R.id.nav_gallery) {
 
 		} else if (id == R.id.nav_slideshow) {
@@ -93,7 +96,7 @@ public class AdminActivity extends AppCompatActivity
 
 		} else if (id == R.id.nav_manage) {
 			//Calling Search_Events
-			Intent intent = new Intent(this, Search_EventsActivity.class);
+			Intent intent = new Intent(this, events_search_adminActivity.class);
 			startActivity(intent);
 
 		} else if (id == R.id.nav_admin_logout) {

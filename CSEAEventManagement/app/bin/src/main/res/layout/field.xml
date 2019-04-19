@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/iv"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:gravity="center"
+
+        android:paddingTop="@dimen/activity_padding_all"
+
+        android:paddingBottom="@dimen/activity_padding_all"
+        android:scaleType="fitCenter"
+
+        />
+
+    <!--Event Name-->
+    <TextView
+        android:id="@+id/event_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/activity_padding_all"
+        android:paddingTop="@dimen/activity_padding_all"
+        android:paddingRight="@dimen/activity_padding_all"
+        android:paddingBottom="@dimen/activity_padding_all"
+        android:baselineAligned="false"
+        android:gravity="center"
+        android:textSize="24sp" />
+
+    <!--Event Time-->
+    <TextView
+        android:id="@+id/event_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/activity_padding_all"
+        android:paddingTop="@dimen/activity_padding_all"
+        android:paddingRight="@dimen/activity_padding_all"
+        android:paddingBottom="@dimen/activity_padding_all"
+        android:baselineAligned="false"
+        android:gravity="center"
+        android:textSize="24sp" />
+
+    <!--Event Target Audience-->
+    <TextView
+        android:id="@+id/target_audience"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/activity_padding_all"
+        android:paddingTop="@dimen/activity_padding_all"
+        android:paddingRight="@dimen/activity_padding_all"
+        android:paddingBottom="@dimen/activity_padding_all"
+        android:baselineAligned="false"
+        android:gravity="center"
+        android:textSize="24sp" />
+
+    <!--Event Fee-->
+    <TextView
+        android:id="@+id/event_fee"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/activity_padding_all"
+        android:paddingTop="@dimen/activity_padding_all"
+        android:paddingRight="@dimen/activity_padding_all"
+        android:paddingBottom="@dimen/activity_padding_all"
+        android:baselineAligned="false"
+        android:gravity="center"
+        android:textSize="24sp" />
+
+    <!--Event Requester-->
+    <TextView
+        android:id="@+id/event_requester"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/activity_padding_all"
+        android:paddingTop="@dimen/activity_padding_all"
+        android:paddingRight="@dimen/activity_padding_all"
+        android:paddingBottom="@dimen/activity_padding_all"
+        android:baselineAligned="false"
+        android:gravity="center"
+        android:textSize="24sp" />
+
+    <!--Event Tags-->
+    <TextView
+        android:id="@+id/event_tags"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/activity_padding_all"
+        android:paddingTop="@dimen/activity_padding_all"
+        android:paddingRight="@dimen/activity_padding_all"
+        android:paddingBottom="@dimen/activity_padding_all"
+        android:baselineAligned="false"
+        android:gravity="center"
+        android:textSize="24sp" />
+
+    <!--Event FAQS-->
+    <TextView
+        android:id="@+id/event_faqs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/activity_padding_all"
+        android:paddingTop="@dimen/activity_padding_all"
+        android:paddingRight="@dimen/activity_padding_all"
+        android:paddingBottom="@dimen/activity_padding_all"
+        android:baselineAligned="false"
+        android:gravity="center"
+        android:textSize="24sp" />
+
+
+</LinearLayout>

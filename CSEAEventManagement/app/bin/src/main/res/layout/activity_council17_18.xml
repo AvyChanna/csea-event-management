@@ -1,0 +1,491 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/council_18_19"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Council17_18Activity">
+
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.cseaeventmanagement.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/profile_image"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/president"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="Prof. S. V. Rao\n
+President, CSEA\n
+HOD, Dept. Of CSE\n
+webmail id:\n  svrao@iitg.ernet.in"
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profile_image" />
+
+        <com.cseaeventmanagement.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/profile_image2"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/faculty_mentor"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="8dp"
+            android:text="Benny K. George\n
+Faculty Mentor, CSEA\n
+Assistant Professor\n
+Webmail id:\n
+ben@iitg.ernet.in
+ "
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/profile_image2"
+            app:layout_constraintStart_toStartOf="@+id/profile_image2"
+            app:layout_constraintTop_toBottomOf="@+id/profile_image2" />
+
+
+        <com.cseaeventmanagement.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/profile_image3"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/faculty_mentor2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="8dp"
+            android:text="Deepanjan Kesh\n
+Faculty Mentor, CSEA\n
+Assistant Professor\n
+webmail id:\n
+deepkesh@iitg.ernet.in
+ "
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/profile_image3"
+            app:layout_constraintStart_toStartOf="@+id/profile_image3"
+            app:layout_constraintTop_toBottomOf="@+id/profile_image3" />
+
+        <com.cseaeventmanagement.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/profile_image4"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/gen_sec_17_18"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="8dp"
+            android:text="Rajan Garg\n
+General Secretary\n
+Final Year Undergraduate\n
+Webmail Id:\n
+rajan.garg
+ "
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/profile_image4"
+            app:layout_constraintStart_toStartOf="@+id/profile_image4"
+            app:layout_constraintTop_toBottomOf="@+id/profile_image4" />
+
+        <com.cseaeventmanagement.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/profile_image5"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/br_17_18_4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="22dp"
+            android:text="Raj Shekhar\n
+ Branch Representative\n
+Final Year Undergraduate\n
+Webmail Id:\n
+raj.shekhar
+ "
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/profile_image5"
+            app:layout_constraintStart_toStartOf="@+id/profile_image5"
+            app:layout_constraintTop_toBottomOf="@+id/profile_image5" />
+
+        <com.cseaeventmanagement.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/profile_image6"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/t_e_h_17_18"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="8dp"
+            android:text="Sambhav Kothari\n
+Technical and Events Head\n
+Final Year Undergraduate\n
+Webmail Id:\n
+sambhav.kothari
+ "
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/profile_image6"
+            app:layout_constraintStart_toStartOf="@+id/profile_image6"
+            app:layout_constraintTop_toBottomOf="@+id/profile_image6" />
+
+        <com.cseaeventmanagement.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/profile_image7"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/techinical_exec_17_18"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="8dp"
+            android:text="Rohan Aggarwal\n
+Technical Executive\n
+3rd Year Undergraduate\n
+Webmail Id:\n
+rohan.aggarwal
+ "
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/profile_image7"
+            app:layout_constraintStart_toStartOf="@+id/profile_image7"
+            app:layout_constraintTop_toBottomOf="@+id/profile_image7" />
+
+        <com.cseaeventmanagement.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/profile_image8"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/techinical_exec_17_18_2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="8dp"
+            android:text="Roopansh Bansal\n
+Technical Executive\n
+3rd Year Undergraduate\n
+Webmail Id:\n
+roopansh
+ "
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/profile_image8"
+            app:layout_constraintStart_toStartOf="@+id/profile_image8"
+            app:layout_constraintTop_toBottomOf="@+id/profile_image8" />
+
+        <com.cseaeventmanagement.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/profile_image9"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/techincal_exec_17_18_3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="8dp"
+            android:text="Mitansh Jain\n
+Technical Executive\n
+2nd Year Undergraduate\n
+Webmail Id:\n
+mitansh1398
+ "
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/profile_image9"
+            app:layout_constraintStart_toStartOf="@+id/profile_image9"
+            app:layout_constraintTop_toBottomOf="@+id/profile_image9" />
+
+        <com.cseaeventmanagement.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/profile_image10"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/techincal_exec_17_18_4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="8dp"
+            android:text=" Apurva N. Saraogi\n
+Technical Executive\n
+2nd Year Undergraduate\n
+Webmail Id:\n
+apurva9
+ "
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/profile_image10"
+            app:layout_constraintStart_toStartOf="@+id/profile_image10"
+            app:layout_constraintTop_toBottomOf="@+id/profile_image10" />
+
+        <com.cseaeventmanagement.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/profile_image11"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/events_executive_17_18"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="Ankit Vyas\n
+Events Executive\n
+3rd Year Undergraduate\n
+Webmail Id:\n
+ankit.vyas
+ "
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/profile_image11"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profile_image11" />
+
+        <com.cseaeventmanagement.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/profile_image12"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/events_executive2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="Shimona Verma\n
+Events Executive\n
+2nd Year Undergraduate\n
+Webmail Id:\n
+shimona.verma
+ "
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/profile_image12"
+            app:layout_constraintTop_toBottomOf="@+id/profile_image12" />
+
+        <com.cseaeventmanagement.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/profile_image13"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/alumni_17_18_1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="8dp"
+            android:text="Shradha Pruthi\n
+Alumni Relations Co-Coordinator\n
+3rd Year Undergraduate\n
+Webmail Id:\n
+shradha
+ "
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/profile_image13"
+            app:layout_constraintStart_toStartOf="@+id/profile_image13"
+            app:layout_constraintTop_toBottomOf="@+id/profile_image13" />
+
+        <com.cseaeventmanagement.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/profile_image14"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/alumni_17_18_2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView12" />
+
+        <TextView
+            android:id="@+id/textView14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="8dp"
+            android:text="Harshit Agrawal\n
+Alumni Relations Co-Coordinator\n
+2nd Year Undergraduate\n
+Webmail Id:\n
+harshit2016
+ "
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/profile_image14"
+            app:layout_constraintStart_toStartOf="@+id/profile_image14"
+            app:layout_constraintTop_toBottomOf="@+id/profile_image14" />
+
+        <com.cseaeventmanagement.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/profile_image15"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/br_17_18_2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="8dp"
+            android:text="Harshit Sharma\n
+Branch Representative\n
+2nd Year Undergraduate\n
+Webmail Id:\n
+harshitsharma_26
+ "
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/profile_image15"
+            app:layout_constraintStart_toStartOf="@+id/profile_image15"
+            app:layout_constraintTop_toBottomOf="@+id/profile_image15" />
+
+        <com.cseaeventmanagement.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/profile_image16"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/br_17_18_1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView14" />
+
+        <TextView
+            android:id="@+id/textView16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="Jatin Goyal\n
+1st Year Branch Representative\n
+2nd Year Undergraduate\n
+Webmail Id:\n
+jatingoyal
+ "
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/profile_image16"
+            app:layout_constraintStart_toStartOf="@+id/profile_image16"
+            app:layout_constraintTop_toBottomOf="@+id/profile_image16" />
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>
+

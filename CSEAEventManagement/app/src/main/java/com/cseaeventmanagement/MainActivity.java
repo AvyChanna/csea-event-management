@@ -22,8 +22,6 @@ import android.view.View;
 public class MainActivity extends AppCompatActivity
 		implements NavigationView.OnNavigationItemSelectedListener {
 
-
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -31,13 +29,12 @@ public class MainActivity extends AppCompatActivity
 		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 		setSupportActionBar(toolbar);
 
-		SharedPreferences sp = getSharedPreferences("OnBoard",MODE_PRIVATE);
-		if(sp.getBoolean("first_launch",false)==false)
-		{
-			Intent onBoard = new Intent(this,OnBoardingActivity.class);
+		SharedPreferences sp = getSharedPreferences("OnBoard", MODE_PRIVATE);
+		if (sp.getBoolean("first_launch", false) == false) {
+			Intent onBoard = new Intent(this, OnBoardingActivity.class);
 			startActivity(onBoard);
 			SharedPreferences.Editor mahEditor = sp.edit();
-			mahEditor.putBoolean("first_launch",true);
+			mahEditor.putBoolean("first_launch", true);
 			mahEditor.apply();
 		}
 
@@ -58,6 +55,16 @@ public class MainActivity extends AppCompatActivity
 
 		NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
 		navigationView.setNavigationItemSelectedListener(this);
+
+		//Calling shared preference
+		SharedPreferences pref = getApplicationContext().getSharedPreferences(getString(R.string.ip_pref), 0);
+		if(pref.contains("ip"))
+			return;
+		SharedPreferences.Editor editor = pref.edit();
+		editor.clear();
+		editor.apply();
+		editor.putString("ip","127.0.0.1:8000");
+		editor.commit();
 	}
 
 	@Override
@@ -86,7 +93,9 @@ public class MainActivity extends AppCompatActivity
 
 		//noinspection SimplifiableIfStatement
 		if (id == R.id.action_settings) {
-			return true;
+			Intent intent = new Intent(this, SettingsActivity.class);
+			startActivity(intent);
+
 		}
 
 		return super.onOptionsItemSelected(item);
@@ -106,8 +115,8 @@ public class MainActivity extends AppCompatActivity
 			Intent intent = new Intent(this, ListEventsActivity.class);
 			startActivity(intent);
 		} else if (id == R.id.nav_past_events) {
-			Intent intent = new Intent(this, AdminActivity.class);
-			startActivity(intent);
+
+		} else if (id == R.id.nav_approve) {
 
 		} else if (id == R.id.nav_search_events) {
 			//Calling Search_Events
@@ -115,9 +124,10 @@ public class MainActivity extends AppCompatActivity
 			startActivity(intent);
 
 		} else if (id == R.id.nav_feedback_app) {
-			gotoFeedback();
+			Intent intent = new Intent(this, App_Feedback_Activity.class);
+			startActivity(intent);
 		} else if (id == R.id.nav_faq_app) {
-			Intent intent = new Intent(this,EventViewActivity.class);
+			Intent intent = new Intent(this, EventViewActivity.class);
 			startActivity(intent);
 		} else if (id == R.id.nav_logout) {
 			Intent intent = new Intent(this, RequestEventActivity.class);
