@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:dist="http://schemas.android.com/apk/distribution"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.cseaeventmanagement">
 
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
@@ -20,8 +21,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".EventFeedbackActivity"></activity>
-        <activity android:name=".Admin_FeedbackActivity"></activity>
+        <activity android:name=".OnBoardingActivity" />
+        <activity android:name=".EventFeedbackActivity" />
+        <activity android:name=".Admin_FeedbackActivity" />
         <activity android:name=".Search_EventsActivity" />
         <activity android:name=".CustomFAQ" />
         <activity
