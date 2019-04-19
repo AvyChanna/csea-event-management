@@ -17,24 +17,21 @@
         android:id="@+id/slide_heading"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="281dp"
-        android:layout_marginEnd="0dp"
-        android:gravity="center"
+        android:layout_below="@id/slide_imageView"
+        android:padding="15dp"
         android:text="TextView"
+        android:textAlignment="center"
+        android:textColor="@color/colorAccent"
         android:textSize="30dp" />
 
     <TextView
         android:id="@+id/slide_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="0dp"
-        android:layout_marginBottom="191dp"
-        android:gravity="center"
-        android:padding="35dp"
+        android:layout_below="@+id/slide_heading"
+        android:textAlignment="center"
+        android:scrollbars="vertical"
+        android:padding="30dp"
         android:text="TextView"
         android:textColor="@color/colorTransparentWhite" />
 

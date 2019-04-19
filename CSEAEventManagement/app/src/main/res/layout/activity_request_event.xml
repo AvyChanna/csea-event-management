@@ -134,7 +134,7 @@
                 android:elevation="10dp"
                 android:gravity="center_horizontal"
                 android:text="Fill target Audience"
-                android:textColor="@android:color/holo_orange_dark"
+                android:textColor="@color/colorAccent"
                 android:textSize="17dp" />
 
             <View
@@ -190,7 +190,7 @@
                 android:elevation="10dp"
                 android:gravity="center_horizontal"
                 android:text="Add Event Committee Members"
-                android:textColor="@android:color/holo_orange_dark"
+                android:textColor="@color/colorAccent"
                 android:textSize="17dp" />
 
             <View

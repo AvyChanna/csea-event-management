@@ -27,18 +27,15 @@ public class SlideAdapter extends PagerAdapter {
     };
 
     public String[] slide_headings = {
-            "EAT",
-            "SLEEP",
-            "CODE",
+            "CREATE EVENTS",
+            "GIVE FEEDBACK",
+            "ADMIN",
     };
 
     public String[] slide_descr = {
-            "You’ve seen the craze for learning code. But what exactly is coding? Coding is what makes it possible for us to create computer software, apps and websites. Your browser, your OS," +
-                    " the apps on your phone, Facebook, and this website – they’re all made with code.",
-            "Many coding tutorials use that command as their very first example, because it’s one of the simplest examples of code you can have " +
-                    "– it ‘prints’ (displays) the text ‘Hello, world!’ onto the screen.",
-            "If you don’t know the first thing about coding, you’ve come to the right place. We’ve put together a beginner’s tutorial which will give you all" +
-                    " the background information you need on coding, before you start learning it for real.",
+            "Tired of taking permissions for hosting a CSEA Event?\n We made hosting an event easy with one simple app",
+            "Features feedback procedure for each past event, let the organizers know their thoughts!",
+            "Approve events, change the final locations!",
     };
 
     @Override
