@@ -175,6 +175,20 @@
         android:paddingBottom="5dp"
         android:textSize="18sp" />
 
+    <!--Comment for Admin-->
+    <TextView
+        android:id="@+id/comment_for_admin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorButtonNormal"
+        android:baselineAligned="false"
+        android:gravity="center"
+        android:paddingLeft="@dimen/activity_padding_all"
+        android:paddingTop="5dp"
+        android:paddingRight="@dimen/activity_padding_all"
+        android:paddingBottom="5dp"
+        android:textSize="18sp" />
+
     <!--Approval Status-->
     <TextView
         android:id="@+id/approval"
@@ -193,7 +207,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-
         <Spinner
             android:id="@+id/spinner"
             android:layout_width="wrap_content"
@@ -202,13 +215,14 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:layout_weight="1"
-            android:background="@android:color/background_light"
+            android:background="@color/colorPrimaryDark"
             android:dropDownWidth="wrap_content"
             android:entries="@array/admin_approve"
             android:spinnerMode="dialog"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
 
         <TextView
             android:id="@+id/textView17"
@@ -221,6 +235,20 @@
             android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/spinner"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <ProgressBar
+            android:id="@+id/progressBar2"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/button6"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
@@ -239,6 +267,30 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+
     </android.support.constraint.ConstraintLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <Spinner
+            android:id="@+id/spinner2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_weight="1"
+            android:background="@color/colorPrimaryDark"
+            android:dropDownWidth="wrap_content"
+            android:entries="@array/venue_array2"
+            android:spinnerMode="dialog" />
+
+
+    </LinearLayout>
+
 
 </LinearLayout>

@@ -43,6 +43,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -54,6 +55,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.BasicNetwork;
+import com.android.volley.toolbox.HttpResponse;
 import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
@@ -64,6 +66,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -82,13 +85,16 @@ import com.android.volley.toolbox.BasicNetwork;
 import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.NoCache;
+import com.android.volley.toolbox.StringRequest;
 
 import org.json.JSONObject;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Admin_ApproveActivity extends AppCompatActivity {
 
@@ -98,10 +104,15 @@ public class Admin_ApproveActivity extends AppCompatActivity {
     private JSONArray resp;
     private JSONObject resp2;
     private boolean LoginInQueue = false;
-    private Button b1;
+    private Button b1=null;
     private JSONObject object;
     private String name="";
     SharedPreferences pref;
+    private String id;
+    private String newval="";
+    private String venue_new="";
+    public ProgressBar pbar;
+    private int flag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,6 +137,7 @@ public class Admin_ApproveActivity extends AppCompatActivity {
         if (LoginInQueue)
             return;
         LoginInQueue=true;
+
         /*final JSONObject obj = new JSONObject();
         try {
             obj.accumulate("event_name", "all_events");
@@ -142,7 +154,7 @@ public class Admin_ApproveActivity extends AppCompatActivity {
                     //@Override
                     public void onResponse(JSONArray response) {
                         LoginInQueue=false;
-
+                        flag=0;
                         //Removing progress bar
                         View nextChild = ((ViewGroup)parentLinearLayout).getChildAt(0);
                         parentLinearLayout.removeView(nextChild);
@@ -188,6 +200,7 @@ public class Admin_ApproveActivity extends AppCompatActivity {
     public void onFilterClick(View v){
         if (LoginInQueue)
             return;
+
         final EditText Et = (EditText) findViewById(R.id.searchbox);
 
         name=Et.getText().toString();
@@ -219,7 +232,7 @@ public class Admin_ApproveActivity extends AppCompatActivity {
                         //@Override
                         public void onResponse(JSONArray response) {
                             LoginInQueue=false;
-
+                            flag=1;
                             //Removing progress bar
                             View nextChild = ((ViewGroup)parentLinearLayout).getChildAt(0);
                             parentLinearLayout.removeView(nextChild);
@@ -378,9 +391,10 @@ public class Admin_ApproveActivity extends AppCompatActivity {
         TextView event_venue=(TextView)  ((ViewGroup)rowView).getChildAt(9);
         TextView contact_info=(TextView)  ((ViewGroup)rowView).getChildAt(10);
         TextView status=(TextView)  ((ViewGroup)rowView).getChildAt(11);
-        TextView approval=(TextView)  ((ViewGroup)rowView).getChildAt(12);
-        Spinner sp=(Spinner)  ((ViewGroup) (((ViewGroup)rowView).getChildAt(13))).getChildAt(0);
-        TextView id=(TextView)  ((ViewGroup) (((ViewGroup)rowView).getChildAt(13))).getChildAt(1);
+        TextView comment_for_admin=(TextView)  ((ViewGroup)rowView).getChildAt(12);
+        TextView approval=(TextView)  ((ViewGroup)rowView).getChildAt(13);
+        Spinner sp=(Spinner)  ((ViewGroup) (((ViewGroup)rowView).getChildAt(14))).getChildAt(0);
+        TextView id=(TextView)  ((ViewGroup) (((ViewGroup)rowView).getChildAt(14))).getChildAt(1);
         // todo Add bitmap image to imv
         imv.setImageResource(R.drawable.avengers);
         //Adding the text to all textviews
@@ -538,6 +552,14 @@ public class Admin_ApproveActivity extends AppCompatActivity {
             status.setTextColor(Color.parseColor("#000000"));
         }
 
+        //comment for admin
+        try {
+            data=object.getString("comment_for_admin");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        comment_for_admin.setText("Comment for admin: "+data);
+
         //Approval Status
         List<String> spinnerArray =  new ArrayList<String>();
         try {
@@ -585,11 +607,22 @@ public class Admin_ApproveActivity extends AppCompatActivity {
             return;
         LoginInQueue=true;
         ConstraintLayout l1=(ConstraintLayout)  v.getParent();
+        LinearLayout l2= (LinearLayout) l1.getParent();
+
         String jsonstring="";
         TextView event_id=(TextView)  ((ViewGroup)l1).getChildAt(1);
         Spinner sp=(Spinner)  ((ViewGroup)l1).getChildAt(0);
-        String newval="";
+        Spinner sp2=(Spinner)  ((ViewGroup)(((ViewGroup)l2).getChildAt(15))).getChildAt(0);
+
+        pbar= (ProgressBar)  ((ViewGroup)l1).getChildAt(2);
+        pbar.setVisibility(View.VISIBLE);
+
+        newval="";
+        venue_new="";
         newval=sp.getSelectedItem().toString();
+        venue_new=sp2.getSelectedItem().toString();
+
+
         jsonstring=event_id.getText().toString();
         JSONObject obj=null;
         try {
@@ -605,8 +638,15 @@ public class Admin_ApproveActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
+        //Update the value of "venue" key
+        try {
+            obj.put("venue",venue_new);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
         //Getting id
-        String id="";
+        id="";
         try {
             id=obj.getString("event_id");
         } catch (JSONException e) {
@@ -617,42 +657,32 @@ public class Admin_ApproveActivity extends AppCompatActivity {
         if(id.isEmpty())
             return;
 
-        JsonObjectRequest jor = new JsonObjectRequest(
-                Request.Method.PUT,
-                "http://"+
-                        pref.getString("ip","127.0.0.1:8000")+"/events/"+id+"/",
-                obj,
-                new Response.Listener<JSONObject>() {
-                    //@Override
-                    public void onResponse(JSONObject response) {
+
+        StringRequest putRequest = new StringRequest(Request.Method.PATCH,"http://"+
+                pref.getString("ip","127.0.0.1:8000")+"/api/events/"+id+"/" ,
+                new Response.Listener<String>()
+                {
+                    @Override
+                    public void onResponse(String response) {
+                        pbar.setVisibility(View.INVISIBLE);
                         LoginInQueue=false;
 
-                        //Removing progress bar
-
-
-                        Log.d("API_CALL_RES_SEARCH", response.toString());
-                        //showProgress(false);
-
-
-                        try {
-                            resp2 = new JSONObject(response.toString());
-                        } catch (Exception e) {
-                            Log.d("API_CALL_RES_SEARCH", "Malformed JSON");
-                        }
-
-                        //checkresponse2(resp,name);
+                        // response
+                        Log.d("Response", response);
+                        if(flag==0)
+                            onAllClick(b1);
+                        else
+                            onFilterClick(b1);
                     }
                 },
-                new Response.ErrorListener() {
-                    //@Override
+                new Response.ErrorListener()
+                {
+                    @Override
                     public void onErrorResponse(VolleyError error) {
+                        pbar.setVisibility(View.INVISIBLE);
                         LoginInQueue=false;
-
-                        //Removing progress bar
-
-
-                        Log.d("API_CALL_ERR_SEARCH", error.toString());
-                        //showProgress(false);
+                        // error
+                        Log.d("Error.Response", "Error Updating from Admin Approve");
                         Snackbar.make(findViewById(R.id.parent_scroll_view), "Check your network and try again", Snackbar.LENGTH_LONG)
                                 .setAction("Dismiss", new View.OnClickListener() {
                                     @Override
@@ -662,9 +692,31 @@ public class Admin_ApproveActivity extends AppCompatActivity {
                                 }).show();
                     }
                 }
-        );
-        q.add(jor);
+        )
 
+        {
+
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+
+                if(newval.equals("Approve"))
+                    newval="Appr";
+                if(newval.equals("Pending"))
+                    newval="Pend";
+                if(newval.equals("Decline"))
+                    newval="Decl";
+
+                params.put("approval",newval );
+                params.put("venue", venue_new);
+
+                return params;
+            }
+
+        };
+
+        q.add(putRequest);
 
     }
 }
