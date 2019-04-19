@@ -57,6 +57,7 @@ public class EventViewActivity extends AppCompatActivity {
 	private String event_poster = "";
 	private ImageView poster_image;
 	private Button btn_event_feedback;
+	private String username;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +80,10 @@ public class EventViewActivity extends AppCompatActivity {
 			btn_event_feedback = (Button) findViewById(R.id.btn_give_event_feedback);
 			btn_event_feedback.setVisibility(View.INVISIBLE);
 			// TODO if a user has submitted a feedback, he/she can't submit again
+		}
+		else
+		{
+//			isFeedbackSubmitted();
 		}
 
 		TextView marque = (TextView) findViewById(R.id.eventName);
@@ -379,6 +384,8 @@ public class EventViewActivity extends AppCompatActivity {
 			}
 		});
 
+
+
 	}
 
 	public void checkEventandSystemDates()
@@ -436,5 +443,57 @@ public class EventViewActivity extends AppCompatActivity {
 				btn_event_feedback.setVisibility(View.INVISIBLE);
 		}
 	}
+
+//	public void isFeedbackSubmitted()
+//	{
+//		SharedPreferences sharedpreferences = getSharedPreferences("Login", Context.MODE_PRIVATE);
+//		username = sharedpreferences.getString("username","");
+//		if(username.equals(""))
+//		{
+//			btn_event_feedback.setVisibility(View.INVISIBLE);
+//		}
+//		else
+//		{
+//			JSONObject obj = new JSONObject();
+//			try{
+//				obj.accumulate("event_id",event_id);
+//				obj.accumulate("username",username)
+//			}
+//			catch (JSONException e)
+//			{
+//
+//			}
+//			JsonObjectRequest jor = new JsonObjectRequest(
+//					Request.Method.POST,
+//					getString(R.string.api_home) + "event-feedback/",
+//					obj,
+//					new Response.Listener<JSONObject>() {
+//						@Override
+//						public void onResponse(JSONObject response) {
+//							try {
+//								resp = new JSONObject(response.toString());
+//							} catch (Exception e) {
+//
+//							}
+//							checkFeedback();
+//						}
+//					},
+//					new Response.ErrorListener() {
+//						@Override
+//						public void onErrorResponse(VolleyError error) {
+////						showProgress(false);
+//							Snackbar.make(findViewById(R.id.event_view_activity), "Error. Check your network and try again", Snackbar.LENGTH_SHORT)
+//									.setAction("Dismiss", new View.OnClickListener() {
+//										@Override
+//										public void onClick(View v) {
+//
+//										}
+//									}).show();
+//						}
+//					}
+//			);
+//			q.add(jor);
+//		}
+//	}
 
 }
