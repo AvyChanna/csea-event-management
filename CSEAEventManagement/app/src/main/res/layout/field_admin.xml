@@ -12,7 +12,7 @@
 
         android:paddingTop="15dp"
 
-        
+
         android:scaleType="fitCenter"
 
         />
@@ -161,6 +161,20 @@
     <!--Status-->
     <TextView
         android:id="@+id/status"
+        android:layout_width="match_parent"
+        android:background="?attr/colorButtonNormal"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/activity_padding_all"
+        android:paddingTop="5dp"
+        android:paddingRight="@dimen/activity_padding_all"
+        android:paddingBottom="5dp"
+        android:baselineAligned="false"
+        android:gravity="center"
+        android:textSize="18sp" />
+
+    <!--Approval Status-->
+    <TextView
+        android:id="@+id/approval"
         android:layout_width="match_parent"
         android:background="?attr/colorButtonNormal"
         android:layout_height="wrap_content"

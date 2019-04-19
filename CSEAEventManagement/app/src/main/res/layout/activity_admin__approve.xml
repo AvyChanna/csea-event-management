@@ -18,6 +18,8 @@
 
         >
 
+
+
         <EditText
             android:id="@+id/searchbox"
             android:layout_width="match_parent"
@@ -25,6 +27,30 @@
             android:hint="@string/search_by_name"
             android:maxLines="1"
             android:singleLine="true" />
+
+        <CheckBox
+            android:id="@+id/checkBox1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:checked="true"
+            android:text="Approved" />
+
+        <CheckBox
+            android:id="@+id/checkBox2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:checked="true"
+            android:text="Declined" />
+
+        <CheckBox
+            android:id="@+id/checkBox3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:checked="true"
+            android:text="Pending" />
 
     </android.support.design.widget.TextInputLayout>
 

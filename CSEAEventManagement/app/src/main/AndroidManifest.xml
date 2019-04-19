@@ -20,7 +20,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Admin_FeedbackActivity"></activity>
+        <activity android:name=".Admin_ApproveActivity"></activity>
+        <activity android:name=".events_search_adminActivity" />
+        <activity android:name=".Admin_FeedbackActivity" />
         <activity android:name=".Search_EventsActivity" />
         <activity android:name=".CustomFAQ" />
         <activity

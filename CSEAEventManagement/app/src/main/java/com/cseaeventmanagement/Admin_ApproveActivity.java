@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.Context;
@@ -12,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.LinearLayout;
 
 import java.io.ByteArrayOutputStream;
@@ -88,22 +90,22 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Search_EventsActivity extends AppCompatActivity {
+public class Admin_ApproveActivity extends AppCompatActivity {
 
     private LinearLayout parentLinearLayout;
     private ImageView imv;
     private RequestQueue q = null;
     private JSONArray resp;
+    private JSONObject resp2;
     private boolean LoginInQueue = false;
     private Button b1;
     private JSONObject object;
     private String name="";
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search__events);
+        setContentView(R.layout.activity_admin__approve);
 
         parentLinearLayout = (LinearLayout) findViewById(R.id.parent_linear_layout);
 
@@ -113,7 +115,6 @@ public class Search_EventsActivity extends AppCompatActivity {
         q = new RequestQueue(new NoCache(), network);
         q.start();
         b1=(Button) findViewById(R.id.All_Button);
-
     }
 
     public void onAllClick(View v){
@@ -266,7 +267,28 @@ public class Search_EventsActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            add_event(object);}
+            CheckBox c1=(CheckBox) findViewById(R.id.checkBox1);
+            CheckBox c2=(CheckBox) findViewById(R.id.checkBox2);
+            CheckBox c3=(CheckBox) findViewById(R.id.checkBox3);
+            String data="";
+            try {
+                data=object.getString("approval");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            if(c1.isChecked()&&data.equals("Appr"))
+            {
+                add_event(object);
+            }
+            if(c2.isChecked()&&data.equals("Decl"))
+            {
+                add_event(object);
+            }
+            if(c3.isChecked()&&data.equals("Pend"))
+            {
+                add_event(object);
+            }
+        }
 
     }
 
@@ -286,7 +308,30 @@ public class Search_EventsActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
             if(data.toLowerCase().contains(name.toLowerCase()))
-                add_event(object);
+            {
+                CheckBox c1=(CheckBox) findViewById(R.id.checkBox1);
+                CheckBox c2=(CheckBox) findViewById(R.id.checkBox2);
+                CheckBox c3=(CheckBox) findViewById(R.id.checkBox3);
+                String data2="";
+                try {
+                    data2=object.getString("approval");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                if(c1.isChecked()&&data2.equals("Appr"))
+                {
+                    add_event(object);
+                }
+                if(c2.isChecked()&&data2.equals("Decl"))
+                {
+                    add_event(object);
+                }
+                if(c3.isChecked()&&data2.equals("Pend"))
+                {
+                    add_event(object);
+                }
+            }
+
         }
 
     }
@@ -311,19 +356,10 @@ public class Search_EventsActivity extends AppCompatActivity {
 
 
     public void add_event(JSONObject object) {
-        //Filtering based on Approval Status
         String data="";
-        try {
-            data=object.getString("approval");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        if(data.compareTo("Appr")!=0) {
-            return;
-        }
 
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        final View rowView = inflater.inflate(R.layout.field, null);
+        final View rowView = inflater.inflate(R.layout.field_admin_approve, null);
         imv = (ImageView) ((ViewGroup)rowView).getChildAt(0);
         TextView event_name=(TextView)  ((ViewGroup)rowView).getChildAt(1);
         TextView event_time=(TextView)  ((ViewGroup)rowView).getChildAt(2);
@@ -336,9 +372,17 @@ public class Search_EventsActivity extends AppCompatActivity {
         TextView event_venue=(TextView)  ((ViewGroup)rowView).getChildAt(9);
         TextView contact_info=(TextView)  ((ViewGroup)rowView).getChildAt(10);
         TextView status=(TextView)  ((ViewGroup)rowView).getChildAt(11);
+        TextView approval=(TextView)  ((ViewGroup)rowView).getChildAt(12);
+        Spinner sp=(Spinner)  ((ViewGroup) (((ViewGroup)rowView).getChildAt(13))).getChildAt(0);
+        TextView id=(TextView)  ((ViewGroup) (((ViewGroup)rowView).getChildAt(13))).getChildAt(1);
         // todo Add bitmap image to imv
         imv.setImageResource(R.drawable.avengers);
         //Adding the text to all textviews
+
+        //Storing jsonstring in id
+        String jsonstring=object.toString();
+        id.setText(jsonstring);
+
 
 
         //event_name
@@ -382,6 +426,7 @@ public class Search_EventsActivity extends AppCompatActivity {
         if(convertedCurrentDate.compareTo(c)<=0)
         {
             event_date.setTextColor(Color.parseColor("#ff0000"));
+            return;
         }
         else
         {
@@ -487,7 +532,41 @@ public class Search_EventsActivity extends AppCompatActivity {
             status.setTextColor(Color.parseColor("#000000"));
         }
 
+        //Approval Status
+        List<String> spinnerArray =  new ArrayList<String>();
+        try {
+            data=object.getString("approval");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        if(data.equals("Appr"))
+        {
+            approval.setText("Approval Status: Approved");
+            approval.setTextColor(Color.parseColor("#008000"));
+            spinnerArray.add("Decline");
+            spinnerArray.add("Pending");
+        }
+        if(data.equals("Pend"))
+        {
+            approval.setText("Approval Status: Pending");
+            approval.setTextColor(Color.parseColor("#0000FF"));
+            spinnerArray.add("Approve");
+            spinnerArray.add("Decline");
+        }
+        if(data.equals("Decl"))
+        {
+            approval.setText("Approval Status: Declined");
+            approval.setTextColor(Color.parseColor("#ff0000"));
+            spinnerArray.add("Approve");
+            spinnerArray.add("Pending");
+        }
 
+        //Adding items to spinner
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                this, android.R.layout.simple_spinner_item, spinnerArray);
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sp.setAdapter(adapter);
 
         // Add the new row
 
@@ -495,5 +574,90 @@ public class Search_EventsActivity extends AppCompatActivity {
 
     }
 
+    public void func(View v){
+        if(LoginInQueue)
+            return;
+        LoginInQueue=true;
+        ConstraintLayout l1=(ConstraintLayout)  v.getParent();
+        String jsonstring="";
+        TextView event_id=(TextView)  ((ViewGroup)l1).getChildAt(1);
+        Spinner sp=(Spinner)  ((ViewGroup)l1).getChildAt(0);
+        String newval="";
+        newval=sp.getSelectedItem().toString();
+        jsonstring=event_id.getText().toString();
+        JSONObject obj=null;
+        try {
+             obj = new JSONObject(jsonstring);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
+        //Update the value of "approval" key
+        try {
+            obj.put("approval",newval);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        //Getting id
+        String id="";
+        try {
+            id=obj.getString("event_id");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        //POST
+        if(id.isEmpty())
+            return;
+
+        JsonObjectRequest jor = new JsonObjectRequest(
+                Request.Method.PUT,
+                getString(R.string.api_event_search)+"events/"+id+"/",
+                obj,
+                new Response.Listener<JSONObject>() {
+                    //@Override
+                    public void onResponse(JSONObject response) {
+                        LoginInQueue=false;
+
+                        //Removing progress bar
+
+
+                        Log.d("API_CALL_RES_SEARCH", response.toString());
+                        //showProgress(false);
+
+
+                        try {
+                            resp2 = new JSONObject(response.toString());
+                        } catch (Exception e) {
+                            Log.d("API_CALL_RES_SEARCH", "Malformed JSON");
+                        }
+
+                        //checkresponse2(resp,name);
+                    }
+                },
+                new Response.ErrorListener() {
+                    //@Override
+                    public void onErrorResponse(VolleyError error) {
+                        LoginInQueue=false;
+
+                        //Removing progress bar
+
+
+                        Log.d("API_CALL_ERR_SEARCH", error.toString());
+                        //showProgress(false);
+                        Snackbar.make(findViewById(R.id.parent_scroll_view), "Check your network and try again", Snackbar.LENGTH_LONG)
+                                .setAction("Dismiss", new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+
+                                    }
+                                }).show();
+                    }
+                }
+        );
+        q.add(jor);
+
+
+    }
 }
