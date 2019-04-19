@@ -48,6 +48,17 @@
         </activity>
         <activity android:name=".EventViewActivity"
             android:label="View Event">
+        <activity android:name=".SettingsActivity"></activity>
+        <activity android:name=".Admin_ApproveActivity" />
+        <activity android:name=".events_search_adminActivity" />
+        <activity
+            android:name=".AdminActivity"
+            android:label="@string/title_activity_admin"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ViewEventActivity"
+            android:label="@string/title_activity_view_event"
+            android:theme="@style/AppTheme.NoActionBar" />
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />

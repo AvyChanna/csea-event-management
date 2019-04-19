@@ -15,24 +15,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-public class MainActivity extends AppCompatActivity
+public class AdminActivity extends AppCompatActivity
 		implements NavigationView.OnNavigationItemSelectedListener {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+		setContentView(R.layout.activity_admin);
 		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 		setSupportActionBar(toolbar);
-
-		SharedPreferences sp = getSharedPreferences("OnBoard", MODE_PRIVATE);
-		if (sp.getBoolean("first_launch", false) == false) {
-			Intent onBoard = new Intent(this, OnBoardingActivity.class);
-			startActivity(onBoard);
-			SharedPreferences.Editor mahEditor = sp.edit();
-			mahEditor.putBoolean("first_launch", true);
-			mahEditor.apply();
-		}
 
 		FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 		fab.setOnClickListener(new View.OnClickListener() {
@@ -51,16 +42,6 @@ public class MainActivity extends AppCompatActivity
 
 		NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
 		navigationView.setNavigationItemSelectedListener(this);
-
-		//Calling shared preference
-		SharedPreferences pref = getApplicationContext().getSharedPreferences(getString(R.string.ip_pref), 0);
-		if(pref.contains("ip"))
-			return;
-		SharedPreferences.Editor editor = pref.edit();
-		editor.clear();
-		editor.apply();
-		editor.putString("ip","127.0.0.1:8000");
-		editor.commit();
 	}
 
 	@Override
@@ -76,7 +57,7 @@ public class MainActivity extends AppCompatActivity
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
+		getMenuInflater().inflate(R.menu.admin, menu);
 		return true;
 	}
 
@@ -91,7 +72,6 @@ public class MainActivity extends AppCompatActivity
 		if (id == R.id.action_settings) {
 			Intent intent = new Intent(this, SettingsActivity.class);
 			startActivity(intent);
-
 		}
 
 		return super.onOptionsItemSelected(item);
@@ -103,35 +83,26 @@ public class MainActivity extends AppCompatActivity
 		// Handle navigation view item clicks here.
 		int id = item.getItemId();
 
-		if (id == R.id.nav_login_signup) {
-			Intent intent = new Intent(this, LoginActivity.class);
+		if (id == R.id.nav_camera) {
+			//Calling Admin_Approve Activity
+			Intent intent = new Intent(this, Admin_ApproveActivity.class);
+			startActivity(intent);
+		} else if (id == R.id.nav_gallery) {
+
+		} else if (id == R.id.nav_slideshow) {
+			//Calling Admin_Feedback Activity
+			Intent intent = new Intent(this, Admin_FeedbackActivity.class);
 			startActivity(intent);
 
-		} else if (id == R.id.nav_upcoming_events) {
-			Intent intent = new Intent(this, ListEventsActivity.class);
-			startActivity(intent);
-		} else if (id == R.id.nav_past_events) {
-
-		} else if (id == R.id.nav_approve) {
-
-		} else if (id == R.id.nav_search_events) {
+		} else if (id == R.id.nav_manage) {
 			//Calling Search_Events
-			Intent intent = new Intent(this, Search_EventsActivity.class);
+			Intent intent = new Intent(this, events_search_adminActivity.class);
 			startActivity(intent);
 
-		} else if (id == R.id.nav_feedback_app) {
-			Intent intent = new Intent(this, App_Feedback_Activity.class);
-			startActivity(intent);
-		} else if (id == R.id.nav_faq_app) {
-			Intent intent = new Intent(this, EventViewActivity.class);
-			startActivity(intent);
-		} else if (id == R.id.nav_logout) {
-			Intent intent = new Intent(this, RequestEventActivity.class);
-			startActivity(intent);
-		} else if (id == R.id.nav_csea_core_team) {
-			//Calling CouncilActivity
-			Intent intent = new Intent(this, CouncilActivity.class);
-			startActivity(intent);
+		} else if (id == R.id.nav_admin_logout) {
+			SharedPreferences pref = getApplicationContext().getSharedPreferences("username", MODE_PRIVATE);
+			SharedPreferences.Editor editor = pref.edit();
+			editor.clear();
 		}
 
 		DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

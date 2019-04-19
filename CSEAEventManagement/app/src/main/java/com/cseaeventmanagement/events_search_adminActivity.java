@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.LinearLayout;
 
 import java.io.ByteArrayOutputStream;
@@ -88,7 +89,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Search_EventsActivity extends AppCompatActivity {
+public class events_search_adminActivity extends AppCompatActivity {
 
     private LinearLayout parentLinearLayout;
     private ImageView imv;
@@ -100,11 +101,10 @@ public class Search_EventsActivity extends AppCompatActivity {
     private String name="";
     SharedPreferences pref;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search__events);
+        setContentView(R.layout.activity_events_search_admin);
 
         parentLinearLayout = (LinearLayout) findViewById(R.id.parent_linear_layout);
 
@@ -116,8 +116,7 @@ public class Search_EventsActivity extends AppCompatActivity {
         b1=(Button) findViewById(R.id.All_Button);
 
         //Getting shared pref
-       pref = getApplicationContext().getSharedPreferences(getString(R.string.ip_pref), 0);
-
+        pref = getApplicationContext().getSharedPreferences(getString(R.string.ip_pref), 0);
     }
 
     public void onAllClick(View v){
@@ -132,10 +131,10 @@ public class Search_EventsActivity extends AppCompatActivity {
             Log.d("EVENTS_SEARCH_ERROR", e.toString());
         }*/
 
-
         JsonArrayRequest jor = new JsonArrayRequest(
-                Request.Method.GET,"http://"+
-                pref.getString("ip","127.0.0.1:8000")+"/api/events/",
+                Request.Method.GET,
+                "http://"+
+                        pref.getString("ip","127.0.0.1:8000")+"/api/events/",
                 null,
                 new Response.Listener<JSONArray>() {
                     //@Override
@@ -272,7 +271,28 @@ public class Search_EventsActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            add_event(object);}
+            CheckBox c1=(CheckBox) findViewById(R.id.checkBox1);
+            CheckBox c2=(CheckBox) findViewById(R.id.checkBox2);
+            CheckBox c3=(CheckBox) findViewById(R.id.checkBox3);
+            String data="";
+            try {
+                data=object.getString("approval");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            if(c1.isChecked()&&data.equals("Appr"))
+            {
+                add_event(object);
+            }
+            if(c2.isChecked()&&data.equals("Decl"))
+            {
+                add_event(object);
+            }
+            if(c3.isChecked()&&data.equals("Pend"))
+            {
+                add_event(object);
+            }
+            }
 
     }
 
@@ -292,7 +312,30 @@ public class Search_EventsActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
             if(data.toLowerCase().contains(name.toLowerCase()))
-                add_event(object);
+            {
+                CheckBox c1=(CheckBox) findViewById(R.id.checkBox1);
+                CheckBox c2=(CheckBox) findViewById(R.id.checkBox2);
+                CheckBox c3=(CheckBox) findViewById(R.id.checkBox3);
+                String data2="";
+                try {
+                    data2=object.getString("approval");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                if(c1.isChecked()&&data2.equals("Appr"))
+                {
+                    add_event(object);
+                }
+                if(c2.isChecked()&&data2.equals("Decl"))
+                {
+                    add_event(object);
+                }
+                if(c3.isChecked()&&data2.equals("Pend"))
+                {
+                    add_event(object);
+                }
+            }
+
         }
 
     }
@@ -317,19 +360,10 @@ public class Search_EventsActivity extends AppCompatActivity {
 
 
     public void add_event(JSONObject object) {
-        //Filtering based on Approval Status
         String data="";
-        try {
-            data=object.getString("approval");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        if(data.compareTo("Appr")!=0) {
-            return;
-        }
 
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        final View rowView = inflater.inflate(R.layout.field, null);
+        final View rowView = inflater.inflate(R.layout.field_admin, null);
         imv = (ImageView) ((ViewGroup)rowView).getChildAt(0);
         TextView event_name=(TextView)  ((ViewGroup)rowView).getChildAt(1);
         TextView event_time=(TextView)  ((ViewGroup)rowView).getChildAt(2);
@@ -342,6 +376,7 @@ public class Search_EventsActivity extends AppCompatActivity {
         TextView event_venue=(TextView)  ((ViewGroup)rowView).getChildAt(9);
         TextView contact_info=(TextView)  ((ViewGroup)rowView).getChildAt(10);
         TextView status=(TextView)  ((ViewGroup)rowView).getChildAt(11);
+        TextView approval=(TextView)  ((ViewGroup)rowView).getChildAt(12);
         // todo Add bitmap image to imv
         imv.setImageResource(R.drawable.avengers);
         //Adding the text to all textviews
@@ -493,6 +528,29 @@ public class Search_EventsActivity extends AppCompatActivity {
             status.setTextColor(Color.parseColor("#000000"));
         }
 
+        //Approval Status
+        try {
+            data=object.getString("approval");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        if(data.equals("Appr"))
+        {
+            approval.setText("Approval Status: Approved");
+            approval.setTextColor(Color.parseColor("#008000"));
+        }
+        if(data.equals("Pend"))
+        {
+            approval.setText("Approval Status: Pending");
+            approval.setTextColor(Color.parseColor("#0000FF"));
+        }
+        if(data.equals("Decl"))
+        {
+            approval.setText("Approval Status: Declined");
+            approval.setTextColor(Color.parseColor("#ff0000"));
+        }
+
+
 
 
         // Add the new row
@@ -500,6 +558,5 @@ public class Search_EventsActivity extends AppCompatActivity {
         parentLinearLayout.addView(rowView);
 
     }
-
 
 }
