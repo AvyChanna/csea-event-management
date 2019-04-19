@@ -12,6 +12,7 @@
 
     <dist:module dist:instant="true" />
 
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <application
         android:name=".Keep_it_portrait"
         android:allowBackup="true"
@@ -72,6 +73,10 @@
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
+
+        <service android:name = ".NotificationService"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+
     </application>
 
 </manifest>

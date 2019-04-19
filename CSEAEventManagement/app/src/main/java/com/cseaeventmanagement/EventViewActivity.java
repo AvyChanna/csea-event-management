@@ -221,7 +221,6 @@ public class EventViewActivity extends AppCompatActivity {
 		// code snippet to check current system date with event start time
 		checkEventandSystemDates();
 
-
 		String [] arr = event_target_audience.split(";");
 		final TextView[] myTextViews = new TextView[arr.length]; // create an empty array;
 
