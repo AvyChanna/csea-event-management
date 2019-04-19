@@ -176,14 +176,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 			}
 			JsonObjectRequest jor = new JsonObjectRequest(
 					Request.Method.POST,
-					"http://172.16.115.44:8000/app-login/",
+					getString(R.string.ip)+"applogin/",
 					obj,
 					new Response.Listener<JSONObject>() {
 						@Override
 						public void onResponse(JSONObject response) {
 							Log.d("loda", response.toString());
 							showProgress(false);
-							// todo login hua ya nahi dekhna hai
 							try {
 								resp = new JSONObject(response.toString());
 							} catch (Exception e) {

@@ -91,7 +91,7 @@ public class EventViewActivity extends AppCompatActivity {
 		}
 		JsonObjectRequest jor = new JsonObjectRequest(
 				Request.Method.POST,
-				getString(R.string.api_home) + "getevent/",
+				getString(R.string.ip) + "getevent/",
 				obj,
 				new Response.Listener<JSONObject>() {
 					@Override

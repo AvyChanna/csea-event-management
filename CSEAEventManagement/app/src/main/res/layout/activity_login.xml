@@ -61,7 +61,6 @@
                     android:id="@+id/email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:tooltipText="a"
                     android:importantForAutofill="yes"
                     android:hint="@string/prompt_email"
                     android:inputType="textEmailAddress"

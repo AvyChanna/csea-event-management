@@ -1,5 +1,5 @@
 <resources>
-    <string name="api_home">http://192.168.43.54:8000/api/</string>
+    <string name="ip">http://172.16.115.44:8000/</string>
     <!-- Strings related to mainActivity -->
     <string name="app_name">CSEA Event Management</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -28,7 +28,38 @@
     <string name="name">Name</string>
     <string name="year_of_admission">Year of admission</string>
     <string name="phone_number">Phone Number</string>
-
+    <string-array name="signup_dept">
+        <item>BTech</item>
+        <item>BDes</item>
+        <item>MSC</item>
+        <item>MA</item>
+        <item>MTech</item>
+        <item>MDes</item>
+        <item>MSR</item>
+        <item>PHD</item>
+        <item>CSE_Dual</item>
+        <item>EEE_Dual</item>
+    </string-array>
+    <string-array name="signup_prog">
+        <item>Not Applicable</item>
+        <item>cse</item>
+        <item>ece</item>
+        <item>me</item>
+        <item>ce</item>
+        <item>dd</item>
+        <item>bsb</item>
+        <item>cl</item>
+        <item>cst</item>
+        <item>eee</item>
+        <item>ma</item>
+        <item>ph</item>
+        <item>rt</item>
+        <item>hss</item>
+        <item>enc</item>
+        <item>env</item>
+        <item>nt</item>
+        <item>lst</item>
+    </string-array>
     <string-array name="branches_super">
         <item>Select Programme</item>
         <item>Bachelor of Technology (B.Tech.)</item>
@@ -331,4 +362,5 @@
     <string name="executive_council_2017_2018">EXECUTIVE COUNCIL 2017–2018</string>
     <string name="executive_council_2014_2015">EXECUTIVE COUNCIL 2014–2015</string>
     <string name="executive_council_2013_2014">EXECUTIVE COUNCIL 2013–2014</string>
+    <string name="search_by_name">Search by Name</string>
 </resources>

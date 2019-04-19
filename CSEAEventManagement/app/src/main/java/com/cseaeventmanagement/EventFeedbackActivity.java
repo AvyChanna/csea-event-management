@@ -140,7 +140,7 @@ public class EventFeedbackActivity extends AppCompatActivity {
             }
             JsonObjectRequest jor = new JsonObjectRequest(
                     Request.Method.POST,
-                    getString(R.string.api_home) + "event_feedback/",
+                    getString(R.string.ip) + "event_feedback/",
                     obj,
                     new Response.Listener<JSONObject>() {
                         @Override

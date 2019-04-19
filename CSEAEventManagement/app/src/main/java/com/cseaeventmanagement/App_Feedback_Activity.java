@@ -75,33 +75,24 @@ public class App_Feedback_Activity extends AppCompatActivity {
 			@Override
 			public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
 				rating_ui = ratingBar1.getRating();
-				if(rating_ui<1)
-				{
+				if (rating_ui < 1) {
 					StringBuilder emoji = new StringBuilder(new String(Character.toChars(0x2639)));
-					display_1.setText("Let us know our shortcomings in the feedback"+emoji.toString());
-				}
-				else if(rating_ui<2)
-				{
+					display_1.setText("Let us know our shortcomings in the feedback" + emoji.toString());
+				} else if (rating_ui < 2) {
 					StringBuilder emoji = new StringBuilder(new String(Character.toChars(0x1F636)));
-					display_1.setText("Not ok?"+emoji.toString());
-				}
-				else if(rating_ui<3)
-				{
+					display_1.setText("Not ok?" + emoji.toString());
+				} else if (rating_ui < 3) {
 					StringBuilder emoji = new StringBuilder(new String(Character.toChars(0x1F62C)));
-					display_1.setText("Okayish"+emoji.toString());
-				}
-				else if(rating_ui<=4)
-				{
+					display_1.setText("Okayish" + emoji.toString());
+				} else if (rating_ui <= 4) {
 					StringBuilder emoji = new StringBuilder(new String(Character.toChars(0x263A)));
-					display_1.setText("Nice"+emoji.toString());
-				}
-				else
-				{
+					display_1.setText("Nice" + emoji.toString());
+				} else {
 					StringBuilder emoji = new StringBuilder(new String(Character.toChars(0x1F44C)));
-					display_1.setText("Thank You!"+emoji.toString());
+					display_1.setText("Thank You!" + emoji.toString());
 				}
 
-				display_2.setText("Your rating is: "+rating_ui+"/5");
+				display_2.setText("Your rating is: " + rating_ui + "/5");
 
 			}
 		});
@@ -109,69 +100,50 @@ public class App_Feedback_Activity extends AppCompatActivity {
 			@Override
 			public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
 				rating_ux = ratingBar2.getRating();
-				if(rating_ux<1)
-				{
+				if (rating_ux < 1) {
 					StringBuilder emoji = new StringBuilder(new String(Character.toChars(0x2639)));
-					display_3.setText("Let us know our shortcomings in the feedback"+emoji.toString());
-				}
-				else if(rating_ux<2)
-				{
+					display_3.setText("Let us know our shortcomings in the feedback" + emoji.toString());
+				} else if (rating_ux < 2) {
 					StringBuilder emoji = new StringBuilder(new String(Character.toChars(0x1F636)));
-					display_3.setText("Not ok?"+emoji.toString());
-				}
-				else if(rating_ux<3)
-				{
+					display_3.setText("Not ok?" + emoji.toString());
+				} else if (rating_ux < 3) {
 					StringBuilder emoji = new StringBuilder(new String(Character.toChars(0x1F62C)));
-					display_3.setText("Okayish"+emoji.toString());
-				}
-				else if(rating_ux<=4)
-				{
+					display_3.setText("Okayish" + emoji.toString());
+				} else if (rating_ux <= 4) {
 					StringBuilder emoji = new StringBuilder(new String(Character.toChars(0x263A)));
-					display_3.setText("Nice"+emoji.toString());
-				}
-				else
-				{
+					display_3.setText("Nice" + emoji.toString());
+				} else {
 					StringBuilder emoji = new StringBuilder(new String(Character.toChars(0x1F44C)));
-					display_3.setText("Thank You!"+emoji.toString());
+					display_3.setText("Thank You!" + emoji.toString());
 				}
 
-				display_4.setText("Your rating is: "+rating_ux+"/5");
+				display_4.setText("Your rating is: " + rating_ux + "/5");
 			}
 		});
 		ratingBar3.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
 			@Override
 			public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
 				rating_overall = ratingBar3.getRating();
-				if(rating_overall<1)
-				{
+				if (rating_overall < 1) {
 					StringBuilder emoji = new StringBuilder(new String(Character.toChars(0x2639)));
-					display_5.setText("Let us know our shortcomings in the feedback"+emoji.toString());
-				}
-				else if(rating_overall<2)
-				{
+					display_5.setText("Let us know our shortcomings in the feedback" + emoji.toString());
+				} else if (rating_overall < 2) {
 					StringBuilder emoji = new StringBuilder(new String(Character.toChars(0x1F636)));
-					display_5.setText("Not ok?"+emoji.toString());
-				}
-				else if(rating_overall<3)
-				{
+					display_5.setText("Not ok?" + emoji.toString());
+				} else if (rating_overall < 3) {
 					StringBuilder emoji = new StringBuilder(new String(Character.toChars(0x1F62C)));
-					display_5.setText("Okayish"+emoji.toString());
-				}
-				else if(rating_overall<=4)
-				{
+					display_5.setText("Okayish" + emoji.toString());
+				} else if (rating_overall <= 4) {
 					StringBuilder emoji = new StringBuilder(new String(Character.toChars(0x263A)));
-					display_5.setText("Nice"+emoji.toString());
-				}
-				else
-				{
+					display_5.setText("Nice" + emoji.toString());
+				} else {
 					StringBuilder emoji = new StringBuilder(new String(Character.toChars(0x1F44C)));
-					display_5.setText("Thank You!"+emoji.toString());
+					display_5.setText("Thank You!" + emoji.toString());
 				}
 
-				display_6.setText("Your rating is: "+rating_overall+"/5");
+				display_6.setText("Your rating is: " + rating_overall + "/5");
 			}
 		});
-
 
 		submit_button = (Button) findViewById(R.id.btn_submit_app_feedback);
 		submit_button.setOnClickListener(new View.OnClickListener() {
@@ -204,30 +176,30 @@ public class App_Feedback_Activity extends AppCompatActivity {
 				obj.accumulate("App_Overall_Rating", rating_overall);
 				obj.accumulate("App_Feedback_Comment", app_feeback_comment);
 			} catch (Exception e) {
-				Log.d("APP_FEEDBACK_SUBMIT", e.toString());
+				Log.d("loda", e.toString());
 			}
 			JsonObjectRequest jor = new JsonObjectRequest(
 					Request.Method.POST,
-					"http://172.16.115.46:8000/api/login/",
+					getString(R.string.ip) + "app-feedback/",
 					obj,
 					new Response.Listener<JSONObject>() {
 						@Override
 						public void onResponse(JSONObject response) {
-							Log.d("API_FEEDBACK_SUBMIT", response.toString());
-							Context context = getApplicationContext();
-							CharSequence text = "Feedback successfully submitted";
-							int duration = Toast.LENGTH_SHORT;
-							Toast toast = Toast.makeText(context, text, duration);
-							toast.show();
-//                            showProgress(false);
-							// finish();
+							Log.d("loda", response.toString());
+							Snackbar.make(findViewById(R.id.app_feedback), "Feedback successfully submitted", Snackbar.LENGTH_SHORT)
+									.setAction("Dismiss", new View.OnClickListener() {
+										@Override
+										public void onClick(View v) {
+
+										}
+									}).show();
+							finish();
 						}
 					},
 					new Response.ErrorListener() {
 						@Override
 						public void onErrorResponse(VolleyError error) {
-							Log.d("API_CALL_ERR_FEEDBACK", error.toString());
-//                            showProgress(false);
+							Log.d("loda", error.toString());
 							Snackbar.make(findViewById(R.id.app_feedback), "Error in submission. Check your network and try again", Snackbar.LENGTH_SHORT)
 									.setAction("Dismiss", new View.OnClickListener() {
 										@Override
@@ -235,6 +207,7 @@ public class App_Feedback_Activity extends AppCompatActivity {
 
 										}
 									}).show();
+							finish();
 						}
 					}
 			);

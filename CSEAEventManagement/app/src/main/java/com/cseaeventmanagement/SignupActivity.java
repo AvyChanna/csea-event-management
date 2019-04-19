@@ -24,13 +24,18 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.android.volley.Network;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.BasicNetwork;
+import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.NoCache;
 
 import org.json.JSONObject;
 
@@ -52,7 +57,8 @@ public class SignupActivity extends AppCompatActivity implements LoaderCallbacks
 	private AutoCompleteTextView mNameView;
 	private TextInputEditText mConfirmPasswordView;
 	private AutoCompleteTextView mRollNumberView;
-	private AutoCompleteTextView mYearOfAdmView;
+	private Spinner mSpinnerdeptview;
+	private Spinner mSpinnerprogview;
 	private AutoCompleteTextView mPhoneNumberView;
 	private View mProgressView;
 	private View mSignupFormView;
@@ -67,7 +73,8 @@ public class SignupActivity extends AppCompatActivity implements LoaderCallbacks
 		mNameView = findViewById(R.id.name);
 		mConfirmPasswordView = findViewById(R.id.confirmPassword);
 		mRollNumberView = findViewById(R.id.rollNumber);
-		mYearOfAdmView = findViewById(R.id.year);
+		mSpinnerdeptview = findViewById(R.id.dept);
+		mSpinnerprogview = findViewById(R.id.prog);
 		mPhoneNumberView = findViewById(R.id.phone_no);
 		mPasswordView = findViewById(R.id.password);
 		mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -88,7 +95,9 @@ public class SignupActivity extends AppCompatActivity implements LoaderCallbacks
 				attemptSignup();
 			}
 		});
-
+		Network network = new BasicNetwork(new HurlStack());
+		q = new RequestQueue(new NoCache(), network);
+		q.start();
 		mSignupFormView = findViewById(R.id.Signup_form);
 		mProgressView = findViewById(R.id.Signup_progress);
 	}
@@ -137,14 +146,12 @@ public class SignupActivity extends AppCompatActivity implements LoaderCallbacks
 		mNameView.setError(null);
 		mConfirmPasswordView.setError(null);
 		mRollNumberView.setError(null);
-		mYearOfAdmView.setError(null);
 		mPhoneNumberView.setError(null);
 		String email = mEmailView.getText().toString();
 		String password = mPasswordView.getText().toString();
 		String name = mNameView.getText().toString();
 		String confPass = mConfirmPasswordView.getText().toString();
 		String rollNo = mRollNumberView.getText().toString();
-		String yoa = mYearOfAdmView.getText().toString();
 		String phone = mPhoneNumberView.getText().toString();
 		boolean cancel = false;
 		View focusView = null;
@@ -158,27 +165,10 @@ public class SignupActivity extends AppCompatActivity implements LoaderCallbacks
 			focusView = mPhoneNumberView;
 			cancel = true;
 		}
-		int iyoa = 0;
-		int iphone = 0;
+		long iphone;
 
-		iphone = Integer.parseInt(phone);
+		iphone = Long.parseLong(phone);
 
-		if (isEmpty(yoa)) {
-			mYearOfAdmView.setError(getString(R.string.error_empty_field));
-			focusView = mYearOfAdmView;
-			cancel = true;
-		} else if (!yoa.matches("[0-9]{4}")) {
-			mYearOfAdmView.setError(getString(R.string.error_not_integer));
-			focusView = mYearOfAdmView;
-			cancel = true;
-		} else {
-			iyoa = Integer.parseInt(yoa);
-			if (iyoa < 2000 || iyoa > 2020) {
-				mYearOfAdmView.setError(getString(R.string.error_invalid_value));
-				focusView = mYearOfAdmView;
-				cancel = true;
-			}
-		}
 		int iroll = 0;
 		if (isEmpty(rollNo)) {
 			mRollNumberView.setError(getString(R.string.error_empty_field));
@@ -190,14 +180,14 @@ public class SignupActivity extends AppCompatActivity implements LoaderCallbacks
 			cancel = true;
 		} else {
 			iroll = Integer.parseInt(rollNo);
-			// TODO roll no ki karni hai
 			if (iroll < 170101000 || iroll > 201000999) {
-				mYearOfAdmView.setError(getString(R.string.error_invalid_value));
-				focusView = mYearOfAdmView;
+				mRollNumberView.setError(getString(R.string.error_invalid_value));
+				focusView = mRollNumberView;
 				cancel = true;
 			}
 		}
 		if (isEmpty(password)) {
+			Log.d("loda", password);
 			mPasswordView.setError(getString(R.string.error_empty_password));
 			focusView = mPasswordView;
 			cancel = true;
@@ -207,8 +197,8 @@ public class SignupActivity extends AppCompatActivity implements LoaderCallbacks
 			focusView = mConfirmPasswordView;
 			cancel = true;
 		}
-		if (password.equals(confPass)) {
-			mPasswordView.setError(getString(R.string.error_empty_password));
+		if (password == (confPass)) {
+			mPasswordView.setError("Passwords do not match");
 			focusView = mPasswordView;
 			cancel = true;
 		}
@@ -239,33 +229,65 @@ public class SignupActivity extends AppCompatActivity implements LoaderCallbacks
 			String mEmail = email.split("@", -1)[0];
 			JSONObject obj = new JSONObject();
 			try {
-				obj.accumulate("username", mEmail);
+				String lastname, firstname;
+				name = name.trim();
+				int a = name.lastIndexOf(" ");
+				if (a == -1) {
+					lastname = " ";
+					firstname = name;
+				} else {
+					lastname = name.substring(a + 1);
+					firstname = name.substring(0, a);
+				}
+				String asd = "na";
+				if (mSpinnerprogview.getSelectedItemId() != 0)
+					asd = mSpinnerprogview.getSelectedItem().toString().toLowerCase();
+				obj.accumulate("email", mEmail + "@iitg.ac.in");
 				obj.accumulate("password", password);
-				obj.accumulate("name", name);
+				obj.accumulate("first_name", firstname);
+				obj.accumulate("last_name", lastname);
+				obj.accumulate("prog", mSpinnerdeptview.getSelectedItem().toString().toLowerCase());
+				obj.accumulate("dept", asd);
 				obj.accumulate("roll_no", iroll);
-				obj.accumulate("year_admission", iyoa);
-				obj.accumulate("phone_num", iphone);
+				obj.accumulate("phone_no", iphone);
 			} catch (Exception e) {
-				Log.d("Signup_FORM_CATCH", e.toString());
+				Log.d("loda", e.toString());
 			}
+			Log.d("loda", obj.toString());
 			JsonObjectRequest jor = new JsonObjectRequest(
 					Request.Method.POST,
-					getString(R.string.api_home) + "Signup/",
+					getString(R.string.ip) + "acceptor/",
 					obj,
 					new Response.Listener<JSONObject>() {
 						@Override
 						public void onResponse(JSONObject response) {
-							Log.d("API_CALL_RES_Signup", response.toString());
+							int a = -1;
+							Log.d("loda", response.toString());
+							try {
+								JSONObject resp = new JSONObject(response.toString());
+								a = resp.getInt("error_code");
+							} catch (Exception e) {
+							}
+
 							showProgress(false);
-							// finish();
+							if (a == 0)
+								finish();
+							else
+								Snackbar.make(findViewById(R.id.Signup_form), "Error signing up. Make sure you are not already signed up", Snackbar.LENGTH_SHORT)
+										.setAction("Dismiss", new View.OnClickListener() {
+											@Override
+											public void onClick(View v) {
+
+											}
+										}).show();
 						}
 					},
 					new Response.ErrorListener() {
 						@Override
 						public void onErrorResponse(VolleyError error) {
-							Log.d("API_CALL_ERR_Signup", error.toString());
+							Log.d("loda", error.toString());
 							showProgress(false);
-							Snackbar.make(findViewById(R.id.Signup_form), "Error signing in. Check your network and try again", Snackbar.LENGTH_SHORT)
+							Snackbar.make(findViewById(R.id.Signup_form), "Error signing up. Check your network and try again", Snackbar.LENGTH_SHORT)
 									.setAction("Dismiss", new View.OnClickListener() {
 										@Override
 										public void onClick(View v) {

@@ -146,14 +146,26 @@
                 android:paddingTop="@dimen/activity_padding_all"
                 android:paddingRight="@dimen/activity_padding_all">
 
-                <AutoCompleteTextView
-                    android:id="@+id/year"
+                <android.support.v7.widget.AppCompatSpinner
+                    android:id="@+id/dept"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/year_of_admission"
-                    android:inputType="number"
-                    android:maxLines="1"
-                    android:singleLine="true" />
+                    android:entries="@array/signup_dept" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="@dimen/activity_padding_all"
+                android:paddingTop="@dimen/activity_padding_all"
+                android:paddingRight="@dimen/activity_padding_all">
+
+                <android.support.v7.widget.AppCompatSpinner
+                    android:id="@+id/prog"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/signup_prog" />
 
             </android.support.design.widget.TextInputLayout>
 

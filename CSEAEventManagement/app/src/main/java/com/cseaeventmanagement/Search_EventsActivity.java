@@ -123,7 +123,7 @@ public class Search_EventsActivity extends AppCompatActivity {
 
         JsonObjectRequest jor = new JsonObjectRequest(
                 Request.Method.POST,
-                getString(R.string.api_home) + "ReplaceWithAPI/",
+                getString(R.string.ip) + "ReplaceWithAPI/",
                 obj,
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -204,7 +204,7 @@ public class Search_EventsActivity extends AppCompatActivity {
 
             JsonObjectRequest jor = new JsonObjectRequest(
                     Request.Method.POST,
-                    getString(R.string.api_home) + "ReplaceWithAPI/",
+                    getString(R.string.ip) + "ReplaceWithAPI/",
                     obj,
                     new Response.Listener<JSONObject>() {
                         @Override
