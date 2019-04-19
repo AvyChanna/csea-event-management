@@ -87,8 +87,8 @@ public class ListEventsActivity extends AppCompatActivity {
 
 	private void getEvents() {
 		JsonObjectRequest jor = new JsonObjectRequest(
-				Request.Method.POST,
-				"http://172.16.115.44:8000/api/events/",
+				Request.Method.GET,
+				getString(R.string.ip)+"api/events/",
 				null,
 				new Response.Listener<JSONObject>() {
 					@Override
@@ -138,8 +138,10 @@ public class ListEventsActivity extends AppCompatActivity {
 			String q="";
 			String w="";
 			String s= "";
+			String ee = "";
 			String a = "";
 			try{
+				ee = events[i].getString("approval");
 				q = events[i].getString("name");
 				w = events[i].getString("date");
 				String[] wt = w.split("-");
@@ -148,7 +150,8 @@ public class ListEventsActivity extends AppCompatActivity {
 				s = events[i].getString("event_id");
 			}
 			catch(Exception e){}
-			List_Events.add(new List_Event_Data_POJO(q, w, a, s));
+			if(!(ee.equals("Pend")))
+				List_Events.add(new List_Event_Data_POJO(q, w, a, s));
 		}
 		List_Event_Data_POJO[] myArray = new List_Event_Data_POJO[List_Events.size()];
 		for (int j = 0; j < List_Events.size(); j++) {

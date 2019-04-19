@@ -4,6 +4,7 @@ import android.app.Notification;
 import android.app.job.JobInfo;
 import android.app.job.JobScheduler;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -58,12 +59,12 @@ public class MainActivity extends AppCompatActivity
 
 		//Calling shared preference
 		SharedPreferences pref = getApplicationContext().getSharedPreferences(getString(R.string.ip_pref), 0);
-		if(pref.contains("ip"))
+		if (pref.contains("ip"))
 			return;
 		SharedPreferences.Editor editor = pref.edit();
 		editor.clear();
 		editor.apply();
-		editor.putString("ip","127.0.0.1:8000");
+		editor.putString("ip", "127.0.0.1:8000");
 		editor.commit();
 	}
 
@@ -117,7 +118,8 @@ public class MainActivity extends AppCompatActivity
 		} else if (id == R.id.nav_past_events) {
 
 		} else if (id == R.id.nav_approve) {
-
+			Intent intent = new Intent(this, Admin_ApproveActivity.class);
+			startActivity(intent);
 		} else if (id == R.id.nav_search_events) {
 			//Calling Search_Events
 			Intent intent = new Intent(this, Search_EventsActivity.class);
@@ -129,15 +131,23 @@ public class MainActivity extends AppCompatActivity
 		} else if (id == R.id.nav_faq_app) {
 			Intent intent = new Intent(this, EventViewActivity.class);
 			startActivity(intent);
-		} else if (id == R.id.nav_logout) {
+		} else if (id == R.id.nav_request_event) {
 			Intent intent = new Intent(this, RequestEventActivity.class);
 			startActivity(intent);
 		} else if (id == R.id.nav_csea_core_team) {
 			//Calling CouncilActivity
 			Intent intent = new Intent(this, CouncilActivity.class);
 			startActivity(intent);
+		} else if (id == R.id.nav_view_feedback) {
+			//Calling CouncilActivity
+			Intent intent = new Intent(this, Admin_FeedbackActivity.class);
+			startActivity(intent);
+		} else if (id == R.id.nav_logout) {
+			SharedPreferences sp = getSharedPreferences("Login", Context.MODE_PRIVATE);
+			SharedPreferences.Editor e = sp.edit();
+			e.clear();
+			e.apply();
 		}
-
 		DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 		drawer.closeDrawer(GravityCompat.START);
 		return true;
