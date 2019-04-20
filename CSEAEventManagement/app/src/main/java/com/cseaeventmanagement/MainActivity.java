@@ -249,33 +249,39 @@ public class MainActivity extends AppCompatActivity
 		} else if (id == R.id.nav_upcoming_events) {
 			Intent intent = new Intent(this, ListEventsActivity.class);
 			startActivity(intent);
-		} else if (id == R.id.nav_past_events) {
-
 		} else if (id == R.id.nav_approve) {
-			Intent intent = new Intent(this, Admin_ApproveActivity.class);
-			startActivity(intent);
+			SharedPreferences sp = getSharedPreferences("Login",MODE_PRIVATE);
+			if(sp.getString("username","").equals("admin"))
+			{
+				Intent intent = new Intent(this, Admin_ApproveActivity.class);
+				startActivity(intent);
+			}
 		} else if (id == R.id.nav_search_events) {
 			//Calling Search_Events
 			Intent intent = new Intent(this, Search_EventsActivity.class);
 			startActivity(intent);
-
 		} else if (id == R.id.nav_feedback_app) {
 			Intent intent = new Intent(this, App_Feedback_Activity.class);
 			startActivity(intent);
-		} else if (id == R.id.nav_faq_app) {
-			Intent intent = new Intent(this, EventViewActivity.class);
-			startActivity(intent);
 		} else if (id == R.id.nav_request_event) {
-			Intent intent = new Intent(this, RequestEventActivity.class);
-			startActivity(intent);
+			SharedPreferences sp = getSharedPreferences("Login",MODE_PRIVATE);
+			if(!sp.getString("username","").equals(""))
+			{
+				Intent intent = new Intent(this, RequestEventActivity.class);
+				startActivity(intent);
+			}
 		} else if (id == R.id.nav_csea_core_team) {
 			//Calling CouncilActivity
 			Intent intent = new Intent(this, CouncilActivity.class);
 			startActivity(intent);
 		} else if (id == R.id.nav_view_feedback) {
 			//Calling CouncilActivity
-			Intent intent = new Intent(this, Admin_FeedbackActivity.class);
-			startActivity(intent);
+			SharedPreferences sp = getSharedPreferences("Login",MODE_PRIVATE);
+			if(sp.getString("username","").equals("admin"))
+			{
+				Intent intent = new Intent(this, Admin_FeedbackActivity.class);
+				startActivity(intent);
+			}
 		} else if (id == R.id.nav_logout) {
 			SharedPreferences sp = getSharedPreferences("Login", Context.MODE_PRIVATE);
 			SharedPreferences.Editor e = sp.edit();

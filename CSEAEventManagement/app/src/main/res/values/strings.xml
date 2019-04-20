@@ -1,7 +1,7 @@
 <resources>
-    <string name="ip">http://172.16.115.44:8000/</string>
-    <string name="api_home">http://192.168.43.123:8000/api/</string>
-    <string name="api_event_search">http://192.168.43.123:8000/api/</string>
+    <string name="ip">http://172.16.115.46:8000/</string>
+    <string name="api_home">http://172.16.115.46:8000/api/</string>
+    <string name="api_event_search">http://172.16.115.46:8000/api/</string>
     <string name="ip_pref">ip_pref</string>
     <!-- Strings related to mainActivity -->
     <string name="app_name">CSEA Event Management</string>
@@ -172,11 +172,7 @@
     <string-array name="year_mtech">
         <item>Select Year of Study</item>
         <item>1</item>
-<<<<<<< HEAD
         <item>2</item>
-=======
-        <item>2</item>  
->>>>>>> cc8d069279b4cc1001a27d7d0a92d1113ed961e5
     </string-array>
 
     <string-array name="year_msc">

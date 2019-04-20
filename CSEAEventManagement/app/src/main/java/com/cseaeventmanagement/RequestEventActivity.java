@@ -45,6 +45,7 @@ import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.NoCache;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -207,7 +208,8 @@ public class RequestEventActivity extends AppCompatActivity {
 
 						phd_members.put(phd_peeps);
 					}
-					Log.d("hello", event_target_audience);
+//					Log.d("hello", event_target_audience);
+					Log.d("hello",Integer.toString(mtech_members.length()));
 					Context context = getApplicationContext();
 					CharSequence text = "Audience added";
 					int duration = Toast.LENGTH_SHORT;
@@ -317,6 +319,7 @@ public class RequestEventActivity extends AppCompatActivity {
 				else {
 					event_committee = event_committee + edittext_add_member.getText().toString() + ";";
 					edittext_add_member.setText("");
+					Toast.makeText(getApplicationContext(), "Organiser added", Toast.LENGTH_SHORT).show();
 				}
 			}
 		});

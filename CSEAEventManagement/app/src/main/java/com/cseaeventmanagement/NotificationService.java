@@ -151,7 +151,7 @@ public class NotificationService extends JobService {
 			String is_am = eventMin[1];
 		}
 		if (curr_year == event_year && curr_month == event_month && curr_date == event_day) {
-			if (curr_hr == 6 && curr_min == 46)
+			if (curr_hr == 8 && curr_min == 0)
 				return true;
 		}
 		return false;
