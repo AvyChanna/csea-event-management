@@ -395,12 +395,12 @@ public class Search_EventsActivity extends AppCompatActivity {
         }
 
         //target_audience
-        try {
+        /*try {
             data=object.getString("target_audience");
         } catch (JSONException e) {
             e.printStackTrace();
-        }
-        target_audience.setText("Target Audience: "+data);
+        }*/
+        target_audience.setText("Target Audience: ");
 
         //event_fee
         try {
@@ -466,18 +466,18 @@ public class Search_EventsActivity extends AppCompatActivity {
 
         //Try to change the strings to ints if not NULL
         int cap=-1,aud=-1;
-        if(capacity!=null&&capacity!="")
+        if(capacity!=null&&!(capacity.isEmpty()))
         {
             cap=Integer.parseInt(capacity);
         }
-        if(capacity!=null&&capacity!="")
+        if(audience!=null&&!(audience.isEmpty()))
         {
             aud=Integer.parseInt(audience);
         }
 
         if(cap!=-1&&aud!=-1)
         {
-            if(aud<cap)
+            if(aud<cap||cap==0)
             {
                 status.setText("Status: Seats available");
                 status.setTextColor(Color.parseColor("#008000"));

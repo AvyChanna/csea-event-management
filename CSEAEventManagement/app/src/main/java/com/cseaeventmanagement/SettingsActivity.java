@@ -110,5 +110,12 @@ public class SettingsActivity extends AppCompatActivity {
         editor.apply();
         editor.putString("ip",textbox.getText().toString());
         editor.commit();
+        Snackbar.make(findViewById(R.id.settings_parentlayout), "Updated", Snackbar.LENGTH_LONG)
+                .setAction("Dismiss", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                }).show();
     }
 }
