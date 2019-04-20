@@ -124,6 +124,9 @@
             android:permission="android.permission.BIND_JOB_SERVICE" />
         <activity android:name=".EventViewActivity"
             android:label="@string/title_activity_view_event">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
         </activity>
 
     </application>
