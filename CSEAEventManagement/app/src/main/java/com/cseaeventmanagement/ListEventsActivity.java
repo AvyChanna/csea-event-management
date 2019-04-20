@@ -18,8 +18,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.BasicNetwork;
 import com.android.volley.toolbox.HurlStack;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.NoCache;
+import com.android.volley.toolbox.StringRequest;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -48,7 +48,6 @@ public class ListEventsActivity extends AppCompatActivity {
 		p = findViewById(R.id.loading);
 		recyclerView = findViewById(R.id.recyclerView);
 		List_Events = new ArrayList<>();
-		List_Events.add(new List_Event_Data_POJO("A", "A", "A", "A"));
 		adapter = new ListEventAdapter(null);
 		recyclerView.setHasFixedSize(true);
 		recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -86,17 +85,16 @@ public class ListEventsActivity extends AppCompatActivity {
 	}
 
 	private void getEvents() {
-		JsonObjectRequest jor = new JsonObjectRequest(
+		StringRequest jor = new StringRequest(
 				Request.Method.GET,
-				getString(R.string.ip)+"api/events/",
-				null,
-				new Response.Listener<JSONObject>() {
+				getString(R.string.ip) + "api/events/",
+				new Response.Listener<String>() {
 					@Override
-					public void onResponse(JSONObject response) {
-						Log.d("hello", response.toString());
+					public void onResponse(String response) {
+						Log.d("hello", response);
 						showProgress(false);
 						try {
-							resp = new JSONArray(response.toString());
+							resp = new JSONArray(response);
 						} catch (Exception e) {
 							Log.d("hello", "Malformed JSON");
 						}
@@ -135,22 +133,24 @@ public class ListEventsActivity extends AppCompatActivity {
 		}
 		Log.d("hello", "haha4");
 		for (int i = 0; i < events.length; i++) {
-			String q="";
-			String w="";
-			String s= "";
+			String q = "";
+			String w = "";
+			String s = "";
 			String ee = "";
 			String a = "";
-			try{
+			try {
 				ee = events[i].getString("approval");
 				q = events[i].getString("name");
 				w = events[i].getString("date");
 				String[] wt = w.split("-");
-				w = "Date="+wt[2]+"/"+wt[1]+"/"+wt[0] + ", Time="+events[i].getString("time");
+				w = "Date=" + wt[2] + "/" + wt[1] + "/" + wt[0];
+				if(!events[i].getString("time").equals("null"))
+					w+=", Time="+events[i].getString("time");
 				a = events[i].getString("summary");
 				s = events[i].getString("event_id");
+			} catch (Exception e) {
 			}
-			catch(Exception e){}
-			if(!(ee.equals("Pend")))
+			if (!(ee.equals("Pend")))
 				List_Events.add(new List_Event_Data_POJO(q, w, a, s));
 		}
 		List_Event_Data_POJO[] myArray = new List_Event_Data_POJO[List_Events.size()];

@@ -79,6 +79,7 @@ public class RequestEventActivity extends AppCompatActivity {
 	private Button event_add_target_audi_btn;
 	private Button submit_button;
 	private Button add_committee;
+	private String contact_info="";
 	private String event_feedback;
 	private String imageString;
 	private RequestQueue q;
@@ -514,6 +515,15 @@ public class RequestEventActivity extends AppCompatActivity {
 			cancel = true;
 		}
 
+		EditText loc6 = (EditText) findViewById(R.id.editText_request_contactInfo);
+		contact_info = loc6.getText().toString();
+		if(TextUtils.isEmpty(contact_info))
+		{
+			loc6.setError("This field is required");
+			focusView = loc6;
+			cancel = true;
+		}
+
 		if (TextUtils.isEmpty(event_date)) {
 			Button loc_btn1 = (Button) findViewById(R.id.btn_request_eventDate);
 			loc_btn1.setError(getString(R.string.error_field_required));
@@ -564,15 +574,15 @@ public class RequestEventActivity extends AppCompatActivity {
 				obj.accumulate("time", event_time);
 				obj.accumulate("summary", event_description);
 				obj.accumulate("comment_for_admin", event_admin_comment);
-				// TODO tags/target_audience hata do
+				// TODO modify target_audience
+				// TODO time mila to tags wali field add kardo
 				obj.accumulate("target_audience", event_target_audience);
 				obj.accumulate("tags", event_target_audience);
 				obj.accumulate("image_string", imageString);
 				obj.accumulate("organisors", event_committee);
-//				obj.accumulate("contact_info",);
+				obj.accumulate("contact_info",contact_info);
 //				obj.accumulate("curr_audience",);
 				obj.accumulate("approval","Pend");
-
 				obj.accumulate("faq",noddy);
 
 

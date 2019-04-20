@@ -193,10 +193,10 @@ public class EventViewActivity extends AppCompatActivity {
 			get_faq = resp.getString("faq");
 		} catch (Exception e) {
 		}
-//		try {
-//			event_committee = resp.getString("organisors");
-//		} catch (Exception e) {
-//		}
+		try {
+			event_committee = resp.getString("organisors");
+		} catch (Exception e) {
+		}
 //		try {
 //			contact_info = resp.getString("contact_info");
 //		} catch (Exception e) {
@@ -226,98 +226,98 @@ public class EventViewActivity extends AppCompatActivity {
 		// code snippet to check current system date with event start time
 		checkEventandSystemDates();
 
-		String[] arr = event_target_audience.split(";");
-		final TextView[] myTextViews = new TextView[arr.length]; // create an empty array;
-
-		for (int i = 0; i < arr.length; i++) {
-			final TextView rowTextView = new TextView(this);
-			String[] peep = arr[i].split(",");
-			// set some properties of rowTextView or something
-			int temp1 = Integer.parseInt(peep[0]);
-			String[] prog_array = getResources().getStringArray(R.array.branches_super);
-			String programme = prog_array[temp1];
-
-			int temp2;
-			int temp3;
-			// TODO change logic for invitees
-
-			if (temp1 == 1) {
-				temp2 = Integer.parseInt(peep[1]);
-				String[] stream_array = getResources().getStringArray(R.array.branches_btech);
-				String stream = stream_array[temp2];
-				temp3 = Integer.parseInt(peep[2]);
-				String[] year_array = getResources().getStringArray(R.array.year_btech);
-				String year = year_array[temp3];
-
-				rowTextView.setText(programme + " " + "Department: " + stream + " " + "Year: " + year);
-			} else if (temp1 == 2) {
-				temp3 = Integer.parseInt(peep[2]);
-				String[] year_array = getResources().getStringArray(R.array.year_bdes);
-				String year = year_array[temp3];
-
-				rowTextView.setText(programme + " " + "Year: " + year);
-			} else if (temp1 == 3) {
-				temp2 = Integer.parseInt(peep[1]);
-				String[] stream_array = getResources().getStringArray(R.array.branches_msc);
-				String stream = stream_array[temp2];
-				temp3 = Integer.parseInt(peep[2]);
-				String[] year_array = getResources().getStringArray(R.array.year_msc);
-				String year = year_array[temp3];
-
-				rowTextView.setText(programme + " " + "Department: " + stream + " " + "Year: " + year);
-			} else if (temp1 == 4) {
-				temp3 = Integer.parseInt(peep[2]);
-				String[] year_array = getResources().getStringArray(R.array.year_ma);
-				String year = year_array[temp3];
-
-				rowTextView.setText(programme + " " + "Year: " + year);
-			} else if (temp1 == 5) {
-				temp2 = Integer.parseInt(peep[1]);
-				String[] stream_array = getResources().getStringArray(R.array.branches_mtech);
-				String stream = stream_array[temp2];
-				temp3 = Integer.parseInt(peep[2]);
-				String[] year_array = getResources().getStringArray(R.array.year_mtech);
-				String year = year_array[temp3];
-
-				rowTextView.setText(programme + " " + "Department: " + stream + " " + "Year: " + year);
-			} else if (temp1 == 6) {
-				temp3 = Integer.parseInt(peep[2]);
-				String[] year_array = getResources().getStringArray(R.array.year_mdes);
-				String year = year_array[temp3];
-
-				rowTextView.setText(programme + " " + "Year: " + year);
-			} else if (temp1 == 7) {
-				temp3 = Integer.parseInt(peep[2]);
-				String[] year_array = getResources().getStringArray(R.array.year_msr);
-				String year = year_array[temp3];
-
-				rowTextView.setText(programme + " " + "Year: " + year);
-			} else if (temp1 == 8) {
-				temp2 = Integer.parseInt(peep[1]);
-				String[] stream_array = getResources().getStringArray(R.array.branches_phd);
-				String stream = stream_array[temp2];
-				rowTextView.setText(programme + " " + "Department: " + stream);
-			} else if (temp1 == 9) {
-				temp3 = Integer.parseInt(peep[2]);
-				String[] year_array = getResources().getStringArray(R.array.year_cseDual);
-				String year = year_array[temp3];
-
-				rowTextView.setText(programme + " " + "Year: " + year);
-			} else if (temp1 == 10) {
-				temp3 = Integer.parseInt(peep[2]);
-				String[] year_array = getResources().getStringArray(R.array.year_eeeDual);
-				String year = year_array[temp3];
-
-				rowTextView.setText(programme + " " + "Year: " + year);
-			}
-
-			// add the textview to the linearlayout
-			LinearLayout myLinearLayout = (LinearLayout) findViewById(R.id.display_target_audi);
-			myLinearLayout.addView(rowTextView);
-
-			// save a reference to the textview for later
-			myTextViews[i] = rowTextView;
-		}
+//		String[] arr = event_target_audience.split(";");
+//		final TextView[] myTextViews = new TextView[arr.length]; // create an empty array;
+//
+//		for (int i = 0; i < arr.length; i++) {
+//			final TextView rowTextView = new TextView(this);
+//			String[] peep = arr[i].split(",");
+//			// set some properties of rowTextView or something
+//			int temp1 = Integer.parseInt(peep[0]);
+//			String[] prog_array = getResources().getStringArray(R.array.branches_super);
+//			String programme = prog_array[temp1];
+//
+//			int temp2;
+//			int temp3;
+//			// TODO change logic for invitees
+//
+//			if (temp1 == 1) {
+//				temp2 = Integer.parseInt(peep[1]);
+//				String[] stream_array = getResources().getStringArray(R.array.branches_btech);
+//				String stream = stream_array[temp2];
+//				temp3 = Integer.parseInt(peep[2]);
+//				String[] year_array = getResources().getStringArray(R.array.year_btech);
+//				String year = year_array[temp3];
+//
+//				rowTextView.setText(programme + " " + "Department: " + stream + " " + "Year: " + year);
+//			} else if (temp1 == 2) {
+//				temp3 = Integer.parseInt(peep[2]);
+//				String[] year_array = getResources().getStringArray(R.array.year_bdes);
+//				String year = year_array[temp3];
+//
+//				rowTextView.setText(programme + " " + "Year: " + year);
+//			} else if (temp1 == 3) {
+//				temp2 = Integer.parseInt(peep[1]);
+//				String[] stream_array = getResources().getStringArray(R.array.branches_msc);
+//				String stream = stream_array[temp2];
+//				temp3 = Integer.parseInt(peep[2]);
+//				String[] year_array = getResources().getStringArray(R.array.year_msc);
+//				String year = year_array[temp3];
+//
+//				rowTextView.setText(programme + " " + "Department: " + stream + " " + "Year: " + year);
+//			} else if (temp1 == 4) {
+//				temp3 = Integer.parseInt(peep[2]);
+//				String[] year_array = getResources().getStringArray(R.array.year_ma);
+//				String year = year_array[temp3];
+//
+//				rowTextView.setText(programme + " " + "Year: " + year);
+//			} else if (temp1 == 5) {
+//				temp2 = Integer.parseInt(peep[1]);
+//				String[] stream_array = getResources().getStringArray(R.array.branches_mtech);
+//				String stream = stream_array[temp2];
+//				temp3 = Integer.parseInt(peep[2]);
+//				String[] year_array = getResources().getStringArray(R.array.year_mtech);
+//				String year = year_array[temp3];
+//
+//				rowTextView.setText(programme + " " + "Department: " + stream + " " + "Year: " + year);
+//			} else if (temp1 == 6) {
+//				temp3 = Integer.parseInt(peep[2]);
+//				String[] year_array = getResources().getStringArray(R.array.year_mdes);
+//				String year = year_array[temp3];
+//
+//				rowTextView.setText(programme + " " + "Year: " + year);
+//			} else if (temp1 == 7) {
+//				temp3 = Integer.parseInt(peep[2]);
+//				String[] year_array = getResources().getStringArray(R.array.year_msr);
+//				String year = year_array[temp3];
+//
+//				rowTextView.setText(programme + " " + "Year: " + year);
+//			} else if (temp1 == 8) {
+//				temp2 = Integer.parseInt(peep[1]);
+//				String[] stream_array = getResources().getStringArray(R.array.branches_phd);
+//				String stream = stream_array[temp2];
+//				rowTextView.setText(programme + " " + "Department: " + stream);
+//			} else if (temp1 == 9) {
+//				temp3 = Integer.parseInt(peep[2]);
+//				String[] year_array = getResources().getStringArray(R.array.year_cseDual);
+//				String year = year_array[temp3];
+//
+//				rowTextView.setText(programme + " " + "Year: " + year);
+//			} else if (temp1 == 10) {
+//				temp3 = Integer.parseInt(peep[2]);
+//				String[] year_array = getResources().getStringArray(R.array.year_eeeDual);
+//				String year = year_array[temp3];
+//
+//				rowTextView.setText(programme + " " + "Year: " + year);
+//			}
+//
+//			// add the textview to the linearlayout
+//			LinearLayout myLinearLayout = (LinearLayout) findViewById(R.id.display_target_audi);
+//			myLinearLayout.addView(rowTextView);
+//
+//			// save a reference to the textview for later
+//			myTextViews[i] = rowTextView;
+//		}
 
 		byte[] decodedString = Base64.decode(event_poster, Base64.URL_SAFE | Base64.NO_WRAP | Base64.NO_PADDING);
 		Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
@@ -327,36 +327,38 @@ public class EventViewActivity extends AppCompatActivity {
 		LinearLayout image_wala = (LinearLayout) findViewById(R.id.display_poster_image);
 		image_wala.addView(poster_image);
 
-		int num_faqs = get_faq.length();
+		// displaying event committee
+		LinearLayout peep = (LinearLayout) findViewById(R.id.display_event_committee);
+		final TextView committee_members = new TextView(this);
+		committee_members.setText(event_committee);
+		peep.addView(committee_members);
+
+		// displaying faqs
+		String [] faq_array = get_faq.split("|");
+		int num_faqs = faq_array.length;
 		final TextView[] questions = new TextView[num_faqs];
 		final TextView[] answers = new TextView[num_faqs];
 		final View[] view = new View[num_faqs];
 
-		JSONObject obj = null;
-		// TODO change logic for faq
-//		for (int i = 0; i < num_faqs; i++) {
-//			LinearLayout myLinearLayout = (LinearLayout) findViewById(R.id.display_faq);
-//			final TextView rowQuestion = new TextView(this);
-//			final TextView rowAnswer = new TextView(this);
-//			try {
-//				obj = get_faq.getJSONObject(i);
-//			} catch (Exception e) {
-//				Log.d("JSON_faq_OBJ_CALL", e.toString());
-//			}
-//
-//			try {
-//				rowQuestion.setText(obj.getString("question"));
-//			} catch (Exception e) {
-//
-//			}
-//			try {
-//				rowAnswer.setText(obj.getString("answer"));
-//			} catch (Exception e) {
-//
-//			}
-//			myLinearLayout.addView(rowQuestion);
-//			myLinearLayout.addView(rowAnswer);
-//		}
+
+		for (int i = 0; i < num_faqs; i++) {
+			LinearLayout myLinearLayout = (LinearLayout) findViewById(R.id.display_faq);
+			final TextView rowQuestion = new TextView(this);
+			final TextView rowAnswer = new TextView(this);
+			String [] faq_qa = faq_array[i].split("=");
+			try {
+				rowQuestion.setText(faq_qa[0]);
+			} catch (Exception e) {
+
+			}
+			try {
+				rowAnswer.setText(faq_qa[1]);
+			} catch (Exception e) {
+
+			}
+			myLinearLayout.addView(rowQuestion);
+			myLinearLayout.addView(rowAnswer);
+		}
 
 		btn_event_feedback.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -367,11 +369,9 @@ public class EventViewActivity extends AppCompatActivity {
 				startActivity(intent);
 			}
 		});
-
 	}
 
 	public void checkEventandSystemDates() {
-		// TODO change response format from 24 hr to 12 hr
 		Date current_time = Calendar.getInstance().getTime();
 		String date_time = current_time.toString();
 		String[] dateAndTime = date_time.split(" ");
@@ -393,9 +393,9 @@ public class EventViewActivity extends AppCompatActivity {
 
 		String[] eventTime = event_time.split(":");
 		int event_hour = Integer.parseInt(eventTime[0]);
-		String[] eventMin = eventTime[1].split(" ");
-		int event_min = Integer.parseInt(eventMin[0]);
-		String is_am = eventMin[1];
+//		String[] eventMin = eventTime[1].split(" ");
+		int event_min = Integer.parseInt(eventTime[1]);
+//		String is_am = eventMin[1];
 
 		if (event_year > curr_year) {
 			btn_event_feedback.setVisibility(View.INVISIBLE);
@@ -407,17 +407,22 @@ public class EventViewActivity extends AppCompatActivity {
 			btn_event_feedback.setVisibility(View.INVISIBLE);
 		}
 
-		if (is_am.equals("AM")) {
-			if (event_hour > curr_hr)
-				btn_event_feedback.setVisibility(View.INVISIBLE);
-			if (event_hour == curr_hr && event_min > curr_min)
-				btn_event_feedback.setVisibility(View.INVISIBLE);
-		} else {
-			if (event_hour + 12 > curr_hr)
-				btn_event_feedback.setVisibility(View.INVISIBLE);
-			if (event_hour + 12 == curr_hr && event_min > curr_min)
-				btn_event_feedback.setVisibility(View.INVISIBLE);
-		}
+		if(event_hour>curr_hr)
+			btn_event_feedback.setVisibility(View.INVISIBLE);
+		if(event_hour==curr_hr&&event_min>curr_min)
+			btn_event_feedback.setVisibility(View.INVISIBLE);
+
+//		if (is_am.equals("AM")) {
+//			if (event_hour > curr_hr)
+//				btn_event_feedback.setVisibility(View.INVISIBLE);
+//			if (event_hour == curr_hr && event_min > curr_min)
+//				btn_event_feedback.setVisibility(View.INVISIBLE);
+//		} else {
+//			if (event_hour + 12 > curr_hr)
+//				btn_event_feedback.setVisibility(View.INVISIBLE);
+//			if (event_hour + 12 == curr_hr && event_min > curr_min)
+//				btn_event_feedback.setVisibility(View.INVISIBLE);
+//		}
 	}
 
 //	public void isFeedbackSubmitted()
