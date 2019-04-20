@@ -233,12 +233,12 @@ public class Admin_FeedbackActivity extends AppCompatActivity {
         TextView user=(TextView)  ((ViewGroup)rowView).getChildAt(0);
         TextView comment=(TextView)  ((ViewGroup)rowView).getChildAt(1);
 
-        /*//User
+        //User
         try {
-            data=object.getString("user");
+            data=object.getString("submitted_by");
         } catch (JSONException e) {
             e.printStackTrace();
-        }*/
+        }
         user.setText("User: "+data);
 
         //Comment
@@ -247,6 +247,8 @@ public class Admin_FeedbackActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        if(data.isEmpty()||data==null||data.equals(""))
+            return;
         comment.setText("Comment: "+data);
 
 
