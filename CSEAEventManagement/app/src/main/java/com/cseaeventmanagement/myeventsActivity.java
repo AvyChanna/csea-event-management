@@ -321,6 +321,7 @@ public class myeventsActivity extends AppCompatActivity {
     public void add_event(JSONObject object) {
         //Filtering based on user-name
         String data="";
+        int data2=0;
         try {
             data=object.getString("name");
         } catch (JSONException e) {
@@ -340,7 +341,7 @@ public class myeventsActivity extends AppCompatActivity {
         TextView event_date=(TextView)  ((ViewGroup)rowView).getChildAt(3);
         TextView target_audience=(TextView)  ((ViewGroup)rowView).getChildAt(4);
         TextView event_fee=(TextView)  ((ViewGroup)rowView).getChildAt(5);
-        TextView event_requester=(TextView)  ((ViewGroup)rowView).getChildAt(6);
+        TextView event_organiser=(TextView)  ((ViewGroup)rowView).getChildAt(6);
         TextView event_tags=(TextView)  ((ViewGroup)rowView).getChildAt(7);
         TextView event_faqs=(TextView)  ((ViewGroup)rowView).getChildAt(8);
         TextView event_venue=(TextView)  ((ViewGroup)rowView).getChildAt(9);
@@ -400,20 +401,20 @@ public class myeventsActivity extends AppCompatActivity {
         }
 
         //target_audience
-        /*try {
-            data=object.getString("target_audience");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }*/
-        target_audience.setText("Target Audience: ");
-
-        //event_fee
         try {
-            data=object.getString("fee");
+            data=object.getString("requestor");
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        event_fee.setText("Fees: "+data);
+        target_audience.setText("Event Requestor: "+data);
+
+        //event_fee
+        try {
+            data2=object.getInt("fee");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        event_fee.setText("Fees: "+data2);
 
         //event_requester
         try {
@@ -421,7 +422,7 @@ public class myeventsActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        event_requester.setText("Organizers: "+data);
+        event_organiser.setText("Organizers: "+data);
 
         //event_tags
         try {
@@ -456,28 +457,17 @@ public class myeventsActivity extends AppCompatActivity {
         contact_info.setText("Contact: "+data);
 
         //Status
-        String capacity="";
-        String audience="";
+        int cap=-1,aud=-1;
         try {
-            capacity=object.getString("capacity");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        try {
-            audience=object.getString("curr_audience");
+            cap=object.getInt("capacity");
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        //Try to change the strings to ints if not NULL
-        int cap=-1,aud=-1;
-        if(capacity!=null&&!(capacity.isEmpty()))
-        {
-            cap=Integer.parseInt(capacity);
-        }
-        if(audience!=null&&!(audience.isEmpty()))
-        {
-            aud=Integer.parseInt(audience);
+        try {
+            aud=object.getInt("curr_audience");
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
 
         if(cap!=-1&&aud!=-1)
@@ -497,6 +487,7 @@ public class myeventsActivity extends AppCompatActivity {
             status.setText("Status: Undecided");
             status.setTextColor(Color.parseColor("#000000"));
         }
+
 
         //Approval Status
         try {

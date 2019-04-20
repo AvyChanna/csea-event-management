@@ -2,14 +2,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/border"
+    android:paddingBottom="10dp">
 
     <ImageView
         android:id="@+id/iv"
         android:layout_width="match_parent"
         android:layout_height="180dp"
         android:gravity="center"
-
+        
         android:paddingTop="15dp"
 
         
@@ -22,11 +24,11 @@
         android:id="@+id/event_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorButtonNormal"
+        
         android:baselineAligned="false"
         android:gravity="center"
         android:paddingLeft="@dimen/activity_padding_all"
-
+        
         android:paddingRight="@dimen/activity_padding_all"
         android:paddingBottom="5dp"
         android:textSize="18sp" />
@@ -35,7 +37,7 @@
     <TextView
         android:id="@+id/event_time"
         android:layout_width="match_parent"
-        android:background="?attr/colorButtonNormal"
+        
         android:layout_height="wrap_content"
         android:paddingLeft="@dimen/activity_padding_all"
         android:paddingTop="5dp"
@@ -49,7 +51,7 @@
     <TextView
         android:id="@+id/event_date"
         android:layout_width="match_parent"
-        android:background="?attr/colorButtonNormal"
+        
         android:layout_height="wrap_content"
         android:paddingLeft="@dimen/activity_padding_all"
         android:paddingTop="5dp"
@@ -61,9 +63,9 @@
 
     <!--Event Target Audience-->
     <TextView
-        android:id="@+id/target_audience"
+        android:id="@+id/event_requester"
         android:layout_width="match_parent"
-        android:background="?attr/colorButtonNormal"
+        
         android:layout_height="wrap_content"
         android:paddingLeft="@dimen/activity_padding_all"
         android:paddingTop="5dp"
@@ -78,7 +80,7 @@
         android:id="@+id/event_fee"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorButtonNormal"
+        
         android:baselineAligned="false"
         android:gravity="center"
         android:paddingLeft="@dimen/activity_padding_all"
@@ -90,9 +92,9 @@
 
     <!--Event Requester-->
     <TextView
-        android:id="@+id/event_requester"
+        android:id="@+id/event_organiser"
         android:layout_width="match_parent"
-        android:background="?attr/colorButtonNormal"
+        
         android:layout_height="wrap_content"
         android:paddingLeft="@dimen/activity_padding_all"
         android:paddingTop="5dp"
@@ -106,7 +108,7 @@
     <TextView
         android:id="@+id/event_tags"
         android:layout_width="match_parent"
-        android:background="?attr/colorButtonNormal"
+        
         android:layout_height="wrap_content"
         android:paddingLeft="@dimen/activity_padding_all"
         android:paddingTop="5dp"
@@ -120,7 +122,7 @@
     <TextView
         android:id="@+id/event_faqs"
         android:layout_width="match_parent"
-        android:background="?attr/colorButtonNormal"
+        
         android:layout_height="wrap_content"
         android:paddingLeft="@dimen/activity_padding_all"
         android:paddingTop="5dp"
@@ -134,7 +136,7 @@
     <TextView
         android:id="@+id/event_venue"
         android:layout_width="match_parent"
-        android:background="?attr/colorButtonNormal"
+        
         android:layout_height="wrap_content"
         android:paddingLeft="@dimen/activity_padding_all"
         android:paddingTop="5dp"
@@ -148,7 +150,7 @@
     <TextView
         android:id="@+id/contact_info"
         android:layout_width="match_parent"
-        android:background="?attr/colorButtonNormal"
+        
         android:layout_height="wrap_content"
         android:paddingLeft="@dimen/activity_padding_all"
         android:paddingTop="5dp"
@@ -162,7 +164,7 @@
     <TextView
         android:id="@+id/status"
         android:layout_width="match_parent"
-        android:background="?attr/colorButtonNormal"
+        
         android:layout_height="wrap_content"
         android:paddingLeft="@dimen/activity_padding_all"
         android:paddingTop="5dp"
