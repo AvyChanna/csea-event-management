@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
@@ -38,42 +35,42 @@
     <TextView
         android:id="@+id/event_time"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:background="?attr/colorButtonNormal"
-        android:baselineAligned="false"
-        android:gravity="center"
+        android:layout_height="wrap_content"
         android:paddingLeft="@dimen/activity_padding_all"
         android:paddingTop="5dp"
         android:paddingRight="@dimen/activity_padding_all"
         android:paddingBottom="5dp"
+        android:baselineAligned="false"
+        android:gravity="center"
         android:textSize="18sp" />
 
     <!--Event Date-->
     <TextView
         android:id="@+id/event_date"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:background="?attr/colorButtonNormal"
-        android:baselineAligned="false"
-        android:gravity="center"
+        android:layout_height="wrap_content"
         android:paddingLeft="@dimen/activity_padding_all"
         android:paddingTop="5dp"
         android:paddingRight="@dimen/activity_padding_all"
         android:paddingBottom="5dp"
+        android:baselineAligned="false"
+        android:gravity="center"
         android:textSize="18sp" />
 
     <!--Event Target Audience-->
     <TextView
         android:id="@+id/target_audience"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:background="?attr/colorButtonNormal"
-        android:baselineAligned="false"
-        android:gravity="center"
+        android:layout_height="wrap_content"
         android:paddingLeft="@dimen/activity_padding_all"
         android:paddingTop="5dp"
         android:paddingRight="@dimen/activity_padding_all"
         android:paddingBottom="5dp"
+        android:baselineAligned="false"
+        android:gravity="center"
         android:textSize="18sp" />
 
     <!--Event Fee-->
@@ -95,203 +92,98 @@
     <TextView
         android:id="@+id/event_requester"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:background="?attr/colorButtonNormal"
-        android:baselineAligned="false"
-        android:gravity="center"
+        android:layout_height="wrap_content"
         android:paddingLeft="@dimen/activity_padding_all"
         android:paddingTop="5dp"
         android:paddingRight="@dimen/activity_padding_all"
         android:paddingBottom="5dp"
+        android:baselineAligned="false"
+        android:gravity="center"
         android:textSize="18sp" />
 
     <!--Event Tags-->
     <TextView
         android:id="@+id/event_tags"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:background="?attr/colorButtonNormal"
-        android:baselineAligned="false"
-        android:gravity="center"
+        android:layout_height="wrap_content"
         android:paddingLeft="@dimen/activity_padding_all"
         android:paddingTop="5dp"
         android:paddingRight="@dimen/activity_padding_all"
         android:paddingBottom="5dp"
+        android:baselineAligned="false"
+        android:gravity="center"
         android:textSize="18sp" />
 
     <!--Event FAQS-->
     <TextView
         android:id="@+id/event_faqs"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:background="?attr/colorButtonNormal"
-        android:baselineAligned="false"
-        android:gravity="center"
+        android:layout_height="wrap_content"
         android:paddingLeft="@dimen/activity_padding_all"
         android:paddingTop="5dp"
         android:paddingRight="@dimen/activity_padding_all"
         android:paddingBottom="5dp"
+        android:baselineAligned="false"
+        android:gravity="center"
         android:textSize="18sp" />
 
     <!--Event Venue-->
     <TextView
         android:id="@+id/event_venue"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:background="?attr/colorButtonNormal"
-        android:baselineAligned="false"
-        android:gravity="center"
+        android:layout_height="wrap_content"
         android:paddingLeft="@dimen/activity_padding_all"
         android:paddingTop="5dp"
         android:paddingRight="@dimen/activity_padding_all"
         android:paddingBottom="5dp"
+        android:baselineAligned="false"
+        android:gravity="center"
         android:textSize="18sp" />
 
     <!--Contact info-->
     <TextView
         android:id="@+id/contact_info"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:background="?attr/colorButtonNormal"
-        android:baselineAligned="false"
-        android:gravity="center"
+        android:layout_height="wrap_content"
         android:paddingLeft="@dimen/activity_padding_all"
         android:paddingTop="5dp"
         android:paddingRight="@dimen/activity_padding_all"
         android:paddingBottom="5dp"
+        android:baselineAligned="false"
+        android:gravity="center"
         android:textSize="18sp" />
 
     <!--Status-->
     <TextView
         android:id="@+id/status"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:background="?attr/colorButtonNormal"
-        android:baselineAligned="false"
-        android:gravity="center"
+        android:layout_height="wrap_content"
         android:paddingLeft="@dimen/activity_padding_all"
         android:paddingTop="5dp"
         android:paddingRight="@dimen/activity_padding_all"
         android:paddingBottom="5dp"
-        android:textSize="18sp" />
-
-    <!--Comment for Admin-->
-    <TextView
-        android:id="@+id/comment_for_admin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorButtonNormal"
         android:baselineAligned="false"
         android:gravity="center"
-        android:paddingLeft="@dimen/activity_padding_all"
-        android:paddingTop="5dp"
-        android:paddingRight="@dimen/activity_padding_all"
-        android:paddingBottom="5dp"
         android:textSize="18sp" />
 
     <!--Approval Status-->
     <TextView
         android:id="@+id/approval"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:background="?attr/colorButtonNormal"
-        android:baselineAligned="false"
-        android:gravity="center"
+        android:layout_height="wrap_content"
         android:paddingLeft="@dimen/activity_padding_all"
         android:paddingTop="5dp"
         android:paddingRight="@dimen/activity_padding_all"
         android:paddingBottom="5dp"
+        android:baselineAligned="false"
+        android:gravity="center"
         android:textSize="18sp" />
-
-    <android.support.constraint.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <Spinner
-            android:id="@+id/spinner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:layout_weight="1"
-            android:background="@color/colorPrimaryDark"
-            android:backgroundTint="#82B1FF"
-            android:dropDownWidth="wrap_content"
-            android:entries="@array/admin_approve"
-            android:spinnerMode="dialog"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
-        <TextView
-            android:id="@+id/textView17"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:text="TextView"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/spinner"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
-        <ProgressBar
-            android:id="@+id/progressBar2"
-            style="?android:attr/progressBarStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/button6"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/button6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:layout_weight="1"
-            android:background="@color/design_default_color_primary"
-            android:onClick="func"
-            android:text="Update"
-            android:textColor="@android:color/background_light"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
-    </android.support.constraint.ConstraintLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
-
-        <Spinner
-            android:id="@+id/spinner2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:layout_weight="1"
-            android:background="#8C9EFF"
-            android:dropDownWidth="wrap_content"
-            android:entries="@array/venue_array2"
-            android:spinnerMode="dialog" />
-
-
-    </LinearLayout>
-
 
 </LinearLayout>

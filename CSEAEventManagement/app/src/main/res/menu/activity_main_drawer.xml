@@ -32,6 +32,10 @@
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="Search Events" />
             <item
+                android:id="@+id/nav_my_events"
+                android:icon="@drawable/ic_menu_gallery"
+                android:title="My Events" />
+            <item
                 android:id="@+id/nav_feedback_app"
                 android:icon="@drawable/ic_menu_send"
                 android:title="Feedback" />
@@ -61,6 +65,10 @@
                 android:id="@+id/nav_view_feedback"
                 android:icon="@android:drawable/ic_dialog_alert"
                 android:title="View App Feedback" />
+            <item
+                android:id="@+id/admin_search_activity"
+                android:icon="@android:drawable/ic_dialog_alert"
+                android:title="Admin Search Activity" />
         </menu>
         </item>
     </group>
