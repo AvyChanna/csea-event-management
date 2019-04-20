@@ -49,6 +49,7 @@ public class EventViewActivity extends AppCompatActivity {
 	private String event_time = "";
 	private String event_venue = "";
 	private int event_fee = 0;
+	private int capacity = 100;
 	private String get_faq;
 	private String event_target_audience = "";
 	private String event_poster = "";
@@ -56,6 +57,7 @@ public class EventViewActivity extends AppCompatActivity {
 	private Button btn_event_feedback;
 	private String username;
 	private String event_committee = "";
+	private String contact_info = "";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +84,8 @@ public class EventViewActivity extends AppCompatActivity {
 
 		TextView marque = findViewById(R.id.eventName);
 		marque.setSelected(true);
+		TextView marque2 = findViewById(R.id.eventDetails);
+		marque2.setSelected(true);
 
 		attemptGetEventData();
 
@@ -197,14 +201,14 @@ public class EventViewActivity extends AppCompatActivity {
 			event_committee = resp.getString("organisors");
 		} catch (Exception e) {
 		}
-//		try {
-//			contact_info = resp.getString("contact_info");
-//		} catch (Exception e) {
-//		}
-//		try {
-//			capacity = resp.getInt("capacity");
-//		} catch (Exception e) {
-//		}
+		try {
+			contact_info = resp.getString("contact_info");
+		} catch (Exception e) {
+		}
+		try {
+			capacity = resp.getInt("capacity");
+		} catch (Exception e) {
+		}
 		// TODO get invitees
 		populateEvent();
 	}
@@ -222,6 +226,10 @@ public class EventViewActivity extends AppCompatActivity {
 		text_venue.setText(event_venue);
 		TextView text_fee = (TextView) findViewById(R.id.eventFee);
 		text_fee.setText(Integer.toString(event_fee));
+		TextView text_capacity = (TextView) findViewById(R.id.eventCapacity);
+		text_capacity.setText(Integer.toString(capacity));
+		TextView contactInfo = (TextView) findViewById(R.id.contact_info);
+		contactInfo.setText(contact_info);
 
 		// code snippet to check current system date with event start time
 		checkEventandSystemDates();
@@ -347,12 +355,12 @@ public class EventViewActivity extends AppCompatActivity {
 			final TextView rowAnswer = new TextView(this);
 			String [] faq_qa = faq_array[i].split("=");
 			try {
-				rowQuestion.setText(faq_qa[0]);
+				rowQuestion.setText("Question: "+faq_qa[0]+"?");
 			} catch (Exception e) {
 
 			}
 			try {
-				rowAnswer.setText(faq_qa[1]);
+				rowAnswer.setText("Answer: "+faq_qa[1]);
 			} catch (Exception e) {
 
 			}

@@ -50,6 +50,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:layout_marginBottom="2dp"
+                android:ellipsize="marquee"
+                android:singleLine="true"
                 android:gravity="center"
                 android:text="Event Details"
                 android:textSize="18sp" />
@@ -158,6 +160,52 @@
                             android:layout_column="1"
                             android:gravity="start"
                             android:text="eventFee" />
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/Details_Capacity"
+                        android:layout_width="match_parent"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_column="0"
+                            android:paddingStart="50dp"
+                            android:text="Event Capacity:"
+                            android:textStyle="italic" />
+
+                        <TextView
+                            android:id="@+id/eventCapacity"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_column="1"
+                            android:gravity="start"
+                            android:text="No fixed capacity" />
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/contact"
+                        android:layout_width="match_parent"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_column="0"
+                            android:paddingStart="50dp"
+                            android:text="Event Capacity:"
+                            android:textStyle="italic" />
+
+                        <TextView
+                            android:id="@+id/contact_info"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_column="1"
+                            android:gravity="start"
+                            android:text="No fixed capacity" />
                     </TableRow>
 
                     <TableRow
