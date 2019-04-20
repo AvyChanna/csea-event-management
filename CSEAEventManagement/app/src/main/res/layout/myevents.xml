@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:background="@drawable/border"
+    android:orientation="vertical"
     android:paddingBottom="10dp">
 
     <ImageView
@@ -12,11 +12,11 @@
         android:layout_width="match_parent"
         android:layout_height="180dp"
         android:gravity="center"
-        app:layout_constraintDimensionRatio="H,1:1"
         android:paddingTop="15dp"
-
-
         android:scaleType="fitCenter"
+
+
+        app:layout_constraintDimensionRatio="H,1:1"
 
         />
 
@@ -25,11 +25,11 @@
         android:id="@+id/event_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        
+
         android:baselineAligned="false"
         android:gravity="center"
         android:paddingLeft="@dimen/activity_padding_all"
-        
+
         android:paddingRight="@dimen/activity_padding_all"
         android:paddingBottom="5dp"
         android:textSize="18sp" />
@@ -38,9 +38,8 @@
     <TextView
         android:id="@+id/event_time"
         android:layout_width="match_parent"
-        
+
         android:layout_height="wrap_content"
-        android:background="?attr/colorButtonNormal"
         android:baselineAligned="false"
         android:gravity="center"
         android:paddingLeft="@dimen/activity_padding_all"
@@ -53,9 +52,8 @@
     <TextView
         android:id="@+id/event_date"
         android:layout_width="match_parent"
-        
+
         android:layout_height="wrap_content"
-        android:background="?attr/colorButtonNormal"
         android:baselineAligned="false"
         android:gravity="center"
         android:paddingLeft="@dimen/activity_padding_all"
@@ -68,9 +66,8 @@
     <TextView
         android:id="@+id/event_requester"
         android:layout_width="match_parent"
-        
+
         android:layout_height="wrap_content"
-        android:background="?attr/colorButtonNormal"
         android:baselineAligned="false"
         android:gravity="center"
         android:paddingLeft="@dimen/activity_padding_all"
@@ -84,7 +81,7 @@
         android:id="@+id/event_fee"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        
+
         android:baselineAligned="false"
         android:gravity="center"
         android:paddingLeft="@dimen/activity_padding_all"
@@ -98,9 +95,8 @@
     <TextView
         android:id="@+id/event_organiser"
         android:layout_width="match_parent"
-        
+
         android:layout_height="wrap_content"
-        android:background="?attr/colorButtonNormal"
         android:baselineAligned="false"
         android:gravity="center"
         android:paddingLeft="@dimen/activity_padding_all"
@@ -113,9 +109,8 @@
     <TextView
         android:id="@+id/event_tags"
         android:layout_width="match_parent"
-        
+
         android:layout_height="wrap_content"
-        android:background="?attr/colorButtonNormal"
         android:baselineAligned="false"
         android:gravity="center"
         android:paddingLeft="@dimen/activity_padding_all"
@@ -128,9 +123,8 @@
     <TextView
         android:id="@+id/event_faqs"
         android:layout_width="match_parent"
-        
+
         android:layout_height="wrap_content"
-        android:background="?attr/colorButtonNormal"
         android:baselineAligned="false"
         android:gravity="center"
         android:paddingLeft="@dimen/activity_padding_all"
@@ -143,9 +137,8 @@
     <TextView
         android:id="@+id/event_venue"
         android:layout_width="match_parent"
-        
+
         android:layout_height="wrap_content"
-        android:background="?attr/colorButtonNormal"
         android:baselineAligned="false"
         android:gravity="center"
         android:paddingLeft="@dimen/activity_padding_all"
@@ -158,9 +151,8 @@
     <TextView
         android:id="@+id/contact_info"
         android:layout_width="match_parent"
-        
+
         android:layout_height="wrap_content"
-        android:background="?attr/colorButtonNormal"
         android:baselineAligned="false"
         android:gravity="center"
         android:paddingLeft="@dimen/activity_padding_all"
@@ -173,9 +165,22 @@
     <TextView
         android:id="@+id/status"
         android:layout_width="match_parent"
-        
+
         android:layout_height="wrap_content"
-        android:background="?attr/colorButtonNormal"
+        android:baselineAligned="false"
+        android:gravity="center"
+        android:paddingLeft="@dimen/activity_padding_all"
+        android:paddingTop="5dp"
+        android:paddingRight="@dimen/activity_padding_all"
+        android:paddingBottom="5dp"
+        android:textSize="18sp" />
+
+    <!--Approval Status-->
+    <TextView
+        android:id="@+id/approval"
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content"
         android:baselineAligned="false"
         android:gravity="center"
         android:paddingLeft="@dimen/activity_padding_all"

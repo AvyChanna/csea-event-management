@@ -281,7 +281,16 @@ public class MainActivity extends AppCompatActivity
 			SharedPreferences.Editor e = sp.edit();
 			e.clear();
 			e.apply();
+		} else if (id == R.id.admin_search_activity) {
+			//Calling Admin Search Activity
+			Intent intent = new Intent(this, events_search_adminActivity.class);
+			startActivity(intent);
+		} else if (id == R.id.nav_my_events) {
+			//Calling Admin Search Activity
+			Intent intent = new Intent(this, myeventsActivity.class);
+			startActivity(intent);
 		}
+
 		DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 		drawer.closeDrawer(GravityCompat.START);
 		return true;

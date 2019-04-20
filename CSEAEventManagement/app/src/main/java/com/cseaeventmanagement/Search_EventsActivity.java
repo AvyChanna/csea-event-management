@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -141,290 +142,309 @@ public class Search_EventsActivity extends AppCompatActivity {
                     }
                 }).show();*/
 
-		if (name.isEmpty() || name.equals(""))        //Show all the events
-		{
-			//Calling OnAllClick function
-			onAllClick(b1);
-		} else    //Show all the events by the current name
-		{
-			LoginInQueue = true;
+        if(name.isEmpty()||name.equals(""))        //Show all the events
+        {
+            //Calling OnAllClick function
+            onAllClick(b1);
+        }
 
-			JsonArrayRequest jor = new JsonArrayRequest(
-					Request.Method.GET,
-					"http://" +
-							pref.getString("ip", "127.0.0.1:8000") + "/api/events/",
-					null,
-					new Response.Listener<JSONArray>() {
-						//@Override
-						public void onResponse(JSONArray response) {
-							LoginInQueue = false;
+        else    //Show all the events by the current name
+        {
+            LoginInQueue=true;
 
-							//Removing progress bar
-							View nextChild = ((ViewGroup) parentLinearLayout).getChildAt(0);
-							parentLinearLayout.removeView(nextChild);
+            JsonArrayRequest jor = new JsonArrayRequest(
+                    Request.Method.GET,
+                    "http://"+
+                            pref.getString("ip","127.0.0.1:8000")+"/api/events/",
+                    null,
+                    new Response.Listener<JSONArray>() {
+                        //@Override
+                        public void onResponse(JSONArray response) {
+                            LoginInQueue=false;
 
-							Log.d("API_CALL_RES_SEARCH", response.toString());
-							//showProgress(false);
+                            //Removing progress bar
+                            View nextChild = ((ViewGroup)parentLinearLayout).getChildAt(0);
+                            parentLinearLayout.removeView(nextChild);
 
-							try {
-								resp = new JSONArray(response.toString());
-							} catch (Exception e) {
-								Log.d("API_CALL_RES_SEARCH", "Malformed JSON");
-							}
+                            Log.d("API_CALL_RES_SEARCH", response.toString());
+                            //showProgress(false);
 
-							checkresponse2(resp, name);
-						}
-					},
-					new Response.ErrorListener() {
-						//@Override
-						public void onErrorResponse(VolleyError error) {
-							LoginInQueue = false;
 
-							//Removing progress bar
-							View nextChild = ((ViewGroup) parentLinearLayout).getChildAt(0);
-							parentLinearLayout.removeView(nextChild);
+                            try {
+                                resp = new JSONArray(response.toString());
+                            } catch (Exception e) {
+                                Log.d("API_CALL_RES_SEARCH", "Malformed JSON");
+                            }
 
-							Log.d("API_CALL_ERR_SEARCH", error.toString());
-							//showProgress(false);
-							Snackbar.make(findViewById(R.id.parent_scroll_view), "Check your network and try again", Snackbar.LENGTH_LONG)
-									.setAction("Dismiss", new View.OnClickListener() {
-										@Override
-										public void onClick(View v) {
+                            checkresponse2(resp,name);
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        //@Override
+                        public void onErrorResponse(VolleyError error) {
+                            LoginInQueue=false;
 
-										}
-									}).show();
-						}
-					}
-			);
-			q.add(jor);
-			showProgress(true);
-		}
+                            //Removing progress bar
+                            View nextChild = ((ViewGroup)parentLinearLayout).getChildAt(0);
+                            parentLinearLayout.removeView(nextChild);
 
-	}
+                            Log.d("API_CALL_ERR_SEARCH", error.toString());
+                            //showProgress(false);
+                            Snackbar.make(findViewById(R.id.parent_scroll_view), "Check your network and try again", Snackbar.LENGTH_LONG)
+                                    .setAction("Dismiss", new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
 
-	private void checkresponse(JSONArray resp) {
-		//Populate parent layout with the views
+                                        }
+                                    }).show();
+                        }
+                    }
+            );
+            q.add(jor);
+            showProgress(true);
+        }
 
-		for (int n = 0; n < resp.length(); n++) {
-			try {
-				object = resp.getJSONObject(n);
-			} catch (JSONException e) {
-				e.printStackTrace();
-			}
-			add_event(object);
-		}
+    }
 
-	}
+    private void checkresponse(JSONArray resp){
+        //Populate parent layout with the views
 
-	private void checkresponse2(JSONArray resp, String name) {
-		//Populate parent layout with the views having name=="name"
+        for(int n = 0; n < resp.length(); n++){
+            try {
+                object = resp.getJSONObject(n);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            add_event(object);}
 
-		for (int n = 0; n < resp.length(); n++) {
-			try {
-				object = resp.getJSONObject(n);
-			} catch (JSONException e) {
-				e.printStackTrace();
-			}
-			String data = "";
-			try {
-				data = object.getString("name");
-			} catch (JSONException e) {
-				e.printStackTrace();
-			}
-			if (data.toLowerCase().contains(name.toLowerCase()))
-				add_event(object);
-		}
+    }
 
-	}
+    private void checkresponse2(JSONArray resp,String name){
+        //Populate parent layout with the views having name=="name"
 
-	private void showProgress(final boolean show) {
-		//Removing all the views inside the parentlinearlayout
-		for (int index = ((ViewGroup) parentLinearLayout).getChildCount() - 1; index >= 0; index--) {
+        for(int n = 0; n < resp.length(); n++){
+            try {
+                object = resp.getJSONObject(n);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            String data="";
+            try {
+                data=object.getString("name");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            if(data.toLowerCase().contains(name.toLowerCase()))
+                add_event(object);
+        }
 
-			View nextChild = ((ViewGroup) parentLinearLayout).getChildAt(index);
-			parentLinearLayout.removeView(nextChild);
+    }
 
-		}
+    private void showProgress(final boolean show) {
+        //Removing all the views inside the parentlinearlayout
+        for(int index=((ViewGroup)parentLinearLayout).getChildCount()-1; index>=0; index--) {
 
-		//Adding progress animation
-		LayoutInflater inflater2 = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		final View rowView = inflater2.inflate(R.layout.progressbar, null);
+            View nextChild = ((ViewGroup)parentLinearLayout).getChildAt(index);
+            parentLinearLayout.removeView(nextChild);
 
-		// Add the new row before the add field button.
-		parentLinearLayout.addView(rowView);
+        }
 
-	}
+        //Adding progress animation
+        LayoutInflater inflater2 = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        final View rowView = inflater2.inflate(R.layout.progressbar, null);
 
-	public void add_event(JSONObject object) {
-		//Filtering based on Approval Status
-		String data = "";
-		try {
-			data = object.getString("approval");
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
-		if (data.compareTo("Appr") != 0) {
-			return;
-		}
+        // Add the new row before the add field button.
+        parentLinearLayout.addView(rowView);
 
-		LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		final View rowView = inflater.inflate(R.layout.field, null);
-		imv = (ImageView) ((ViewGroup) rowView).getChildAt(0);
-		TextView event_name = (TextView) ((ViewGroup) rowView).getChildAt(1);
-		TextView event_time = (TextView) ((ViewGroup) rowView).getChildAt(2);
-		TextView event_date = (TextView) ((ViewGroup) rowView).getChildAt(3);
-		TextView target_audience = (TextView) ((ViewGroup) rowView).getChildAt(4);
-		TextView event_fee = (TextView) ((ViewGroup) rowView).getChildAt(5);
-		TextView event_requester = (TextView) ((ViewGroup) rowView).getChildAt(6);
-		TextView event_tags = (TextView) ((ViewGroup) rowView).getChildAt(7);
-		TextView event_faqs = (TextView) ((ViewGroup) rowView).getChildAt(8);
-		TextView event_venue = (TextView) ((ViewGroup) rowView).getChildAt(9);
-		TextView contact_info = (TextView) ((ViewGroup) rowView).getChildAt(10);
-		TextView status = (TextView) ((ViewGroup) rowView).getChildAt(11);
-		// todo Add bitmap image to imv
-		imv.setImageResource(R.drawable.avengers);
-		//Adding the text to all textviews
+    }
 
-		//event_name
-		try {
-			data = object.getString("name");
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
-		event_name.setText("Name: " + data);
 
-		//event_time
-		try {
-			data = object.getString("time");
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
-		event_time.setText("Time: " + data);
+    public void add_event(JSONObject object) {
+        //Filtering based on Approval Status
+        String data="";
+        int data2=0;
+        try {
+            data=object.getString("approval");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        if(data.compareTo("Appr")!=0) {
+            return;
+        }
 
-		//event_date
-		try {
-			data = object.getString("date");
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
+        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        final View rowView = inflater.inflate(R.layout.field, null);
+        imv = (ImageView) ((ViewGroup)rowView).getChildAt(0);
+        TextView event_name=(TextView)  ((ViewGroup)rowView).getChildAt(1);
+        TextView event_time=(TextView)  ((ViewGroup)rowView).getChildAt(2);
+        TextView event_date=(TextView)  ((ViewGroup)rowView).getChildAt(3);
+        TextView target_audience=(TextView)  ((ViewGroup)rowView).getChildAt(4);
+        TextView event_fee=(TextView)  ((ViewGroup)rowView).getChildAt(5);
+        TextView event_organiser=(TextView)  ((ViewGroup)rowView).getChildAt(6);
+        TextView event_tags=(TextView)  ((ViewGroup)rowView).getChildAt(7);
+        TextView event_faqs=(TextView)  ((ViewGroup)rowView).getChildAt(8);
+        TextView event_venue=(TextView)  ((ViewGroup)rowView).getChildAt(9);
+        TextView contact_info=(TextView)  ((ViewGroup)rowView).getChildAt(10);
+        TextView status=(TextView)  ((ViewGroup)rowView).getChildAt(11);
 
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		Date convertedCurrentDate = null;
-		try {
-			convertedCurrentDate = sdf.parse(data);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		SimpleDateFormat sdf2 = new SimpleDateFormat("dd-MM-yyyy");
-		event_date.setText("Date: " + sdf2.format(convertedCurrentDate));
+        try {
+            data=object.getString("image_string");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        imv.setImageResource(R.drawable.avengers);
+        if(!data.equals("None")) {
+            try {
+                byte[] decodedString = Base64.decode(data, Base64.URL_SAFE | Base64.NO_WRAP | Base64.NO_PADDING);
+                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                imv.setScaleType(ImageView.ScaleType.FIT_CENTER);
+                imv.setImageBitmap(decodedByte);
+            } catch (Exception e) {
+                imv.setImageResource(R.drawable.avengers);
+            }
+        }
+        //event_name
+        try {
+            data=object.getString("name");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        event_name.setText("Name: "+data);
 
-		//Change color
-		Date c = Calendar.getInstance().getTime();
-		//System.out.println("Current time => " + c);
-		String formattedDate = sdf.format(c);
+        //event_time
+        try {
+            data=object.getString("time");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        event_time.setText("Time: "+data);
 
-		if (convertedCurrentDate.compareTo(c) <= 0) {
-			event_date.setTextColor(Color.parseColor("#ff0000"));
-		} else {
-			event_date.setTextColor(Color.parseColor("#008000"));
-		}
+        //event_date
+        try {
+            data=object.getString("date");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
-		//target_audience
-		try {
-			data = object.getString("target_audience");
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
-		target_audience.setText("Target Audience: " + data);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date convertedCurrentDate=null;
+        try {
+            convertedCurrentDate = sdf.parse(data);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        SimpleDateFormat sdf2 = new SimpleDateFormat("dd-MM-yyyy");
+        event_date.setText("Date: "+sdf2.format(convertedCurrentDate ));
 
-		//event_fee
-		try {
-			data = object.getString("fee");
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
-		event_fee.setText("Fees: " + data);
+        //Change color
+        Date c = Calendar.getInstance().getTime();
+        //System.out.println("Current time => " + c);
+        String formattedDate = sdf.format(c);
 
-		//event_requester
-		try {
-			data = object.getString("organisors");
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
-		event_requester.setText("Organizers: " + data);
+        if(convertedCurrentDate.compareTo(c)<=0)
+        {
+            event_date.setTextColor(Color.parseColor("#ff0000"));
+        }
+        else
+        {
+            event_date.setTextColor(Color.parseColor("#008000"));
+        }
 
-		//event_tags
-		try {
-			data = object.getString("tags");
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
-		event_tags.setText("Tags: " + data);
+        //target_audience
+        try {
+            data=object.getString("requestor");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        target_audience.setText("Event Requestor: "+data);
 
-		//event_faqs
-		try {
-			data = object.getString("faq");
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
-		event_faqs.setText("FAQS: " + data);
+        //event_fee
+        try {
+            data2=object.getInt("fee");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        event_fee.setText("Fees: "+data2);
 
-		//event_venue
-		try {
-			data = object.getString("venue");
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
-		event_venue.setText("Venue: " + data);
+        //event_organiser
+        try {
+            data=object.getString("organisors");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        event_organiser.setText("Organizers: "+data);
 
-		//contact info
-		try {
-			data = object.getString("contact_info");
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
-		contact_info.setText("Contact: " + data);
+        //event_tags
+        try {
+            data=object.getString("tags");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        event_tags.setText("Tags: "+data);
 
-		//Status
-		String capacity = "";
-		String audience = "";
-		try {
-			capacity = object.getString("capacity");
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
-		try {
-			audience = object.getString("curr_audience");
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
+        //event_faqs
+        try {
+            data=object.getString("faq");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        event_faqs.setText("FAQS: "+data);
 
-		//Try to change the strings to ints if not NULL
-		int cap = -1, aud = -1;
-		if (capacity != null && capacity != "") {
-			cap = Integer.parseInt(capacity);
-		}
-		if (capacity != null && capacity != "") {
-			aud = Integer.parseInt(audience);
-		}
+        //event_venue
+        try {
+            data=object.getString("venue");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        event_venue.setText("Venue: "+data);
 
-		if (cap != -1 && aud != -1) {
-			if (aud < cap) {
-				status.setText("Status: Seats available");
-				status.setTextColor(Color.parseColor("#008000"));
-			} else {
-				status.setText("Status: Event Full");
-				status.setTextColor(Color.parseColor("#FF0000"));
-			}
-		} else {
-			status.setText("Status: Undecided");
-			status.setTextColor(Color.parseColor("#000000"));
-		}
+        //contact info
+        try {
+            data=object.getString("contact_info");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        contact_info.setText("Contact: "+data);
 
-		// Add the new row
+        //Status
+        int cap=-1,aud=-1;
+        try {
+            cap=object.getInt("capacity");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
-		parentLinearLayout.addView(rowView);
+        try {
+            aud=object.getInt("curr_audience");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
-	}
+        if(cap!=-1&&aud!=-1)
+        {
+            if(aud<cap||cap==0)
+            {
+                status.setText("Status: Seats available");
+                status.setTextColor(Color.parseColor("#008000"));
+            }
+            else
+            {
+                status.setText("Status: Event Full");
+                status.setTextColor(Color.parseColor("#FF0000"));
+            }
+        }
+        else {
+            status.setText("Status: Undecided");
+            status.setTextColor(Color.parseColor("#000000"));
+        }
+
+
+
+        // Add the new row
+
+        parentLinearLayout.addView(rowView);
+
+    }
+
 
 }

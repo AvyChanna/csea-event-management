@@ -40,7 +40,8 @@ webmail id:\n
 dgoswami@iitg.ernet.in"
             android:textAlignment="center"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="8dp"
+            android:textSize="8sp"
+android:gravity="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/profile_image" />
@@ -69,7 +70,8 @@ ben@iitg.ernet.in
  "
             android:textAlignment="center"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="8dp"
+            android:textSize="8sp"
+android:gravity="center"
             app:layout_constraintEnd_toEndOf="@+id/profile_image2"
             app:layout_constraintStart_toStartOf="@+id/profile_image2"
             app:layout_constraintTop_toBottomOf="@+id/profile_image2" />
@@ -99,7 +101,8 @@ deepkesh@iitg.ernet.in
  "
             android:textAlignment="center"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="8dp"
+            android:textSize="8sp"
+android:gravity="center"
             app:layout_constraintEnd_toEndOf="@+id/profile_image3"
             app:layout_constraintStart_toStartOf="@+id/profile_image3"
             app:layout_constraintTop_toBottomOf="@+id/profile_image3" />
@@ -130,7 +133,8 @@ bhavya@iitg.ernet.in
  "
             android:textAlignment="center"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="8dp"
+            android:textSize="8sp"
+android:gravity="center"
             app:layout_constraintEnd_toEndOf="@+id/profile_image4"
             app:layout_constraintStart_toStartOf="@+id/profile_image4"
             app:layout_constraintTop_toBottomOf="@+id/profile_image4" />
@@ -161,7 +165,8 @@ m.sanketh@iitg.ernet.in
  "
             android:textAlignment="center"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="8dp"
+            android:textSize="8sp"
+android:gravity="center"
             app:layout_constraintEnd_toEndOf="@+id/profile_image5"
             app:layout_constraintStart_toStartOf="@+id/profile_image5"
             app:layout_constraintTop_toBottomOf="@+id/profile_image5" />
@@ -190,7 +195,8 @@ chandra.nitin@iitg.ernet.in
  "
             android:textAlignment="center"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="8dp"
+            android:textSize="8sp"
+android:gravity="center"
             app:layout_constraintEnd_toEndOf="@+id/profile_image6"
             app:layout_constraintStart_toStartOf="@+id/profile_image6"
             app:layout_constraintTop_toBottomOf="@+id/profile_image6" />
@@ -219,7 +225,8 @@ pokkula@iitg.ernet.in
  "
             android:textAlignment="center"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="8dp"
+            android:textSize="8sp"
+android:gravity="center"
             app:layout_constraintEnd_toEndOf="@+id/profile_image7"
             app:layout_constraintStart_toStartOf="@+id/profile_image7"
             app:layout_constraintTop_toBottomOf="@+id/profile_image7" />
@@ -248,7 +255,8 @@ g.nishant@iitg.ernet.in
  "
             android:textAlignment="center"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="8dp"
+            android:textSize="8sp"
+android:gravity="center"
             app:layout_constraintEnd_toEndOf="@+id/profile_image8"
             app:layout_constraintStart_toStartOf="@+id/profile_image8"
             app:layout_constraintTop_toBottomOf="@+id/profile_image8" />
@@ -277,7 +285,8 @@ t.alamanda@iitg.ernet.in
  "
             android:textAlignment="center"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="8dp"
+            android:textSize="8sp"
+android:gravity="center"
             app:layout_constraintEnd_toEndOf="@+id/profile_image9"
             app:layout_constraintStart_toStartOf="@+id/profile_image9"
             app:layout_constraintTop_toBottomOf="@+id/profile_image9" />
@@ -306,7 +315,8 @@ padigela@iitg.ernet.in
  "
             android:textAlignment="center"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="8dp"
+            android:textSize="8sp"
+android:gravity="center"
             app:layout_constraintEnd_toEndOf="@+id/profile_image10"
             app:layout_constraintStart_toStartOf="@+id/profile_image10"
             app:layout_constraintTop_toBottomOf="@+id/profile_image10" />
@@ -337,7 +347,8 @@ k.khandelwal@iitg.ernet.in
  "
             android:textAlignment="center"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="8dp"
+            android:textSize="8sp"
+android:gravity="center"
             app:layout_constraintEnd_toEndOf="@+id/profile_image11"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/profile_image11" />
@@ -368,7 +379,8 @@ radhika.patodiya@iitg.ernet.in
  "
             android:textAlignment="center"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="8dp"
+            android:textSize="8sp"
+android:gravity="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/profile_image12"
             app:layout_constraintTop_toBottomOf="@+id/profile_image12" />
@@ -397,7 +409,8 @@ p.vandana@iitg.ernet.in
  "
             android:textAlignment="center"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="8dp"
+            android:textSize="8sp"
+android:gravity="center"
             app:layout_constraintEnd_toEndOf="@+id/profile_image13"
             app:layout_constraintStart_toStartOf="@+id/profile_image13"
             app:layout_constraintTop_toBottomOf="@+id/profile_image13" />
@@ -426,7 +439,8 @@ shuvendu@iitg.ernet.in
  "
             android:textAlignment="center"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="8dp"
+            android:textSize="8sp"
+android:gravity="center"
             app:layout_constraintEnd_toEndOf="@+id/profile_image14"
             app:layout_constraintStart_toStartOf="@+id/profile_image14"
             app:layout_constraintTop_toBottomOf="@+id/profile_image14" />
@@ -455,7 +469,8 @@ saurabh.gupta@iitg.ernet.in
  "
             android:textAlignment="center"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="8dp"
+            android:textSize="8sp"
+android:gravity="center"
             app:layout_constraintEnd_toEndOf="@+id/profile_image15"
             app:layout_constraintStart_toStartOf="@+id/profile_image15"
             app:layout_constraintTop_toBottomOf="@+id/profile_image15" />
@@ -483,7 +498,8 @@ b.tuhin@iitg.ernet.in
  "
             android:textAlignment="center"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="8dp"
+            android:textSize="8sp"
+android:gravity="center"
             app:layout_constraintEnd_toEndOf="@+id/profile_image16"
             app:layout_constraintStart_toStartOf="@+id/profile_image16"
             app:layout_constraintTop_toBottomOf="@+id/profile_image16" />
