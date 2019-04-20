@@ -76,6 +76,63 @@
                 android:hint="Expected Audience (in numbers)"
                 android:inputType="number" />
 
+            <EditText
+                android:id="@+id/editText_request_contactInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:gravity="left"
+                android:hint="Contact info"
+                android:inputType="number" />
+
+            <!--<TextView-->
+                <!--android:id="@+id/textView_add_tags"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="15dp"-->
+                <!--android:elevation="10dp"-->
+                <!--android:gravity="center_horizontal"-->
+                <!--android:text="Add Event Tags"-->
+                <!--android:textColor="@color/colorAccent"-->
+                <!--android:textSize="17dp" />-->
+
+            <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="1dp"-->
+                <!--android:background="@android:color/holo_blue_dark" />-->
+
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="60dp"-->
+                <!--android:orientation="horizontal">-->
+
+                <!--<EditText-->
+                    <!--android:id="@+id/editText_add_tag"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:ems="10"-->
+                    <!--android:gravity="left|center"-->
+                    <!--android:layout_gravity="center"-->
+                    <!--android:hint="Enter organizer name"-->
+                    <!--android:layout_weight="1.3"-->
+                    <!--android:inputType="textMultiLine" />-->
+
+                <!--<Button-->
+                    <!--android:id="@+id/btn_submit_tag"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:layout_gravity="center"-->
+                    <!--android:layout_marginTop="5dp"-->
+                    <!--android:layout_marginBottom="5dp"-->
+                    <!--android:layout_weight="3.5"-->
+                    <!--android:gravity="center"-->
+                    <!--android:hint="Add"-->
+                    <!--android:textAlignment="gravity" />-->
+
+            <!--</LinearLayout>-->
+
+
+
             <Spinner
                 android:id="@+id/spinner_request"
                 android:layout_width="match_parent"

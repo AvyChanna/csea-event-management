@@ -17,14 +17,15 @@ public class CustomFAQ extends AppCompatActivity {
 
 	private EditText question;
 	private EditText answer;
-	private JSONArray obj_array;
+//	private JSONArray obj_array;
 	private int count=0;
+	private String cust_faq;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_custom_faq);
-		obj_array = new JSONArray();
+//		obj_array = new JSONArray();
 	}
 
 	public void getfaqed(View v) {
@@ -38,7 +39,7 @@ public class CustomFAQ extends AppCompatActivity {
 		}
 		else{
 			Intent i = new Intent();
-			i.putExtra("noddy", obj_array.toString());
+			i.putExtra("faq", cust_faq);
 			setResult(RESULT_OK, i);
 			finish();
 		}
@@ -67,9 +68,10 @@ public class CustomFAQ extends AppCompatActivity {
 		else {
 			JSONObject obj = new JSONObject();
 			try {
-				obj.accumulate("question", question.getText().toString());
-				obj.accumulate("answer", answer.getText().toString());
-				obj_array.put(obj);
+//				obj.accumulate("question", question.getText().toString());
+//				obj.accumulate("answer", answer.getText().toString());
+//				obj_array.put(obj);
+				cust_faq = cust_faq + question.getText().toString() + "=" + answer.getText().toString() + "|";
 				question.setText("");
 				answer.setText("");
 				count++;
