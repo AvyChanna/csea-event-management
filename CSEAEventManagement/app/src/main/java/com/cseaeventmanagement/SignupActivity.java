@@ -256,7 +256,7 @@ public class SignupActivity extends AppCompatActivity implements LoaderCallbacks
 			Log.d("hello", obj.toString());
 			JsonObjectRequest jor = new JsonObjectRequest(
 					Request.Method.POST,
-					getString(R.string.ip) + "acceptor/",
+					getSharedPreferences(getString(R.string.ip_pref), 0).getString("ip","127.0.0.1:8000") + "acceptor/",
 					obj,
 					new Response.Listener<JSONObject>() {
 						@Override

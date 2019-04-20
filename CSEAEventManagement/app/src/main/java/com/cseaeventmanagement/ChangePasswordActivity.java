@@ -92,7 +92,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
                     }
                     JsonObjectRequest jor = new JsonObjectRequest(
                             Request.Method.POST,
-                            getString(R.string.ip) + "api-change-pw/",
+                            getSharedPreferences(getString(R.string.ip_pref), 0).getString("ip","127.0.0.1:8000") + "api-change-pw/",
                             obj,
                             new Response.Listener<JSONObject>() {
                                 @Override

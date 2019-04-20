@@ -23,7 +23,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ChangePasswordActivity"></activity>
+        <activity android:name=".ChangePasswordActivity" />
+        <activity android:name=".myeventsActivity" />
+        <activity android:name=".events_search_adminActivity" />
         <activity android:name=".SettingsActivity" />
         <activity android:name=".Admin_ApproveActivity" />
         <activity android:name=".OnBoardingActivity" />

@@ -31,8 +31,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/slide_heading"
-        android:textAlignment="center"
-        android:scrollbars="vertical"
+
         android:gravity="center"
         android:padding="30dp"
         android:text="TextView"

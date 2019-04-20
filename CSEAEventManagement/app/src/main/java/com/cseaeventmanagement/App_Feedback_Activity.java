@@ -180,7 +180,7 @@ public class App_Feedback_Activity extends AppCompatActivity {
 			}
 			JsonObjectRequest jor = new JsonObjectRequest(
 					Request.Method.POST,
-					getString(R.string.ip) + "api/app-feedback/",
+					getSharedPreferences(getString(R.string.ip_pref), 0).getString("ip","127.0.0.1:8000") + "api/app-feedback/",
 					obj,
 					new Response.Listener<JSONObject>() {
 						@Override

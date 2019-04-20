@@ -26,7 +26,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/changePassword"
+            android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
@@ -39,7 +39,8 @@ HOD, Dept. Of CSE\n
 webmail id:\n  svrao@iitg.ernet.in"
             android:textAlignment="center"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="8dp"
+            android:textSize="8sp"
+android:gravity="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/profile_image" />
@@ -52,7 +53,7 @@ webmail id:\n  svrao@iitg.ernet.in"
             android:layout_marginTop="8dp"
             android:src="@drawable/faculty_mentor"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/changePassword" />
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
 
         <TextView
             android:id="@+id/textView2"
@@ -68,7 +69,8 @@ ben@iitg.ernet.in
  "
             android:textAlignment="center"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="8dp"
+            android:textSize="8sp"
+android:gravity="center"
             app:layout_constraintEnd_toEndOf="@+id/profile_image2"
             app:layout_constraintStart_toStartOf="@+id/profile_image2"
             app:layout_constraintTop_toBottomOf="@+id/profile_image2" />
@@ -82,7 +84,7 @@ ben@iitg.ernet.in
             android:layout_marginEnd="8dp"
             android:src="@drawable/faculty_mentor2"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/changePassword" />
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
 
         <TextView
             android:id="@+id/textView3"
@@ -98,7 +100,8 @@ deepkesh@iitg.ernet.in
  "
             android:textAlignment="center"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="8dp"
+            android:textSize="8sp"
+android:gravity="center"
             app:layout_constraintEnd_toEndOf="@+id/profile_image3"
             app:layout_constraintStart_toStartOf="@+id/profile_image3"
             app:layout_constraintTop_toBottomOf="@+id/profile_image3" />
@@ -129,7 +132,8 @@ rajan.garg
  "
             android:textAlignment="center"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="8dp"
+            android:textSize="8sp"
+android:gravity="center"
             app:layout_constraintEnd_toEndOf="@+id/profile_image4"
             app:layout_constraintStart_toStartOf="@+id/profile_image4"
             app:layout_constraintTop_toBottomOf="@+id/profile_image4" />
@@ -160,7 +164,8 @@ raj.shekhar
  "
             android:textAlignment="center"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="8dp"
+            android:textSize="8sp"
+android:gravity="center"
             app:layout_constraintEnd_toEndOf="@+id/profile_image5"
             app:layout_constraintStart_toStartOf="@+id/profile_image5"
             app:layout_constraintTop_toBottomOf="@+id/profile_image5" />
@@ -189,7 +194,8 @@ sambhav.kothari
  "
             android:textAlignment="center"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="8dp"
+            android:textSize="8sp"
+android:gravity="center"
             app:layout_constraintEnd_toEndOf="@+id/profile_image6"
             app:layout_constraintStart_toStartOf="@+id/profile_image6"
             app:layout_constraintTop_toBottomOf="@+id/profile_image6" />
@@ -218,7 +224,8 @@ rohan.aggarwal
  "
             android:textAlignment="center"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="8dp"
+            android:textSize="8sp"
+android:gravity="center"
             app:layout_constraintEnd_toEndOf="@+id/profile_image7"
             app:layout_constraintStart_toStartOf="@+id/profile_image7"
             app:layout_constraintTop_toBottomOf="@+id/profile_image7" />
@@ -247,7 +254,8 @@ roopansh
  "
             android:textAlignment="center"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="8dp"
+            android:textSize="8sp"
+android:gravity="center"
             app:layout_constraintEnd_toEndOf="@+id/profile_image8"
             app:layout_constraintStart_toStartOf="@+id/profile_image8"
             app:layout_constraintTop_toBottomOf="@+id/profile_image8" />
@@ -276,7 +284,8 @@ mitansh1398
  "
             android:textAlignment="center"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="8dp"
+            android:textSize="8sp"
+android:gravity="center"
             app:layout_constraintEnd_toEndOf="@+id/profile_image9"
             app:layout_constraintStart_toStartOf="@+id/profile_image9"
             app:layout_constraintTop_toBottomOf="@+id/profile_image9" />
@@ -305,7 +314,8 @@ apurva9
  "
             android:textAlignment="center"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="8dp"
+            android:textSize="8sp"
+android:gravity="center"
             app:layout_constraintEnd_toEndOf="@+id/profile_image10"
             app:layout_constraintStart_toStartOf="@+id/profile_image10"
             app:layout_constraintTop_toBottomOf="@+id/profile_image10" />
@@ -336,7 +346,8 @@ ankit.vyas
  "
             android:textAlignment="center"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="8dp"
+            android:textSize="8sp"
+android:gravity="center"
             app:layout_constraintEnd_toEndOf="@+id/profile_image11"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/profile_image11" />
@@ -367,7 +378,8 @@ shimona.verma
  "
             android:textAlignment="center"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="8dp"
+            android:textSize="8sp"
+android:gravity="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/profile_image12"
             app:layout_constraintTop_toBottomOf="@+id/profile_image12" />
@@ -396,7 +408,8 @@ shradha
  "
             android:textAlignment="center"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="8dp"
+            android:textSize="8sp"
+android:gravity="center"
             app:layout_constraintEnd_toEndOf="@+id/profile_image13"
             app:layout_constraintStart_toStartOf="@+id/profile_image13"
             app:layout_constraintTop_toBottomOf="@+id/profile_image13" />
@@ -425,7 +438,8 @@ harshit2016
  "
             android:textAlignment="center"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="8dp"
+            android:textSize="8sp"
+android:gravity="center"
             app:layout_constraintEnd_toEndOf="@+id/profile_image14"
             app:layout_constraintStart_toStartOf="@+id/profile_image14"
             app:layout_constraintTop_toBottomOf="@+id/profile_image14" />
@@ -454,7 +468,8 @@ harshitsharma_26
  "
             android:textAlignment="center"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="8dp"
+            android:textSize="8sp"
+android:gravity="center"
             app:layout_constraintEnd_toEndOf="@+id/profile_image15"
             app:layout_constraintStart_toStartOf="@+id/profile_image15"
             app:layout_constraintTop_toBottomOf="@+id/profile_image15" />
@@ -482,7 +497,8 @@ jatingoyal
  "
             android:textAlignment="center"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="8dp"
+            android:textSize="8sp"
+android:gravity="center"
             app:layout_constraintEnd_toEndOf="@+id/profile_image16"
             app:layout_constraintStart_toStartOf="@+id/profile_image16"
             app:layout_constraintTop_toBottomOf="@+id/profile_image16" />
