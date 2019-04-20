@@ -64,7 +64,7 @@
 
     <!--Event Target Audience-->
     <TextView
-        android:id="@+id/target_audience"
+        android:id="@+id/event_requester"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorButtonNormal"
@@ -93,7 +93,7 @@
 
     <!--Event Requester-->
     <TextView
-        android:id="@+id/event_requester"
+        android:id="@+id/event_organiser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorButtonNormal"
