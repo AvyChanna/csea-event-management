@@ -8,18 +8,7 @@
 
 
     <!--Comments-->
-    <TextView
-        android:id="@+id/user"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#D3D3D3"
-        android:ems="10"
-        android:gravity="center"
 
-        android:paddingTop="5dp"
-
-        android:paddingBottom="5dp"
-        android:textSize="24sp" />
 
     <TextView
         android:id="@+id/comment"

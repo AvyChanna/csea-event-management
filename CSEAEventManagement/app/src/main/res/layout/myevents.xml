@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/iv"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:gravity="center"
+
+        android:paddingTop="15dp"
+
+
+        android:scaleType="fitCenter"
+
+        />
+
+    <!--Event Name-->
+    <TextView
+        android:id="@+id/event_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorButtonNormal"
+        android:baselineAligned="false"
+        android:gravity="center"
+        android:paddingLeft="@dimen/activity_padding_all"
+
+        android:paddingRight="@dimen/activity_padding_all"
+        android:paddingBottom="5dp"
+        android:textSize="18sp" />
+
+    <!--Event Time-->
+    <TextView
+        android:id="@+id/event_time"
+        android:layout_width="match_parent"
+        android:background="?attr/colorButtonNormal"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/activity_padding_all"
+        android:paddingTop="5dp"
+        android:paddingRight="@dimen/activity_padding_all"
+        android:paddingBottom="5dp"
+        android:baselineAligned="false"
+        android:gravity="center"
+        android:textSize="18sp" />
+
+    <!--Event Date-->
+    <TextView
+        android:id="@+id/event_date"
+        android:layout_width="match_parent"
+        android:background="?attr/colorButtonNormal"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/activity_padding_all"
+        android:paddingTop="5dp"
+        android:paddingRight="@dimen/activity_padding_all"
+        android:paddingBottom="5dp"
+        android:baselineAligned="false"
+        android:gravity="center"
+        android:textSize="18sp" />
+
+    <!--Event Target Audience-->
+    <TextView
+        android:id="@+id/target_audience"
+        android:layout_width="match_parent"
+        android:background="?attr/colorButtonNormal"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/activity_padding_all"
+        android:paddingTop="5dp"
+        android:paddingRight="@dimen/activity_padding_all"
+        android:paddingBottom="5dp"
+        android:baselineAligned="false"
+        android:gravity="center"
+        android:textSize="18sp" />
+
+    <!--Event Fee-->
+    <TextView
+        android:id="@+id/event_fee"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorButtonNormal"
+        android:baselineAligned="false"
+        android:gravity="center"
+        android:paddingLeft="@dimen/activity_padding_all"
+        android:paddingTop="5dp"
+        android:paddingRight="@dimen/activity_padding_all"
+        android:paddingBottom="5dp"
+        android:textColor="@color/design_default_color_primary_dark"
+        android:textSize="18sp" />
+
+    <!--Event Requester-->
+    <TextView
+        android:id="@+id/event_requester"
+        android:layout_width="match_parent"
+        android:background="?attr/colorButtonNormal"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/activity_padding_all"
+        android:paddingTop="5dp"
+        android:paddingRight="@dimen/activity_padding_all"
+        android:paddingBottom="5dp"
+        android:baselineAligned="false"
+        android:gravity="center"
+        android:textSize="18sp" />
+
+    <!--Event Tags-->
+    <TextView
+        android:id="@+id/event_tags"
+        android:layout_width="match_parent"
+        android:background="?attr/colorButtonNormal"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/activity_padding_all"
+        android:paddingTop="5dp"
+        android:paddingRight="@dimen/activity_padding_all"
+        android:paddingBottom="5dp"
+        android:baselineAligned="false"
+        android:gravity="center"
+        android:textSize="18sp" />
+
+    <!--Event FAQS-->
+    <TextView
+        android:id="@+id/event_faqs"
+        android:layout_width="match_parent"
+        android:background="?attr/colorButtonNormal"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/activity_padding_all"
+        android:paddingTop="5dp"
+        android:paddingRight="@dimen/activity_padding_all"
+        android:paddingBottom="5dp"
+        android:baselineAligned="false"
+        android:gravity="center"
+        android:textSize="18sp" />
+
+    <!--Event Venue-->
+    <TextView
+        android:id="@+id/event_venue"
+        android:layout_width="match_parent"
+        android:background="?attr/colorButtonNormal"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/activity_padding_all"
+        android:paddingTop="5dp"
+        android:paddingRight="@dimen/activity_padding_all"
+        android:paddingBottom="5dp"
+        android:baselineAligned="false"
+        android:gravity="center"
+        android:textSize="18sp" />
+
+    <!--Contact info-->
+    <TextView
+        android:id="@+id/contact_info"
+        android:layout_width="match_parent"
+        android:background="?attr/colorButtonNormal"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/activity_padding_all"
+        android:paddingTop="5dp"
+        android:paddingRight="@dimen/activity_padding_all"
+        android:paddingBottom="5dp"
+        android:baselineAligned="false"
+        android:gravity="center"
+        android:textSize="18sp" />
+
+    <!--Status-->
+    <TextView
+        android:id="@+id/status"
+        android:layout_width="match_parent"
+        android:background="?attr/colorButtonNormal"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/activity_padding_all"
+        android:paddingTop="5dp"
+        android:paddingRight="@dimen/activity_padding_all"
+        android:paddingBottom="5dp"
+        android:baselineAligned="false"
+        android:gravity="center"
+        android:textSize="18sp" />
+
+    <!--Approval Status-->
+    <TextView
+        android:id="@+id/approval"
+        android:layout_width="match_parent"
+        android:background="?attr/colorButtonNormal"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/activity_padding_all"
+        android:paddingTop="5dp"
+        android:paddingRight="@dimen/activity_padding_all"
+        android:paddingBottom="5dp"
+        android:baselineAligned="false"
+        android:gravity="center"
+        android:textSize="18sp" />
+
+</LinearLayout>

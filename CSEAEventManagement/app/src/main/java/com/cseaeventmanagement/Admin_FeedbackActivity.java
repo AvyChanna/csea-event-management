@@ -230,16 +230,9 @@ public class Admin_FeedbackActivity extends AppCompatActivity {
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         final View rowView = inflater.inflate(R.layout.field2, null);
 
-        TextView user=(TextView)  ((ViewGroup)rowView).getChildAt(0);
-        TextView comment=(TextView)  ((ViewGroup)rowView).getChildAt(1);
+        TextView comment=(TextView)  ((ViewGroup)rowView).getChildAt(0);
 
-        //User
-        try {
-            data=object.getString("submitted_by");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        user.setText("User: "+data);
+
 
         //Comment
         try {
