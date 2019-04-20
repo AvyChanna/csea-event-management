@@ -6,10 +6,8 @@
     <color name="colorAccent">#FF4081</color>
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorTransparentWhite">#cccccc</color>
-
-    <!-- <color name="colorPrimary">#008577</color> -->
-    <!-- <color name="colorPrimaryDark">#4BB5FB</color> -->
-    <!-- <color name="colorAccent">#D81BC2</color> -->
+    <color name="colorAccent3">#4BB5FB</color>
+    <color name="colorAccent2">#D81BC2</color>
 
 </resources>
 
