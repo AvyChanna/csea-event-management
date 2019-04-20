@@ -172,11 +172,11 @@
     <string-array name="year_mtech">
         <item>Select Year of Study</item>
         <item>1</item>
-<<<<<<< HEAD
+
         <item>2</item>
-=======
-        <item>2</item>  
->>>>>>> cc8d069279b4cc1001a27d7d0a92d1113ed961e5
+
+
+
     </string-array>
 
     <string-array name="year_msc">
