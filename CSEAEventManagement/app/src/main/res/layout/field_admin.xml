@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="180dp"
         android:gravity="center"
-
+        app:layout_constraintDimensionRatio="H,1:1"
         android:paddingTop="15dp"
 
 
