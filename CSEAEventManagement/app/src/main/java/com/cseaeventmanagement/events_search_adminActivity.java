@@ -378,6 +378,8 @@ public class events_search_adminActivity extends AppCompatActivity {
         TextView contact_info=(TextView)  ((ViewGroup)rowView).getChildAt(10);
         TextView status=(TextView)  ((ViewGroup)rowView).getChildAt(11);
         TextView approval=(TextView)  ((ViewGroup)rowView).getChildAt(12);
+
+        //Setting image
         try {
             data=object.getString("image_string");
         } catch (JSONException e) {
