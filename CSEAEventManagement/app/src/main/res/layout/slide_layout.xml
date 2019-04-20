@@ -20,7 +20,6 @@
         android:layout_below="@id/slide_imageView"
         android:padding="15dp"
         android:text="TextView"
-        android:gravity="center"
         android:textAlignment="center"
         android:textColor="@color/colorAccent"
         android:textSize="30dp" />
@@ -30,7 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/slide_heading"
-        android:gravity="center"
+        android:textAlignment="center"
         android:scrollbars="vertical"
         android:padding="30dp"
         android:text="TextView"

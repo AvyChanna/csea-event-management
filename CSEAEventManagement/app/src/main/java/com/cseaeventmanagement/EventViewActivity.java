@@ -63,6 +63,8 @@ public class EventViewActivity extends AppCompatActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_event_view);
+				try{getSupportActionBar().setDisplayHomeAsUpEnabled(true);}catch(Exception e){}
+		try{getActionBar().setDisplayHomeAsUpEnabled(true);}catch(Exception e){}
 		Intent i = getIntent();
 		event_id = i.getStringExtra("event_id");
 		Context context = getApplicationContext();
@@ -224,7 +226,7 @@ public class EventViewActivity extends AppCompatActivity {
 		text_time.setText(event_time);
 		TextView text_venue = (TextView) findViewById(R.id.eventVenue);
 		text_venue.setText(event_venue);
-		TextView text_fee = (TextView) findViewById(R.id.eventFee);
+		TextView text_fee = findViewById(R.id.eventFee);
 		text_fee.setText(Integer.toString(event_fee));
 		TextView text_capacity = (TextView) findViewById(R.id.eventCapacity);
 		text_capacity.setText(Integer.toString(capacity));
