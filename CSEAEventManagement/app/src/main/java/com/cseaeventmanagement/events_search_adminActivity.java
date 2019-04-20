@@ -436,7 +436,7 @@ public class events_search_adminActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        target_audience.setText("Event Requestor: ");
+        target_audience.setText("Event Requestor: "+data);
 
         //event_fee
         try {

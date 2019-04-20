@@ -343,7 +343,13 @@ public class Search_EventsActivity extends AppCompatActivity {
         TextView event_venue=(TextView)  ((ViewGroup)rowView).getChildAt(9);
         TextView contact_info=(TextView)  ((ViewGroup)rowView).getChildAt(10);
         TextView status=(TextView)  ((ViewGroup)rowView).getChildAt(11);
+
         // todo Add bitmap image to imv
+        try {
+            data=object.getString("image_string");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         imv.setImageResource(R.drawable.avengers);
         //Adding the text to all textviews
 
@@ -401,7 +407,7 @@ public class Search_EventsActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        target_audience.setText("Event Requestor: ");
+        target_audience.setText("Event Requestor: "+data);
 
         //event_fee
         try {
