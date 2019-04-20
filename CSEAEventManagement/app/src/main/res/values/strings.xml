@@ -283,7 +283,7 @@
     <string name="shivam_bansal">Shivam Bansal\nTechnichal Co-ordinator\n2nd Year Undergraduate\nWebmail Id:  shiva170101063</string>
     <string name="chirag_gupta">Chirag Gupta\nAlumini Relations Representative\n2nd Year Undergraduate\nWebmail Id:  gupta170101019</string>
     <string name="utkarsh_jain">Utkarsh Jain\nBranch Representative\n2nd Year Undergraduate\nWebmail Id:  jain170101075</string>
-    <string name="title_activity_list_events">List Events</string>
+    <string name="title_activity_list_events">ListEventsActivity</string>
     <string name="error_invalid_value">This value is invalid</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"
@@ -374,7 +374,7 @@
         "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
         "when a user tries to pick up one of cards.\n\n"
     </string>
-    <string name="title_activity_view_event">View Event</string>
+    <string name="title_activity_view_event">ViewEventActivity</string>
     <string name="error_not_integer">This field is not integer</string>
     <string name="error_empty_field">This field can not be empty</string>
     <string name="name_not_available">Name not available</string>
