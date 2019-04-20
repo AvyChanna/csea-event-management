@@ -53,7 +53,7 @@ dgoswami@iitg.ernet.in"
             android:layout_marginTop="8dp"
             android:src="@drawable/faculty_mentor"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+            app:layout_constraintTop_toBottomOf="@+id/changePassword" />
 
         <TextView
             android:id="@+id/textView2"
@@ -83,7 +83,7 @@ ben@iitg.ernet.in
             android:layout_marginEnd="8dp"
             android:src="@drawable/faculty_mentor2"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+            app:layout_constraintTop_toBottomOf="@+id/changePassword" />
 
         <TextView
             android:id="@+id/textView3"

@@ -31,6 +31,7 @@
     <string name="name">Name</string>
     <string name="year_of_admission">Year of admission</string>
     <string name="phone_number">Phone Number</string>
+
     <string-array name="signup_dept">
         <item>BTech</item>
         <item>BDes</item>
@@ -63,18 +64,12 @@
         <item>nt</item>
         <item>lst</item>
     </string-array>
+
     <string-array name="branches_super">
         <item>Select Programme</item>
         <item>Bachelor of Technology (B.Tech.)</item>
-        <item>Bachelor of Design (B.Des.)</item>
-        <item>Master of Science (M.Sc.)</item>
-        <item>Master of Arts in Development Studies (MA)</item>
         <item>Master of Technology (M.Tech.)</item>
-        <item>Master of Design (M.Des.)</item>
-        <item>Master of Science by Research in Energy [MS(R)]</item>
         <item>Doctorate of Philosophy (Ph.D.)</item>
-        <item>CSE Dual(MTech+PhD) degree</item>
-        <item>EEE Dual Degree [MS(Engg)+PhD)</item>
     </string-array>
 
     <string-array name="branches_bdes">
@@ -154,17 +149,17 @@
 
     <string-array name="branches_btech">
         <item>Stream</item>
-        <item>Biotechnology</item>
-        <item>Chemical Engineering</item>
-        <item>Chemical Science and Technology</item>
-        <item>Civil Engineering</item>
-        <item>Computer Science &amp; Engineering</item>
-        <item>Electronics &amp; Communication Engineering</item>
-        <item>Electronics and Electrical Engineering</item>
-        <item>Engineering Physics</item>
-        <item>Mathematics &amp; Computing</item>
-        <item>Mechanical Engineering</item>
-        <item>All</item>
+        <item>CSE</item>
+        <item>MnC</item>
+        <item>ECE</item>
+        <item>EEE</item>
+        <item>CL</item>
+        <item>CST</item>
+        <item>CE</item>
+        <item>ME</item>
+        <item>EPH</item>
+        <item>BSBE</item>
+        <item></item>
     </string-array>
 
     <string-array name="year_btech">
@@ -173,14 +168,14 @@
         <item>2</item>
         <item>3</item>
         <item>4</item>
-        <item>All</item>
+        <item></item>
     </string-array>
 
     <string-array name="year_mtech">
         <item>Select Year of Study</item>
         <item>1</item>
         <item>2</item>
-        <item>All</item>
+        <item></item>
     </string-array>
 
     <string-array name="year_msc">

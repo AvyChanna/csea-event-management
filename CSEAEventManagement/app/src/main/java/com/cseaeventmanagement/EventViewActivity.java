@@ -232,6 +232,8 @@ public class EventViewActivity extends AppCompatActivity {
 		text_capacity.setText(Integer.toString(capacity));
 		TextView contactInfo = (TextView) findViewById(R.id.contact_info);
 		contactInfo.setText(contact_info);
+		TextView organizors = (TextView) findViewById(R.id.committee);
+		organizors.setText(event_committee);
 
 		// code snippet to check current system date with event start time
 		checkEventandSystemDates();

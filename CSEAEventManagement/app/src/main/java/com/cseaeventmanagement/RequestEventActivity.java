@@ -85,6 +85,13 @@ public class RequestEventActivity extends AppCompatActivity {
 	private RequestQueue q;
 	private View mProgressView;
 	private View mRequestEventView;
+	private int btech;
+	private int mtech;
+	private int phd;
+	private JSONArray btech_members;
+	private JSONArray mtech_members;
+	private JSONArray phd_members;
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -125,7 +132,6 @@ public class RequestEventActivity extends AppCompatActivity {
 				}
 				return view;
 			}
-
 		};
 		myAdapter_sel_programme.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		spinner_sel_programme.setAdapter(myAdapter_sel_programme);
@@ -158,8 +164,50 @@ public class RequestEventActivity extends AppCompatActivity {
 					Toast toast = Toast.makeText(context, text, duration);
 					toast.show();
 				} else {
-					event_target_audience = event_target_audience + String.valueOf(spinner_sel_programme.getSelectedItemPosition()) + "," +
-							String.valueOf(loc_spinner1.getSelectedItemPosition()) + "," + String.valueOf(loc_spinner2.getSelectedItemPosition()) + ";";
+//					event_target_audience = event_target_audience + String.valueOf(spinner_sel_programme.getSelectedItemPosition()) + "," +
+//							String.valueOf(loc_spinner1.getSelectedItemPosition()) + "," + String.valueOf(loc_spinner2.getSelectedItemPosition()) + ";";
+					if(spinner_sel_programme.getSelectedItemPosition()==1)
+					{
+							int btech_peeps = loc_spinner1.getSelectedItemPosition();
+							if(loc_spinner2.getSelectedItemPosition()==1)
+								btech_peeps += 0;
+							else if(loc_spinner2.getSelectedItemPosition()==2)
+								btech_peeps += 10;
+							else if(loc_spinner2.getSelectedItemPosition()==3)
+								btech_peeps += 20;
+							else
+								btech_peeps += 30;
+
+							btech_members.put(btech_peeps);
+					}
+					else if(spinner_sel_programme.getSelectedItemPosition()==2)
+					{
+						int mtech_peeps = loc_spinner1.getSelectedItemPosition();
+						if(loc_spinner2.getSelectedItemPosition()==1)
+							mtech_peeps += 0;
+						else if(loc_spinner2.getSelectedItemPosition()==2)
+							mtech_peeps += 10;
+						else if(loc_spinner2.getSelectedItemPosition()==3)
+							mtech_peeps += 20;
+						else
+							mtech_peeps += 30;
+
+						mtech_members.put(mtech_peeps);
+					}
+					else
+					{
+						int phd_peeps = loc_spinner1.getSelectedItemPosition();
+						if(loc_spinner2.getSelectedItemPosition()==1)
+							phd_peeps += 0;
+						else if(loc_spinner2.getSelectedItemPosition()==2)
+							phd_peeps += 10;
+						else if(loc_spinner2.getSelectedItemPosition()==3)
+							phd_peeps += 20;
+						else
+							phd_peeps += 30;
+
+						phd_members.put(phd_peeps);
+					}
 					Log.d("hello", event_target_audience);
 					Context context = getApplicationContext();
 					CharSequence text = "Audience added";
@@ -359,25 +407,10 @@ public class RequestEventActivity extends AppCompatActivity {
 		if (position_programme == 1)
 			decision_for_stream = getResources().getStringArray(R.array.branches_btech);
 		else if (position_programme == 2)
-			decision_for_stream = getResources().getStringArray(R.array.branches_bdes);
-		else if (position_programme == 3)
-			decision_for_stream = getResources().getStringArray(R.array.branches_msc);
-		else if (position_programme == 4)
-			decision_for_stream = getResources().getStringArray(R.array.branches_ma);
-		else if (position_programme == 5)
-			decision_for_stream = getResources().getStringArray(R.array.branches_mtech);
-		else if (position_programme == 6)
-			decision_for_stream = getResources().getStringArray(R.array.branches_mdes);
-		else if (position_programme == 7)
-			decision_for_stream = getResources().getStringArray(R.array.branches_msr);
-		else if (position_programme == 8)
-			decision_for_stream = getResources().getStringArray(R.array.branches_phd);
-		else if (position_programme == 9)
-			decision_for_stream = getResources().getStringArray(R.array.branches_cseDual);
-		else if (position_programme == 10)
-			decision_for_stream = getResources().getStringArray(R.array.branches_eeeDual);
+			decision_for_stream = getResources().getStringArray(R.array.branches_btech);
 		else
 			decision_for_stream = getResources().getStringArray(R.array.branches_btech);
+
 		final Spinner spinner_sel_stream = (Spinner) findViewById(R.id.spinner_request_stream);
 		ArrayAdapter<String> myAdapter_sel_stream = new ArrayAdapter<String>(RequestEventActivity.this, android.R.layout.simple_list_item_1, decision_for_stream) {
 			@Override
@@ -410,25 +443,9 @@ public class RequestEventActivity extends AppCompatActivity {
 		if (position_programme == 1)
 			decision_for_year = getResources().getStringArray(R.array.year_btech);
 		else if (position_programme == 2)
-			decision_for_year = getResources().getStringArray(R.array.year_bdes);
-		else if (position_programme == 3)
-			decision_for_year = getResources().getStringArray(R.array.year_msc);
-		else if (position_programme == 4)
-			decision_for_year = getResources().getStringArray(R.array.year_ma);
-		else if (position_programme == 5)
 			decision_for_year = getResources().getStringArray(R.array.year_mtech);
-		else if (position_programme == 6)
-			decision_for_year = getResources().getStringArray(R.array.year_mdes);
-		else if (position_programme == 7)
-			decision_for_year = getResources().getStringArray(R.array.year_msr);
-		else if (position_programme == 8)
-			decision_for_year = getResources().getStringArray(R.array.year_phd);
-		else if (position_programme == 9)
-			decision_for_year = getResources().getStringArray(R.array.year_cseDual);
-		else if (position_programme == 10)
-			decision_for_year = getResources().getStringArray(R.array.year_eeeDual);
 		else
-			decision_for_year = getResources().getStringArray(R.array.year_btech);
+			decision_for_year = getResources().getStringArray(R.array.year_phd);
 
 		final Spinner spinner_sel_year = (Spinner) findViewById(R.id.spinner_request_year);
 		ArrayAdapter<String> myAdapter_sel_year = new ArrayAdapter<String>(RequestEventActivity.this, android.R.layout.simple_list_item_1, decision_for_year) {
@@ -581,6 +598,9 @@ public class RequestEventActivity extends AppCompatActivity {
 				obj.accumulate("image_string", imageString);
 				obj.accumulate("organisors", event_committee);
 				obj.accumulate("contact_info",contact_info);
+				obj.accumulate("invitees_btech",btech_members);
+				obj.accumulate("invitees_mtech",mtech_members);
+				obj.accumulate("invitees_phd",phd_members);
 //				obj.accumulate("curr_audience",);
 				obj.accumulate("approval","Pend");
 				obj.accumulate("faq",noddy);

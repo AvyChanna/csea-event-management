@@ -196,7 +196,7 @@
                             android:layout_height="wrap_content"
                             android:layout_column="0"
                             android:paddingStart="50dp"
-                            android:text="Event Capacity:"
+                            android:text="Contact info:"
                             android:textStyle="italic" />
 
                         <TextView
@@ -205,7 +205,7 @@
                             android:layout_height="wrap_content"
                             android:layout_column="1"
                             android:gravity="start"
-                            android:text="No fixed capacity" />
+                            android:text="" />
                     </TableRow>
 
                     <TableRow
@@ -221,45 +221,54 @@
                             android:paddingStart="50dp"
                             android:text="Event Committee:"
                             android:textStyle="italic" />
-                    </TableRow>
 
-                    <TableRow
-                        android:id="@+id/Details_blue_line2"
-                        android:layout_width="match_parent"
-                        android:paddingTop="5dp"
-                        android:paddingBottom="5dp">
-
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:background="@android:color/holo_blue_dark" />
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:background="@android:color/holo_blue_dark" />
-                    </TableRow>
-
-                    <TableRow>
-
-                        <LinearLayout
-                            android:id="@+id/display_event_committee"
-                            android:layout_width="match_parent"
+                        <TextView
+                            android:id="@+id/committee"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:paddingLeft="50dp"
-                            android:paddingTop="15dp"
-                            android:paddingRight="25dp"
-                            android:paddingBottom="20dp">
+                            android:layout_column="1"
+                            android:gravity="start"
+                            android:text="" />
 
-                            <ScrollView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent">
-
-                            </ScrollView>
-                        </LinearLayout>
                     </TableRow>
+
+                    <!--<TableRow-->
+                        <!--android:id="@+id/Details_blue_line2"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:paddingTop="5dp"-->
+                        <!--android:paddingBottom="5dp">-->
+
+
+                        <!--<View-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="1dp"-->
+                            <!--android:background="@android:color/holo_blue_dark" />-->
+
+                        <!--<View-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="1dp"-->
+                            <!--android:background="@android:color/holo_blue_dark" />-->
+                    <!--</TableRow>-->
+
+                    <!--<TableRow>-->
+
+                        <!--<LinearLayout-->
+                            <!--android:id="@+id/display_event_committee"-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:orientation="vertical"-->
+                            <!--android:paddingLeft="50dp"-->
+                            <!--android:paddingTop="15dp"-->
+                            <!--android:paddingRight="25dp"-->
+                            <!--android:paddingBottom="20dp">-->
+
+                            <!--<ScrollView-->
+                                <!--android:layout_width="match_parent"-->
+                                <!--android:layout_height="match_parent">-->
+
+                            <!--</ScrollView>-->
+                        <!--</LinearLayout>-->
+                    <!--</TableRow>-->
 
 
                     <TableRow

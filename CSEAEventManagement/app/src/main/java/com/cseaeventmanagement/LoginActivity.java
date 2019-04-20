@@ -27,6 +27,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Network;
 import com.android.volley.Request;
@@ -42,6 +43,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -58,6 +60,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 	private TextInputEditText mPasswordView;
 	private View mProgressView;
 	private View mLoginFormView;
+	private String random;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -102,7 +105,85 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 		Network network = new BasicNetwork(new HurlStack());
 		q = new RequestQueue(new NoCache(), network);
 		q.start();
+
+
+//		TextView ok = findViewById(R.id.changePassword);
+//		ok.setOnClickListener(new View.OnClickListener(){
+//			@Override
+//			public void onClick(View v)
+//			{
+//				View focusView=null;
+//				boolean cancel=false;
+//				TextView email = findViewById(R.id.email);
+//				if(TextUtils.isEmpty(email.getText().toString()))
+//				{
+//					focusView = email;
+//					email.setError("Tell your email ID");
+//					cancel = true;
+//				}
+//				if(cancel)
+//					focusView.requestFocus();
+//				else
+//				{
+//					sendEmail(email.getText().toString());
+//				}
+//			}
+//		});
 	}
+
+//	public void sendEmail(String email)
+//	{
+//		String[] TO = {email};
+//		String[] CC = {"haharihi@gmail.com"};
+//		Intent emailIntent = new Intent(Intent.ACTION_SEND);
+//		emailIntent.setData(Uri.parse("mailto:"));
+//		emailIntent.setType("text/plain");
+//
+//		random = randomString();
+//
+//		emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
+//		emailIntent.putExtra(Intent.EXTRA_CC, CC);
+//		emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Password Change");
+//		emailIntent.putExtra(Intent.EXTRA_TEXT, "Your random token is "+random+"\n It is advisable to change your password");
+//
+//		try {
+//			startActivity(Intent.createChooser(emailIntent, "Send mail..."));
+//			finish();
+//			Context context = getApplicationContext();
+//			CharSequence text = "Recovery mail sent to your outlook";
+//			int duration = Toast.LENGTH_SHORT;
+//			Toast toast = Toast.makeText(context, text, duration);
+//			toast.show();
+//
+//		} catch (android.content.ActivityNotFoundException ex) {
+//			Context context = getApplicationContext();
+//			CharSequence text = "Error sending mail";
+//			int duration = Toast.LENGTH_SHORT;
+//			Toast toast = Toast.makeText(context, text, duration);
+//			toast.show();
+//		}
+//
+//
+//
+//	}
+
+//	public String randomString()
+//	{
+//		int leftLimit = 97; // letter 'a'
+//		int rightLimit = 122; // letter 'z'
+//		int targetStringLength = 10;
+//		Random random = new Random();
+//		StringBuilder buffer = new StringBuilder(targetStringLength);
+//		for (int i = 0; i < targetStringLength; i++) {
+//			int randomLimitedInt = leftLimit + (int)
+//					(random.nextFloat() * (rightLimit - leftLimit + 1));
+//			buffer.append((char) randomLimitedInt);
+//		}
+//		String generatedString = buffer.toString();
+//
+//		return generatedString;
+//
+//	}
 
 	private void populateAutoComplete() {
 		if (!mayRequestContacts()) {
@@ -338,6 +419,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 		editor.apply();
 
 		editor.putString("username", username);
+		editor.putString("password",mPasswordView.getText().toString());
 		editor.putString("name", name);
 		editor.putLong("phone", phone);
 		editor.putInt("roll", roll);
