@@ -32,7 +32,9 @@ import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.NoCache;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -58,6 +60,9 @@ public class EventViewActivity extends AppCompatActivity {
 	private String username;
 	private String event_committee = "";
 	private String contact_info = "";
+	private JSONArray btech_members;
+	private JSONArray mtech_members;
+	private JSONArray phd_members;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -211,6 +216,18 @@ public class EventViewActivity extends AppCompatActivity {
 			capacity = resp.getInt("capacity");
 		} catch (Exception e) {
 		}
+		try {
+			btech_members = resp.getJSONArray("invitees_btech");
+		} catch (Exception e) {
+		}
+		try {
+			mtech_members = resp.getJSONArray("invitees_mtech");
+		} catch (Exception e) {
+		}
+		try {
+			phd_members = resp.getJSONArray("invitees_phd");
+		} catch (Exception e) {
+		}
 		// TODO get invitees
 		populateEvent();
 	}
@@ -237,6 +254,85 @@ public class EventViewActivity extends AppCompatActivity {
 
 		// code snippet to check current system date with event start time
 		checkEventandSystemDates();
+
+		for(int i=0;i<btech_members.length();i++)
+		{
+			int peep=0;
+			try{peep = btech_members.getInt(i);}
+			catch (Exception e){}
+			final TextView rowTextView = new TextView(this);
+			if(peep>0)
+			{
+				String [] ok = getResources().getStringArray(R.array.branches_btech);
+				if(peep<=10)
+				{
+					rowTextView.setText("BTech "+ok[peep]+" 1st year");
+				}
+				else if(peep<=20)
+				{
+					rowTextView.setText("BTech "+ok[peep-10]+" 2nd year");
+				}
+				else if(peep<=30)
+				{
+					rowTextView.setText("BTech "+ok[peep-20]+" 3rd year");
+				}
+				else if(peep<=40)
+				{
+					rowTextView.setText("BTech "+ok[peep-30]+" 4th year");
+				}
+			}
+			if(!rowTextView.getText().toString().equals(""))
+			{
+				LinearLayout myLinearLayout = (LinearLayout) findViewById(R.id.display_target_audi);
+				myLinearLayout.addView(rowTextView);
+			}
+		}
+
+		for(int i=0;i<mtech_members.length();i++)
+		{
+			int peep=0;
+			try{peep = mtech_members.getInt(i);}
+			catch (Exception e){}
+			final TextView rowTextView = new TextView(this);
+			if(peep>0)
+			{
+				String [] ok = getResources().getStringArray(R.array.branches_btech);
+				if(peep<=10)
+				{
+					rowTextView.setText("MTech "+ok[peep]+" 1st year");
+				}
+				else if(peep<=20)
+				{
+					rowTextView.setText("MTech "+ok[peep-10]+" 2nd year");
+				}
+			}
+			if(!rowTextView.getText().toString().equals(""))
+			{
+				LinearLayout myLinearLayout = (LinearLayout) findViewById(R.id.display_target_audi);
+				myLinearLayout.addView(rowTextView);
+			}
+		}
+
+		for(int i=0;i<phd_members.length();i++)
+		{
+			int peep=0;
+			try{peep = phd_members.getInt(i);}
+			catch (Exception e){}
+			final TextView rowTextView = new TextView(this);
+			if(peep>0)
+			{
+				String [] ok = getResources().getStringArray(R.array.branches_btech);
+				if(peep<=10)
+				{
+					rowTextView.setText("PHD "+ok[peep]);
+				}
+			}
+			if(!rowTextView.getText().toString().equals(""))
+			{
+				LinearLayout myLinearLayout = (LinearLayout) findViewById(R.id.display_target_audi);
+				myLinearLayout.addView(rowTextView);
+			}
+		}
 
 //		String[] arr = event_target_audience.split(";");
 //		final TextView[] myTextViews = new TextView[arr.length]; // create an empty array;
@@ -340,10 +436,10 @@ public class EventViewActivity extends AppCompatActivity {
 		image_wala.addView(poster_image);
 
 		// displaying event committee
-		LinearLayout peep = (LinearLayout) findViewById(R.id.display_event_committee);
+		TextView peep = (TextView) findViewById(R.id.committee);
 		final TextView committee_members = new TextView(this);
 		committee_members.setText(event_committee);
-		peep.addView(committee_members);
+//		peep.addView(committee_members);
 
 		// displaying faqs
 		String [] faq_array = get_faq.split("|");
