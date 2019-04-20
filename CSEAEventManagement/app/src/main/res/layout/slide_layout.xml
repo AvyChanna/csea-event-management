@@ -20,6 +20,7 @@
         android:layout_below="@id/slide_imageView"
         android:padding="15dp"
         android:text="TextView"
+        android:gravity="center"
         android:textAlignment="center"
         android:textColor="@color/colorAccent"
         android:textSize="30dp" />
