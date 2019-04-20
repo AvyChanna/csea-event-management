@@ -396,9 +396,24 @@ public class Admin_ApproveActivity extends AppCompatActivity {
         TextView approval=(TextView)  ((ViewGroup)rowView).getChildAt(13);
         Spinner sp=(Spinner)  ((ViewGroup) (((ViewGroup)rowView).getChildAt(14))).getChildAt(0);
         TextView id=(TextView)  ((ViewGroup) (((ViewGroup)rowView).getChildAt(14))).getChildAt(1);
-        // todo Add bitmap image to imv
+
+        //Setting image
+        try {
+            data=object.getString("image_string");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         imv.setImageResource(R.drawable.avengers);
-        //Adding the text to all textviews
+        if(!data.equals("None")) {
+            try {
+                byte[] decodedString = Base64.decode(data, Base64.URL_SAFE | Base64.NO_WRAP | Base64.NO_PADDING);
+                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                imv.setScaleType(ImageView.ScaleType.FIT_CENTER);
+                imv.setImageBitmap(decodedByte);
+            } catch (Exception e) {
+                imv.setImageResource(R.drawable.avengers);
+            }
+        }
 
         //Storing jsonstring in id
         String jsonstring=object.toString();

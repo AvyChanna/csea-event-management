@@ -344,7 +344,7 @@ public class Search_EventsActivity extends AppCompatActivity {
         TextView contact_info=(TextView)  ((ViewGroup)rowView).getChildAt(10);
         TextView status=(TextView)  ((ViewGroup)rowView).getChildAt(11);
 
-
+        //Setting image
         try {
             data=object.getString("image_string");
         } catch (JSONException e) {

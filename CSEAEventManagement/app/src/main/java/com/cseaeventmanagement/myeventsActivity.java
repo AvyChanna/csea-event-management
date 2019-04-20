@@ -348,9 +348,24 @@ public class myeventsActivity extends AppCompatActivity {
         TextView contact_info=(TextView)  ((ViewGroup)rowView).getChildAt(10);
         TextView status=(TextView)  ((ViewGroup)rowView).getChildAt(11);
         TextView approval=(TextView)  ((ViewGroup)rowView).getChildAt(12);
-        // todo Add bitmap image to imv
+
+        //Setting image
+        try {
+            data=object.getString("image_string");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         imv.setImageResource(R.drawable.avengers);
-        //Adding the text to all textviews
+        if(!data.equals("None")) {
+            try {
+                byte[] decodedString = Base64.decode(data, Base64.URL_SAFE | Base64.NO_WRAP | Base64.NO_PADDING);
+                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                imv.setScaleType(ImageView.ScaleType.FIT_CENTER);
+                imv.setImageBitmap(decodedByte);
+            } catch (Exception e) {
+                imv.setImageResource(R.drawable.avengers);
+            }
+        }
 
 
         //event_name
