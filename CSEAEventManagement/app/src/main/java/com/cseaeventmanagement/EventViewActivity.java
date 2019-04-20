@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -51,16 +52,42 @@ public class EventViewActivity extends AppCompatActivity {
 	private int event_fee = 0;
 	private String get_faq;
 	private String event_target_audience = "";
-	private String event_poster = "";
+	private String event_poster = "None";
 	private ImageView poster_image;
 	private Button btn_event_feedback;
 	private String username;
 	private String event_committee = "";
 
+	public static int getScreenWidth(Context context) {
+		DisplayMetrics dm = new DisplayMetrics();
+		WindowManager windowManager = (WindowManager) context.getSystemService(WINDOW_SERVICE);
+		windowManager.getDefaultDisplay().getMetrics(dm);
+		int widthInDP = Math.round(dm.widthPixels / dm.density);
+		return widthInDP;
+	}
+	@Override
+	public boolean onNavigateUp(){
+		finish();
+		return true;
+	}
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+			case android.R.id.home:
+				// app icon in action bar clicked; go home
+				finish();
+				return true;
+			default:
+				return super.onOptionsItemSelected(item);
+		}
+	}
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_event_view);
+				try{getSupportActionBar().setDisplayHomeAsUpEnabled(true);}catch(Exception e){}
+		try{getActionBar().setDisplayHomeAsUpEnabled(true);}catch(Exception e){}
 		Intent i = getIntent();
 		event_id = i.getStringExtra("event_id");
 		Context context = getApplicationContext();
@@ -73,7 +100,7 @@ public class EventViewActivity extends AppCompatActivity {
 		SharedPreferences sharedpreferences = getSharedPreferences("Login", Context.MODE_PRIVATE);
 		String checker_login = sharedpreferences.getString("username", "");
 		if (checker_login.equals("")) {
-			btn_event_feedback = (Button) findViewById(R.id.btn_give_event_feedback);
+			btn_event_feedback = findViewById(R.id.btn_give_event_feedback);
 			btn_event_feedback.setVisibility(View.INVISIBLE);
 			// TODO if a user has submitted a feedback, he/she can't submit again
 		} else {
@@ -109,14 +136,6 @@ public class EventViewActivity extends AppCompatActivity {
 			}
 		});
 
-	}
-
-	public static int getScreenWidth(Context context) {
-		DisplayMetrics dm = new DisplayMetrics();
-		WindowManager windowManager = (WindowManager) context.getSystemService(WINDOW_SERVICE);
-		windowManager.getDefaultDisplay().getMetrics(dm);
-		int widthInDP = Math.round(dm.widthPixels / dm.density);
-		return widthInDP;
 	}
 
 	public void attemptGetEventData() {
@@ -210,18 +229,18 @@ public class EventViewActivity extends AppCompatActivity {
 	}
 
 	public void populateEvent() {
-		TextView text_name = (TextView) findViewById(R.id.eventName);
+		TextView text_name = findViewById(R.id.eventName);
 		text_name.setText(event_name);
-		TextView text_details = (TextView) findViewById(R.id.eventDetails);
+		TextView text_details = findViewById(R.id.eventDetails);
 		text_details.setText(event_details);
-		TextView text_date = (TextView) findViewById(R.id.EventDate);
+		TextView text_date = findViewById(R.id.EventDate);
 		text_date.setText(event_date);
-		TextView text_time = (TextView) findViewById(R.id.EventTime);
+		TextView text_time = findViewById(R.id.EventTime);
 		text_time.setText(event_time);
-		TextView text_venue = (TextView) findViewById(R.id.eventVenue);
+		TextView text_venue = findViewById(R.id.eventVenue);
 		text_venue.setText(event_venue);
-		TextView text_fee = (TextView) findViewById(R.id.eventFee);
-		text_fee.setText(Integer.toString(event_fee));
+		TextView text_fee = findViewById(R.id.eventFee);
+			text_fee.setText(Integer.toString(event_fee));
 
 		// code snippet to check current system date with event start time
 		checkEventandSystemDates();
@@ -318,34 +337,40 @@ public class EventViewActivity extends AppCompatActivity {
 //			// save a reference to the textview for later
 //			myTextViews[i] = rowTextView;
 //		}
-
-		byte[] decodedString = Base64.decode(event_poster, Base64.URL_SAFE | Base64.NO_WRAP | Base64.NO_PADDING);
-		Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-		poster_image = new ImageView(this);
-		poster_image.setMaxHeight(getScreenWidth(this));
-		poster_image.setImageBitmap(decodedByte);
-		LinearLayout image_wala = (LinearLayout) findViewById(R.id.display_poster_image);
-		image_wala.addView(poster_image);
-
+		if (!event_poster.equals("None")) {
+			byte[] decodedString = Base64.decode(event_poster, Base64.URL_SAFE | Base64.NO_WRAP | Base64.NO_PADDING);
+			Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+			poster_image = new ImageView(this);
+			poster_image.setMaxHeight(getScreenWidth(this));
+			poster_image.setImageBitmap(decodedByte);
+			LinearLayout image_wala = findViewById(R.id.display_poster_image);
+			image_wala.addView(poster_image);
+		}
 		// displaying event committee
-		LinearLayout peep = (LinearLayout) findViewById(R.id.display_event_committee);
+		LinearLayout peep = findViewById(R.id.display_event_committee);
 		final TextView committee_members = new TextView(this);
 		committee_members.setText(event_committee);
 		peep.addView(committee_members);
 
 		// displaying faqs
-		String [] faq_array = get_faq.split("|");
+		String[] faq_array = get_faq.split("\\|");
+		try {
+			Log.d("hello2", get_faq);
+		} catch (Exception e) {
+			Log.d("hello2", "Nothing here");
+		}
 		int num_faqs = faq_array.length;
+		if(num_faqs != 1)
+			findViewById(R.id.faq_group).setVisibility(View.VISIBLE);
 		final TextView[] questions = new TextView[num_faqs];
 		final TextView[] answers = new TextView[num_faqs];
 		final View[] view = new View[num_faqs];
 
-
 		for (int i = 0; i < num_faqs; i++) {
-			LinearLayout myLinearLayout = (LinearLayout) findViewById(R.id.display_faq);
+			LinearLayout myLinearLayout = findViewById(R.id.display_faq);
 			final TextView rowQuestion = new TextView(this);
 			final TextView rowAnswer = new TextView(this);
-			String [] faq_qa = faq_array[i].split("=");
+			String[] faq_qa = faq_array[i].split("=");
 			try {
 				rowQuestion.setText(faq_qa[0]);
 			} catch (Exception e) {
@@ -369,6 +394,7 @@ public class EventViewActivity extends AppCompatActivity {
 				startActivity(intent);
 			}
 		});
+		showProgress(false);
 	}
 
 	public void checkEventandSystemDates() {
@@ -390,13 +416,16 @@ public class EventViewActivity extends AppCompatActivity {
 		int event_year = Integer.parseInt(eventDateArray[2]);
 		int event_month = Integer.parseInt(eventDateArray[1]);
 		int event_day = Integer.parseInt(eventDateArray[0]);
-
-		String[] eventTime = event_time.split(":");
-		int event_hour = Integer.parseInt(eventTime[0]);
+		String[] eventTime;
+		int event_hour = -1;
+		int event_min = -1;
+		if (!event_time.equals("null")) {
+			eventTime = event_time.split(":");
+			event_hour = Integer.parseInt(eventTime[0]);
 //		String[] eventMin = eventTime[1].split(" ");
-		int event_min = Integer.parseInt(eventTime[1]);
+			event_min = Integer.parseInt(eventTime[1]);
 //		String is_am = eventMin[1];
-
+		}
 		if (event_year > curr_year) {
 			btn_event_feedback.setVisibility(View.INVISIBLE);
 		}
@@ -406,12 +435,12 @@ public class EventViewActivity extends AppCompatActivity {
 		if (event_year == curr_year && event_month == curr_month && event_day > curr_date) {
 			btn_event_feedback.setVisibility(View.INVISIBLE);
 		}
-
-		if(event_hour>curr_hr)
-			btn_event_feedback.setVisibility(View.INVISIBLE);
-		if(event_hour==curr_hr&&event_min>curr_min)
-			btn_event_feedback.setVisibility(View.INVISIBLE);
-
+		if (!event_time.equals("null")) {
+			if (event_hour > curr_hr)
+				btn_event_feedback.setVisibility(View.INVISIBLE);
+			if (event_hour == curr_hr && event_min > curr_min)
+				btn_event_feedback.setVisibility(View.INVISIBLE);
+		}
 //		if (is_am.equals("AM")) {
 //			if (event_hour > curr_hr)
 //				btn_event_feedback.setVisibility(View.INVISIBLE);

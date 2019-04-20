@@ -283,7 +283,7 @@
     <string name="shivam_bansal">Shivam Bansal\nTechnichal Co-ordinator\n2nd Year Undergraduate\nWebmail Id:  shiva170101063</string>
     <string name="chirag_gupta">Chirag Gupta\nAlumini Relations Representative\n2nd Year Undergraduate\nWebmail Id:  gupta170101019</string>
     <string name="utkarsh_jain">Utkarsh Jain\nBranch Representative\n2nd Year Undergraduate\nWebmail Id:  jain170101075</string>
-    <string name="title_activity_list_events">ListEventsActivity</string>
+    <string name="title_activity_list_events">List Events</string>
     <string name="error_invalid_value">This value is invalid</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"
