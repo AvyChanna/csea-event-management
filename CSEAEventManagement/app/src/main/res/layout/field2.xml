@@ -2,22 +2,31 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:paddingBottom="10dp"
+    android:orientation="vertical"
+    android:background="@drawable/border"
+    >
+
 
 
     <!--Comments-->
-    <EditText
-        android:id="@+id/comment_field2"
+
+
+    <TextView
+        android:id="@+id/comment"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
+
+
+        android:paddingBottom="5dp"
         android:ems="10"
         android:gravity="center"
-        android:inputType="textMultiLine"
-        android:paddingLeft="@dimen/activity_padding_all"
-        android:paddingTop="@dimen/activity_padding_all"
-        android:paddingRight="@dimen/activity_padding_all"
-        android:paddingBottom="@dimen/activity_padding_all"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+         />
+
+
 
 
 </LinearLayout>

@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/border"
+    android:paddingBottom="10dp">
 
     <ImageView
         android:id="@+id/iv"
@@ -24,7 +27,7 @@
         android:id="@+id/event_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorButtonNormal"
+        
         android:baselineAligned="false"
         android:gravity="center"
         android:paddingLeft="@dimen/activity_padding_all"
@@ -38,7 +41,7 @@
         android:id="@+id/event_time"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorButtonNormal"
+        
         android:baselineAligned="false"
         android:gravity="center"
         android:paddingLeft="@dimen/activity_padding_all"
@@ -52,7 +55,7 @@
         android:id="@+id/event_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorButtonNormal"
+        
         android:baselineAligned="false"
         android:gravity="center"
         android:paddingLeft="@dimen/activity_padding_all"
@@ -63,10 +66,10 @@
 
     <!--Event Target Audience-->
     <TextView
-        android:id="@+id/target_audience"
+        android:id="@+id/event_requester"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorButtonNormal"
+        
         android:baselineAligned="false"
         android:gravity="center"
         android:paddingLeft="@dimen/activity_padding_all"
@@ -80,7 +83,7 @@
         android:id="@+id/event_fee"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorButtonNormal"
+        
         android:baselineAligned="false"
         android:gravity="center"
         android:paddingLeft="@dimen/activity_padding_all"
@@ -92,10 +95,10 @@
 
     <!--Event Requester-->
     <TextView
-        android:id="@+id/event_requester"
+        android:id="@+id/event_organiser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorButtonNormal"
+        
         android:baselineAligned="false"
         android:gravity="center"
         android:paddingLeft="@dimen/activity_padding_all"
@@ -109,7 +112,7 @@
         android:id="@+id/event_tags"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorButtonNormal"
+        
         android:baselineAligned="false"
         android:gravity="center"
         android:paddingLeft="@dimen/activity_padding_all"
@@ -123,7 +126,7 @@
         android:id="@+id/event_faqs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorButtonNormal"
+        
         android:baselineAligned="false"
         android:gravity="center"
         android:paddingLeft="@dimen/activity_padding_all"
@@ -137,7 +140,7 @@
         android:id="@+id/event_venue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorButtonNormal"
+        
         android:baselineAligned="false"
         android:gravity="center"
         android:paddingLeft="@dimen/activity_padding_all"
@@ -151,7 +154,7 @@
         android:id="@+id/contact_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorButtonNormal"
+        
         android:baselineAligned="false"
         android:gravity="center"
         android:paddingLeft="@dimen/activity_padding_all"
@@ -165,7 +168,7 @@
         android:id="@+id/status"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorButtonNormal"
+        
         android:baselineAligned="false"
         android:gravity="center"
         android:paddingLeft="@dimen/activity_padding_all"
@@ -179,7 +182,7 @@
         android:id="@+id/comment_for_admin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorButtonNormal"
+        
         android:baselineAligned="false"
         android:gravity="center"
         android:paddingLeft="@dimen/activity_padding_all"
@@ -193,7 +196,7 @@
         android:id="@+id/approval"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorButtonNormal"
+        
         android:baselineAligned="false"
         android:gravity="center"
         android:paddingLeft="@dimen/activity_padding_all"
@@ -215,6 +218,7 @@
             android:layout_marginBottom="8dp"
             android:layout_weight="1"
             android:background="@color/colorPrimaryDark"
+            android:backgroundTint="#82B1FF"
             android:dropDownWidth="wrap_content"
             android:entries="@array/admin_approve"
             android:spinnerMode="dialog"
@@ -283,7 +287,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:layout_weight="1"
-            android:background="@color/colorPrimaryDark"
+            android:background="#8C9EFF"
             android:dropDownWidth="wrap_content"
             android:entries="@array/venue_array2"
             android:spinnerMode="dialog" />
