@@ -87,9 +87,9 @@ public class RequestEventActivity extends AppCompatActivity {
 	private int btech;
 	private int mtech;
 	private int phd;
-	private JSONArray btech_members;
-	private JSONArray mtech_members;
-	private JSONArray phd_members;
+//	private JSONArray btech_members;
+//	private JSONArray mtech_members;
+//	private JSONArray phd_members;
 
 
 	@Override
@@ -177,7 +177,7 @@ public class RequestEventActivity extends AppCompatActivity {
 							else
 								btech_peeps += 30;
 
-							btech_members.put(btech_peeps);
+//							btech_members.put(btech_peeps);
 					}
 					else if(spinner_sel_programme.getSelectedItemPosition()==2)
 					{
@@ -191,7 +191,7 @@ public class RequestEventActivity extends AppCompatActivity {
 						else
 							mtech_peeps += 30;
 
-						mtech_members.put(mtech_peeps);
+//						mtech_members.put(mtech_peeps);
 					}
 					else
 					{
@@ -205,7 +205,7 @@ public class RequestEventActivity extends AppCompatActivity {
 						else
 							phd_peeps += 30;
 
-						phd_members.put(phd_peeps);
+//						phd_members.put(phd_peeps);
 					}
 					Log.d("hello", event_target_audience);
 					Context context = getApplicationContext();
@@ -574,16 +574,16 @@ public class RequestEventActivity extends AppCompatActivity {
 			cancel = true;
 		}
 
-		if (event_target_audience.equals("")) {
-			Context context = getApplicationContext();
-			CharSequence text = "You haven't filled any target audience";
-			int duration = Toast.LENGTH_SHORT;
-			Toast toast = Toast.makeText(context, text, duration);
-			toast.show();
-			Spinner spin = (Spinner) findViewById(R.id.spinner_request_programme);
-			focusView = spin;
-			cancel = true;
-		}
+//		if (event_target_audience.equals("")) {
+//			Context context = getApplicationContext();
+//			CharSequence text = "You haven't filled any target audience";
+//			int duration = Toast.LENGTH_SHORT;
+//			Toast toast = Toast.makeText(context, text, duration);
+//			toast.show();
+//			Spinner spin = (Spinner) findViewById(R.id.spinner_request_programme);
+//			focusView = spin;
+//			cancel = true;
+//		}
 
 		if (cancel)
 			focusView.requestFocus();
@@ -606,9 +606,9 @@ public class RequestEventActivity extends AppCompatActivity {
 				obj.accumulate("image_string", imageString);
 				obj.accumulate("organisors", event_committee);
 				obj.accumulate("contact_info",contact_info);
-				obj.accumulate("invitees_btech",btech_members);
-				obj.accumulate("invitees_mtech",mtech_members);
-				obj.accumulate("invitees_phd",phd_members);
+//				obj.accumulate("invitees_btech",btech_members);
+//				obj.accumulate("invitees_mtech",mtech_members);
+//				obj.accumulate("invitees_phd",phd_members);
 //				obj.accumulate("curr_audience",);
 				obj.accumulate("approval", "Pend");
 				obj.accumulate("faq", noddy);
@@ -620,7 +620,7 @@ public class RequestEventActivity extends AppCompatActivity {
 			Log.d("hello3", obj.toString());
 			JsonObjectRequest jor = new JsonObjectRequest(
 					Request.Method.POST,
-					getString(R.string.ip) + "api/events/",
+					getSharedPreferences(getString(R.string.ip_pref), 0).getString("ip","127.0.0.1:8000") + "api/events/",
 					obj,
 					new Response.Listener<JSONObject>() {
 						@Override

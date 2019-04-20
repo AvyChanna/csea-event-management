@@ -134,7 +134,7 @@ public class EventFeedbackActivity extends AppCompatActivity {
 			}
 			q.add(new JsonObjectRequest(
 					Request.Method.POST,
-					getString(R.string.ip) + "api/event-feedback/",
+					getSharedPreferences(getString(R.string.ip_pref), 0).getString("ip","127.0.0.1:8000") + "api/event-feedback/",
 					obj,
 					new Response.Listener<JSONObject>() {
 						@Override

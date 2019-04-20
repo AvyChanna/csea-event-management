@@ -50,7 +50,7 @@ public class NotificationService extends JobService {
 					return;
 				StringRequest jor = new StringRequest(
 						Request.Method.GET,
-						getString(R.string.ip) + "api/events/",
+						getSharedPreferences(getString(R.string.ip_pref), 0).getString("ip","127.0.0.1:8000") + "api/events/",
 						new Response.Listener<String>() {
 							@Override
 							public void onResponse(String response) {
