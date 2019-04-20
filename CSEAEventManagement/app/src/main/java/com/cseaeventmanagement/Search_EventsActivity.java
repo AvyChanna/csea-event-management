@@ -1,50 +1,23 @@
 package com.cseaeventmanagement;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.content.Context;
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Base64;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.LinearLayout;
-
-import java.io.ByteArrayOutputStream;
-import android.app.DatePickerDialog;
-import android.app.TimePickerDialog;
-import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.design.widget.Snackbar;
-import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Spinner;
+import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.TimePicker;
-import android.widget.Toast;
 
 import com.android.volley.Network;
 import com.android.volley.Request;
@@ -54,39 +27,16 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.BasicNetwork;
 import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.NoCache;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.ByteArrayOutputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import android.app.Activity;
-import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.widget.EditText;
-import android.widget.TextView;
-import com.android.volley.Network;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.BasicNetwork;
-import com.android.volley.toolbox.HurlStack;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.NoCache;
-
-import org.json.JSONObject;
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 public class Search_EventsActivity extends AppCompatActivity {
 
@@ -344,16 +294,22 @@ public class Search_EventsActivity extends AppCompatActivity {
         TextView contact_info=(TextView)  ((ViewGroup)rowView).getChildAt(10);
         TextView status=(TextView)  ((ViewGroup)rowView).getChildAt(11);
 
-        // todo Add bitmap image to imv
         try {
             data=object.getString("image_string");
         } catch (JSONException e) {
             e.printStackTrace();
         }
         imv.setImageResource(R.drawable.avengers);
-        //Adding the text to all textviews
-
-
+        if(!data.equals("None")) {
+            try {
+                byte[] decodedString = Base64.decode(data, Base64.URL_SAFE | Base64.NO_WRAP | Base64.NO_PADDING);
+                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                imv.setScaleType(ImageView.ScaleType.FIT_CENTER);
+                imv.setImageBitmap(decodedByte);
+            } catch (Exception e) {
+                imv.setImageResource(R.drawable.avengers);
+            }
+        }
         //event_name
         try {
             data=object.getString("name");
