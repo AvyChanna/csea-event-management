@@ -10,16 +10,15 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class CustomFAQ extends AppCompatActivity {
 
 	private EditText question;
 	private EditText answer;
-//	private JSONArray obj_array;
-	private int count=0;
-	private String cust_faq;
+	//	private JSONArray obj_array;
+	private int count = 0;
+	private String cust_faq = "";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -29,15 +28,13 @@ public class CustomFAQ extends AppCompatActivity {
 	}
 
 	public void getfaqed(View v) {
-		if(count==0)
-		{
+		if (count == 0) {
 			Context context = getApplicationContext();
 			CharSequence text = "Fill atleast one question and answer";
 			int duration = Toast.LENGTH_SHORT;
 			Toast toast = Toast.makeText(context, text, duration);
 			toast.show();
-		}
-		else{
+		} else {
 			Intent i = new Intent();
 			i.putExtra("faq", cust_faq);
 			setResult(RESULT_OK, i);
@@ -81,7 +78,7 @@ public class CustomFAQ extends AppCompatActivity {
 				Toast toast = Toast.makeText(context, text, duration);
 				toast.show();
 			} catch (Exception e) {
-				Log.d("REQUEST_CUST_FAQ_CATCH", e.toString());
+				Log.d("hello", e.toString());
 				count--;
 			}
 		}

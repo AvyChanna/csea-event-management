@@ -14,37 +14,37 @@
         android:checkableBehavior="none"
         android:orderInCategory="2">
         <item android:title="Events Menu">
-        <menu >
-            <item
-                android:id="@+id/nav_request_event"
-                android:icon="@drawable/ic_menu_gallery"
-                android:title="Request Event" />
-            <item
-                android:id="@+id/nav_upcoming_events"
-                android:icon="@drawable/ic_menu_gallery"
-                android:title="Upcoming Events" />
-            <item
-                android:id="@+id/nav_past_events"
-                android:icon="@drawable/ic_menu_slideshow"
-                android:title="Past Events" />
-            <item
-                android:id="@+id/nav_search_events"
-                android:icon="@drawable/ic_menu_gallery"
-                android:title="Search Events" />
-            <item
-                android:id="@+id/nav_feedback_app"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Feedback" />
-            <item
-                android:id="@+id/nav_faq_app"
-                android:icon="@android:drawable/btn_star_big_on"
-                android:title="FAQs" />
-            <item
-                android:id="@+id/nav_csea_core_team"
-                android:icon="@android:drawable/ic_btn_speak_now"
-                android:title="Core Team(CSEA)" />
-        </menu>
-    </item>
+            <menu>
+                <item
+                    android:id="@+id/nav_request_event"
+                    android:icon="@drawable/ic_menu_gallery"
+                    android:title="Request Event" />
+                <item
+                    android:id="@+id/nav_upcoming_events"
+                    android:icon="@drawable/ic_menu_gallery"
+                    android:title="Upcoming Events" />
+                <item
+                    android:id="@+id/nav_past_events"
+                    android:icon="@drawable/ic_menu_slideshow"
+                    android:title="Past Events" />
+                <item
+                    android:id="@+id/nav_search_events"
+                    android:icon="@drawable/ic_menu_gallery"
+                    android:title="Search Events" />
+                <item
+                    android:id="@+id/nav_feedback_app"
+                    android:icon="@drawable/ic_menu_send"
+                    android:title="Feedback" />
+                <item
+                    android:id="@+id/nav_faq_app"
+                    android:icon="@android:drawable/btn_star_big_on"
+                    android:title="FAQs" />
+                <item
+                    android:id="@+id/nav_csea_core_team"
+                    android:icon="@android:drawable/ic_btn_speak_now"
+                    android:title="Core Team(CSEA)" />
+            </menu>
+        </item>
     </group>
 
     <group
@@ -52,16 +52,16 @@
         android:orderInCategory="3"
         android:visible="true">
         <item android:title="Admin Menu">
-        <menu >
-            <item
-                android:id="@+id/nav_approve"
-                android:icon="@android:drawable/ic_dialog_alert"
-                android:title="Approve Events" />
-            <item
-                android:id="@+id/nav_view_feedback"
-                android:icon="@android:drawable/ic_dialog_alert"
-                android:title="View App Feedback" />
-        </menu>
+            <menu>
+                <item
+                    android:id="@+id/nav_approve"
+                    android:icon="@android:drawable/ic_dialog_alert"
+                    android:title="Approve Events" />
+                <item
+                    android:id="@+id/nav_view_feedback"
+                    android:icon="@android:drawable/ic_dialog_alert"
+                    android:title="View App Feedback" />
+            </menu>
         </item>
     </group>
     <group

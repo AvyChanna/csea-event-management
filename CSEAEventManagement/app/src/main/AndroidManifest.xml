@@ -27,107 +27,120 @@
         <activity android:name=".Admin_ApproveActivity" />
         <activity android:name=".OnBoardingActivity" />
         <activity android:name=".EventFeedbackActivity" />
-        <activity android:name=".Admin_FeedbackActivity"
+        <activity
+            android:name=".Admin_FeedbackActivity"
             android:label="Feedbacks">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
-        <activity android:name=".Search_EventsActivity"
+        <activity
+            android:name=".Search_EventsActivity"
             android:label="Search Events">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
-        <activity android:name=".CustomFAQ"
+        <activity
+            android:name=".CustomFAQ"
             android:label="FAQ">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
-        <activity android:name=".RequestEventActivity"
+        <activity
+            android:name=".RequestEventActivity"
             android:label="Request an event">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
-        <activity android:name=".ListEventsActivity"
+        <activity
+            android:name=".ListEventsActivity"
             android:label="Upcoming Events">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
-        <activity android:name=".Council_13_14Activity"
+        <activity
+            android:name=".Council_13_14Activity"
             android:label="Core Team 2013-14">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".CouncilActivity" />
         </activity>
-        <activity android:name=".Council_14_15Activity"
+        <activity
+            android:name=".Council_14_15Activity"
             android:label="Core Team 2014-15">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".CouncilActivity" />
         </activity>
-        <activity android:name=".Council_15_16Activity"
+        <activity
+            android:name=".Council_15_16Activity"
             android:label="Core Team 2015-16">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".CouncilActivity" />
         </activity>
-        <activity android:name=".Council17_18Activity"
+        <activity
+            android:name=".Council17_18Activity"
             android:label="Core Team 2017-18">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".CouncilActivity" />
         </activity>
-        <activity android:name=".Council_18_19Activity"
+        <activity
+            android:name=".Council_18_19Activity"
             android:label="Core Team 2018-19">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".CouncilActivity" />
         </activity>
-        <activity android:name=".SignupActivity"
+        <activity
+            android:name=".SignupActivity"
             android:label="@string/title_activity_signup">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".LoginActivity" />
         </activity>
-        <activity android:name=".LoginActivity"
+        <activity
+            android:name=".LoginActivity"
             android:label="@string/title_activity_login">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
-        <activity android:name=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:label="@string/app_name">
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".App_Feedback_Activity"
+        <activity
+            android:name=".App_Feedback_Activity"
             android:label="App Feedback">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
-        <activity android:name=".CouncilActivity"
+        <activity
+            android:name=".CouncilActivity"
             android:label="Core Team">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
 
-        <service android:name = ".NotificationService"
+        <service
+            android:name=".NotificationService"
             android:permission="android.permission.BIND_JOB_SERVICE" />
-        <activity android:name=".EventViewActivity"
-            android:label="@string/title_activity_view_event">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
-        </activity>
+        <activity
+            android:name=".EventViewActivity"
+            android:label="@string/title_activity_view_event"></activity>
 
     </application>
 
