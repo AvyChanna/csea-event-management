@@ -73,7 +73,7 @@ public class Admin_FeedbackActivity extends AppCompatActivity {
         //Show all the comments with the USER
 
         JsonArrayRequest jor = new JsonArrayRequest(
-                Request.Method.GET,"http://"+
+                Request.Method.GET,
                 getSharedPreferences(getString(R.string.ip_pref), 0).getString("ip","127.0.0.1:8000")+"/api/app-feedback/",
                 null,
                 new Response.Listener<JSONArray>() {

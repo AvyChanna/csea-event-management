@@ -209,7 +209,7 @@ public class RequestEventActivity extends AppCompatActivity {
 //						phd_members.put(phd_peeps);
 					}
 //					Log.d("hello", event_target_audience);
-					Log.d("hello",Integer.toString(mtech_members.length()));
+					//Log.d("hello",Integer.toString(mtech_members.length()));
 					Context context = getApplicationContext();
 					CharSequence text = "Audience added";
 					int duration = Toast.LENGTH_SHORT;

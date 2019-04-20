@@ -147,7 +147,7 @@ public class Admin_ApproveActivity extends AppCompatActivity {
 
         JsonArrayRequest jor = new JsonArrayRequest(
                 Request.Method.GET,
-                "http://"+
+
                         pref.getString("ip","127.0.0.1:8000")+"/api/events/",
                 null,
                 new Response.Listener<JSONArray>() {
@@ -225,7 +225,7 @@ public class Admin_ApproveActivity extends AppCompatActivity {
 
             JsonArrayRequest jor = new JsonArrayRequest(
                     Request.Method.GET,
-                    "http://"+
+
                             pref.getString("ip","127.0.0.1:8000")+"/api/events/",
                     null,
                     new Response.Listener<JSONArray>() {
@@ -664,7 +664,7 @@ public class Admin_ApproveActivity extends AppCompatActivity {
             return;
 
 
-        StringRequest putRequest = new StringRequest(Request.Method.PATCH,"http://"+
+        StringRequest putRequest = new StringRequest(Request.Method.PATCH,
                 pref.getString("ip","127.0.0.1:8000")+"/api/events/"+id+"/" ,
                 new Response.Listener<String>()
                 {

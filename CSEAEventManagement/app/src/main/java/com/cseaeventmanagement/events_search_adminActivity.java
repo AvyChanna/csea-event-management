@@ -133,7 +133,6 @@ public class events_search_adminActivity extends AppCompatActivity {
 
         JsonArrayRequest jor = new JsonArrayRequest(
                 Request.Method.GET,
-                "http://"+
                         pref.getString("ip","127.0.0.1:8000")+"/api/events/",
                 null,
                 new Response.Listener<JSONArray>() {
@@ -210,7 +209,7 @@ public class events_search_adminActivity extends AppCompatActivity {
 
             JsonArrayRequest jor = new JsonArrayRequest(
                     Request.Method.GET,
-                    "http://"+
+
                             pref.getString("ip","127.0.0.1:8000")+"/api/events/",
                     null,
                     new Response.Listener<JSONArray>() {
