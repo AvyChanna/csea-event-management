@@ -1,24 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/border"
     android:layout_gravity="center_horizontal"
+    android:layout_marginStart="10dp"
     android:layout_marginTop="5dp"
     android:layout_marginEnd="10dp"
-    android:layout_marginStart="10dp"
+    android:background="@drawable/border"
     android:orientation="vertical">
 
     <TextView
         android:id="@+id/name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:singleLine="true"
-        android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
         android:layout_marginStart="50dp"
         android:layout_marginTop="0dp"
         android:ellipsize="end"
@@ -26,6 +23,7 @@
         android:paddingTop="@dimen/activity_padding_all"
         android:paddingEnd="@dimen/activity_padding_all"
         android:paddingBottom="3dp"
+        android:singleLine="true"
         android:text="@string/name_not_available"
         android:textAlignment="textStart"
         android:textColor="#000"
@@ -48,6 +46,7 @@
         android:textAlignment="textStart"
         android:textColor="#333"
         android:textSize="16sp" />
+
     <TextView
         android:id="@+id/date"
         android:layout_width="match_parent"
@@ -67,13 +66,13 @@
         android:id="@+id/view"
         android:layout_width="10dp"
         android:layout_height="match_parent"
+        android:layout_alignTop="@+id/name"
+        android:layout_alignBottom="@+id/desc"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_alignTop="@+id/name"
         android:layout_marginStart="15dp"
-        android:background="@color/colorAccent"
         android:layout_marginTop="20dp"
-        android:layout_alignBottom="@+id/desc"
+        android:background="@color/colorAccent"
         android:paddingLeft="@dimen/activity_padding_all"
         android:paddingRight="@dimen/activity_padding_all"
         android:paddingBottom="@dimen/activity_padding_all" />

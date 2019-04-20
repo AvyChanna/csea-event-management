@@ -16,7 +16,11 @@ public class ListEventAdapter extends RecyclerView.Adapter<ListEventAdapter.View
 	public ListEventAdapter(List_Event_Data_POJO[] listdata) {
 		this.listdata = listdata;
 	}
-	public void setData(List_Event_Data_POJO[] listdata) { this.listdata = listdata; }
+
+	public void setData(List_Event_Data_POJO[] listdata) {
+		this.listdata = listdata;
+	}
+
 	@Override
 	public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 		LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
@@ -37,7 +41,7 @@ public class ListEventAdapter extends RecyclerView.Adapter<ListEventAdapter.View
 				// Avneet I changed this intent to go to view event details
 				//List_Event_Data_POJO.eventName
 				Intent intent = new Intent(view.getContext(), EventViewActivity.class);
-				intent.putExtra("event_id",(String)view.getTag());
+				intent.putExtra("event_id", (String) view.getTag());
 				view.getContext().startActivity(intent);
 			}
 		});
@@ -45,7 +49,7 @@ public class ListEventAdapter extends RecyclerView.Adapter<ListEventAdapter.View
 
 	@Override
 	public int getItemCount() {
-		if(listdata == null)
+		if (listdata == null)
 			return 0;
 		return listdata.length;
 	}

@@ -14,7 +14,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -29,7 +29,7 @@ public class NotificationService extends JobService {
 	private boolean jobCancelled = false;
 	private JSONObject temp;
 	private RequestQueue q;
-	private JSONObject resp;
+	private JSONArray resp;
 	public static final String CHANNEL1_ID = "channel1";
 	public static final String CHANNEL2_ID = "channel2";
 	private NotificationManagerCompat notificationManager;
@@ -48,16 +48,15 @@ public class NotificationService extends JobService {
 			public void run() {
 				if (jobCancelled)
 					return;
-				JsonObjectRequest jor = new JsonObjectRequest(
-						Request.Method.POST,
-						getString(R.string.ip)+"api/events",
-						null,
-						new Response.Listener<JSONObject>() {
+				StringRequest jor = new StringRequest(
+						Request.Method.GET,
+						getString(R.string.ip) + "api/events/",
+						new Response.Listener<String>() {
 							@Override
-							public void onResponse(JSONObject response) {
-								Log.d("hello", response.toString());
+							public void onResponse(String response) {
+								Log.d("hello", response);
 								try {
-									resp = new JSONObject(response.toString());
+									resp = new JSONArray(response);
 								} catch (Exception e) {
 									Log.d("hello", "Malformed JSON");
 								}
@@ -70,68 +69,58 @@ public class NotificationService extends JobService {
 							}
 						}
 				);
-				jor.setTag(this.getClass());
 				q.add(jor);
 				jobFinished(params, true);
 			}
 		}).start();
 	}
 
-	public void checkResponse() {
-		JSONArray events = null;
-		int code = -1;
-		String message = "";
+
+	private void checkResponse() {
+		if (resp.length() == 0)
+			return;
+		JSONObject[] events = new JSONObject[resp.length()];
+
 		try {
-			events = resp.getJSONArray("events");
+			for (int i = 0; i < resp.length(); i++)
+				events[i] = resp.getJSONObject(i);
 		} catch (Exception e) {
 		}
-		try {
-			code = resp.getInt("error_code");
-		} catch (Exception e) {
-		}
-		try {
-			message = resp.getString("error_message");
-		} catch (Exception e) {
-		}
+		Log.d("hello", "haha4");
+		for (int i = 0; i < events.length; i++) {
+			String q = "";//name
+			String w = "";//date
+			String s = "";//id
+			String ee = "";//appr
+			String a = "";//desc
+			String t = "null";
+			try {
+				ee = events[i].getString("approval");
+				q = events[i].getString("name");
+				w = events[i].getString("date");
+				String[] wt = w.split("-");
+				w = wt[2] + "/" + wt[1] + "/" + wt[0];
+				if (!events[i].getString("time").equals("null"))
+					t = events[i].getString("time");
+				a = events[i].getString("summary");
+				s = events[i].getString("event_id");
+			} catch (Exception e) {
+			}
+			if (displayEvent(w, t)) {
+				createNotificationChannels();
+				notificationManager = NotificationManagerCompat.from(this);
+				Notification notification = new NotificationCompat.Builder(this, CHANNEL1_ID)
+						.setSmallIcon(R.drawable.ic_event_note_black_24dp)
+						.setContentTitle(q)
+						.setContentText("Today at " + t)
+						.setVibrate(new long[]{1000, 1000, 1000, 1000, 1000})
+						.setPriority(NotificationCompat.PRIORITY_HIGH)
+						.setCategory(NotificationCompat.CATEGORY_EVENT)
+						.build();
 
-		if (code == 0 && events != null) {
-			for (int i = 0; i < events.length(); i++) {
-				try {
-					temp = events.getJSONObject(i);
-				} catch (Exception e) {
-
-				}
-				String q = "";
-				String w = "";
-				String s = "";
-				String a = "";
-				try {
-					q = temp.getString("event_name");
-					w = temp.getString("event_date");
-					s = temp.getString("event_time");
-					a = temp.getString("event_desc");
-				} catch (Exception e) {
-
-				}
-
-				if (displayEvent(w, s)) {
-					createNotificationChannels();
-					notificationManager = NotificationManagerCompat.from(this);
-					Notification notification = new NotificationCompat.Builder(this, CHANNEL1_ID)
-							.setSmallIcon(R.drawable.ic_event_note_black_24dp)
-							.setContentTitle(q)
-							.setContentText("Today at " + s)
-							.setVibrate(new long[]{1000, 1000, 1000, 1000, 1000})
-							.setPriority(NotificationCompat.PRIORITY_HIGH)
-							.setCategory(NotificationCompat.CATEGORY_EVENT)
-							.build();
-
-					notificationManager.notify(2, notification);
-				}
-
+				notificationManager.notify(2, notification);
 			}
 		}
-
 	}
 
 	public boolean displayEvent(String event_date, String event_time) {
@@ -153,15 +142,16 @@ public class NotificationService extends JobService {
 		int event_year = Integer.parseInt(eventDateArray[2]);
 		int event_month = Integer.parseInt(eventDateArray[1]);
 		int event_day = Integer.parseInt(eventDateArray[0]);
+		if(!event_time.equals("null")) {
+			String[] eventTime = event_time.split(":");
 
-		String[] eventTime = event_time.split(":");
-		int event_hour = Integer.parseInt(eventTime[0]);
-		String[] eventMin = eventTime[1].split(" ");
-		int event_min = Integer.parseInt(eventMin[0]);
-		String is_am = eventMin[1];
-
+			int event_hour = Integer.parseInt(eventTime[0]);
+			String[] eventMin = eventTime[1].split(" ");
+			int event_min = Integer.parseInt(eventMin[0]);
+			String is_am = eventMin[1];
+		}
 		if (curr_year == event_year && curr_month == event_month && curr_date == event_day) {
-			if (curr_hr == 8 && curr_min == 0)
+			if (curr_hr == 6 && curr_min == 46)
 				return true;
 		}
 		return false;

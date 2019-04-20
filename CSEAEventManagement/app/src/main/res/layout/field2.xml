@@ -5,22 +5,19 @@
     android:orientation="vertical">
 
 
-
     <!--Comments-->
     <EditText
         android:id="@+id/comment_field2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:ems="10"
+        android:gravity="center"
+        android:inputType="textMultiLine"
         android:paddingLeft="@dimen/activity_padding_all"
         android:paddingTop="@dimen/activity_padding_all"
         android:paddingRight="@dimen/activity_padding_all"
         android:paddingBottom="@dimen/activity_padding_all"
-        android:ems="10"
-        android:gravity="center"
-        android:textSize="24sp"
-        android:inputType="textMultiLine" />
-
-
+        android:textSize="24sp" />
 
 
 </LinearLayout>

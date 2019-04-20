@@ -261,16 +261,16 @@ public class SignupActivity extends AppCompatActivity implements LoaderCallbacks
 					new Response.Listener<JSONObject>() {
 						@Override
 						public void onResponse(JSONObject response) {
-							int a = -1;
+							boolean a = false;
 							Log.d("hello", response.toString());
 							try {
 								JSONObject resp = new JSONObject(response.toString());
-								a = resp.getInt("error_code");
+								a = resp.getBoolean("registration_status");
 							} catch (Exception e) {
 							}
 
 							showProgress(false);
-							if (a == 0)
+							if (a)
 								finish();
 							else
 								Snackbar.make(findViewById(R.id.Signup_form), "Error signing up. Make sure you are not already signed up", Snackbar.LENGTH_SHORT)

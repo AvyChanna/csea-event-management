@@ -45,7 +45,6 @@ import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.NoCache;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -56,9 +55,9 @@ public class RequestEventActivity extends AppCompatActivity {
 
 	private static final String TAG = "RequestEventActivity";
 	private static final int PICK_IMAGE = 100;
-	public JSONArray noddy;
-	private boolean LoginInQueue = false;
+	public String noddy;
 	Uri imageUri;
+	private boolean LoginInQueue = false;
 	private Button eventDateDisplay;
 	private Button eventTimePicker;
 	private DatePickerDialog.OnDateSetListener eventDateSetListener;
@@ -79,7 +78,7 @@ public class RequestEventActivity extends AppCompatActivity {
 	private Button event_add_target_audi_btn;
 	private Button submit_button;
 	private Button add_committee;
-	private String contact_info="";
+	private String contact_info = "";
 	private String event_feedback;
 	private String imageString;
 	private RequestQueue q;
@@ -264,7 +263,7 @@ public class RequestEventActivity extends AppCompatActivity {
 				int month = cal.get(Calendar.MONTH);
 				int day = cal.get(Calendar.DAY_OF_MONTH);
 
-				event_date = year + "-" + month + 1 + "-" + day;
+				event_date = year + "-" + Integer.toString(month + 1) + "-" + day;
 
 				DatePickerDialog dialog = new DatePickerDialog(RequestEventActivity.this,
 //                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
@@ -315,7 +314,7 @@ public class RequestEventActivity extends AppCompatActivity {
 				EditText edittext_add_member = findViewById(R.id.editText_request_add_member);
 				if (edittext_add_member.getText().toString().equals(""))
 					Toast.makeText(getApplicationContext(), "Add the member first!", Toast.LENGTH_SHORT).show();
-				 else {
+				else {
 					event_committee = event_committee + edittext_add_member.getText().toString() + ";";
 					edittext_add_member.setText("");
 				}
@@ -355,7 +354,7 @@ public class RequestEventActivity extends AppCompatActivity {
 		}
 		if (requestCode == 200 && resultCode == RESULT_OK) {
 			try {
-				noddy = new JSONArray(data.getStringExtra("noddy"));
+				noddy = data.getStringExtra("faq");
 			} catch (Exception e) {
 				Log.d("hello", e.toString());
 			}
@@ -498,6 +497,16 @@ public class RequestEventActivity extends AppCompatActivity {
 			cancel = true;
 		}
 
+		if (TextUtils.isEmpty(event_committee)) {
+			Snackbar.make(findViewById(R.id.event_view_activity), "Add organizer first", Snackbar.LENGTH_SHORT)
+					.setAction("Dismiss", new View.OnClickListener() {
+						@Override
+						public void onClick(View v) {
+
+						}
+					}).show();
+			cancel = true;
+		}
 		EditText loc2 = (EditText) findViewById(R.id.editText_request_eventFee);
 		if (TextUtils.isEmpty(loc2.getText().toString())) {
 			loc2.setError(getString(R.string.error_field_required));
@@ -510,7 +519,7 @@ public class RequestEventActivity extends AppCompatActivity {
 		EditText loc3 = (EditText) findViewById(R.id.editText_request_eventCapacity);
 		if (TextUtils.isEmpty(loc3.getText().toString())) {
 			loc3.setError(getString(R.string.error_field_required));
-			focusView = loc2;
+			focusView = loc3;
 			cancel = true;
 		} else {
 			event_exp_audience = Integer.parseInt(loc3.getText().toString());
@@ -534,8 +543,7 @@ public class RequestEventActivity extends AppCompatActivity {
 
 		EditText loc6 = (EditText) findViewById(R.id.editText_request_contactInfo);
 		contact_info = loc6.getText().toString();
-		if(TextUtils.isEmpty(contact_info))
-		{
+		if (TextUtils.isEmpty(contact_info)) {
 			loc6.setError("This field is required");
 			focusView = loc6;
 			cancel = true;
@@ -602,17 +610,17 @@ public class RequestEventActivity extends AppCompatActivity {
 				obj.accumulate("invitees_mtech",mtech_members);
 				obj.accumulate("invitees_phd",phd_members);
 //				obj.accumulate("curr_audience",);
-				obj.accumulate("approval","Pend");
-				obj.accumulate("faq",noddy);
-
+				obj.accumulate("approval", "Pend");
+				obj.accumulate("faq", noddy);
 
 			} catch (JSONException e) {
 				Log.d("hello", e.toString());
 
 			}
+			Log.d("hello3", obj.toString());
 			JsonObjectRequest jor = new JsonObjectRequest(
 					Request.Method.POST,
-					getString(R.string.ip)+"api/events/",
+					getString(R.string.ip) + "api/events/",
 					obj,
 					new Response.Listener<JSONObject>() {
 						@Override
@@ -639,14 +647,14 @@ public class RequestEventActivity extends AppCompatActivity {
 							editor.putString("Event_Poster", imageString);
 							editor.apply();
 //                            showProgress(false);
-							// finish();
+							finish();
 						}
 					},
 					new Response.ErrorListener() {
 						@Override
 						public void onErrorResponse(VolleyError error) {
 							Log.d("hello", error.toString());
-                            showProgress(false);
+							showProgress(false);
 							Snackbar.make(findViewById(R.id.request_event), "Error in submission. Check your network and try again", Snackbar.LENGTH_SHORT)
 									.setAction("Dismiss", new View.OnClickListener() {
 										@Override
@@ -659,6 +667,7 @@ public class RequestEventActivity extends AppCompatActivity {
 			);
 			q.add(jor);
 			showProgress(true);
+
 		}
 	}
 
@@ -685,5 +694,4 @@ public class RequestEventActivity extends AppCompatActivity {
 		});
 
 	}
-
 }

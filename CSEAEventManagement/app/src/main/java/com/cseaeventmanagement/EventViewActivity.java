@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -40,6 +41,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import static android.view.View.GONE;
+
 public class EventViewActivity extends AppCompatActivity {
 
 	private String event_id = "";
@@ -54,7 +57,7 @@ public class EventViewActivity extends AppCompatActivity {
 	private int capacity = 100;
 	private String get_faq;
 	private String event_target_audience = "";
-	private String event_poster = "";
+	private String event_poster = "None";
 	private ImageView poster_image;
 	private Button btn_event_feedback;
 	private String username;
@@ -64,12 +67,44 @@ public class EventViewActivity extends AppCompatActivity {
 	private JSONArray mtech_members;
 	private JSONArray phd_members;
 
+	public static int getScreenWidth(Context context) {
+		DisplayMetrics dm = new DisplayMetrics();
+		WindowManager windowManager = (WindowManager) context.getSystemService(WINDOW_SERVICE);
+		windowManager.getDefaultDisplay().getMetrics(dm);
+		int widthInDP = Math.round(dm.widthPixels / dm.density);
+		return widthInDP;
+	}
+
+	@Override
+	public boolean onSupportNavigateUp() {
+		finish();
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+			case android.R.id.home:
+				// app icon in action bar clicked; go home
+				finish();
+				return true;
+			default:
+				return super.onOptionsItemSelected(item);
+		}
+	}
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_event_view);
-				try{getSupportActionBar().setDisplayHomeAsUpEnabled(true);}catch(Exception e){}
-		try{getActionBar().setDisplayHomeAsUpEnabled(true);}catch(Exception e){}
+		try {
+			getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		} catch (Exception e) {
+		}
+		try {
+			getActionBar().setDisplayHomeAsUpEnabled(true);
+		} catch (Exception e) {
+		}
 		Intent i = getIntent();
 		event_id = i.getStringExtra("event_id");
 		Context context = getApplicationContext();
@@ -81,8 +116,8 @@ public class EventViewActivity extends AppCompatActivity {
 		// if a user is not logged in, he/she must not see the give feedback button
 		SharedPreferences sharedpreferences = getSharedPreferences("Login", Context.MODE_PRIVATE);
 		String checker_login = sharedpreferences.getString("username", "");
+		btn_event_feedback = (Button) findViewById(R.id.btn_give_event_feedback);
 		if (checker_login.equals("")) {
-			btn_event_feedback = (Button) findViewById(R.id.btn_give_event_feedback);
 			btn_event_feedback.setVisibility(View.INVISIBLE);
 			// TODO if a user has submitted a feedback, he/she can't submit again
 		} else {
@@ -102,32 +137,24 @@ public class EventViewActivity extends AppCompatActivity {
 		int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
 		final ScrollView mLoginFormView = findViewById(R.id.EventViewForm);
 		final ProgressBar mProgressView = findViewById(R.id.progress);
-		mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
+		mLoginFormView.setVisibility(show ? GONE : View.VISIBLE);
 		mLoginFormView.animate().setDuration(shortAnimTime).alpha(
 				show ? 0 : 1).setListener(new AnimatorListenerAdapter() {
 			@Override
 			public void onAnimationEnd(Animator animation) {
-				mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
+				mLoginFormView.setVisibility(show ? GONE : View.VISIBLE);
 			}
 		});
 
-		mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
+		mProgressView.setVisibility(show ? View.VISIBLE : GONE);
 		mProgressView.animate().setDuration(shortAnimTime).alpha(
 				show ? 1 : 0).setListener(new AnimatorListenerAdapter() {
 			@Override
 			public void onAnimationEnd(Animator animation) {
-				mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
+				mProgressView.setVisibility(show ? View.VISIBLE : GONE);
 			}
 		});
 
-	}
-
-	public static int getScreenWidth(Context context) {
-		DisplayMetrics dm = new DisplayMetrics();
-		WindowManager windowManager = (WindowManager) context.getSystemService(WINDOW_SERVICE);
-		windowManager.getDefaultDisplay().getMetrics(dm);
-		int widthInDP = Math.round(dm.widthPixels / dm.density);
-		return widthInDP;
 	}
 
 	public void attemptGetEventData() {
@@ -426,15 +453,17 @@ public class EventViewActivity extends AppCompatActivity {
 //			// save a reference to the textview for later
 //			myTextViews[i] = rowTextView;
 //		}
-
-		byte[] decodedString = Base64.decode(event_poster, Base64.URL_SAFE | Base64.NO_WRAP | Base64.NO_PADDING);
-		Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-		poster_image = new ImageView(this);
-		poster_image.setMaxHeight(getScreenWidth(this));
-		poster_image.setImageBitmap(decodedByte);
-		LinearLayout image_wala = (LinearLayout) findViewById(R.id.display_poster_image);
-		image_wala.addView(poster_image);
-
+		if (!event_poster.equals("None")) {
+			Log.d("hello4", event_poster);
+			byte[] decodedString = Base64.decode(event_poster, Base64.URL_SAFE | Base64.NO_WRAP | Base64.NO_PADDING);
+			Log.d("hello4", Integer.toString(decodedString.length));
+			Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+			poster_image = new ImageView(this);
+			poster_image.setMaxHeight(getScreenWidth(this));
+			poster_image.setImageBitmap(decodedByte);
+			LinearLayout image_wala = (LinearLayout) findViewById(R.id.display_poster_image);
+			image_wala.addView(poster_image);
+		}
 		// displaying event committee
 		TextView peep = (TextView) findViewById(R.id.committee);
 		final TextView committee_members = new TextView(this);
@@ -442,25 +471,27 @@ public class EventViewActivity extends AppCompatActivity {
 //		peep.addView(committee_members);
 
 		// displaying faqs
-		String [] faq_array = get_faq.split("|");
+		String[] faq_array = get_faq.split("\\|");
 		int num_faqs = faq_array.length;
+		if (get_faq.equals(null) || get_faq.equals("") || get_faq.equals("null"))
+			findViewById(R.id.faq_group).setVisibility(GONE);
+
 		final TextView[] questions = new TextView[num_faqs];
 		final TextView[] answers = new TextView[num_faqs];
 		final View[] view = new View[num_faqs];
-
 
 		for (int i = 0; i < num_faqs; i++) {
 			LinearLayout myLinearLayout = (LinearLayout) findViewById(R.id.display_faq);
 			final TextView rowQuestion = new TextView(this);
 			final TextView rowAnswer = new TextView(this);
-			String [] faq_qa = faq_array[i].split("=");
+			String[] faq_qa = faq_array[i].split("=");
 			try {
 				rowQuestion.setText("Question: "+faq_qa[0]+"?");
 			} catch (Exception e) {
 
 			}
 			try {
-				rowAnswer.setText("Answer: "+faq_qa[1]);
+				rowAnswer.setText("Answer: " + faq_qa[1]);
 			} catch (Exception e) {
 
 			}
@@ -477,6 +508,7 @@ public class EventViewActivity extends AppCompatActivity {
 				startActivity(intent);
 			}
 		});
+		showProgress(false);
 	}
 
 	public void checkEventandSystemDates() {
@@ -498,28 +530,28 @@ public class EventViewActivity extends AppCompatActivity {
 		int event_year = Integer.parseInt(eventDateArray[2]);
 		int event_month = Integer.parseInt(eventDateArray[1]);
 		int event_day = Integer.parseInt(eventDateArray[0]);
-
-		String[] eventTime = event_time.split(":");
-		int event_hour = Integer.parseInt(eventTime[0]);
+		if (event_time.equals("")) {
+			String[] eventTime = event_time.split(":");
+			int event_hour = Integer.parseInt(eventTime[0]);
 //		String[] eventMin = eventTime[1].split(" ");
-		int event_min = Integer.parseInt(eventTime[1]);
+			int event_min = Integer.parseInt(eventTime[1]);
 //		String is_am = eventMin[1];
 
-		if (event_year > curr_year) {
-			btn_event_feedback.setVisibility(View.INVISIBLE);
-		}
-		if (event_year == curr_year && event_month > curr_month) {
-			btn_event_feedback.setVisibility(View.INVISIBLE);
-		}
-		if (event_year == curr_year && event_month == curr_month && event_day > curr_date) {
-			btn_event_feedback.setVisibility(View.INVISIBLE);
-		}
+			if (event_year > curr_year) {
+				btn_event_feedback.setVisibility(View.INVISIBLE);
+			}
+			if (event_year == curr_year && event_month > curr_month) {
+				btn_event_feedback.setVisibility(View.INVISIBLE);
+			}
+			if (event_year == curr_year && event_month == curr_month && event_day > curr_date) {
+				btn_event_feedback.setVisibility(View.INVISIBLE);
+			}
 
-		if(event_hour>curr_hr)
-			btn_event_feedback.setVisibility(View.INVISIBLE);
-		if(event_hour==curr_hr&&event_min>curr_min)
-			btn_event_feedback.setVisibility(View.INVISIBLE);
-
+			if (event_hour > curr_hr)
+				btn_event_feedback.setVisibility(View.INVISIBLE);
+			if (event_hour == curr_hr && event_min > curr_min)
+				btn_event_feedback.setVisibility(View.INVISIBLE);
+		}
 //		if (is_am.equals("AM")) {
 //			if (event_hour > curr_hr)
 //				btn_event_feedback.setVisibility(View.INVISIBLE);

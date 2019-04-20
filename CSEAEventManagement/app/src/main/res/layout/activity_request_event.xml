@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--&lt;!&ndash; make the event date picking field easier-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/request_event"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -86,51 +84,50 @@
                 android:inputType="number" />
 
             <!--<TextView-->
-                <!--android:id="@+id/textView_add_tags"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_marginTop="15dp"-->
-                <!--android:elevation="10dp"-->
-                <!--android:gravity="center_horizontal"-->
-                <!--android:text="Add Event Tags"-->
-                <!--android:textColor="@color/colorAccent"-->
-                <!--android:textSize="17dp" />-->
+            <!--android:id="@+id/textView_add_tags"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginTop="15dp"-->
+            <!--android:elevation="10dp"-->
+            <!--android:gravity="center_horizontal"-->
+            <!--android:text="Add Event Tags"-->
+            <!--android:textColor="@color/colorAccent"-->
+            <!--android:textSize="17dp" />-->
 
             <!--<View-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="1dp"-->
-                <!--android:background="@android:color/holo_blue_dark" />-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="1dp"-->
+            <!--android:background="@android:color/holo_blue_dark" />-->
 
             <!--<LinearLayout-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="60dp"-->
-                <!--android:orientation="horizontal">-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="60dp"-->
+            <!--android:orientation="horizontal">-->
 
-                <!--<EditText-->
-                    <!--android:id="@+id/editText_add_tag"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:ems="10"-->
-                    <!--android:gravity="left|center"-->
-                    <!--android:layout_gravity="center"-->
-                    <!--android:hint="Enter organizer name"-->
-                    <!--android:layout_weight="1.3"-->
-                    <!--android:inputType="textMultiLine" />-->
+            <!--<EditText-->
+            <!--android:id="@+id/editText_add_tag"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:ems="10"-->
+            <!--android:gravity="left|center"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:hint="Enter organizer name"-->
+            <!--android:layout_weight="1.3"-->
+            <!--android:inputType="textMultiLine" />-->
 
-                <!--<Button-->
-                    <!--android:id="@+id/btn_submit_tag"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="match_parent"-->
-                    <!--android:layout_gravity="center"-->
-                    <!--android:layout_marginTop="5dp"-->
-                    <!--android:layout_marginBottom="5dp"-->
-                    <!--android:layout_weight="3.5"-->
-                    <!--android:gravity="center"-->
-                    <!--android:hint="Add"-->
-                    <!--android:textAlignment="gravity" />-->
+            <!--<Button-->
+            <!--android:id="@+id/btn_submit_tag"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:layout_marginTop="5dp"-->
+            <!--android:layout_marginBottom="5dp"-->
+            <!--android:layout_weight="3.5"-->
+            <!--android:gravity="center"-->
+            <!--android:hint="Add"-->
+            <!--android:textAlignment="gravity" />-->
 
             <!--</LinearLayout>-->
-
 
 
             <Spinner
@@ -254,7 +251,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@android:color/holo_blue_dark" />
-            
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
@@ -264,11 +261,11 @@
                     android:id="@+id/editText_request_add_member"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1.3"
                     android:ems="10"
                     android:gravity="left|center"
-                    android:layout_gravity="center"
                     android:hint="Enter organizer name"
-                    android:layout_weight="1.3"
                     android:inputType="textMultiLine" />
 
                 <Button
@@ -292,9 +289,9 @@
                 android:background="@android:color/holo_blue_dark" />
 
             <LinearLayout
-                android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
+                android:layout_marginTop="20dp"
                 android:orientation="horizontal"
                 android:weightSum="5">
 

@@ -71,8 +71,6 @@ public class App_Feedback_Activity extends AppCompatActivity {
 		display_5 = (EmojiAppCompatTextView) findViewById(R.id.display_5);
 		display_6 = (TextView) findViewById(R.id.display_6);
 
-
-
 		ratingBar1.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
 			@Override
 			public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
@@ -182,7 +180,7 @@ public class App_Feedback_Activity extends AppCompatActivity {
 			}
 			JsonObjectRequest jor = new JsonObjectRequest(
 					Request.Method.POST,
-					getString(R.string.ip) + "app-feedback/",
+					getString(R.string.ip) + "api/app-feedback/",
 					obj,
 					new Response.Listener<JSONObject>() {
 						@Override

@@ -51,13 +51,13 @@
 
     <Button
         android:id="@+id/btn_submit_faq"
-        android:onClick="clear_and_save"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:gravity="center"
         android:hint="Submit Question"
+        android:onClick="clear_and_save"
         android:textAlignment="gravity" />
 
     <View
