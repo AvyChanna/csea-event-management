@@ -246,7 +246,15 @@ public class MainActivity extends AppCompatActivity
 			Intent intent = new Intent(this, LoginActivity.class);
 			startActivity(intent);
 
-		} else if (id == R.id.nav_upcoming_events) {
+		} else if (id == R.id.nav_change_password) {
+			SharedPreferences sp = getSharedPreferences("Login",MODE_PRIVATE);
+			if(!sp.getString("username","").equals(""))
+			{
+				Intent intent = new Intent(this, ChangePasswordActivity.class);
+				startActivity(intent);
+			}
+		}
+		else if (id == R.id.nav_upcoming_events) {
 			Intent intent = new Intent(this, ListEventsActivity.class);
 			startActivity(intent);
 		} else if (id == R.id.nav_approve) {

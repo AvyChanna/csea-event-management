@@ -9,6 +9,11 @@
             android:id="@+id/nav_login_signup"
             android:icon="@android:drawable/ic_partial_secure"
             android:title="@string/login_signup" />
+        <item
+            android:id="@+id/nav_change_password"
+            android:icon="@android:drawable/ic_partial_secure"
+            android:title="Change password" />
+
     </group>
     <group
         android:checkableBehavior="none"
